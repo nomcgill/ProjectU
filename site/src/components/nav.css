@@ -1,0 +1,33 @@
+h1 {
+    font-size: 2em;
+    font-family: 'Righteous', cursive;
+    font-weight: lighter;
+}
+  
+nav {
+    display: flex;
+    justify-content: space-between;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 12px 0 8px;
+    background-color: rgb(44, 44, 44);
+    color: white;
+}
+
+nav * {
+    margin: 0;
+}
+
+#plus {
+    border-radius: 6px;
+    line-height: 30px;
+    margin: 7.5px 0;
+    height: 30px;
+    width: 30px;
+    border: solid 1px white;
+    padding: 0 9.5px;
+}
+
+#menu {
+    display: none;
+}

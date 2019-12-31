@@ -1,0 +1,34 @@
+
+#character-pane {
+    background-color: gray;
+    padding: 6px;
+    display: grid;
+    grid-template-columns: 60px auto auto 25px;
+}
+
+#character-pane > * {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#source-role > * {
+    line-height: 30px;
+}
+
+#intersection {
+    line-height: 60px;
+    font-size: 1.6em;
+}
+
+#level-box {
+    padding: 6px;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 6px;
+    border: solid 2px black;
+}
+
+#level-box > * {
+    padding: 1px;
+}

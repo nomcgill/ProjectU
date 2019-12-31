@@ -1,12 +1,10 @@
-import React from 'react'
+import React from 'react';
 import {connect} from 'react-redux';
-import {
-  Route,
-  BrowserRouter as Router,
-} from 'react-router-dom'
+import Nav from './nav';
+import Character from './character';
+import Body from './body';
 
-import { action } from '../actions'
-// import logo from '../logo.svg';
+// import { action } from '../actions';
 
 export class App extends React.Component {
 
@@ -16,12 +14,15 @@ export class App extends React.Component {
 
   render() {
       return (
-          <div>
+        <div>
+            <Nav />
+            <Character />
+            <Body />
             <h1>
               {this.example()}
             </h1>
-          </div>
-      );
+        </div>
+      )
   }
 }
 

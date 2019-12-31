@@ -2,7 +2,11 @@ import {ACTION} from './actions';
 
 
 const initialState = {
-    exampleState: "Action/reducer is flowing!"
+    source: "Divine",
+    role: "Knight",
+    intersection: "Paladin",
+    level: 1,
+    name: "Kaira"
 }
 
 export const reducer = (state = initialState, action) => {
