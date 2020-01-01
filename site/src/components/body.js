@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux';
+import Skills from './skills'
 // import {
 //   Route,
 //   BrowserRouter as Router,
@@ -14,24 +15,26 @@ export class Body extends React.Component {
       return (
           <div>
             <h2>
-                {this.props.name}
+                Intersection: {this.props.intersection}
             </h2>
-            <h3>
-                Basic
-            </h3>
-            <h3>
-                Advanced
-            </h3>
-            <h3>
-                Master
-            </h3>           
+            <Skills 
+                info={this.props.skills.basic}
+            />
+            <Skills 
+                info={this.props.skills.advanced}
+            />
+            <Skills 
+                info={this.props.skills.master}
+            />       
           </div>
       );
   }
 }
 
 const mapStateToProps = state => ({
-  name: state.name
+  name: state.name,
+  skills: state.skills,
+  intersection: state.intersection
 });
 
 export default connect(mapStateToProps)(Body);

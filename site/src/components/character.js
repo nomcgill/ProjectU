@@ -23,7 +23,7 @@ export class Character extends React.Component {
                     <h3>{this.props.role}</h3>
                 </div>
             </div>
-            <h3 id={'intersection'}>{this.props.intersection}</h3>
+            <h3 id={'intersection'}>{this.props.name}</h3>
           </div>
       );
   }
@@ -33,7 +33,8 @@ const mapStateToProps = state => ({
   source: state.source,
   role: state.role,
   intersection: state.intersection,
-  level: state.level
+  level: state.level,
+  name: state.name
 });
 
 export default connect(mapStateToProps)(Character);

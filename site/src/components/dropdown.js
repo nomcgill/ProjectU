@@ -13,6 +13,7 @@ export class Dropdown extends React.Component {
                 <li>{this.props.name}</li>
                 <li>Create PDF</li>
                 <li>Reset Builder</li>
+                <li>Main Site</li>
             </ul>
         </div>
       );
