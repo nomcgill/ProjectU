@@ -1,0 +1,48 @@
+
+.skill-list {
+    display: none;
+}
+
+.skillbox {
+    padding: 10px;
+    margin: 10px;
+    border: solid 2px gray;
+    border-radius: 4px;
+}
+
+.plus {
+    display: flex;
+    justify-content: space-between;
+}
+
+.skillbox h2 {
+    margin: 4px;
+}
+
+.selectors {
+    margin: 2px 2px 9px 2px;
+}
+
+.heavy {
+    text-transform: uppercase;
+}
+
+.selectors > * {
+    display: inline;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 3px;
+    color: white;    
+}
+
+.move-role-button {
+    background-color: rgb(40, 56, 150);
+}
+
+.move-source-button {
+    background-color: rgb(151, 117, 52);
+}
+
+.move-all-button {
+    background-color: rgb(66, 66, 66);
+}

@@ -11,11 +11,16 @@ import {connect} from 'react-redux';
 
 export default function Skills(props) {
     return (
-        <div>
+        <div className={props.info.title + '-box skillbox'}>
             <h2>
                 {props.info.title}
             </h2>
-            <p className={props.info.title}>
+            <div className={'selectors'}>
+                <p className={'move-source-button'}>{props.choices.source}</p>
+                <p className={'move-role-button'}>{props.choices.role}</p>
+                <p className={'move-all-button'}>All</p>
+            </div>
+            <p className={'skill-list'}>
                 {props.info.moves}
             </p>
         </div>
