@@ -1,24 +1,47 @@
-const initialState = {
-    intersection: "Paladin",
+
+const exampleState = {
     level: 1,
+    intersection: {
+        title: "Paladin",
+        traits: [
+            {
+                name: "Unwavering Will",
+                action: false,
+                type: false,
+                damage: false,
+                category: false, 
+                description: "Against any intangible attack (psionic, curse, mind control etc.) which should cause unwanted movement or action, a paladin can instead choose to remain still."
+            },
+            {
+                name: "Light",
+                action: "Channel",
+                type: "basic",
+                damage: "2X",
+                category: false,
+                description: "(Melee) You face a foe of demonic, undead, or fiendish nature."
+            }
+        ]
+    },
     name: "Kaira",
     source: {
         title: "Divine",
-        traits: {
-            name: "Description",
-            active: false,
-            description: "Your power is granted from on high. Gods and Angels provide you abilities most mortals can only dream of."
-        }
+        traits: [
+            {
+                name: "Description",
+                action: false,
+                description: "Your power is granted from on high. Gods and Angels provide you abilities most mortals can only dream of."
+            }
+        ]
     },
     role: {
         title: "Knight",
-        traits: {
-            Truth: {
+        traits: [ 
+            {
                 name: "Truth",
-                active: false,
+                action: false,
                 description: "For purposes of penalties, no crafted weapon is considered unnatural to the Knight. Improvised Object penalties remain unaffected."
             }
-        }
+        ]
     },
     skills: {
         basic: {
@@ -27,14 +50,14 @@ const initialState = {
                 Divine: [
                     {
                         name: "Prayer of Reconciliation",
-                        active: true,
+                        action: "channel",
                         description: "Implore your deity to mend a broken relationship. On a complete success, restore a relationship that you have used Burn a Bridge on."
                     }
                 ],
                 Knight: [
                     {
                         name: "Temperance",
-                        active: false,
+                        action: false,
                         description: "You are attempting to ride a non-aggressive, mountable creature. Gain the Upper Hand."
                     }
                 ]
@@ -46,14 +69,14 @@ const initialState = {
                 Divine: [
                     {
                         name: "Prayer of Reconciliation",
-                        active: true,
+                        action: "channel",
                         description: "Implore your deity to mend a broken relationship. On a complete success, restore a relationship that you have used Burn a Bridge on."
                     }
                 ],
                 Knight: [ 
                     {
                         name: "Temperance",
-                        active: false,
+                        action: false,
                         description: "You are attempting to ride a non-aggressive, mountable creature. Gain the Upper Hand."
                     }
                 ]
@@ -65,14 +88,14 @@ const initialState = {
                 Divine: [
                     {
                         name: "Prayer of Reconciliation",
-                        active: true,
+                        action: "channel",
                         description: "Implore your deity to mend a broken relationship. On a complete success, restore a relationship that you have used Burn a Bridge on."
                     }
                 ],
                 Knight: [ 
                     {
                         name: "Temperance",
-                        active: false,
+                        action: false,
                         description: "You are attempting to ride a non-aggressive, mountable creature. Gain the Upper Hand."
                     }
                 ]
@@ -81,4 +104,4 @@ const initialState = {
     }
 }
 
-module.exports = {data:sample}
+module.exports = exampleState

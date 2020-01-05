@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux';
 
-import SkillSection from './Skills/SkillSection'
+import Intersection from './Intersection'
 import TraitSection from './Traits/TraitSection'
+import SkillSection from './Skills/SkillSection'
 
 import './body.css'
 
@@ -19,10 +20,9 @@ export class Body extends React.Component {
   render() {
       return (
           <div>
-            <div className={"intersection-box plus skillbox"}>
-                <h2>Intersection: {this.props.intersection.title}</h2>
-                <h2>+</h2>
-            </div>
+            <Intersection 
+                intersection={this.props.intersection}
+            />
             <TraitSection
                 source={this.props.source}
                 role={this.props.role}

@@ -47,3 +47,12 @@
 .move-all-button {
     background-color: rgb(66, 66, 66);
 }
+
+.item {
+
+}
+
+.item-name {
+    font-weight: bold;
+    margin-top: 10px;
+}
