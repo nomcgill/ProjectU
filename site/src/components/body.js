@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import Skills from './skills'
-import Given from './given'
+
+import SkillSection from './Skills/SkillSection'
+import TraitSection from './Traits/TraitSection'
 
 import './body.css'
 
@@ -16,42 +17,21 @@ import './body.css'
 export class Body extends React.Component {
 
   render() {
-    let choices = {
-        role: this.props.role,
-        source: this.props.source
-    }
       return (
           <div>
             <div className={"intersection-box plus skillbox"}>
-                <h2>Intersection: {this.props.intersection}</h2>
+                <h2>Intersection: {this.props.intersection.title}</h2>
                 <h2>+</h2>
             </div>
-            <div>
-                <h3 className={"heavy"}>Given Skills</h3>
-                <Given
-                    title={"Source: "}
-                    name={choices.source} 
-                    info={this.props.skills.given.source}
-                />
-                <Given
-                    title={"Role: "}
-                    name={choices.role} 
-                    info={this.props.skills.given.role}
-                />
-            </div>
-            <h3 className={"heavy"}>Chosen Skills</h3>
-            <Skills 
-                choices={choices}
-                info={this.props.skills.basic}
+            <TraitSection
+                source={this.props.source}
+                role={this.props.role}
             />
-            <Skills 
-                choices={choices}
-                info={this.props.skills.advanced}
-            />
-            <Skills 
-                choices={choices}
-                info={this.props.skills.master}
-            />       
+            <SkillSection 
+                source={this.props.source}
+                role={this.props.role}
+                skills={this.props.skills}
+            />     
           </div>
       );
   }

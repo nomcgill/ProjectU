@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux';
+
 import './character.css'
 
 // import { action } from '../actions'
@@ -19,11 +20,11 @@ export class Character extends React.Component {
             </div>
             <div id={'titles'}>
                 <div id={'source-role'}>
-                    <h3>{this.props.source}</h3>
-                    <h3>{this.props.role}</h3>
+                    <h3>{this.props.source.title}</h3>
+                    <h3>{this.props.role.title}</h3>
                 </div>
             </div>
-            <h3 id={'intersection'}>{this.props.name}</h3>
+            <h3 id={'name'}>{this.props.name}</h3>
           </div>
       );
   }

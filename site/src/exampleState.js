@@ -1,10 +1,5 @@
-import {ACTION} from './actions';
-
 const initialState = {
-    intersection: {
-        title: "Paladin",
-        traits: "Unique information about the Paladin."
-    },
+    intersection: "Paladin",
     level: 1,
     name: "Kaira",
     source: {
@@ -86,11 +81,4 @@ const initialState = {
     }
 }
 
-export const reducer = (state = initialState, action) => {
-
-    if (action.type === ACTION) {
-        return initialState
-    }
-
-    return state;
-}
+module.exports = {data:sample}
