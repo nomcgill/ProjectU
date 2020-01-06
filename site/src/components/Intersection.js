@@ -12,11 +12,12 @@ import Item from './Item.js'
 
 export default function Intersection(props) {
 
-    const items = props.intersection.traits.map(item =>
+    const items = props.intersection.traits.map((item, count) =>
         <Item 
             id={"intersection-info"}
-            key={"intersection-" + item.name}
-            class={"info"}
+            key={"intersection-" + count}
+            class={"info intersection-item-" + count}
+            count={count}
             info={item}
         />
     )

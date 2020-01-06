@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Nav from './nav';
 import Character from './character';
-import Body from './body';
+import Main from './main';
 
 // import { action } from '../actions';
 
@@ -17,7 +17,7 @@ export class App extends React.Component {
         <div>
             <Nav />
             <Character />
-            <Body />
+            <Main />
             <h1>
               {this.example()}
             </h1>

@@ -16,7 +16,7 @@ const exampleState = {
                 name: "Light",
                 action: "Channel",
                 type: "basic",
-                damage: "2X",
+                damage: 2,
                 category: false,
                 description: "(Melee) You face a foe of demonic, undead, or fiendish nature."
             }
@@ -27,9 +27,20 @@ const exampleState = {
         title: "Divine",
         traits: [
             {
-                name: "Description",
+                name: "Unwavering Will",
                 action: false,
-                description: "Your power is granted from on high. Gods and Angels provide you abilities most mortals can only dream of."
+                type: false,
+                damage: false,
+                category: false, 
+                description: "Against any intangible attack (psionic, curse, mind control etc.) which should cause unwanted movement or action, a paladin can instead choose to remain still."
+            },
+            {
+                name: "Light",
+                action: "Channel",
+                type: "basic",
+                damage: 2,
+                category: false,
+                description: "(Melee) You face a foe of demonic, undead, or fiendish nature."
             }
         ]
     },
@@ -37,71 +48,101 @@ const exampleState = {
         title: "Knight",
         traits: [ 
             {
-                name: "Truth",
+                name: "Unwavering Will",
                 action: false,
-                description: "For purposes of penalties, no crafted weapon is considered unnatural to the Knight. Improvised Object penalties remain unaffected."
+                type: false,
+                damage: false,
+                category: false, 
+                description: "Against any intangible attack (psionic, curse, mind control etc.) which should cause unwanted movement or action, a paladin can instead choose to remain still."
+            },
+            {
+                name: "Light",
+                action: "Channel",
+                type: "basic",
+                damage: 2,
+                category: false,
+                description: "(Melee) You face a foe of demonic, undead, or fiendish nature."
             }
         ]
     },
     skills: {
         basic: {
             title: "Basic",
-            moves: {
-                Divine: [
-                    {
-                        name: "Prayer of Reconciliation",
-                        action: "channel",
-                        description: "Implore your deity to mend a broken relationship. On a complete success, restore a relationship that you have used Burn a Bridge on."
-                    }
-                ],
-                Knight: [
-                    {
-                        name: "Temperance",
-                        action: false,
-                        description: "You are attempting to ride a non-aggressive, mountable creature. Gain the Upper Hand."
-                    }
+            moves: [
+                {
+                    name: "Unwavering Will",
+                    action: false,
+                    type: false,
+                    damage: false,
+                    category: {
+                        role: "Knight"
+                    }, 
+                    description: "Against any intangible attack (psionic, curse, mind control etc.) which should cause unwanted movement or action, a paladin can instead choose to remain still."
+                },
+                {
+                    name: "Light",
+                    action: "Channel",
+                    type: "basic",
+                    damage: 2,
+                    category: {
+                        source: "Divine"
+                    },
+                    description: "(Melee) You face a foe of demonic, undead, or fiendish nature."
+                }
                 ]
-            }
         },
         advanced: {
             title: "Advanced", 
-            moves: {
-                Divine: [
-                    {
-                        name: "Prayer of Reconciliation",
-                        action: "channel",
-                        description: "Implore your deity to mend a broken relationship. On a complete success, restore a relationship that you have used Burn a Bridge on."
-                    }
-                ],
-                Knight: [ 
-                    {
-                        name: "Temperance",
-                        action: false,
-                        description: "You are attempting to ride a non-aggressive, mountable creature. Gain the Upper Hand."
-                    }
-                ]
-            }
+            moves: [
+                {
+                    name: "Unwavering Will",
+                    action: false,
+                    type: false,
+                    damage: false,
+                    category: {
+                        role: "Knight"
+                    }, 
+                    description: "Against any intangible attack (psionic, curse, mind control etc.) which should cause unwanted movement or action, a paladin can instead choose to remain still."
+                },
+                {
+                    name: "Light",
+                    action: "Channel",
+                    type: "basic",
+                    damage: 2,
+                    category: {
+                        source: "Divine"
+                    },
+                    description: "(Melee) You face a foe of demonic, undead, or fiendish nature."
+                }
+            ]
         },
         master: {
             title: "Master",
-            moves: {
-                Divine: [
-                    {
-                        name: "Prayer of Reconciliation",
-                        action: "channel",
-                        description: "Implore your deity to mend a broken relationship. On a complete success, restore a relationship that you have used Burn a Bridge on."
-                    }
-                ],
-                Knight: [ 
-                    {
-                        name: "Temperance",
-                        action: false,
-                        description: "You are attempting to ride a non-aggressive, mountable creature. Gain the Upper Hand."
-                    }
-                ]
-            }
+            moves: [
+                {
+                    name: "Unwavering Will",
+                    action: false,
+                    type: false,
+                    damage: false,
+                    category: {
+                        role: "Knight"
+                    }, 
+                    description: "Against any intangible attack (psionic, curse, mind control etc.) which should cause unwanted movement or action, a paladin can instead choose to remain still."
+                },
+                {
+                    name: "Light",
+                    action: "Channel",
+                    type: "basic",
+                    damage: 2,
+                    category: {
+                        source: "Divine"
+                    },
+                    description: "(Melee) You face a foe of demonic, undead, or fiendish nature."
+                }
+            ]
         }
     }
 }
+
 
 module.exports = exampleState

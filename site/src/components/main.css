@@ -1,13 +1,25 @@
 
-.skill-list {
+.item {
     display: none;
 }
 
+main {
+    padding: 10px 13px;
+}
+
 .skillbox {
-    padding: 10px;
-    margin: 10px;
+    padding: 7px 10px 5px;
     border: solid 2px gray;
     border-radius: 4px;
+    margin: 1.5%;
+}
+
+.Basic-box, .Advanced-box, .Master-box {
+    padding: 5px 10px 17px;
+}
+
+.intersection-box {
+    margin-top: 1%;
 }
 
 .plus {
@@ -15,8 +27,19 @@
     justify-content: space-between;
 }
 
+.plus-sign {
+    margin-right: -5px;
+}
+
+#traits-row > * {
+    display: inline-block;
+    width: 47%;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+}
+
 .skillbox h2 {
-    margin: 4px;
+    margin: 5px 4px 4px;
 }
 
 .selectors {
@@ -25,15 +48,23 @@
 
 .section-head {
     text-transform: uppercase;
-    margin: 10px;
+    margin: 15px 10px 5px;
 }
 
-.selectors > * {
+.filters > * {
     display: inline;
     padding: 5px;
     margin: 2px;
     border-radius: 3px;
     color: white;    
+}
+
+.trait-top > * {
+}
+
+.trait-top {
+    display: flex;
+    justify-content: space-between;
 }
 
 .move-role-button {
@@ -48,8 +79,8 @@
     background-color: rgb(66, 66, 66);
 }
 
-.item {
-
+.red {
+    color: red;
 }
 
 .item-name {

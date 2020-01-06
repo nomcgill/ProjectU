@@ -5,7 +5,7 @@ import Intersection from './Intersection'
 import TraitSection from './Traits/TraitSection'
 import SkillSection from './Skills/SkillSection'
 
-import './body.css'
+import './main.css'
 
 // import {
 //   Route,
@@ -19,7 +19,7 @@ export class Body extends React.Component {
 
   render() {
       return (
-          <div>
+          <main>
             <Intersection 
                 intersection={this.props.intersection}
             />
@@ -32,7 +32,7 @@ export class Body extends React.Component {
                 role={this.props.role}
                 skills={this.props.skills}
             />     
-          </div>
+          </main>
       );
   }
 }
