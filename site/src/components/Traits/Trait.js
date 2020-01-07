@@ -24,27 +24,26 @@ export default function Trait(props) {
     )
 
     return (
-        <div className={'skillbox traitbox plus'}>
+        <div className={'skillbox traitbox'}>
             <div className={"trait-top"}>
-                <div class-Name={"trait-top-text"}>
-                    <h3>
-                        <span 
-                        className={props.intro + '-title'}>
+                <div className={"trait-top-text"}>
+                    <h3 className={props.side + '-title'}>
                         {props.intro}
-                        </span>
+                    </h3>
+                    <h3>
                         {props.title}
                     </h3>
                 </div>
                 <h3 className={"plus-sign"}>
                     +
                 </h3>
-                <h3 className={"minus-sign hidden"}>
+                <h3 className={"minus-sign none"}>
                     -
                 </h3>
             </div>
-            <p className={props.intro + "-info"}>
+            <div className={props.title + "-info"}>
                 {items}
-            </p>
+            </div>
         </div>
     );
 }

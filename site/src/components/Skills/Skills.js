@@ -37,10 +37,9 @@ export default function Skills(props) {
                 <p className={'move-role-button'}>{roleTitle}</p>
                 <p className={'move-all-button'}>All</p>
             </div>
-            <p className={'skill-list'}>
+            <div className={'skill-list'}>
                 {items}
-                {/* {props.info.moves.Divine[0].description} */}
-            </p>
+            </div>
         </div>
     );
 }

@@ -19,11 +19,13 @@ export default function TraitSection(props) {
                     intro={"Source: "}
                     title={props.source.title} 
                     info={props.source}
+                    side={"left"}
                 />
                 <Trait
                     intro={"Role: "}
                     title={props.role.title} 
                     info={props.role}
+                    side={"right"}
                 />
             </div>
         </div>

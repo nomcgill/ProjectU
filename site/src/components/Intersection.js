@@ -24,7 +24,7 @@ export default function Intersection(props) {
 
     return (
         <div className={"intersection-box skillbox"}>
-            <div className={"top plus"}>
+            <div id={"intersection-line"} className={"plus"}>
                 <h3>Intersection: {props.intersection.title}</h3>
                 <h3>+</h3>
             </div>

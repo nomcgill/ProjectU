@@ -1,6 +1,11 @@
 
+
 .item {
     display: none;
+}
+
+.none {
+    display: none !important;
 }
 
 main {
@@ -22,17 +27,33 @@ main {
     margin-top: 1%;
 }
 
-.plus {
+.traitbox {
+    display: inline-grid;
+}
+
+/* outer */
+.trait-top {
+    display: table;
+    top: 0;
+    left: 0;
+}
+
+/* inner */
+.trait-top > .plus-sign, .trait-top > .minus-sign {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.plus-sign {
+}
+
+#intersection-line {
     display: flex;
     justify-content: space-between;
 }
 
-.plus-sign {
-    margin-right: -5px;
-}
-
 #traits-row > * {
-    display: inline-block;
     width: 47%;
     margin-left: 1.5%;
     margin-right: 1.5%;
@@ -57,14 +78,6 @@ main {
     margin: 2px;
     border-radius: 3px;
     color: white;    
-}
-
-.trait-top > * {
-}
-
-.trait-top {
-    display: flex;
-    justify-content: space-between;
 }
 
 .move-role-button {
