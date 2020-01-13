@@ -1,34 +1,53 @@
+main {
+    max-width: 800px;
+    margin: 0 auto;
+}
 
 
 .item {
-    display: none;
+    /* display: none; */
+    margin: 6px;
 }
 
 .none {
     display: none !important;
 }
 
-main {
-    padding: 10px 13px;
+.skillbox {
+    /* padding: 7px 10px 5px; */
+    border: solid 2px rgb(99, 99, 99);
+    border-radius: 4px;
+    margin: 3%;
 }
 
-.skillbox {
-    padding: 7px 10px 5px;
-    border: solid 2px gray;
-    border-radius: 4px;
-    margin: 1.5%;
+.trait-top-text {
+    padding: 10px 0 10px 10px;
 }
+
+/* .trait-top:hover, .trait-top>*:hover {
+    cursor: pointer;
+} */
 
 .Basic-box, .Advanced-box, .Master-box {
-    padding: 5px 10px 17px;
+    /* padding: 5px 10px 17px; */
+}
+
+#Basic-line, #Advanced-line, #Master-line {
+    padding: 10px;
+}
+
+.filters .all-selected {
+    background-color: white;
+    color: black;
 }
 
 .intersection-box {
-    margin-top: 1%;
+    /* margin-top: 1%; */
 }
 
 .traitbox {
     display: inline-grid;
+    /* margin */
 }
 
 /* outer */
@@ -42,15 +61,61 @@ main {
 .trait-top > .plus-sign, .trait-top > .minus-sign {
     display: table-cell;
     vertical-align: middle;
-    text-align: center;
+    /* text-align: center; */
 }
 
-.plus-sign {
+.open-box {
+    padding-bottom: 4px;
+}
+
+.open-box:hover {
+    border: solid 2px rgb(99, 99, 99) !important;
+}
+
+.gray:hover {
+    background-color: rgb(56, 56, 56);
+    margin: -2px;
+    margin-bottom: 0px;
+    border: solid 2px black;
+    border-radius: 3px;
+}
+
+.whited:hover {
+    /* background-color: rgb(150, 150, 150); */
+    /* color: white; */
+}
+
+.gray:active, .whited:active {
+    background-color: black;
+    margin: -2px;
+    margin-bottom: 0px;
+    border: solid 2px black;
+    border-radius: 3px;
+    color: white;
+}
+
+.gray:hover,.whited:hover,.gray:active,.whited:active, 
+.gray *:hover,.whited *:hover,.gray *:active,.whited *:active {
+    cursor:pointer;
 }
 
 #intersection-line {
     display: flex;
     justify-content: space-between;
+    /* margin:-10px; */
+    padding: 10px;
+}
+
+.skillbox:hover {
+    border: solid 2px black;
+}
+
+/* #intersection-line:hover, #intersection-line>*:hover {
+    cursor: pointer;
+} */
+
+#traits-row {
+    padding: 0px 1.5% 0px;
 }
 
 #traits-row > * {
@@ -60,7 +125,7 @@ main {
 }
 
 .skillbox h2 {
-    margin: 5px 4px 4px;
+    /* margin: 5px 4px 4px; */
 }
 
 .selectors {
@@ -69,7 +134,11 @@ main {
 
 .section-head {
     text-transform: uppercase;
-    margin: 15px 10px 5px;
+    margin: 15px 10px 0px;
+}
+
+.filters {
+    margin-top: 8px;
 }
 
 .filters > * {
@@ -98,5 +167,25 @@ main {
 
 .item-name {
     font-weight: bold;
-    margin-top: 10px;
+    margin-bottom: 2px;
+    /* margin-top: 10px; */
+}
+
+.item:nth-child(2) { 
+    /* margin-top: 18px; */
+}
+
+.first-item {
+    /* padding-top: 10px; */
+}
+
+.gray {
+    background-color: rgb(99, 99, 99);
+    color: white;
+    /* margin: -10px; */
+    /* padding: 10px; */
+    /* border: solid  0px rgb(128, 128, 128); */
+    /* border-radius: 3px 3px 0 0; */
+    /* box-shadow: 0px 3px 3px grey; */
+    border-bottom: solid 2px rgb(27, 27, 27);
 }

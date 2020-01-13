@@ -17,15 +17,32 @@ export default function Trait(props) {
         <Item 
             id={"traits-info"}
             key={"traits-" + count}
-            class={"info traits-item-" + count}
+            class={props.title + "-info info none traits-item-" + count}
             count={count}
             info={item}
         />
     )
 
+    function toggleDetails(){
+        document.getElementById(props.title + "-plus").classList.toggle("none")
+        document.getElementById(props.title + "-minus").classList.toggle("none")
+        document.getElementById(props.title + "-line").classList.toggle("gray")
+        document.getElementById(props.title + "-line").classList.toggle("whited")
+        document.getElementById(props.title + "-box").classList.toggle("open-box")   
+        // document.getElementsByClassName("intersection-item-0").childNodes[0].classList.add('first-item')    
+        let relevant = document.getElementsByClassName(props.title + "-info")
+        for ( let i=0;i<relevant.length;i++){
+            relevant[i].classList.toggle("none")
+        }
+    }
+
     return (
-        <div className={'skillbox traitbox'}>
-            <div className={"trait-top"}>
+        <div className={"skillbox traitbox"} id={props.title + "-box"}>
+            <div 
+                className={"trait-top whited"} 
+                id={props.title + "-line"}
+                onClick={() => toggleDetails()}
+                >
                 <div className={"trait-top-text"}>
                     <h3 className={props.side + '-title'}>
                         {props.intro}
@@ -34,14 +51,14 @@ export default function Trait(props) {
                         {props.title}
                     </h3>
                 </div>
-                <h3 className={"plus-sign"}>
+                <h3 className={"plus-sign"} id={props.title + "-plus"}>
                     +
                 </h3>
-                <h3 className={"minus-sign none"}>
+                <h3 className={"minus-sign none"} id={props.title + "-minus"}>
                     -
                 </h3>
             </div>
-            <div className={props.title + "-info"}>
+            <div>
                 {items}
             </div>
         </div>
