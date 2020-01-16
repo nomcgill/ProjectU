@@ -29,6 +29,8 @@ export default function Skills(props) {
     )
 
     function toggleDetails(){
+        document.getElementById(theTitle + "-plus").classList.toggle("none")
+        document.getElementById(theTitle + "-minus").classList.toggle("none")
         document.getElementById(theTitle + "-line").classList.toggle("gray")
         document.getElementById(theTitle + "-line").classList.toggle("whited")
         document.getElementById(theTitle + "-box").classList.toggle("open-box")   
@@ -49,21 +51,29 @@ export default function Skills(props) {
         <div className={theTitle + '-box skillbox'} id={theTitle + "-box"}>
             <div 
                 id={theTitle + "-line"}
-                className={"whited"} 
+                className={"whited skill-top"} 
                 onClick={() => toggleDetails()}
-                >
-                <h2>
-                    {theTitle}
-                </h2>
-                <div id={theTitle + "-how-many-pane"}>
-                    <p>{sourceTitle}: 10/10</p>
-                    <p>{roleTitle}: 8/8</p>
+            >
+                <div className={"skill-box-header-left"}>
+                    <h2>
+                        {theTitle}
+                    </h2>
+                    <div id={theTitle + "-how-many-pane"}>
+                        <p>{sourceTitle}: 10/10</p>
+                        <p>{roleTitle}: 8/8</p>
+                    </div>
+                    <div className={theTitle + '-filters filters none'}>
+                        <p className={'move-source-button'}>{sourceTitle}</p>
+                        <p className={'move-role-button'}>{roleTitle}</p>
+                        <p className={'move-all-button'} id={theTitle + "-all-button"}>All</p>
+                    </div>
                 </div>
-                <div className={theTitle + '-filters filters none'}>
-                    <p className={'move-source-button'}>{sourceTitle}</p>
-                    <p className={'move-role-button'}>{roleTitle}</p>
-                    <p className={'move-all-button'} id={theTitle + "-all-button"}>All</p>
-                </div>
+                <h3 className={"plus-sign"} id={theTitle + "-plus"}>
+                    +
+                </h3>
+                <h3 className={"minus-sign none"} id={theTitle + "-minus"}>
+                    -
+                </h3>
             </div>
             <div className={'skill-list'}>
                 {items}

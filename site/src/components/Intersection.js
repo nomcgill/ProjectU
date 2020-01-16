@@ -39,7 +39,7 @@ export default function Intersection(props) {
         <div id={"intersection-box"} className={"skillbox"}>
             <div 
                 id={"intersection-line"} 
-                className={"plus whited"}
+                className={"plus whited skill-top"}
                 onClick={() => toggleDetails()}
             >
                 <h3>Intersection: {props.intersection.title}</h3>
