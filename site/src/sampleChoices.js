@@ -1,5 +1,4 @@
-
-const exampleState = {
+const sampleChoices = {
     level: 1,
     intersection: {
         title: "Paladin",
@@ -145,4 +144,4 @@ const exampleState = {
 }
 
 
-module.exports = exampleState
+module.exports = sampleChoices

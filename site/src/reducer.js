@@ -1,13 +1,22 @@
 import {ACTION} from './actions';
-import exampleState from './exampleState'
+import sampleProjectU from './sampleProjectU'
+import sampleChoices from './sampleChoices'
+import cleanSlate from './cleanSlate'
 
-const initialState = exampleState
+// const initialState = sampleChoices
+const initialState = cleanSlate
+
+// const initialState = {
+//     database: sampleProjectU,
+//     choices: sampleChoices
+// }
+
 
 export const reducer = (state = initialState, action) => {
 
-    if (action.type === ACTION) {
-        return initialState
-    }
+    // if (action.type === ACTION) {
+    //     return initialState
+    // }
 
     return state;
 }

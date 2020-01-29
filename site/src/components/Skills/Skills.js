@@ -3,14 +3,6 @@ import {connect} from 'react-redux';
 
 import Item from '../Item.js' 
 
-// import {
-//   Route,
-//   BrowserRouter as Router,
-// } from 'react-router-dom'
-
-
-// import { action } from '../actions'
-
 export default function Skills(props) {
 
     const sourceTitle = props.source.title

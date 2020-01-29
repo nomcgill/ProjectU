@@ -1,48 +1,36 @@
 import React from 'react'
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom';
 
-import Intersection from './Intersection'
-import TraitSection from './Traits/TraitSection'
-import SkillSection from './Skills/SkillSection'
+import FinalProfile from './FinalProfile.js'
+import EditingMain from './EditingMain.js'
 
 import './main.css'
 
-// import {
-//   Route,
-//   BrowserRouter as Router,
-// } from 'react-router-dom'
+export default function Main() {
 
-
-// import { action } from '../actions'
-
-export class Body extends React.Component {
-
-  render() {
-      return (
-          <main>
-            <Intersection 
-                intersection={this.props.intersection}
-            />
-            <TraitSection
-                source={this.props.source}
-                role={this.props.role}
-            />
-            <SkillSection 
-                source={this.props.source}
-                role={this.props.role}
-                skills={this.props.skills}
-            />     
-          </main>
-      );
-  }
+  return (
+    <Router>
+      <main>
+        <Switch>
+          <Route 
+            exact 
+            path="/final" 
+            component={FinalProfile} 
+          />
+          <Route
+            exact
+            path="/"
+            component={EditingMain}
+          />
+        </Switch>
+      </main>
+    </Router>
+  );
 }
-
-const mapStateToProps = state => ({
-  name: state.name,
-  skills: state.skills,
-  intersection: state.intersection,
-  role: state.role,
-  source: state.source
-});
-
-export default connect(mapStateToProps)(Body);

@@ -1,8 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux';
 
-// import { action } from '../actions'
-
 export class Dropdown extends React.Component {
 
   render() {

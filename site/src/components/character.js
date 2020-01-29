@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 
 import './character.css'
 
-// import { action } from '../actions'
-
 export class Character extends React.Component {
 
   example(){

@@ -4,8 +4,6 @@ import Nav from './nav';
 import Character from './character';
 import Main from './main';
 
-// import { action } from '../actions';
-
 export class App extends React.Component {
 
   example(){
@@ -27,7 +25,7 @@ export class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  exampleState: state.exampleState
+  editing: state.editing
 });
 
 export default connect(mapStateToProps)(App);

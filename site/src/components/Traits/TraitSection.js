@@ -2,16 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 import Trait from './Trait.js'
 
-// import {
-//   Route,
-//   BrowserRouter as Router,
-// } from 'react-router-dom'
-
-
-// import { action } from '../actions'
-
 export default function TraitSection(props) {
-
 
     return (
         <div className={"trait-section"}>
