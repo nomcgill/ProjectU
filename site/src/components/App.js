@@ -4,10 +4,16 @@ import Nav from './nav';
 import Character from './character';
 import Main from './main';
 
+import {fetchProjectU} from '../actions'
+
 export class App extends React.Component {
 
+  componentDidMount() {
+    this.props.dispatch(fetchProjectU());
+  }
+
   example(){
-    return (this.props.exampleState)
+    return (this.props.hitpoints)
   }
 
   render() {
@@ -16,16 +22,14 @@ export class App extends React.Component {
             <Nav />
             <Character />
             <Main />
-            <h1>
-              {this.example()}
-            </h1>
         </div>
       )
   }
 }
 
 const mapStateToProps = state => ({
-  editing: state.editing
+  editing: state.editing,
+  hitpoints: state.hitpoints,
 });
 
 export default connect(mapStateToProps)(App);

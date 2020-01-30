@@ -1,4 +1,5 @@
 const cleanSlate = {
+    database: false,
     editing: true,
     level: 1,
     hitpoints: 20,

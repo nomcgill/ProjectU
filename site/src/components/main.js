@@ -11,7 +11,7 @@ import {
 import FinalProfile from './FinalProfile.js'
 import EditingMain from './EditingMain.js'
 
-import './main.css'
+import './finalprofile.css'
 
 export default function Main() {
 
@@ -25,7 +25,6 @@ export default function Main() {
             component={FinalProfile} 
           />
           <Route
-            exact
             path="/"
             component={EditingMain}
           />

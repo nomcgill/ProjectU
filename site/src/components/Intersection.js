@@ -20,7 +20,6 @@ export default function Intersection(props) {
         document.getElementById("intersection-line").classList.toggle("gray")
         document.getElementById("intersection-line").classList.toggle("whited")
         document.getElementById("intersection-box").classList.toggle("open-box")     
-        // document.getElementsByClassName("intersection-item-0").childNodes[0].classList.add('first-item')    
         let relevant = document.getElementsByClassName("intersection-item")
         for ( let i=0;i<relevant.length;i++){
             relevant[i].classList.toggle("none")

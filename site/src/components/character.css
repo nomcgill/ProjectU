@@ -4,6 +4,7 @@
     padding: 6px;
     display: grid;
     grid-template-columns: 60px auto auto 25px;
+    z-index: -1;
 }
 
 #character-pane > * {

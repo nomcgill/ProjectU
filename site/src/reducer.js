@@ -1,9 +1,9 @@
-import {ACTION} from './actions';
+import * as actions from './actions';
 import sampleProjectU from './sampleProjectU'
 import sampleChoices from './sampleChoices'
 import cleanSlate from './cleanSlate'
 
-// const initialState = sampleChoices
+const database = sampleProjectU
 const initialState = cleanSlate
 
 // const initialState = {
@@ -14,9 +14,11 @@ const initialState = cleanSlate
 
 export const reducer = (state = initialState, action) => {
 
-    // if (action.type === ACTION) {
-    //     return initialState
-    // }
+    if (action.type === actions.FETCH_PROJECTU_SUCCESS) {
+        return Object.assign({}, state, {
+            database: database
+        })
+    }
 
     return state;
 }

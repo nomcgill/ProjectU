@@ -33,7 +33,3 @@ export default function SkillSection(props) {
         </div>  
     );
 }
-
-            
-            
-            
