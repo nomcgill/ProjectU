@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 
 import RoleSourceOption from './RoleSourceOption'
+import NextButton from '../NextButton.js'
 
 // import { action } from '../actions'
 
@@ -20,6 +21,7 @@ export default function ChoicePage(props) {
                 <h2>Choose your {props.header}.</h2>
             </div>
             {eachBox}
+            <NextButton next={props.next} />
         </div>
     );
 }

@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 
 import FinalProfile from './FinalProfile.js'
-import EditingMain from './EditingMain.js'
+import EditingMain from './Editing/EditingMain.js'
 
 import './finalprofile.css'
 

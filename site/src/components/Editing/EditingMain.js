@@ -10,7 +10,11 @@ import {
 
 import './editing.css'
 
-import ChoicePage from './Choices/ChoicePage.js'
+import ChoicePage from './Choices/ChoicePage'
+import IntersectionPage from './MiscInfo/IntersectionPage'
+import CharacterPage from './MiscInfo/CharacterPage'
+import SkillsPage from './Choices/SkillsPage'
+import FinishPage from './MiscInfo/FinishPage'
 
 export class EditingMain extends React.Component {
     
@@ -21,7 +25,7 @@ export class EditingMain extends React.Component {
             return insert.charAt(0).toUpperCase() + insert.slice(1)
         }
 
-        const steps = ["role","source","name","level","skills"]
+        const steps = ["role","source","name","skills", "finish"]
 
         const navsteps = steps.map(step =>
             <li key={step+"1"} id={step + "-nav"}>
@@ -45,8 +49,8 @@ export class EditingMain extends React.Component {
                                 render={() => 
                                 <ChoicePage
                                     header={"ROLE"}
-                                    page={"roles"}
                                     info={this.props.database.roles}
+                                    next={"/source"}
                                 />}
                             />
                             <Route 
@@ -56,7 +60,40 @@ export class EditingMain extends React.Component {
                                 <ChoicePage
                                     header={"SOURCE"}
                                     info={this.props.database.sources}
+                                    next={"/intersection"}
                                 />}
+                            />
+                            <Route 
+                                exact
+                                path="/intersection"
+                                render={() => 
+                                <IntersectionPage
+                                    header={"Intersection: "}
+                                    info={this.props.intersection}
+                                    role={this.props.role}
+                                    source={this.props.source}
+                                    next={"/name"}
+                                />}
+                            />
+                            <Route 
+                                exact
+                                path="/name"
+                                render={() => 
+                                <CharacterPage
+                                    next={"/skills"}
+                                />}
+                            />
+                            <Route 
+                                path="/skills"
+                                render={() => 
+                                <SkillsPage />}
+                            />
+                            <Route
+                                exact
+                                path="/finish"
+                                render={() =>
+                                <FinishPage />
+                                }
                             />
                         </Switch>
                 </div>

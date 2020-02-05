@@ -64,3 +64,33 @@
     margin: 10px 18px;
     border-radius: 3px;
 }
+
+.next-button {
+    background-color: rgb(157, 199, 146);
+    padding: 10px;
+    margin: 10px 18px;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color:black;
+}
+
+#skills-nav-top {
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    /* margin-top: 15px; */
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    /* padding: 0px 4px; */
+}
+
+#skills-nav-top > * {
+    width: 50%;
+}
