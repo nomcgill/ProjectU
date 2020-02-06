@@ -12,7 +12,6 @@
     width: 100%;
     background-color: rgba(0, 0, 0, 0.76);
     z-index: 0;
-    /* background-blend-mode: darken; */
 }
 
 #editing-nav {

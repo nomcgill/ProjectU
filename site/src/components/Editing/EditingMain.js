@@ -36,13 +36,13 @@ export class EditingMain extends React.Component {
         )
 
         return (
-            <Router>
                 <div id={"editing-main"}>
                     <div id={"dimmer"}/>
                     <ul id={"editing-nav"}>
                         {navsteps}
                     </ul>
                         <Switch>
+                            <Redirect exact from="/" to="/role" />
                             <Route 
                                 exact
                                 path="/role"
@@ -83,6 +83,7 @@ export class EditingMain extends React.Component {
                                     next={"/skills"}
                                 />}
                             />
+                            <Redirect exact from="/skills" to="/skills/roleskillschoice" />
                             <Route 
                                 path="/skills"
                                 render={() => 
@@ -97,7 +98,6 @@ export class EditingMain extends React.Component {
                             />
                         </Switch>
                 </div>
-            </Router>
         );
     }
   }
