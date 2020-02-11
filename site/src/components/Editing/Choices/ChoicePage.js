@@ -12,8 +12,20 @@ export default function ChoicePage(props) {
         <RoleSourceOption 
             key={section.title + "-key"}
             section={section}
+            button={props.button}
         />
     ) : ""
+
+    const buttons = ["role-skill","source-skill"]
+    if (document.getElementById("source-skill-nav")){
+        buttons.map(one => {
+            let check = document.getElementById(one + "-nav")
+            if (check.classList.contains("highlight-skill-tab")){ 
+                check.classList.remove("highlight-skill-tab")
+            }
+        })
+        document.getElementById(props.button + "-nav").classList.add("highlight-skill-tab")
+    }
 
     return (
         <div className={"choice-page"}>

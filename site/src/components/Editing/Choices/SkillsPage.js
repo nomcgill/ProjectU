@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import {
+    Link,
     BrowserRouter as Router,
     Route,
     Redirect,
@@ -12,17 +12,21 @@ import ChoicePage from './ChoicePage'
 
 export class SkillsPage extends React.Component {
     
-
     render() {
+        console.log(this.props.rolename)
 
         return (
             <div id={"skills-page"}>
                 <div id={"skills-nav-top"}>
                     <Link to={`/skills/roleskillschoice`}>
-                        Knight
+                        <div id={"role-skill-nav"} className={"highlight-skill-tab"}>
+                            Knight
+                        </div>
                     </Link>
                     <Link to={`/skills/sourceskillschoice`}>
-                        Divine
+                        <div id={"source-skill-nav"}>
+                            Divine
+                        </div>
                     </Link>
                 </div>
                     <Switch>
@@ -35,6 +39,7 @@ export class SkillsPage extends React.Component {
                                 options={this.props.database.roles}
                                 header={"this.props.role + skills:"}
                                 next={'/skills/sourceskillschoice'}
+                                button={"role-skill"}
                             />}
                         />
                         <Route 
@@ -45,6 +50,7 @@ export class SkillsPage extends React.Component {
                                 options={this.props.database.source}
                                 header={"this.props.source + skills"}
                                 next={'/finish'}
+                                button={"source-skill"}
                             />}
                         />
                     </Switch>
@@ -59,7 +65,10 @@ export class SkillsPage extends React.Component {
     intersection: state.intersection,
     role: state.role,
     source: state.source,
-    database: state.database
+    database: state.database,
+    // sourcename: props.sourcename,
+    // rolename: props.rolename
+
   });
 
   export default connect(mapStateToProps)(SkillsPage);

@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {
+    NavLink,
     BrowserRouter as Router,
     Route,
     Redirect,
@@ -25,13 +26,16 @@ export class EditingMain extends React.Component {
             return insert.charAt(0).toUpperCase() + insert.slice(1)
         }
 
-        const steps = ["role","source","name","skills", "finish"]
+        const steps = ["role","source","who","skills", "finish"]
 
         const navsteps = steps.map(step =>
             <li key={step+"1"} id={step + "-nav"}>
-                <Link to={`/${step}`}>
+                <NavLink 
+                    to={`/${step}`} 
+                    activeClassName={"highlight-nav"}
+                >
                     {capitalize(step)}
-                </Link>
+                </NavLink>
             </li>
         )
 
@@ -51,6 +55,7 @@ export class EditingMain extends React.Component {
                                     header={"ROLE"}
                                     info={this.props.database.roles}
                                     next={"/source"}
+                                    button={"role"}
                                 />}
                             />
                             <Route 
@@ -61,6 +66,7 @@ export class EditingMain extends React.Component {
                                     header={"SOURCE"}
                                     info={this.props.database.sources}
                                     next={"/intersection"}
+                                    button={"source"}
                                 />}
                             />
                             <Route 
@@ -72,28 +78,35 @@ export class EditingMain extends React.Component {
                                     info={this.props.intersection}
                                     role={this.props.role}
                                     source={this.props.source}
-                                    next={"/name"}
+                                    next={"/who"}
                                 />}
                             />
                             <Route 
                                 exact
-                                path="/name"
+                                path="/who"
                                 render={() => 
                                 <CharacterPage
                                     next={"/skills"}
+                                    button={"who"}
                                 />}
                             />
                             <Redirect exact from="/skills" to="/skills/roleskillschoice" />
                             <Route 
                                 path="/skills"
                                 render={() => 
-                                <SkillsPage />}
+                                <SkillsPage 
+                                    button={"skills"}
+                                    rolename={this.props.role.title}
+                                    sourcename={this.props.source.title}
+                                />}
                             />
                             <Route
                                 exact
                                 path="/finish"
                                 render={() =>
-                                <FinishPage />
+                                <FinishPage 
+                                button={"finish"}
+                                />
                                 }
                             />
                         </Switch>
@@ -103,7 +116,7 @@ export class EditingMain extends React.Component {
   }
   
   const mapStateToProps = state => ({
-    name: state.name,
+    who: state.who,
     skills: state.skills,
     intersection: state.intersection,
     role: state.role,
