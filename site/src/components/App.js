@@ -19,6 +19,10 @@ export class App extends React.Component {
   render() {
       return (
         <div id={"page"}>
+            <div id={"background-top-bar"}>
+              <div id={"background-nav-bar"} />
+              <div id={"background-character-bar"}/>
+            </div>
             <Nav />
             <Character />
             <Main />

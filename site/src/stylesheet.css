@@ -1,17 +1,21 @@
 * {
   box-sizing: border-box;
-  cursor: default;
   margin: 0;
   padding: 0;
   font-family: 'Josefin Sans', sans-serif;
+}
+
+*:not(#dropdown *){
+  cursor: default;
 }
 
 #root {
   height: 100%;
 }
 
-html {
-  /* height: 100%; */
+#page > * {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .heavy {
@@ -20,4 +24,22 @@ html {
 
 .hidden {
   display: none;
+}
+
+#background-top-bar {
+  position: fixed;
+  width: 100%;
+  z-index: -1;
+  max-width: none;
+}
+
+#background-nav-bar {
+  background-color: rgb(44,44,44);
+  height: 45px;
+  z-index: 2;
+}
+
+#background-character-bar {
+  background-color: gray;
+  height: 72px;
 }

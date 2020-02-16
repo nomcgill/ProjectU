@@ -13,8 +13,6 @@ import ChoicePage from './ChoicePage'
 export class SkillsPage extends React.Component {
     
     render() {
-        console.log(this.props.rolename)
-
         return (
             <div id={"skills-page"}>
                 <div id={"skills-nav-top"}>
@@ -39,7 +37,7 @@ export class SkillsPage extends React.Component {
                                 options={this.props.database.roles}
                                 header={"this.props.role + skills:"}
                                 next={'/skills/sourceskillschoice'}
-                                button={"role-skill"}
+                                button={"role-skill-"}
                             />}
                         />
                         <Route 
@@ -50,7 +48,7 @@ export class SkillsPage extends React.Component {
                                 options={this.props.database.source}
                                 header={"this.props.source + skills"}
                                 next={'/finish'}
-                                button={"source-skill"}
+                                button={"source-skill-"}
                             />}
                         />
                     </Switch>

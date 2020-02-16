@@ -16,15 +16,17 @@ export default function ChoicePage(props) {
         />
     ) : ""
 
-    const buttons = ["role-skill","source-skill"]
+    const buttons = ["role-skill-","source-skill-"]
     if (document.getElementById("source-skill-nav")){
         buttons.map(one => {
-            let check = document.getElementById(one + "-nav")
+            let check = document.getElementById(one + "nav")
             if (check.classList.contains("highlight-skill-tab")){ 
                 check.classList.remove("highlight-skill-tab")
             }
         })
-        document.getElementById(props.button + "-nav").classList.add("highlight-skill-tab")
+        if (props.button === "source-skill-" || props.button === "role-skill-"){
+            document.getElementById(props.button + "nav").classList.add("highlight-skill-tab")
+        }
     }
 
     return (
