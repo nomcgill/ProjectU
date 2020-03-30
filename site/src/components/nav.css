@@ -14,7 +14,7 @@ nav {
     background-color: rgb(44, 44, 44);
     color: white;
     position: relative;
-    /* z-index: 1; */
+    z-index: 1000;
 }
 
 nav > * {
@@ -49,6 +49,10 @@ nav * {
     cursor: pointer;    
 } 
 
+#dropdown {
+    z-index: 1000;
+}
+
 #menu {
     /* display: none; */
     position: absolute;
@@ -57,14 +61,14 @@ nav * {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     /* padding: 12px 16px; */
-    z-index: 10;
+    z-index: 1000;
     list-style: none;
     margin-top: -23px;
     height: 230px;
-    -moz-transition: height .5s;
-    -ms-transition: height .5s;
-    -o-transition: height .5s;
-    -webkit-transition: height .5s;
+    -moz-transition: height .3s;
+    -ms-transition: height .3s;
+    -o-transition: height .3s;
+    -webkit-transition: height .3s;
     transition: height .3s;
     /* border-right: solid 1px white; */
 }

@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom';
 export default function NextButton(props) {
 
     return (
-        <Link to={props.next}>
+        <Link to={props.next} className={'next-button-link'}>
             <div className={"next-button"}>
                     <h2>Continue</h2>
             </div>

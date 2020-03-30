@@ -10,7 +10,8 @@ export class Nav extends React.Component {
   render() {
       return (
           <nav>
-            <h1>ProjectU</h1>
+            <h1>OVERSTEP</h1>
+            {/* <h1>?</h1> */}
             <Dropdown />
           </nav>
       );

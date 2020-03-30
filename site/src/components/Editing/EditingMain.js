@@ -11,27 +11,51 @@ import {
 
 import './editing.css'
 
+import {formatEditingPage} from '../../actions.js' 
+
 import ChoicePage from './Choices/ChoicePage'
-import IntersectionPage from './MiscInfo/IntersectionPage'
+import IntersectionPage from './Choices/IntersectionPage'
 import CharacterPage from './MiscInfo/CharacterPage'
 import SkillsPage from './Choices/SkillsPage'
 import FinishPage from './MiscInfo/FinishPage'
 
 export class EditingMain extends React.Component {
-    
+
+    formatEditAction(){
+        // debugger;
+        this.props.dispatch(formatEditingPage(false))
+    }
+
+    componentDidMount(){
+        // debugger;
+        // this.formatEditAction(false)
+    }
+
+    // formatEditingPage(){
+    //     console.log("formatPage run")
+    //     if (document.getElementById('name')){
+    //         document.getElementById('name').classList.add("hidden")
+    //         document.getElementById('titles').classList.add("hidden")
+    //         document.getElementById('arrow-box').classList.add("hidden")
+    //         document.getElementById('dimmer').classList.remove("hidden")
+    //         console.log("inside found")
+    //     }
+    // }
 
     render() {
+
+        // this.formatPage()
 
         function capitalize(insert){
             return insert.charAt(0).toUpperCase() + insert.slice(1)
         }
 
-        const steps = ["role","source","who","skills", "finish"]
+        const steps = ["role","source","who","intersection","skills"]
 
         const navsteps = steps.map(step =>
             <li key={step+"1"} id={step + "-nav"}>
                 <NavLink 
-                    to={`/${step}`} 
+                    to={`/editing/${step}`} 
                     activeClassName={"highlight-nav"}
                 >
                     {capitalize(step)}
@@ -45,67 +69,77 @@ export class EditingMain extends React.Component {
                     <ul id={"editing-nav"}>
                         {navsteps}
                     </ul>
-                        <Switch>
-                            <Redirect exact from="/" to="/role" />
+                    <Switch>
+                        {/* <Redirect exact from="/" to="/role" /> */}
                             <Route 
                                 exact
-                                path="/role"
+                                path="/editing/role"
                                 render={() => 
-                                <ChoicePage
-                                    header={"ROLE"}
-                                    info={this.props.database.roles}
-                                    next={"/source"}
-                                    button={"role"}
-                                />}
+                                    <ChoicePage
+                                        header={"Choose your ROLE."}
+                                        info={this.props.database.roles}
+                                        next={"/editing/source"}
+                                        button={"/editing/role"}
+                                        todo={this.formatEditAction}
+                                    />
+                                }
                             />
                             <Route 
                                 exact
-                                path="/source"
+                                path="/editing/source"
                                 render={() => 
-                                <ChoicePage
-                                    header={"SOURCE"}
-                                    info={this.props.database.sources}
-                                    next={"/intersection"}
-                                    button={"source"}
-                                />}
+                                    <ChoicePage
+                                        header={"Choose your SOURCE."}
+                                        info={this.props.database.sources}
+                                        next={"/editing/who"}
+                                        button={"/editing/source"}
+                                    />
+                                }
                             />
                             <Route 
                                 exact
-                                path="/intersection"
+                                path="/editing/who"
                                 render={() => 
-                                <IntersectionPage
-                                    header={"Intersection: "}
-                                    info={this.props.intersection}
-                                    role={this.props.role}
-                                    source={this.props.source}
-                                    next={"/who"}
-                                />}
+                                    <CharacterPage
+                                        next={"/editing/intersection"}
+                                        button={"/editing/who"}
+                                    />
+                                }
                             />
                             <Route 
                                 exact
-                                path="/who"
+                                path="/editing/intersection"
                                 render={() => 
-                                <CharacterPage
-                                    next={"/skills"}
-                                    button={"who"}
-                                />}
+                                    <IntersectionPage
+                                        header={"Intersection: "}
+                                        info={this.props.database.intersections}
+                                        role={this.props.role}
+                                        source={this.props.source}
+                                        next={"/editing/skills/roleskillschoice"}
+                                    />
+                                }
                             />
-                            <Redirect exact from="/skills" to="/skills/roleskillschoice" />
+                            <Redirect exact from="/editing/skills/" to="/editing/skills/roleskillschoice" />
                             <Route 
-                                path="/skills"
+                                path="/editing/skills"
                                 render={() => 
-                                <SkillsPage 
-                                    button={"skills"}
-                                    rolename={this.props.role.title}
-                                    sourcename={this.props.source.title}
-                                />}
+                                    <SkillsPage 
+                                        button={"skills"}
+                                        rolename={this.props.role.title}
+                                        sourcename={this.props.source.title}
+                                        database={this.props.database}
+                                        next={"/editing/finish"}
+                                        // info={this.props.database}
+                                    />
+                                }
                             />
                             <Route
                                 exact
-                                path="/finish"
+                                path="/editing/finish"
                                 render={() =>
-                                <FinishPage 
-                                button={"finish"}
+                                    <FinishPage 
+                                        button={"finish"}
+                                        next={"/final/title"}
                                 />
                                 }
                             />

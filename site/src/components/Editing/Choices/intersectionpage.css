@@ -1,0 +1,50 @@
+#intersection-peek-box {
+    margin: 3%;
+}
+
+#intersection-peek-bar {
+    /* display: flex; */
+    text-align: center;
+    /* justify-content: space-between; */
+    border: solid 2px white;
+    padding: 3px;
+}
+
+#intersection-content {
+    padding: 10px;
+}
+
+.open-box {
+    padding-bottom: 4px;
+}
+
+.gray {
+    background-color: rgb(99, 99, 99);
+    color: white;
+    border-bottom: solid 2px rgb(27, 27, 27);
+}
+
+#intersection-peek-bar.whited {
+    background-color: rgb(99, 99, 99);
+}
+
+.gray:hover, .whited:hover,
+.gray:active, .whited:active {
+    margin-bottom: 0px;
+    border-radius: 2px 2px 0px 0px;
+}
+
+.gray:active, .whited:active {
+    background-color: black !important;
+    color:white;
+}
+
+#intersection-peek-bar.gray:hover, #intersection-peek-bar.whited:hover {
+    background-color: rgb(56, 56, 56);
+}
+
+
+.gray:hover,.whited:hover,.gray:active,.whited:active, 
+.gray *:hover,.whited *:hover,.gray *:active,.whited *:active {
+    cursor:pointer;
+}

@@ -16,20 +16,17 @@ import './finalprofile.css'
 export default function Main() {
 
   return (
-    <Router>
       <main>
-        <Switch>
-          <Route 
-            exact 
-            path="/final" 
-            component={FinalProfile} 
-          />
-          <Route
-            path="/"
-            component={EditingMain}
-          />
-        </Switch>
+        <div id="main-container">
+            <Route
+              path="/final" 
+              component={FinalProfile} 
+            />
+            <Route
+              path="/editing"
+              component={EditingMain}
+            />
+        </div>
       </main>
-    </Router>
   );
 }

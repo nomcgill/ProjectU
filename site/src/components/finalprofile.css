@@ -95,9 +95,14 @@ main {
     margin: 2px 2px 9px 2px;
 }
 
+.trait-section {
+    margin-top: 20px;
+    margin-bottom: 10px; 
+}
+
 .section-head {
     text-transform: uppercase;
-    margin: 15px 10px 0px;
+    margin: 0 10px 0px;
 }
 
 .filters {

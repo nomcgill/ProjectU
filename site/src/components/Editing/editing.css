@@ -11,12 +11,13 @@
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.76);
-    /* z-index: 0; */
+    z-index: 0;
 }
 
 #editing-nav {
     display: inline-flex;
     position: relative;
+    margin: 0 auto;
     width: 100%;
     list-style-type: none;
     text-align: center;
@@ -25,11 +26,35 @@
     line-height: 30px;
     vertical-align: middle;
     padding: 0px 4px;
+
 }
 
 #editing-nav > li {
+    height: 100%;
+    /* padding: 0 2%; */
+    width: 20%;
+}
+
+/* #editing-nav > li {
     width: 20%;
     height: 100%;
+} */
+
+#editing-nav > #who-nav {
+    /* width: 12%; */
+    /* margin-left: 3%; */
+}
+
+#editing-nav > #intersection-nav {
+    width: 26%;
+}
+
+#role-nav, #source-nav {
+    width: 17%;
+}
+
+#skills-nav-top * {
+    cursor: default;
 }
 
 #editing-nav a {
@@ -40,6 +65,10 @@
     height: 100%;
     display: inline-block;
     cursor: pointer;
+}
+
+.skill-nav {
+    color: rgb(175, 175, 175);
 }
 
 #editing-nav a:hover {
@@ -73,7 +102,10 @@
     text-decoration: none;
     /* position: sticky;
     top: 0; */
+}
 
+.next-button:hover, #character-view-button:hover {
+    background-color: rgb(172, 216, 161)
 }
 
 #create-pdf-button {
@@ -94,6 +126,7 @@ a {
     display: inline-flex;
     position: relative;
     width: 90%;
+    max-width: 550px;
     text-align: center;
     /* margin-top: 15px; */
     height: 35px;
@@ -117,12 +150,12 @@ a {
 }
 
 #skills-nav-top *:active {
-    background-color: rgb(54,54,54)
+    background-color: rgb(54,54,54);
 }
 
 #skills-nav-top > * {
     width: 50%;
-    color: rgb(199, 199, 199);
+    /* color: rgb(199, 199, 199); */
 }
 
 .background-header {
@@ -151,19 +184,71 @@ a {
 
 #editing-nav .highlight-nav:hover {
     text-decoration: none;
-    cursor: default;
+    cursor: default ;
 }
 
 #editing-nav .highlight-nav:hover {
     cursor: default;
 }
 
-.highlight-skill-tab {
+#skills-nav-top .highlight-skill-tab div {
     background-color: lightgray;
     color: black;
 }
 
-#skills-nav-top .highlight-skill-tab:hover {
+#skills-nav-top .highlight-skill-tab:hover, #skills-nav-top .highlight-skill-tab > *:hover {
     cursor: default;
     background-color: lightgray;
+}
+
+#skill-numbers {
+    /* z-index: 100; */
+    text-align: right;
+    color: white;
+    margin: 3%;
+}
+
+#choose-skills {
+    color: white;
+    /* margin: 5%;
+    text-align: center; */
+}
+
+#skill-numbers-header {
+    text-align: left;
+}
+
+.next-button {
+    /* position: fixed;
+    bottom: 5px;
+    width: 324px; */
+    /* margin: 0 auto; */
+    /* text-align: center; */
+    /* margin: 0 auto; */
+}
+
+.next-button-link {
+    position: fixed;
+    bottom: 5px;
+    width: 100%;
+    /* left: 25%; */
+    max-width: 600px;
+    /* margin: 0 auto; */
+    /* text-align: center; */
+    /* width: 360px; */
+    /* margin: 0 auto; */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@media all and (min-width: 600px) { 
+
+    #editing-nav > #who-nav, #editing-nav > #intersection-nav {
+        width: 20%;
+        margin-left: 0;
+    }
+
+    .next-button-link {
+        bottom: 15px;
+    }
 }

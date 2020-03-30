@@ -47,7 +47,52 @@ const sampleProjectU = {
                     category: false,
                     description: "(Melee) You face a foe of demonic, undead, or fiendish nature."
                 }
-            ]
+            ],
+            skills: {
+                basic: [
+                    {
+                        name: "Temperance",
+                        action: false,
+                        damage: false,
+                        description: "You are attempting to ride a non-aggressive, mountable creature. Gain the Upper Hand."
+                    },
+                    {
+                        name: "Justice",
+                        action: "Muscle",
+                        damage: 2,
+                        description: "An ally is “dying” or “dead”."
+                    }
+                ],
+                advanced: [
+                    {
+                        name: "Joust",
+                        action: "Muscle",
+                        damage: 2,
+                        description: "You are mounted. Gain a success boost."
+                    },
+                    {
+                        name: "Valor",
+                        action: false,
+                        damage: false,
+                        description: "In Danger. Gain a success boost when performing any Basic Active Skill."
+                    }
+                ],
+                master: [
+                    {
+                        name: "Anything For You",
+                        action: false,
+                        damage: false,
+                        description: "In their place, the Knight can choose to be the recipient of any incoming damage of a nearby creature. This cannot be mitigated this damage in any way."
+                    },
+                    {
+                        name: "Lancelot",
+                        action: "Muscle",
+                        damage: 4,
+                        description: "Using a piercing weapon, impale an opponent with zealous might. Your weapon is unusable until COST.",
+                        overstep: true
+                    }
+                ],
+            }
         },
         {
             title: "Nature",
@@ -69,7 +114,52 @@ const sampleProjectU = {
                     category: false,
                     description: "(Melee) You face a foe of demonic, undead, or fiendish nature."
                 }
-            ]
+            ],
+            skills: {
+                basic: [
+                    {
+                        name: "Temperance",
+                        action: false,
+                        damage: false,
+                        description: "You are attempting to ride a non-aggressive, mountable creature. Gain the Upper Hand."
+                    },
+                    {
+                        name: "Justice",
+                        action: "Muscle",
+                        damage: 2,
+                        description: "An ally is “dying” or “dead”."
+                    }
+                ],
+                advanced: [
+                    {
+                        name: "Joust",
+                        action: "Muscle",
+                        damage: 2,
+                        description: "You are mounted. Gain a success boost."
+                    },
+                    {
+                        name: "Valor",
+                        action: false,
+                        damage: false,
+                        description: "In Danger. Gain a success boost when performing any Basic Active Skill."
+                    }
+                ],
+                master: [
+                    {
+                        name: "Anything For You",
+                        action: false,
+                        damage: false,
+                        description: "In their place, the Knight can choose to be the recipient of any incoming damage of a nearby creature. This cannot be mitigated this damage in any way."
+                    },
+                    {
+                        name: "Lancelot",
+                        action: "Muscle",
+                        damage: 4,
+                        description: "Using a piercing weapon, impale an opponent with zealous might. Your weapon is unusable until COST.",
+                        overstep: true
+                    }
+                ],
+            }
         }
     ],
     roles: [

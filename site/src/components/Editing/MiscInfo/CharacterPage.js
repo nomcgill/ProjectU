@@ -18,6 +18,16 @@ export default function CharacterPage(props) {
     //     document.getElementById(props.button + "-nav").classList.add("highlight-nav")
     // }
 
+    // to remove highlight!
+    // const levelBox = document.getElementById("level-box")
+    // const skillsNumbers = document.getElementById("character-pane-skills-numbers")
+    // if (levelBox){
+    //     if (levelBox.classList.contains("aware") == true){
+    //         levelBox.classList.remove("aware")
+    //         skillsNumbers.classList.add("hidden")
+    //     }
+    // }
+
     return (
         <div className={"name-page choice-page"}>
             <div className="choice-header-box">

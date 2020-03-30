@@ -8,6 +8,9 @@ import NextButton from '../NextButton.js'
 
 export default function ChoicePage(props) {
 
+    // debugger;
+    // console.log(props.todo(true))
+    // debugger;
     const eachBox = (props.info) ? props.info.map(section => 
         <RoleSourceOption 
             key={section.title + "-key"}
@@ -31,8 +34,9 @@ export default function ChoicePage(props) {
 
     return (
         <div className={"choice-page"}>
+            {/* <div id={"dimmer"}/> */}
             <div className="choice-header-box">
-                <h2>Choose your {props.header}.</h2>
+                <h2>{props.header}</h2>
             </div>
             {eachBox}
             <NextButton next={props.next} />

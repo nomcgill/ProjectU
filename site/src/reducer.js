@@ -4,7 +4,7 @@ import sampleChoices from './sampleChoices'
 import cleanSlate from './cleanSlate'
 
 const database = sampleProjectU
-const initialState = cleanSlate
+const initialState = sampleChoices
 
 // const initialState = {
 //     database: sampleProjectU,
@@ -18,6 +18,16 @@ export const reducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             database: database
         })
+    }
+
+    if (action.type === actions.CHARACTER_PANE_UPDATE_SUCCESS) {
+        return Object.assign({}, state, {
+            navBar: action.newStatus
+        })
+    }
+
+    if (action.type === actions.RESOLVE_EDITING_FORMAT){
+        return state
     }
 
     return state;

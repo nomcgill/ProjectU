@@ -46,7 +46,7 @@ export class Dropdown extends React.Component {
                 {/* Rules */}
                 <li>{this.props.database.link2}</li>
                 {/* Main site */}
-                <li>{this.props.database.link3}</li>
+                <li>Toggle Quick-Help</li>
                 <li className={"tool-options"}>Create PDF</li>
                 <li className={"tool-options"}>Reset Builder</li>
             </ul>

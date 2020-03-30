@@ -1,32 +1,50 @@
-import React from 'react';
+import React from 'react'
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom';
+
 import Nav from './nav';
-import Character from './character';
+import Character from './CharacterPane/character';
 import Main from './main';
 
 import {fetchProjectU} from '../actions'
 
 export class App extends React.Component {
 
-  componentDidMount() {
-    this.props.dispatch(fetchProjectU());
-  }
+  // componentDidMount() {
+  //   console.log("fetchProjectU ran")
+  // }
 
   example(){
     return (this.props.hitpoints)
   }
 
   render() {
+    this.props.dispatch(fetchProjectU());
       return (
-        <div id={"page"}>
-            <div id={"background-top-bar"}>
-              <div id={"background-nav-bar"} />
-              <div id={"background-character-bar"}/>
-            </div>
-            <Nav />
-            <Character />
-            <Main />
-        </div>
+        <Router>
+          <div id={"page"}>
+              <div id={"fixed-top"}>
+                {/* <div id={"background-top-bar"}>
+                  <div id={"background-nav-bar"} />
+                  <div id={"background-character-bar"}/>
+                </div> */}
+                <Nav />
+                <Character />
+              </div>
+              <div id={"background-top-bar"}>
+                  <div id={"background-nav-bar"} />
+                  <div id={"background-character-bar"}/>
+              </div>
+              {/* <div id={"dimmer"}/> */}
+              <Main />
+          </div>
+        </Router>
       )
   }
 }

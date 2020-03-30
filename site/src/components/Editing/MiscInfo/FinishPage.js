@@ -26,7 +26,7 @@ export default function FinishPage(props) {
             <div id={'create-pdf-button'}>
                 Create PDF Character Sheet
             </div>
-            <Link to={`/final`}>
+            <Link to={'/final/title'}>
                 <div id={'character-view-button'}>
                     View Character
                 </div>
