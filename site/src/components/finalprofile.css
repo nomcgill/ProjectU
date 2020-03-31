@@ -1,7 +1,7 @@
-main {
+/* main {
     max-width: 800px;
     margin: 0 auto;
-}
+} */
 
 
 .item {
@@ -74,6 +74,7 @@ main {
 .gray:hover {
     background-color: rgb(56, 56, 56);
 }
+
 
 
 .gray:hover,.whited:hover,.gray:active,.whited:active, 

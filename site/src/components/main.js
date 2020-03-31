@@ -11,8 +11,6 @@ import {
 import FinalProfile from './FinalProfile.js'
 import EditingMain from './Editing/EditingMain.js'
 
-import './finalprofile.css'
-
 export default function Main() {
 
   return (

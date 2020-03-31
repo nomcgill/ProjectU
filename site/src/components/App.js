@@ -28,22 +28,26 @@ export class App extends React.Component {
     this.props.dispatch(fetchProjectU());
       return (
         <Router>
-          <div id={"page"}>
-              <div id={"fixed-top"}>
-                {/* <div id={"background-top-bar"}>
-                  <div id={"background-nav-bar"} />
-                  <div id={"background-character-bar"}/>
-                </div> */}
-                <Nav />
-                <Character />
-              </div>
-              <div id={"background-top-bar"}>
-                  <div id={"background-nav-bar"} />
-                  <div id={"background-character-bar"}/>
-              </div>
-              {/* <div id={"dimmer"}/> */}
-              <Main />
-          </div>
+          <Switch>
+            <Redirect exact path='/' to='/editing/role' />
+            <div id={"page"}>
+                <div id={"fixed-top"}>
+                  {/* <div id={"background-top-bar"}>
+                    <div id={"background-nav-bar"} />
+                    <div id={"background-character-bar"}/>
+                  </div> */}
+                  <Nav />
+                  <Character />
+                </div>
+                <div id={"background-top-bar"}>
+                    <div id={"background-nav-bar"} />
+                    <div id={"background-character-bar"}/>
+                </div>
+                <div id={'back-pane'} />
+                {/* <div id={"dimmer"}/> */}
+                <Main />
+            </div>
+          </Switch>
         </Router>
       )
   }

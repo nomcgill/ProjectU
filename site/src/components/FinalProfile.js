@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import {formatEditingPage} from '../actions'
 
+import './finalprofile.css'
+
 import Intersection from './Intersection'
 import TraitSection from './Traits/TraitSection'
 import SkillSection from './Skills/SkillSection'

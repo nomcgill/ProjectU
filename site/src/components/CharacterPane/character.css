@@ -55,7 +55,7 @@
 
 #overstep-box {
     line-height: 32px;
-    border-right: solid 2px black;
+    /* border-right: solid 2px black; */
 }
 
 #overstep-check {
@@ -81,15 +81,34 @@
     transform: rotate(45deg);
 }
 
+#hp-line > *{
+    display: inline-block;
+}
+
+#hp-line > h3 {
+    /* padding-bottom: 20px; */
+}
+
+#hp-line > h4 {
+    margin-left: 4px; 
+}
+
+#hp-box {
+    line-height: 28px;
+    padding-top: 4px;
+}
+
+#damage-box {
+    line-height: 28px;
+    border-right: solid 2px black;
+    padding-top: 4px;
+}
+
 /* #overstep-check {
     -webkit-box-shadow: 0px 0px 0px 1px rgba(255,0,0,1);
 -moz-box-shadow: 0px 0px 0px 1px rgba(255,0,0,1);
 box-shadow: 0px 0px 0px 1px rgba(255,0,0,1);
 } */
-
-#overstep-check:after {
-
-}
 
 #titles {
     padding: 6px;
@@ -101,9 +120,8 @@ box-shadow: 0px 0px 0px 1px rgba(255,0,0,1);
 
 #character-tracking-pane {
     display: grid;
-    grid-template-columns: auto auto auto 80px 65px;
-    height: 72px;
-    
+    grid-template-columns: 65px auto auto auto 65px;
+    height: 72px;    
 }
 
 #flip-arrow {
@@ -231,6 +249,7 @@ box-shadow: 0px 0px 0px 1px rgba(255,0,0,1);
     /* margin: 0 auto; */
     height: 60px;
     width: 60px;
+    margin-left: 2px;
     /* line-height: 72px; */
     /* top: 50%; */
     /* line-height: 72px; */

@@ -105,7 +105,11 @@
 }
 
 .next-button:hover, #character-view-button:hover {
-    background-color: rgb(172, 216, 161)
+    background-color: rgb(172, 216, 161);
+}
+
+.next-button:active, #character-view-button:active {
+    background-color: rgb(224, 241, 220);
 }
 
 #create-pdf-button {
@@ -225,6 +229,10 @@ a {
     /* margin: 0 auto; */
     /* text-align: center; */
     /* margin: 0 auto; */
+}
+
+#back-pane {
+    /* display: none; */
 }
 
 .next-button-link {

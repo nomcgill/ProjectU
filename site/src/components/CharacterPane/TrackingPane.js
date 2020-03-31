@@ -38,19 +38,22 @@ export default function TrackingPane(props) {
 
     return (
         <div id={'character-tracking-pane'}>
+            <div id={'dice-box'}>
+                <img src={Dice} className={'character-pane-box'} id={'dice'}/>
+            </div>
             <div className={'character-pane-box'} id={'overstep-box'}>
                 <h3>Overstep</h3>
                 <input type={'checkbox'} id={'overstep-check'} onClick={() => updateOverstep()} />
                 {/* <span class="checkmark"></span> */}
             </div>
             <div className={'character-pane-box'} id={'hp-box'}>
-                <p>HP</p>
+                <h3>HP</h3>
+                <div id={'hp-line'}><h2>20</h2><h4>/ 20</h4></div>
+                {/* <h3><span>20</span> / 20</h3> */}
             </div>
             <div className={'character-pane-box'} id={'damage-box'}>
-                <p>DMG</p>
-            </div>
-            <div id={'dice-box'}>
-                <img src={Dice} className={'character-pane-box'} id={'dice'}/>
+                <h3>DMG</h3>
+                <h2>5</h2>
             </div>
             <Link to={'/final/title'}>
               <div id={'arrow-box'} className={'character-pane-box'}>
