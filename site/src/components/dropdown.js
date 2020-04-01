@@ -42,11 +42,11 @@ export class Dropdown extends React.Component {
             </div>
             <ul id={"menu"} onClick={() => this.shrink(document.getElementsByClassName('menu-box')[0])} className={"retracted"}>
                 {/* About ProjectU */}
-                <li>{this.props.database.link1}</li>
+                <li>{this.props.database.link1.label}</li>
                 {/* Rules */}
-                <li>{this.props.database.link2}</li>
+                <li>{this.props.database.link2.label}</li>
                 {/* Main site */}
-                <li>Toggle Quick-Help</li>
+                <li>{this.props.database.link3.label}</li>
                 <li className={"tool-options"}>Create PDF</li>
                 <li className={"tool-options"}>Reset Builder</li>
             </ul>

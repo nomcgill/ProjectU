@@ -15,11 +15,16 @@ import Dice from './dice.png'
 
 // import { action } from '../actions'
 
-export default function TrackingPane(props) {
+export class TrackingPane extends React.Component {
 
-    function updateOverstep(){
+    updateOverstep(){
         var checkbox = document.getElementById("overstep-check")
+        console.log("Should be overstepped?")
         console.log(checkbox.checked)
+    }
+
+    updateHP(){
+        console.log('updating hp')
     }
 
     // if (document.getElementById('name')){
@@ -35,31 +40,42 @@ export default function TrackingPane(props) {
     // if (document.getElementById('dimmer')){
     //     document.getElementById('dimmer').classList.add('hidden')
     // }
-
-    return (
-        <div id={'character-tracking-pane'}>
-            <div id={'dice-box'}>
-                <img src={Dice} className={'character-pane-box'} id={'dice'}/>
-            </div>
-            <div className={'character-pane-box'} id={'overstep-box'}>
-                <h3>Overstep</h3>
-                <input type={'checkbox'} id={'overstep-check'} onClick={() => updateOverstep()} />
-                {/* <span class="checkmark"></span> */}
-            </div>
-            <div className={'character-pane-box'} id={'hp-box'}>
-                <h3>HP</h3>
-                <div id={'hp-line'}><h2>20</h2><h4>/ 20</h4></div>
-                {/* <h3><span>20</span> / 20</h3> */}
-            </div>
-            <div className={'character-pane-box'} id={'damage-box'}>
-                <h3>DMG</h3>
-                <h2>5</h2>
-            </div>
-            <Link to={'/final/title'}>
-              <div id={'arrow-box'} className={'character-pane-box'}>
-                <img id={'flip-arrow'} src={Arrow} />
-              </div>
-            </Link>
-        </div>    
-    );
+    render(){
+        return (
+            <div id={'character-tracking-pane'}>
+                <label className={'character-pane-box'} id={'overstep-box'} for={'overstep-check'}>
+                    <h3>Overstep</h3>
+                    <input type={'checkbox'} id={'overstep-check'} name={'overstep-check'} onClick={() => this.updateOverstep()} />
+                    {/* <span class="checkmark"></span> */}
+                </label>
+                <div className={'character-pane-box'} id={'hp-box'}>
+                    <h3>HP</h3>
+                    <div id={'hp-line'}>
+                        <h2 id={'current-hp'} onClick={() => this.updateHP()}>20 </h2>
+                        <h3>/20</h3>
+                    {/* <h4>20</h4> */}
+                    </div>
+                    {/* <h3><span>20</span> / 20</h3> */}
+                </div>
+                <div className={'character-pane-box'} id={'damage-box'}>
+                    <h3>DMG</h3>
+                    <h2>5</h2>
+                </div>
+                <div id={'dice-box'} className={'character-pane-box'}>
+                    <img src={Dice} id={'dice'}/>
+                </div>
+                <Link to={'/final/title'}>
+                <div id={'arrow-box'} className={'character-pane-box'}>
+                    <img id={'flip-arrow'} src={Arrow} />
+                </div>
+                </Link>
+            </div>    
+        );
+    }
 }
+
+const mapStateToProps = state => ({
+    hitpoints: state.hitpoints,
+  });
+  
+  export default connect(mapStateToProps)(TrackingPane);

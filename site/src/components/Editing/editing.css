@@ -137,7 +137,7 @@ a {
     line-height: 34px;
     vertical-align: middle;
     /* padding: 0px 4px; */
-    margin: 10px 5% 0;
+    margin: 10px 5% 2%;
     background-color: rgb(54, 54, 54);
     border: solid 1px lightgray;
 }
@@ -247,6 +247,21 @@ a {
     /* margin: 0 auto; */
     left: 50%;
     transform: translateX(-50%);
+}
+
+#skills-page {
+    margin: 20px 15px;
+}
+
+#skills-page .skillbox {
+    margin: 0 auto;
+    margin-top: 8px;
+    margin-bottom: 8px ;
+    max-width: 650px;
+}
+
+#skills-page .skillbox:hover {
+    border: solid 2px rgb(201, 201, 201);
 }
 
 @media all and (min-width: 600px) { 

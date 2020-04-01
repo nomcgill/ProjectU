@@ -1,8 +1,18 @@
 
 const sampleProjectU = {
-    link1: "Link 1",
-    link2: "Link 2",
-    link3: "Link 3",
+    link1: {
+        label: "Main Site",
+        link: "",
+
+    },
+    link2: {
+        label: "Link 2",
+        link: ""
+    },
+    link3: {
+        label: "Toggle Quick-Rules",
+        action: ""
+    },
     intersections: [
         {
             title: "Paladin",

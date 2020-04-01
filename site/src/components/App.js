@@ -54,7 +54,6 @@ export class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  editing: state.editing,
   hitpoints: state.hitpoints,
 });
 
