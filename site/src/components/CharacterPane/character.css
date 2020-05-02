@@ -29,14 +29,11 @@
 #source-role:hover, #name:hover {
     cursor:pointer;
     background-color: rgba(255, 255, 255, 0.068);
-    /* color: rgb(104, 104, 104); */
     border-radius: 4px;
 }
 
 #source-role:active, #name:active {
-    /* color: rgb(187, 187, 187); */
     background-color: rgba(255, 255, 255, 0.144);
-    /* border: solid 1px white; */
 }
 
 #source-role > * {
@@ -60,7 +57,6 @@
 
 #overstep-box {
     line-height: 32px;
-    /* border-right: solid 2px black; */
 }
 
 #overstep-check {
@@ -75,15 +71,7 @@
 }
 
 #overstep-check:checked {
-    /* left: 9px; */
-    /* top: 5px; */
-    /* width: 5px; */
-    /* height: 10px; */
-    /* border: solid black; */
-    /* border-width: 0 3px 3px 0; */
     background-color: rgba(0, 0, 0, 0);
-    /* left: 9px; */
-    /* top: 5px; */
     outline: 0;
     width: 10px;
     height: 20px;
@@ -140,7 +128,7 @@ box-shadow: 0px 0px 0px 1px rgba(255,0,0,1);
 
 #flip-arrow {
     height: 50px;
-    line-height: 72px;
+    /* line-height: 36px; */
     vertical-align: middle;
     /* padding-left: 6px; */
     /* border-left: solid 2px black; */
@@ -168,7 +156,7 @@ box-shadow: 0px 0px 0px 1px rgba(255,0,0,1);
     /* padding-top: 11px; */
     /* padding-bottom: 7px; */
     margin: 0px;
-    line-height: 72px;
+    line-height: 20px;
     background-color: gray;
     /* background-color: rgba(128, 128, 128, 0); */
     /* color: white; */

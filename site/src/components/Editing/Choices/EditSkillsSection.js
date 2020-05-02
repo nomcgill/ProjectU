@@ -12,11 +12,11 @@ export default function EditSkillsSection(props) {
     // const items = ''
     const items = props.info.map((item, count) => 
         <Item 
-            id={"intersection-info"}
             key={"intersection-" + count}
             class={theTitle + "-info info none skills-item-" + count}
             count={count}
             info={item}
+            title={props.title}
         />
     )
 
@@ -45,6 +45,7 @@ export default function EditSkillsSection(props) {
                     <h2>
                         {theTitle}
                     </h2>
+                    <p className={'tracking-skill-choices'}><span className={'tracking-skill-numbers'}>{props.numberChosen} / {props.available}</span> at lvl 3.</p>
                 </div>
                 <h3 className={"plus-sign"} id={theTitle + "-plus"}>
                     +

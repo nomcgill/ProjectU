@@ -55,6 +55,7 @@ export default function TitlePane(props) {
             <Link to={'/final/tracking'}>
               <div id={'arrow-box'} className={'character-pane-box'}>
                 <img id={'flip-arrow'} src={Arrow} />
+                <p>TRACK</p>
               </div>
             </Link>
         </div>

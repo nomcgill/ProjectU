@@ -1,5 +1,5 @@
 const sampleChoices = {
-    level: 1,
+    level: 2,
     intersection: {
         title: "Paladin",
         traits: [

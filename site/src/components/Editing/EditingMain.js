@@ -144,6 +144,7 @@ export class EditingMain extends React.Component {
                                 }
                             />
                         </Switch>
+                        <div id={'footer-hyphen'}> - </div>
                 </div>
         );
     }

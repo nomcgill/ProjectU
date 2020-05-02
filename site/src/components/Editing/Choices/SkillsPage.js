@@ -33,12 +33,26 @@ export class SkillsPage extends React.Component {
     //     }
     // }
 
+    grabAllSelectedItems(){
+        const allItems = document.getElementsByClassName('info')
+        const allItemsArray = [...allItems]
+        const allSelectedItemsArray = []
+        allItemsArray.map((item) => {
+            let singleInput = item.children[0]
+            console.log(singleInput.checked)
+            if (singleInput.checked){
+                allSelectedItemsArray.push(item)
+            }
+        })
+        console.log(allSelectedItemsArray)
+    }
+
     componentDidMount(){
         // this.updateAvailable()
     }
 
     render() {
-        console.log(this.props.info)
+        // console.log(this.props.info)
         // debugger;
         return (
             <div id={"skills-page"} className={"choice-page choice-header-box"}>

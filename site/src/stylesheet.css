@@ -70,6 +70,13 @@ main, #fixed-top {
   cursor: default;
 }
 
+.heavy {
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline ;
+}
 
 #page > * {
   max-width: 800px;
@@ -105,10 +112,6 @@ main {
   /* margin: 0 auto; */
   /* margin:0 auto; */
   /* text-align: center; */
-}
-
-.heavy {
-  font-weight: bold;
 }
 
 .hidden {

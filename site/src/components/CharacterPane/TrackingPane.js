@@ -20,6 +20,7 @@ export class TrackingPane extends React.Component {
     updateOverstep(){
         var checkbox = document.getElementById("overstep-check")
         console.log("Should be overstepped?")
+        // debugger;
         console.log(checkbox.checked)
     }
 
@@ -43,10 +44,9 @@ export class TrackingPane extends React.Component {
     render(){
         return (
             <div id={'character-tracking-pane'}>
-                <label className={'character-pane-box'} id={'overstep-box'} for={'overstep-check'}>
+                <label className={'character-pane-box'} id={'overstep-box'} htmlFor={'overstep-check'}>
                     <h3>Overstep</h3>
                     <input type={'checkbox'} id={'overstep-check'} name={'overstep-check'} onClick={() => this.updateOverstep()} />
-                    {/* <span class="checkmark"></span> */}
                 </label>
                 <div className={'character-pane-box'} id={'hp-box'}>
                     <h3>HP</h3>
@@ -67,6 +67,7 @@ export class TrackingPane extends React.Component {
                 <Link to={'/final/title'}>
                 <div id={'arrow-box'} className={'character-pane-box'}>
                     <img id={'flip-arrow'} src={Arrow} />
+                    <p>HERO</p>
                 </div>
                 </Link>
             </div>    

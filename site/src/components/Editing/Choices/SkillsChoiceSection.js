@@ -13,23 +13,29 @@ import EditSkillsSection from './EditSkillsSection'
 // import { action } from '../actions'
 
 export default function SkillsChoiceSection(props) {
-    console.log(props.info.skills)
+    // console.log(props.info.skills)
     return (
         <div className={'skill-section'}>
             <EditSkillsSection
                 title={"Basic"}
                 info={props.info.skills.basic}
                 role={props.info.title}
+                numberChosen={'4'}
+                available={'10'}
             />
             <EditSkillsSection
                 title={"Advanced"}
                 info={props.info.skills.advanced}
                 role={props.info.title}
+                numberChosen={'5'}
+                available={'8'}
             />
             <EditSkillsSection
                 title={"Master"} 
                 info={props.info.skills.master}
                 role={props.info.title}
+                numberChosen={'2'}
+                available={'4'}
             />
         </div>  
     );
