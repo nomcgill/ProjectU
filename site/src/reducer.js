@@ -26,8 +26,29 @@ export const reducer = (state = initialState, action) => {
         })
     }
 
-    if (action.type === actions.RESOLVE_EDITING_FORMAT){
-        return state
+    // if (action.type === actions.RESOLVE_EDITING_FORMAT){
+    //     return state
+    // }
+
+    if (action.type === actions.UPDATE_GLOBAL_LEVEL){
+        return Object.assign({}, state, {
+            level: action.newLevel
+        })
+    }
+
+    if (action.type === actions.UPDATE_NAME){
+        return Object.assign({}, state, {
+            name: action.name,
+            title: action.title
+        })
+    }
+
+    if (action.type === actions.CHANGE_BACKGROUND_TEXT){
+        return Object.assign({}, state, {
+            backgroundPast: action.past,
+            backgroundPresent: action.present,
+            backgroundFuture: action.future
+        })
     }
 
     return state;

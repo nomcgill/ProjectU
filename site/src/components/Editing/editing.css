@@ -173,10 +173,23 @@ a {
     color: white;
 }
 
+#background-header-title {
+    padding-top: 10px;
+}
+
+p.background-header {
+    font-size: 15px;
+}
+
 .description-header {
     color: white;
-    margin-left: 5%;
-    margin-top: 5%;
+    font-size: 1.1em;
+    margin-left: 3%;
+    margin-top: 20px;
+}
+
+p.background-header {
+    margin-bottom: 5px;
 }
 
 .description-box {
@@ -333,6 +346,25 @@ input:focus {
     outline: none;
 }
 
+#new-hero-name, #new-hero-title {
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
+    text-align: center;
+}
+
+#new-hero-name {
+    font-size: 2em;
+    padding: 0;
+    margin: 20px 0 0;
+    /* text-decoration: underline; */
+}
+
+#new-hero-title {
+    font-size: 1.3em;
+    padding: 0;
+    margin: 0;
+}
+
 #label-input-name {
     width: 340px;
 }
@@ -372,28 +404,75 @@ input:focus {
     margin-top: 3.5%;
 }
 
-#label-input-level {
-    
+#interior-level-box {
+    /* margin: 15px; */
+}
+
+.editing-pane-section {
+    background-color: rgba(255, 255, 255, 0.116);
+    padding: 10px;
+    margin: 20px 15px;
+    border-radius: 10px;
+}
+
+#myRange {
+    /* width: 180px; */
 }
 
 #level-input-line {
-    width: 300px;
+    /* width: 500px; */
     /* text-align: center; */
-    display: inline-grid;
+    /* vertical-align: top; */
+    /* display: inline-block; */
     grid-template-columns: 50px 210px;
     height: 2em;
-    line-height: 2em;
+    /* line-height: 2em; */
     /* vertical-align: middle; */
     justify-content: center;
     align-items: center;
     /* margin */
-    /* margin: 15px auto 15px; */
+    margin: 0 auto;
     /* template */
     /* text-align: center; */
 }
 
-#level-display {
+#level-input-line > * {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.level-button {
+    color: rgb(59, 59, 59);
+    background-color: rgba(255, 255, 255, 0.76);
+    border-radius: 4px;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+    margin-left: 15px;
+    font-weight: bolder;
     font-size: 2em;
+}
+
+.level-button:hover {
+    background-color: white;
+    cursor: pointer;
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+
+    /* Rules below not implemented in browsers yet */
+    -o-user-select: none;
+    user-select: none;
+}
+
+.level-button:active {
+    background-color: rgba(255, 255, 255, 0.363);
+}
+
+#level-display {
+    font-size: 2.4em;
+    margin: 12px 10px 5px;
 }
 
 /* The slider itself */
@@ -446,7 +525,7 @@ input:focus {
     
     .description-header {
         font-size: 1.5em;
-        margin-top: 2%;
+        margin-top: 25px;
     }
 
     .tiny-description {

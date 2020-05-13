@@ -28,10 +28,10 @@ export const characterPaneUpdate = (status) => dispatch => {
     dispatch(characterPaneUpdateSuccess(!status))
 }
 
-export const RESOLVE_EDITING_FORMAT = 'RESOLVE_EDITING_FORMAT';
-export const resolveEditingFormat = () => ({
-    type: RESOLVE_EDITING_FORMAT
-})
+// export const RESOLVE_EDITING_FORMAT = 'RESOLVE_EDITING_FORMAT';
+// export const resolveEditingFormat = () => ({
+//     type: RESOLVE_EDITING_FORMAT
+// })
 
 export const formatEditingPage = (editing) => dispatch => {
     console.log("formatPage run")
@@ -46,7 +46,45 @@ export const formatEditingPage = (editing) => dispatch => {
             document.getElementById('arrow-box').classList.add("hidden")}
         if (document.getElementById('dimmer')){
             document.getElementById('dimmer').classList.add("hidden")}
-        // console.log("inside found")
     // }
-    // dispatch(resolveEditingFormat())
 }
+
+export const acceptGlobalUpdateVisual = (stateLevel) => dispatch => {
+    let slider = document.getElementById("myRange");
+    let output = document.getElementById("level-display");
+    // debugger;
+    output.innerHTML = stateLevel
+    slider.value = stateLevel
+}
+
+export const updateLevel = (input) => dispatch => {
+    // let slider = document.getElementById("myRange");
+    // let newLevel = input ? input : slider.value
+    // console.log('ternary result: ' + input)
+    // console.log(newLevel + ': newLevel in actions')
+    dispatch(updateGlobalLevel(input))
+    dispatch(acceptGlobalUpdateVisual(input))
+    // debugger;
+    // output.innerHTML = newLevel;
+} 
+
+export const UPDATE_GLOBAL_LEVEL = 'UPDATE_GLOBAL_LEVEL';
+export const updateGlobalLevel = (newLevel) => ({
+    type: UPDATE_GLOBAL_LEVEL,
+    newLevel
+})
+
+export const UPDATE_NAME = 'UPDATE_NAME';
+export const updateName = (name, title) => ({
+    type:UPDATE_NAME,
+    name,
+    title
+})
+
+export const CHANGE_BACKGROUND_TEXT = 'CHANGE_BACKGROUND_TEXT';
+export const changeBackgroundText = (past, present, future) => ({
+    type: CHANGE_BACKGROUND_TEXT,
+    past,
+    present,
+    future
+})
