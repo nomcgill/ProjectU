@@ -8,7 +8,8 @@ import {
   Switch
 } from 'react-router-dom';
 
-import FinalProfile from './FinalProfile.js'
+import Final from './Final/Final.js'
+// import FinalProfile from './FinalProfile'
 import EditingMain from './Editing/EditingMain.js'
 
 export default function Main() {
@@ -18,7 +19,8 @@ export default function Main() {
         <div id="main-container">
             <Route
               path="/final" 
-              component={FinalProfile} 
+              // component={FinalProfile}
+              component={Final} 
             />
             <Route
               path="/editing"

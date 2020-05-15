@@ -88,3 +88,22 @@ export const changeBackgroundText = (past, present, future) => ({
     present,
     future
 })
+
+export const toggleFaves = (displayed) => dispatch => {
+    let newStatus = !displayed
+    dispatch(displayFaves(newStatus))
+    if (newStatus){
+        document.getElementById('filter-star').classList.remove('hidden')
+        document.getElementById('filter-star-gray').classList.add('hidden')
+    }
+    else {
+        document.getElementById('filter-star').classList.add('hidden')
+        document.getElementById('filter-star-gray').classList.remove('hidden')
+    }
+}
+
+export const DISPLAY_FAVES = 'DISPLAY_FAVES';
+export const displayFaves = (displayed) => ({
+    type: DISPLAY_FAVES,
+    displayed
+})

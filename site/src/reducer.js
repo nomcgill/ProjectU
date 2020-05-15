@@ -51,5 +51,11 @@ export const reducer = (state = initialState, action) => {
         })
     }
 
+    if (action.type === actions.DISPLAY_FAVES){
+        return Object.assign({}, state, {
+            displayFavorites: action.displayed
+        })
+    }
+
     return state;
 }

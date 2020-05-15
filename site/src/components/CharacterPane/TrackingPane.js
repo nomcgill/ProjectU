@@ -9,8 +9,8 @@ import {
     Switch
 } from 'react-router-dom';
 
-import Arrow from './fliparrow.png'
-import Dice from './dice.png'
+import Arrow from '../../ImageStore/fliparrow.png'
+import Dice from '../../ImageStore/dice.png'
 
 
 // import { action } from '../actions'

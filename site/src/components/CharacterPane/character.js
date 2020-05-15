@@ -13,7 +13,7 @@ import TitlePane from './TitlePane'
 import TrackingPane from './TrackingPane'
 import EditingPane from './EditingPane.js'
 
-import Arrow from './fliparrow.png'
+import Arrow from '../../ImageStore/fliparrow.png'
 import './character.css'
 
 import { characterPaneUpdate } from '../../actions'

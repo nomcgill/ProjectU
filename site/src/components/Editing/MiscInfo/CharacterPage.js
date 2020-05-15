@@ -48,16 +48,16 @@ class CharacterPage extends React.Component {
     handleClick(clicked){
         // TRUE OR FALSE DETERMINES TOP OR BOTTOM OF DIV TO SCROLL
         if (clicked === "name"){
-            this.nameInput.current.scrollIntoView(false)
+            this.nameInput.current.scrollIntoView({block: "end", behavior: "smooth"})
         }
         if (clicked === "title"){
-            this.titleInput.current.scrollIntoView(false)
+            this.titleInput.current.scrollIntoView({block: "end", behavior: "smooth"})
         }
         if (clicked === "level"){
             // this.levelInput.current.scrollIntoView(false)
         }
         if (clicked === "description"){
-            this.descriptionInput.current.scrollIntoView(false)
+            this.descriptionInput.current.scrollIntoView({block: "end", behavior: "smooth"})
         }
     }
 

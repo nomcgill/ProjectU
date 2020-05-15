@@ -9,7 +9,7 @@ import {
     Switch
 } from 'react-router-dom';
 
-import Arrow from './fliparrow.png'
+import Arrow from '../../ImageStore/fliparrow.png'
 
 // import { action } from '../actions'
 
