@@ -22,9 +22,11 @@ export class Filters extends React.Component {
             <div id={'filters'} className={'line-2'}>
                 <img onClick={() => this.clickStar()} src={GoldStar} id={'filter-star'} className={'top-star'}/>
                 <img onClick={() => this.clickStar()} src={GrayStar} id={'filter-star-gray'} className={'top-star'}/>
-                <button id={'type-filter'} className={'filter-button selected'}>Influence</button>
-                <button id={'active-filter'} className={'filter-button selected'}>Passive</button>
-                <button id={'rolesource-filter'} className={'filter-button'}>All</button>
+                <button id={'type-filter'} className={'filter-button'}>Type</button>
+                <button id={'active-filter'} className={'filter-button'}>Act/Pas</button>
+                {/* <button id={'type-filter'} className={'filter-button selected'}>Influence</button>
+                <button id={'active-filter'} className={'filter-button selected'}>Passive</button> */}
+                <button id={'rolesource-filter'} className={'filter-button'}>Role/Source</button>
             </div>
         )
     }

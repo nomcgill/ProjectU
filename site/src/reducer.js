@@ -1,10 +1,12 @@
 import * as actions from './actions';
 import sampleProjectU from './sampleProjectU'
 import sampleChoices from './sampleChoices'
+import sampleChoicesRevised from './sampleChoicesRevised'
 import cleanSlate from './cleanSlate'
 
 const database = sampleProjectU
-const initialState = sampleChoices
+// const initialState = sampleChoices
+const initialState = sampleChoicesRevised
 
 // const initialState = {
 //     database: sampleProjectU,
@@ -51,9 +53,23 @@ export const reducer = (state = initialState, action) => {
         })
     }
 
+    // one of the filters!!!
     if (action.type === actions.DISPLAY_FAVES){
         return Object.assign({}, state, {
             displayFavorites: action.displayed
+        })
+    }
+
+    if (action.type === actions.TOGGLE_FAVORITE){
+        let editedSkills = state.currentSkills.map(skill => {
+            if (skill.name === action.item){
+                skill.favorite = !skill.favorite
+                console.log(skill.favorite)
+            }
+            return skill
+        })
+        return Object.assign({}, state, {
+            currentSkills: editedSkills
         })
     }
 

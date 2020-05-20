@@ -102,8 +102,22 @@ export const toggleFaves = (displayed) => dispatch => {
     }
 }
 
+
+// one of the filters!!!
 export const DISPLAY_FAVES = 'DISPLAY_FAVES';
 export const displayFaves = (displayed) => ({
     type: DISPLAY_FAVES,
     displayed
 })
+
+export const toggleItemFavorite = (item) => dispatch => {
+    console.log(item)
+    dispatch(toggleFavorite(item))
+}
+
+export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
+export const toggleFavorite = (item) => ({
+    type: TOGGLE_FAVORITE,
+    item
+})
+

@@ -70,7 +70,8 @@ export class Character extends React.Component {
     //       </Link>
     //   }
     // }
-
+    // let variable = this.props
+    // debugger;
     return (
       // <Router>
           <div id={'character-pane'} className={'aware'}>

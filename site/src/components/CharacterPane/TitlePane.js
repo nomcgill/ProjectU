@@ -42,8 +42,8 @@ export default function TitlePane(props) {
             <div id={'titles'}>
                 <Link to={'/editing/role'}>
                     <div id={'source-role'}>
-                        <h3>{props.source.title}</h3>
-                        <h3>{props.role.title}</h3>
+                        <h3>{props.source}</h3>
+                        <h3>{props.role}</h3>
                     </div>
                 </Link>
             </div>

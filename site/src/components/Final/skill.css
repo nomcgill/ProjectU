@@ -3,12 +3,17 @@
     /* border: solid 1px black; */
 }
 
+.one-skill:hover {
+    /* background-color: rgb(155, 155, 155); */
+    cursor: pointer;
+}
+
 #one-skill > * {
     /* display: inline-grid; */
 }
 
 .skill-head-pane {
-    display: -webkit-flexbox;
+    /* display: -webkit-flexbox;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -16,11 +21,66 @@
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
+    justify-content: space-between; */
     /* DON'T TOUCH ABOVE, it's for centering purposes */
+    padding: 12px 10px 8px 10px;
+    background-color: white;
+    color: black;
+    border: solid 1px rgb(128, 128, 128);
+    /* border-bottom: 0px; */
+    height: 65px;
+    /* box-shadow: 2px 2px 2px 0px; */
+    display: flex;
     justify-content: space-between;
-    padding: 6px;
-    background-color: rgb(85, 85, 85);
-    color: white;
+    flex-direction: column;
+}
+
+.skill-header-open {
+    background-color: rgb(209, 197, 157);
+}
+
+.skill-head-pane-top {
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: row; */
+}
+
+.skill-head-pane:hover {
     border: solid 1px black;
-    border-bottom: 0px;
+    /* color: black; */
+    background-color: rgb(228, 218, 187);
+}
+
+.skill-head-pane:active {
+    background-color: rgb(185, 175, 145);
+}
+
+.skill-pane-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.skill-head-pane h3 {
+    font-size: 22px;
+    /* padding-bottom: 5px; */
+}
+
+.item-gray-star {
+    filter: brightness(75%)
+}
+
+.item-gold-star, .item-gray-star {
+    height: 17px;
+    margin-top: -3px;
+}
+
+.skill-dropdown {
+    padding: 7px;
+    font-size: 14px;
+    border: solid 1px rgb(128, 128, 128);
+    border-top: none;
+}
+
+.skill-dropdown p {
+    padding: 3px;
 }

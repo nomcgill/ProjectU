@@ -26,9 +26,9 @@
 
 #d20 {
     /* z-index: 1; */
-    padding: 10px 5px 0px 3px;
-    height: 55px;
-    width: 53px;
+    padding: 10px 4px 0px 6px;
+    height: 50px;
+    width: 50px;
     /* background-color: rgba(182, 182, 182, 0); */
     border-radius: 0 0 3px 0;
     margin-top: -5px;
@@ -36,8 +36,9 @@
 
 #line-1 {
     height: 50px;
+    width: 100%;
     display: grid;
-    grid-template-columns: 48px auto;
+    grid-template-columns: 50px auto;
 
     /* vertical-align: middle; */
 }
@@ -48,9 +49,11 @@
 
 #search {
     margin: 10px;
+    margin-right: 3%;
     height: 35px;
+    /* width: 100%; */
     display: inline-grid;
-    grid-template-columns: auto 47px;
+    grid-template-columns: auto 50px;
 }
 
 #search > * {
@@ -62,11 +65,13 @@
     font-size: 1.4em;
     text-align: right;
     padding: 6px 6px 2px;
-    width: 239px;
+    /* width: 239px; */
     justify-self: end;
-    margin-right: 4px;
+    /* margin-right: 4px; */
     border: solid 1px gray;
     font-weight: bold;
+    width: 100%;
+    max-width: 245px;
     /* background-image: url('../../ImageStore/magnifyingglass.jpg'); */
     /* background-image: url('../../ImageStore/magnifyingglass.png'); */
     /* position: left; */
@@ -102,7 +107,7 @@ input:focus::-webkit-input-placeholder {
     /* margin-top: 10px; */
     /* margin-right: 10px; */
     display: inline-grid;
-    grid-template-columns: 40px auto auto auto;
+    grid-template-columns: 36px auto auto auto;
     /* margin-left: 60px; */
     /* width: 300px; */
     /* justify-self: end; */
@@ -111,7 +116,7 @@ input:focus::-webkit-input-placeholder {
     /* vertical-align: middle; */
     position: absolute;
     justify-content: end;
-    right: 10px;
+    right: 3%;
     height: 35px;
 }
 
@@ -145,9 +150,9 @@ body #filters > .selected:hover {
     background-color: rgba(179, 2, 2, 0.87);
 }
 
-body #filters > button:hover {
-    background-color: rgba(100, 100, 100, 0.767);
-}
+/* body #filters > button:hover {
+    background-color: rgba(199, 199, 199, 0.767);
+} */
 
 body #filters > .selected:active {
     background-color: rgb(160, 1, 1);
@@ -160,19 +165,37 @@ body #filters > button:active {
 #filters #type-filter {
     width: 70px;
     text-align: center;
+    background-color: rgb(100, 100, 100);
+}
+
+#filters #type-filter:hover {
+    background-color: rgb(136, 136, 136)
 }
 
 #filters #active-filter {
-    width: 60px;
+    width: 63px;
+    background-color: rgb(92, 92, 92);
+}
+
+#filters #active-filter:hover {
+    background-color: rgb(121, 121, 121);
 }
 
 #filters #rolesource-filter {
     width: 110px;
-    /* margin-right: 0px; */
+    background-color: rgb(83, 83, 83);
+}
+
+#filters #rolesource-filter:hover {
+    background-color: rgb(124, 124, 124);
 }
 
 #filter-star {
     filter: contrast(120%)
+}
+
+#filter-star-gray {
+    filter: contrast(85%)
 }
 
 #filters > .top-star {
@@ -188,4 +211,80 @@ body #filters > button:active {
 
 #filters > .top-star:active {
     filter: contrast(70%)
+}
+
+#skills-header {
+    margin-left: 3%;
+    margin-bottom: -5px;
+}
+
+#skills-header > * {
+    display: inline-block;
+}
+
+#manage-skill-choices {
+    /* border: solid 1px black; */
+    /* border-right: solid 1px black; */
+    /* border-left: solid 1px black; */
+    /* width: 169px; */
+    padding-left: 5px;
+    text-decoration: underline;
+    /* position: absolute; */
+    /* right: 5px; */
+}
+
+#manage-skill-choices {
+    /* cursor: pointer; */
+}
+
+@media all and (min-width: 400px) { 
+    #final-top-pane {
+        margin-bottom: 40px;
+    }
+}
+
+@media all and (min-width: 510px) { 
+
+    #final-top-pane {
+        margin-bottom: 50px;
+    }
+    
+    #search {
+        margin-top: 12px;
+    }
+    
+    #filters {
+        margin-top: 5px;
+    }
+
+    #filters button {
+        height: 30px;
+    }
+
+    #search input {
+        max-width: 343px;
+    }
+
+    #filters > button {
+        /* width:600px; */
+        margin-left: 7px;
+        width: 110px !important;
+    }
+}
+
+@media all and (min-width: 600px) { 
+
+    #final-top-pane {
+        margin-bottom: 30px;
+    }
+
+    #search input {
+        max-width: 343px;
+    }
+
+    #filters > button {
+        /* width:600px; */
+        margin-left: 7px;
+        width: 110px !important;
+    }
 }

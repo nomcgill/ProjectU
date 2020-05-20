@@ -37,9 +37,9 @@ export default function EditingPane(props) {
                 <h2>Find Hero</h2>
             </div>
             <Link to={'/final/title/'}>
-            <div>
-                <h2>View This Hero</h2>
-            </div>
+                <div>
+                    <h2>View This Hero</h2>
+                </div>
             </Link>
         </div>
     );

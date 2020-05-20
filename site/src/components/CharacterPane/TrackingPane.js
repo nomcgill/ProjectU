@@ -61,14 +61,14 @@ export class TrackingPane extends React.Component {
                     <h3>DMG</h3>
                     <h2>5</h2>
                 </div>
-                <div id={'dice-box'} className={'character-pane-box'}>
+                {/* <div id={'dice-box'} className={'character-pane-box'}>
                     <img src={Dice} id={'dice'}/>
-                </div>
+                </div> */}
                 <Link to={'/final/title'}>
-                <div id={'arrow-box'} className={'character-pane-box'}>
-                    <img id={'flip-arrow'} src={Arrow} />
-                    <p>HERO</p>
-                </div>
+                    <div id={'arrow-box'} className={'character-pane-box'}>
+                        <img id={'flip-arrow'} src={Arrow} />
+                        <p>HERO</p>
+                    </div>
                 </Link>
             </div>    
         );

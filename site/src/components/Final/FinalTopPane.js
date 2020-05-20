@@ -9,7 +9,7 @@ import {
     Switch
 } from 'react-router-dom';
 
-import './finaltop.css'
+// import './finaltop.css'
 
 import Roll from './Roll'
 import Search from './Search'

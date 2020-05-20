@@ -137,7 +137,7 @@ class CharacterPage extends React.Component {
                         <h3 className={'description-header'}>PAST,<span className={'tiny-description'}> such as family, birthplace, and tragedy.</span></h3>
                         <textarea id={'input-past'} onChange={() => this.handleBackgroundChange()} className={"description-box"} placeholder={'Once upon a time, in a forest not so far away...'}></textarea>
                         <h3 className={'description-header'}>PRESENT,<span className={'tiny-description'}> such as looks and personality.</span></h3>
-                        <textarea id={'input-present'} onChange={() => this.handleBackgroundChange()} className={"description-box"} placeholder={`With a the swish of her ponytail and a twinkle in her eye...`}></textarea>
+                        <textarea id={'input-present'} onChange={() => this.handleBackgroundChange()} className={"description-box"} placeholder={`With a swish of her blonde ponytail and a twinkle in her hazel eyes...`}></textarea>
                         <h3 className={'description-header'}>FUTURE,<span className={'tiny-description'}> such as ambitions and vendettas.</span></h3>
                         <textarea id={'input-future'} onChange={() => this.handleBackgroundChange()} className={"description-box"} placeholder={`No matter the cost, he promised himself that one day he would...`}></textarea>
                     </label>

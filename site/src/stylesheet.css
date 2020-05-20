@@ -40,7 +40,7 @@ main {
 
 #page > #back-pane {
   height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
   top: 0;
   /* width: 800px; */
   overflow: hidden;
@@ -76,6 +76,10 @@ main, #fixed-top {
 
 .underline {
   text-decoration: underline ;
+}
+
+.red {
+  color: rgb(202, 5, 5);
 }
 
 #page > * {
