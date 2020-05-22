@@ -12,21 +12,43 @@ export default function FinalItem(props) {
 
     function toggleDetails(event){
         if (event.target.classList.contains('favorite-star') === false){
-            console.log('twas NOT favorite star')
-            console.log('toggle details of ' + props.skill.name)
+            let itemName = props.skill.name
+            props.toggleOpen(itemName)
         }
     }
 
     function toggleFavorite(event, acceptedStatus){
-        props.toggleFavorite(event.target.parentNode.parentNode.parentNode.getAttribute('id'))
-        console.log(props.skill)
+        let itemName = event.target.parentNode.parentNode.parentNode.getAttribute('id')
+        props.toggleFavorite(itemName)
     }
 
     let goldClass = (props.skill.favorite) ? '' : "hidden"
     let grayClass = (props.skill.favorite) ? 'hidden' : ""
-
     let actionColor = (props.skill.action === "Passive") ? '' : "red"
+    let hideDropdown = (props.skill.open) ? "" : "hidden"
+    let shownCategory = 
+        (props.skill.category === "Intersection") ? props.intersection :
+        (props.skill.category === "Role") ? props.role :
+        (props.skill.category === "Source") ? props.source : ""
 
+    const allWords = () => {
+        let name = (props.skill.name) ? String(props.skill.name + ' ') : ''
+        let action = (props.skill.action) ? String(props.skill.action + ' ') : ''
+        let skillLevel = (props.skill.skillLevel) ? String(props.skill.skillLevel + ' ') : ''
+        let category = (props.skill.category) ? String(shownCategory + ' ') : ''
+        let damage = (props.skill.damage) ? String(props.skill.damage + ' ') : ''
+        let flavor = (props.skill.flavor) ? String(props.skill.flavor + ' ') : ''
+        let impact = (props.skill.impact) ? String(props.skill.impact + ' ') : ''
+        let damageWord = (props.skill.damage) ? ("damage ") : ''
+        let itemText = name + action + skillLevel + category + damage + flavor + impact + damageWord
+        console.log(itemText)
+        props.gatherItemText(props.skill.name, itemText.toUpperCase())
+    }
+
+    if (!props.skill.fullText){
+        allWords()
+    }
+    // console.log(allWords())
     // name: "Wrath",
     // action: "Passive",
     // skillLevel: "Given",
@@ -45,11 +67,11 @@ export default function FinalItem(props) {
                     <img src={GrayStar} className={'item-gray-star favorite-star ' + grayClass} onClick={e => toggleFavorite(e, false)} />
                 </div>
                 <div className={'skill-pane-info'}>
-                    <p>{props.skill.category} > <span className={actionColor}>{props.skill.action}</span></p>
+                    <p>{shownCategory} > <span className={actionColor}>{props.skill.action}</span></p>
                     <p>{props.skill.skillLevel}</p>
                 </div>
             </div>
-            <div className={'skill-dropdown'}>
+            <div className={'skill-dropdown ' + hideDropdown}>
                 <p className={'skill-condition'}>{props.skill.flavor}</p>
                 <p className={'skill-result heavy'}>{props.skill.impact}</p>
             </div>         

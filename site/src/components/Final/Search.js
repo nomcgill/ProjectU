@@ -1,25 +1,40 @@
 import React from 'react'
 import {connect} from 'react-redux';
 
+import { updateInputState } from '../../actions'
+
+
 export class Search extends React.Component {
 
+    handleTyping(event){
+        let typedText = event.target.value
+        const promise1 = new Promise ((resolve, reject) => {
+            resolve(this.props.dispatch(updateInputState(typedText)))
+        })
+        promise1.then(() => {
+            this.props.updateFilter()
+        })
+    } 
+
+    handleReset(){
+        this.props.resetFilters()
+    }
+
     render() {
-        return (
+        return(
             <div id={'search'}>
-                <input placeholder={'...?'}/>
-                <div id={'reset-filters'}>
+                <input id={'search-bar'} onChange={(event) => this.handleTyping(event)} placeholder={'...?'}/>
+                <div onClick={() => this.handleReset()} id={'reset-filters'}>
                     Reset
                 </div>
             </div>
         )
     }
-  }
-  
+}
+
 const mapStateToProps = state => ({
-    skills: state.skills,
-    intersection: state.intersection,
-    role: state.role,
-    source: state.source
+    inputText: state.inputText,
 });
 
-export default connect(mapStateToProps)(Search);
+  export default connect(mapStateToProps)(Search);
+  

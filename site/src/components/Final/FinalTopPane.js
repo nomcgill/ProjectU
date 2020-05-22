@@ -22,9 +22,15 @@ export default function FinalTopPane(props) {
         <div id={'final-top-pane'}>
             <div id={'line-1'}>
                 <Roll />
-                <Search />
+                <Search 
+                    updateFilter={props.updateFilter}
+                    // updateTextInput={props.updateTextInput}
+                    resetFilters={props.resetFilters}
+                />
             </div>
-            <Filters />
+            <Filters 
+                updateFilter={props.updateFilter}
+            />
         </div>
     )
 

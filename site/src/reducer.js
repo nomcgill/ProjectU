@@ -64,12 +64,78 @@ export const reducer = (state = initialState, action) => {
         let editedSkills = state.currentSkills.map(skill => {
             if (skill.name === action.item){
                 skill.favorite = !skill.favorite
-                console.log(skill.favorite)
             }
             return skill
         })
         return Object.assign({}, state, {
             currentSkills: editedSkills
+        })
+    }
+
+    if (action.type === actions.TOGGLE_OPEN){
+        let editedOpen = state.currentSkills.map(skill => {
+            if (skill.name === action.item){
+                skill.open = !skill.open
+            }
+            return skill
+        })
+        return Object.assign({}, state, {
+            currentSkills: editedOpen
+        })
+    }
+
+    if (action.type === actions.GATHER_ITEM_TEXT){
+        let editedAddedText = state.currentSkills.map(skill => {
+            if (skill.name === action.name){
+                skill.fullText = action.text
+            }
+            return skill
+        })
+        return Object.assign({}, state, {
+            currentSkills: editedAddedText
+        })
+    }
+
+    if (action.type === actions.UPDATE_INPUT_STATE){
+        // console.log(action.inputText)
+        return Object.assign({}, state, {
+            inputText: action.inputText
+        })
+    }
+    if (action.type === actions.UPDATE_FILTER_TYPE){
+        return Object.assign({}, state, {
+            filterType: action.filterType
+        })
+    }
+    if (action.type === actions.UPDATE_FILTER_ACTIVE){
+        return Object.assign({}, state, {
+            filterActive: action.filterActive
+        })
+    }
+    if (action.type === actions.UPDATE_FILTER_CATEGORY){
+        return Object.assign({}, state, {
+            filterCategory: action.filterCategory
+        })
+    }
+    if (action.type === actions.UPDATE_FILTER_FAVORITE){
+        return Object.assign({}, state, {
+            filterFavorite: action.filterFavorite
+        })
+    }
+    
+    if (action.type === actions.UPDATE_CURRENTLY_SHOWN){
+        return Object.assign({}, state, {
+            currentlyShown: action.currentlyShown
+        })
+    }
+
+    if (action.type === actions.RESET_FILTERS){
+        return Object.assign({}, state, {
+            inputText: false,
+            filterType: false,
+            filterActive: false,
+            filterCategory: false,
+            filterFavorite: false
         })
     }
 

@@ -18,7 +18,7 @@ const sampleChoicesRevised = {
             damage: false,
             flavor: "You are invigorated by your Power Source when your strikes land.",
             impact: "Add 1X damage on Successes and Complete Successes for Muscle actions.",
-            favorite: true
+            favorite: true,
         },
         {
             name: "Truth",
@@ -26,9 +26,9 @@ const sampleChoicesRevised = {
             skillLevel: "Given",
             category: "Role",
             damage: false,
-            flavor: "Knights specialized in the diverse breadth of all weapons.",
+            flavor: "Knights specialize in the diverse breadth of all weapons.",
             impact: "For purposes of penalties, no crafted weapon is considered unnatural to the Knight. Improvised Object penalties remain unaffected.",
-            favorite: false
+            favorite: false,
         },
         {
             name: "Justice",
@@ -38,7 +38,7 @@ const sampleChoicesRevised = {
             damage: 2,
             flavor: "The weight of consequences should be brought upon those deserving.",
             impact: "An at Range ally is “dying” or “dead”. Deal 2x.",
-            favorite: false
+            favorite: false,
         },
         {
             name: "Joust",
@@ -48,7 +48,7 @@ const sampleChoicesRevised = {
             damage: 2,
             flavor: false,
             impact: "You are mounted. Gain a Success Boost and Deal 2x.",
-            favorite: false
+            favorite: false,
         },
         {
             name: "Anything For You",
@@ -58,7 +58,7 @@ const sampleChoicesRevised = {
             damage: false,
             flavor: false,
             impact: "In their place, the Knight can choose to be the recipient of any incoming damage of an At Close Range creature. This damage cannot be mitigated in any way.",
-            favorite: false
+            favorite: false,
         },
         {
             name: "Heavenfall",
@@ -68,7 +68,7 @@ const sampleChoicesRevised = {
             damage: 2,
             flavor: false,
             impact: "Your target is a creature at least 10ft tall, or 15ft long/wide. Deal 2X.",
-            favorite: false
+            favorite: false,
         },
         {
             name: "Prayer of Whispers",
@@ -79,7 +79,7 @@ const sampleChoicesRevised = {
             flavor: "Celestial pathways traverse your mind, sometimes inspiring surreal insight.",
             impact: "Out of Danger, you are using any Evaluate skill. Odds/Evens: Ask an additional question.",
             additionalImpact: "In Danger. The first Action that you take in a fight may be preceded by one free question from the Evaluate list.",
-            favorite: false
+            favorite: false,
         }
     ]
 }

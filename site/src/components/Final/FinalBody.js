@@ -6,28 +6,46 @@ import {Link} from 'react-router-dom';
 import FinalItem from './FinalItem'
 
 export default function FinalBody(props) {
+    
+    let sortedSkills = function alphabeticalSortSkills(){
 
-    // const navsteps = steps.map(step =>
-    //     <li key={step+"1"} id={step + "-nav"}>
-    //         <NavLink 
-    //             to={`/editing/${step}`} 
-    //             activeClassName={"highlight-nav"}
-    //         >
-    //             {capitalize(step)}
-    //         </NavLink>
-    //     </li>
-    // )
+        if (props.shownSkills.length > 0){
+            const skillNames = []
+            props.shownSkills.map(skill => {
+                skillNames.push(skill.name)
+            })
+            const alphabetizedNames = skillNames.sort()
 
-    // console.log(props)
+            const alphabetizedSkills = [] 
+            alphabetizedNames.map(name => {
+                props.shownSkills.map(skill => {
+                    if (name === skill.name){
+                        alphabetizedSkills.push(skill)
+                    }
+                })
+            })
 
-    const shownSkills = props.shownSkills.map((skill, key) => 
-        <FinalItem
-            skill={skill}
-            toggleFavorite={props.toggleFavorite}
-            key={key}
-        />
-    )
-
+            return alphabetizedSkills.map((skill, key) => 
+                <FinalItem
+                    skill={skill}
+                    toggleFavorite={props.toggleFavorite}
+                    toggleOpen={props.toggleOpen}
+                    gatherItemText={props.gatherItemText}
+                    role={props.role}
+                    source={props.source}
+                    intersection={props.intersection}
+                    key={key}
+                />
+            )
+        }
+        else {
+            return (
+                <div id={'empty-skills-body'}>
+                    0 Skills to display. Either broaden your filters or manage your Skills.
+                </div>
+            )
+        }
+    }
 
     return (
         <div id={'final-body'}>
@@ -37,7 +55,7 @@ export default function FinalBody(props) {
                     <p id={'manage-skill-choices'}>Manage</p>
                 </Link>
             </div>
-            {shownSkills}
+            {sortedSkills()}
         </div>
     )
 }

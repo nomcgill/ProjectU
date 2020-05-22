@@ -233,8 +233,19 @@ body #filters > button:active {
     /* right: 5px; */
 }
 
+.filter-alive {
+    background-color: orange !important;
+}
+
 #manage-skill-choices {
     /* cursor: pointer; */
+}
+
+#empty-skills-body {
+    margin: 60px 30px 50px;
+    padding: 20px;
+    border: solid 1px black;
+    text-align: center;
 }
 
 @media all and (min-width: 400px) { 
