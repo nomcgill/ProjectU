@@ -28,6 +28,12 @@ export const characterPaneUpdate = (status) => dispatch => {
     dispatch(characterPaneUpdateSuccess(!status))
 }
 
+export const UPDATE_OVERSTEPPED = 'UPDATE_OVERSTEPPED';
+export const updateOverstepped = (newStatus) => ({
+    type: UPDATE_OVERSTEPPED,
+    newStatus
+}) 
+
 // export const RESOLVE_EDITING_FORMAT = 'RESOLVE_EDITING_FORMAT';
 // export const resolveEditingFormat = () => ({
 //     type: RESOLVE_EDITING_FORMAT
@@ -52,20 +58,13 @@ export const formatEditingPage = (editing) => dispatch => {
 export const acceptGlobalUpdateVisual = (stateLevel) => dispatch => {
     let slider = document.getElementById("myRange");
     let output = document.getElementById("level-display");
-    // debugger;
     output.innerHTML = stateLevel
     slider.value = stateLevel
 }
 
 export const updateLevel = (input) => dispatch => {
-    // let slider = document.getElementById("myRange");
-    // let newLevel = input ? input : slider.value
-    // console.log('ternary result: ' + input)
-    // console.log(newLevel + ': newLevel in actions')
     dispatch(updateGlobalLevel(input))
     dispatch(acceptGlobalUpdateVisual(input))
-    // debugger;
-    // output.innerHTML = newLevel;
 } 
 
 export const UPDATE_GLOBAL_LEVEL = 'UPDATE_GLOBAL_LEVEL';
@@ -175,3 +174,7 @@ export const RESET_FILTERS = 'RESET_FILTERS';
 export const resetFilters = () => ({
     type: RESET_FILTERS
 })
+
+export const updateActionStatus = () => dispatch => {
+    console.log(`let's update this actionStatus`)
+}

@@ -4,21 +4,13 @@ import sampleChoices from './sampleChoices'
 import sampleChoicesRevised from './sampleChoicesRevised'
 import cleanSlate from './cleanSlate'
 
-const database = sampleProjectU
-// const initialState = sampleChoices
 const initialState = sampleChoicesRevised
-
-// const initialState = {
-//     database: sampleProjectU,
-//     choices: sampleChoices
-// }
-
 
 export const reducer = (state = initialState, action) => {
 
     if (action.type === actions.FETCH_PROJECTU_SUCCESS) {
         return Object.assign({}, state, {
-            database: database
+            database: action.projectu
         })
     }
 
@@ -28,9 +20,11 @@ export const reducer = (state = initialState, action) => {
         })
     }
 
-    // if (action.type === actions.RESOLVE_EDITING_FORMAT){
-    //     return state
-    // }
+    if (action.type === actions.UPDATE_OVERSTEPPED) {
+        return Object.assign({}, state, {
+            overstepped: action.newStatus
+        })
+    }
 
     if (action.type === actions.UPDATE_GLOBAL_LEVEL){
         return Object.assign({}, state, {

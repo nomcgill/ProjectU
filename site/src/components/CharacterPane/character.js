@@ -77,7 +77,7 @@ export class Character extends React.Component {
           <div id={'character-pane'} className={'aware'}>
             {/* <Redirect exact from="/final" to="/final/title" /> */}
                 <Route 
-                    exact
+                    // exact
                     path="/final/title"
                     render={() => 
                         <TitlePane
@@ -89,8 +89,8 @@ export class Character extends React.Component {
                     }
                 />
                 <Route
-                  exact
-                  path="/final/tracking"
+                  // exact
+                  path={["/final/tracking",'/rolling']}
                   render={() =>
                     <TrackingPane
                     />

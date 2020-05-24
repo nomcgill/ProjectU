@@ -41,7 +41,7 @@ export default function FinalItem(props) {
         let impact = (props.skill.impact) ? String(props.skill.impact + ' ') : ''
         let damageWord = (props.skill.damage) ? ("damage ") : ''
         let itemText = name + action + skillLevel + category + damage + flavor + impact + damageWord
-        console.log(itemText)
+        // console.log(itemText)
         props.gatherItemText(props.skill.name, itemText.toUpperCase())
     }
 

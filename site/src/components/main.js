@@ -11,6 +11,7 @@ import {
 import Final from './Final/Final.js'
 // import FinalProfile from './FinalProfile'
 import EditingMain from './Editing/EditingMain.js'
+import RollThatDice from './Rolling/RollThatDice'
 
 export default function Main() {
 
@@ -19,12 +20,16 @@ export default function Main() {
         <div id="main-container">
             <Route
               path="/final" 
-              // component={FinalProfile}
               component={Final} 
             />
             <Route
               path="/editing"
               component={EditingMain}
+            />
+            <Route
+              exact
+              path="/rolling"
+              component={RollThatDice}
             />
         </div>
       </main>

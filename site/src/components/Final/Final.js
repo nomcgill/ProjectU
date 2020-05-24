@@ -14,7 +14,7 @@ export class Final extends React.Component {
             text: this.props.inputText,
             type: this.props.filterType,
             active: this.props.filterActive, 
-            category: this.props.filterCategory, 
+            category: this.props.filterCategory,
             favorite: this.props.filterFavorite
         }
         this.props.dispatch(gatherFilters(this.props.currentSkills, filters))
@@ -34,22 +34,34 @@ export class Final extends React.Component {
         const shownSkills = (this.props.currentlyShown === undefined) ? this.props.currentSkills : this.props.currentlyShown
         return (
             <div id={'final-page'}>
-                <FinalTopPane 
-                    updateFilter={() => this.updateFilter()}
-                    resetFilters={() => this.resetFilters()}
-                />
-                <FinalBody 
-                    shownSkills={shownSkills}
-                    toggleFavorite={(item) => this.props.dispatch(toggleFavorite(item))}
-                    toggleOpen={(item) => this.props.dispatch(toggleOpen(item))}
-                    gatherItemText={(name, text) => this.props.dispatch(gatherItemText(name,text))}
-                    role={this.props.role}
-                    source={this.props.source}
-                    intersection={this.props.intersection}
-                />
-                <div id={"bottom-pane"}>
-                    ©2020 ProjectU | All Rights Reserved
-                </div>   
+
+                {/* <Route 
+                    // path="/skillview"
+                    render={() =>  */}
+                        {/* <div> */}
+                            <FinalTopPane 
+                                updateFilter={() => this.updateFilter()}
+                                resetFilters={() => this.resetFilters()}
+                            />
+                            <FinalBody 
+                                shownSkills={shownSkills}
+                                toggleFavorite={(item) => this.props.dispatch(toggleFavorite(item))}
+                                toggleOpen={(item) => this.props.dispatch(toggleOpen(item))}
+                                gatherItemText={(name, text) => this.props.dispatch(gatherItemText(name,text))}
+                                role={this.props.role}
+                                source={this.props.source}
+                                intersection={this.props.intersection}
+                            />
+                        {/* </div> */}
+                    {/* }
+                /> */}
+
+                {/* <Route 
+                    // path="/skillview"
+                    render={() =>  */}
+                        {/* <RollThatDice /> */}
+                    {/* }
+                /> */} 
             </div>
         )
     }

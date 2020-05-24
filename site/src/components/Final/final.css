@@ -4,7 +4,7 @@
 
 #roll {
     z-index: 1;
-    background-color: rgba(151, 151, 151, 0);
+    /* background-color: rgba(151, 151, 151, 0); */
     height: 50px;
 }
 
@@ -24,6 +24,18 @@
     /* box-shadow: black; */
 }
 
+#roll:hover {
+    cursor: pointer;
+}
+
+#diagonal-background.hovering-roll-border {
+    border-color: rgb(219, 83, 20) transparent transparent rgb(219, 83, 20);
+}
+
+#diagonal-background.click-roll {
+    border-color: rgb(172, 64, 15) transparent transparent rgb(172, 64, 15);
+}
+
 #d20 {
     /* z-index: 1; */
     padding: 10px 4px 0px 6px;
@@ -32,6 +44,7 @@
     /* background-color: rgba(182, 182, 182, 0); */
     border-radius: 0 0 3px 0;
     margin-top: -5px;
+    /* margin-bottom: 15px; */
 }
 
 #line-1 {
@@ -48,7 +61,7 @@
 }
 
 #search {
-    margin: 10px;
+    margin: 10px 10px 0px;
     margin-right: 3%;
     height: 35px;
     /* width: 100%; */
@@ -242,7 +255,7 @@ body #filters > button:active {
 }
 
 #empty-skills-body {
-    margin: 60px 30px 50px;
+    margin: 60px 30px 150px;
     padding: 20px;
     border: solid 1px black;
     text-align: center;

@@ -12,36 +12,23 @@ import {
 import Arrow from '../../ImageStore/fliparrow.png'
 import Dice from '../../ImageStore/dice.png'
 
-
-// import { action } from '../actions'
+import {updateOverstepped} from '../../actions'
 
 export class TrackingPane extends React.Component {
 
+    componentDidMount() {
+        var checkbox = document.getElementById("overstep-check")
+        if (this.props.overstepped){
+            checkbox.checked = this.props.overstepped
+        }
+    }
+
     updateOverstep(){
         var checkbox = document.getElementById("overstep-check")
-        console.log("Should be overstepped?")
-        // debugger;
-        console.log(checkbox.checked)
+        this.props.dispatch(updateOverstepped(checkbox.checked))
     }
 
-    updateHP(){
-        console.log('updating hp')
-    }
-
-    // if (document.getElementById('name')){
-    //     document.getElementById('name').classList.remove("hidden")
-    //     document.getElementById('titles').classList.remove("hidden")
-    //     document.getElementById('arrow-box').classList.remove("hidden")
-    // }
-
-    // if (document.getElementById('character-pane-skills-numbers')){
-    //     document.getElementById('character-pane-skills-numbers').classList.add('hidden')
-    // }
-
-    // if (document.getElementById('dimmer')){
-    //     document.getElementById('dimmer').classList.add('hidden')
-    // }
-    render(){
+    render(){   
         return (
             <div id={'character-tracking-pane'}>
                 <label className={'character-pane-box'} id={'overstep-box'} htmlFor={'overstep-check'}>
@@ -53,17 +40,12 @@ export class TrackingPane extends React.Component {
                     <div id={'hp-line'}>
                         <h2 id={'current-hp'} onClick={() => this.updateHP()}>20 </h2>
                         <h3>/20</h3>
-                    {/* <h4>20</h4> */}
                     </div>
-                    {/* <h3><span>20</span> / 20</h3> */}
                 </div>
                 <div className={'character-pane-box'} id={'damage-box'}>
                     <h3>DMG</h3>
                     <h2>5</h2>
                 </div>
-                {/* <div id={'dice-box'} className={'character-pane-box'}>
-                    <img src={Dice} id={'dice'}/>
-                </div> */}
                 <Link to={'/final/title'}>
                     <div id={'arrow-box'} className={'character-pane-box'}>
                         <img id={'flip-arrow'} src={Arrow} />
@@ -77,6 +59,7 @@ export class TrackingPane extends React.Component {
 
 const mapStateToProps = state => ({
     hitpoints: state.hitpoints,
+    overstepped: state.overstepped
   });
   
   export default connect(mapStateToProps)(TrackingPane);

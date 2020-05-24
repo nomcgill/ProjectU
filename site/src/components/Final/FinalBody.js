@@ -56,6 +56,9 @@ export default function FinalBody(props) {
                 </Link>
             </div>
             {sortedSkills()}
+            <div id={"bottom-pane"}>
+                    ©2020 ProjectU | All Rights Reserved
+            </div>  
         </div>
     )
 }

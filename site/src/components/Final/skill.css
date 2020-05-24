@@ -42,12 +42,10 @@
 .skill-head-pane-top {
     display: flex;
     justify-content: space-between;
-    /* flex-direction: row; */
 }
 
 .skill-head-pane:hover {
     border: solid 1px black;
-    /* color: black; */
     background-color: rgb(228, 218, 187);
 }
 

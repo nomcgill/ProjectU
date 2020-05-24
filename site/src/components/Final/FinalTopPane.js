@@ -21,7 +21,9 @@ export default function FinalTopPane(props) {
     return (
         <div id={'final-top-pane'}>
             <div id={'line-1'}>
-                <Roll />
+                {/* <Link to={'/rolling'}> */}
+                    <Roll />
+                {/* </Link> */}
                 <Search 
                     updateFilter={props.updateFilter}
                     // updateTextInput={props.updateTextInput}

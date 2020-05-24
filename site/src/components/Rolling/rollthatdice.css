@@ -1,0 +1,293 @@
+
+#roll-page {
+    background-color: rgb(70, 70, 70);
+    /* height: 600px; */
+    width: 100%;
+    position: absolute;
+    /* bottom: 0px; */
+    /* margin: 15px; */
+}
+
+#roll-area {
+    background-color: white;
+    margin: 20px;
+}
+
+#dice-area {
+    margin: 0 auto;
+    width: 350px;
+    display: grid;
+    grid-template-columns: 30% 35% 35%;
+}
+
+#upper-hand-column {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50%;
+}
+    
+
+#upper-hand-column > * {
+    color: white;
+    height: 80%;
+    text-align: center;
+    padding: 4px;
+    margin: 10%;
+    /* vertical */
+}
+
+#upper-hand-column > #upper-hand-switch {
+    background-color: rgb(101, 167, 121);
+    border-radius: 10px;
+    padding: 14px;
+    /* margin: 10px 0px; */
+}
+
+#prior-roll {
+    margin-bottom: -10px;
+}
+
+#upper-hand-column #prior-roll-number {
+    font-size: 30px;
+}
+/* 
+#upper-hand-button {
+    padding: 4px;
+    background-color: rgb(101, 167, 121);
+    border-radius: 4px;
+} */
+
+.one-dice-section {
+    display: inline-block;
+    margin: 0 auto;
+    margin-top: 15px;
+    /* width: 340px; */
+    /* display: block; */
+    text-align: center;
+    color: white;
+}
+
+.action-dice {
+    /* margin: 0 auto; */
+    /* background-color: white; */
+    /* margin-bottom: 20px; */
+    /* display: block; */
+    width: 100px;
+    padding-left: 15px; 
+    -webkit-transition: -webkit-transform .2s ease-in-out;
+    transition:         transform .2s ease-in-out;
+    filter: invert(80%);
+    margin-bottom: -10px;
+}
+
+#dice-2-section .action-dice {
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+}
+
+.action-dice:hover {
+    -webkit-transform: rotate(40deg) !important;
+    transform: rotate(40deg) !important;
+}
+
+.action-dice:active {
+    -webkit-transform: rotate(180deg) !important;
+    transform: rotate(180deg) !important;
+}
+
+.action-roll-result {
+    margin: 0 auto;
+    font-size: 40px;
+    width: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#action-description-container {
+    background-color: rgb(107, 106, 106);
+    border-radius: 10px;
+    padding: 20px 10px;
+    margin: 0 2.5%;
+}
+
+#action-description {
+    display: inline-grid;
+    width: 100%;
+    grid-template-columns: 50% 50%;
+    color: white;
+}
+
+.remove-sides {
+    /* display: none */
+}
+
+
+#affect-role {
+    text-align: center;
+    font-size: 1.1em;
+    vertical-align: middle;
+    line-height: 21px;
+    /* width: 150px; */
+    /* margin: 0 auto; */
+}
+
+#affect-role > * {
+    width: 150px;
+    margin: 0 auto;
+}
+
+#affect-role .affect-button {
+    background-color: rgb(101, 167, 121);
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 120px;
+    padding: 2px;
+    border-radius: 6px;
+    /* border: solid 1px black; */
+}
+
+#strengthen-word {
+    padding-bottom: 2px;
+}
+
+#strengthened-weakened {
+    padding-top: 2px;
+}
+
+#weaken-word {
+    padding-top: 2px;
+}
+
+/* slider itself */
+#action-level-slider {
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    /* -webkit-appearance: none; */
+    width: 34px;
+    height: 150px;
+    margin-top: 4px;
+}
+  
+  /* Mouse-over effects */
+  #action-level-slider:hover {
+    /* opacity: 1; Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  #action-level-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 20px; /* Set a specific slider handle width */
+    height: 8px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    /* cursor: pointer; Cursor on hover */
+  }
+  
+  #action-level-slider::-moz-range-thumb {
+    width: 20px; /* Set a specific slider handle width */
+    height: 8px; /* Slider handle height */
+    /* background: #4CAF50; Green background */
+    /* cursor: pointer; Cursor on hover */
+  }
+
+#action-level {
+    display: inline-grid;
+    /* grid-template-columns: 25px auto 36px; */
+    grid-template-columns: auto 34px auto auto ;
+    /* width: 377px; */
+    line-height: 23.14px;
+}
+
+#action-level-names {
+    width: 125px;
+}
+
+#action-level-names > *:first-child {
+    /* margin-bottom: 9px; */
+}
+
+#roll-that-dice {
+    width: 170px;
+    height: 45px;
+    display: block;
+    background-color: rgb(101, 167, 121);
+    /* border: solid 1px white; */
+    border: none;
+    border-radius: 12px;
+    margin: 15px auto 0px;
+    color: white;
+    font-size: 25px;
+}
+
+#roll-stats-button {
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    /* margin: auto; */
+    background-color: rgb(40, 71, 155);
+    border-radius: 15px;
+    padding: 8px 11px 3px;
+    color: white;
+    /* vertical-align: middle; */
+    position: relative;
+    /* bottom: 35px; */
+    right: 0px;
+    bottom: 20px;
+    float: right;
+    display: flex;
+}
+
+#bottom-fill {
+    color: white;
+    position: absolute;
+    bottom: 0px;
+}
+
+#action-breakdown {
+    margin: 10px;
+}
+
+
+@media all and (min-width: 475px) { 
+
+    #action-description-container {
+        width: 460.75px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    #action-description {
+        width: 460.75px;
+        margin: auto;
+        /* display: flex; */
+    }
+
+    /* #roll-stats-button {
+        left: -82px !important;
+    } */
+}
+
+@media all and (min-width: 400px) { 
+
+    .remove-sides {
+        /* display: unset; */
+    }
+    
+    #action-description{
+        /* grid-template-columns: 2% 48% 48% 2%; */
+    }
+
+    #affect-role .affect-button {
+        width: 150px;
+    }
+    #action-dice {
+        width: 200px;
+    }
+
+    /* #roll-stats-button {
+        left: -50px;
+    } */
+
+}

@@ -21,7 +21,6 @@ class CharacterPage extends React.Component {
     componentDidMount(){
         let stateLevel = this.props.level
         this.props.dispatch(acceptGlobalUpdateVisual(stateLevel))
-
         let theName = (this.props.name === 'Nameless') ? '' : this.props.name
         let theTitle = (this.props.title === '') ? '' : this.props.title
         document.getElementById("input-name").value = theName
@@ -117,9 +116,6 @@ class CharacterPage extends React.Component {
                                 <input 
                                     type={'range'} 
                                     onChange={() => this.handleSlider()}
-                                    // onChange={this.setValue.bind(this)} 
-                                    // onAfterChange={this.update.bind(this)} 
-                                    // value={this.props.level} 
                                     min={"1"}
                                     max={'12'}
                                     step={'1'}

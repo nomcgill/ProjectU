@@ -25,7 +25,9 @@ export class App extends React.Component {
   }
 
   render() {
-    this.props.dispatch(fetchProjectU());
+    if (!this.props.database){
+      this.props.dispatch(fetchProjectU());
+    }
       return (
         <Router>
           <Switch>
@@ -55,6 +57,7 @@ export class App extends React.Component {
 
 const mapStateToProps = state => ({
   hitpoints: state.hitpoints,
+  database: state.database
 });
 
 export default connect(mapStateToProps)(App);
