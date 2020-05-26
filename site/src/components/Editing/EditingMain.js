@@ -22,29 +22,10 @@ import FinishPage from './MiscInfo/FinishPage'
 export class EditingMain extends React.Component {
 
     formatEditAction(){
-        // debugger;
         this.props.dispatch(formatEditingPage(false))
     }
 
-    componentDidMount(){
-        // debugger;
-        // this.formatEditAction(false)
-    }
-
-    // formatEditingPage(){
-    //     console.log("formatPage run")
-    //     if (document.getElementById('name')){
-    //         document.getElementById('name').classList.add("hidden")
-    //         document.getElementById('titles').classList.add("hidden")
-    //         document.getElementById('arrow-box').classList.add("hidden")
-    //         document.getElementById('dimmer').classList.remove("hidden")
-    //         console.log("inside found")
-    //     }
-    // }
-
     render() {
-
-        // this.formatPage()
 
         function capitalize(insert){
             return insert.charAt(0).toUpperCase() + insert.slice(1)
@@ -70,81 +51,80 @@ export class EditingMain extends React.Component {
                         {navsteps}
                     </ul>
                     <Switch>
-                        {/* <Redirect exact from="/" to="/role" /> */}
-                            <Route 
-                                exact
-                                path="/editing/role"
-                                render={() => 
-                                    <ChoicePage
-                                        header={"Choose your ROLE."}
-                                        info={this.props.database.roles}
-                                        next={"/editing/source"}
-                                        button={"/editing/role"}
-                                        todo={this.formatEditAction}
-                                    />
-                                }
-                            />
-                            <Route 
-                                exact
-                                path="/editing/source"
-                                render={() => 
-                                    <ChoicePage
-                                        header={"Choose your SOURCE."}
-                                        info={this.props.database.sources}
-                                        next={"/editing/who"}
-                                        button={"/editing/source"}
-                                    />
-                                }
-                            />
-                            <Route 
-                                exact
-                                path="/editing/who"
-                                render={() => 
-                                    <CharacterPage
-                                        next={"/editing/intersection"}
-                                        button={"/editing/who"}
-                                    />
-                                }
-                            />
-                            <Route 
-                                exact
-                                path="/editing/intersection"
-                                render={() => 
-                                    <IntersectionPage
-                                        header={"Intersection: "}
-                                        info={this.props.database.intersections}
-                                        role={this.props.role}
-                                        source={this.props.source}
-                                        next={"/editing/skills/roleskillschoice"}
-                                    />
-                                }
-                            />
-                            <Redirect exact from="/editing/skills/" to="/editing/skills/roleskillschoice" />
-                            <Route 
-                                path="/editing/skills"
-                                render={() => 
-                                    <SkillsPage 
-                                        button={"skills"}
-                                        rolename={this.props.role.title}
-                                        sourcename={this.props.source.title}
-                                        database={this.props.database}
-                                        next={"/editing/finish"}
-                                        // info={this.props.database}
-                                    />
-                                }
-                            />
-                            <Route
-                                exact
-                                path="/editing/finish"
-                                render={() =>
-                                    <FinishPage 
-                                        button={"finish"}
-                                        next={"/final/title"}
+                        <Route 
+                            exact
+                            path="/editing/role"
+                            render={() => 
+                                <ChoicePage
+                                    header={"Choose your ROLE."}
+                                    info={this.props.database.roles}
+                                    next={"/editing/source"}
+                                    button={"/editing/role"}
+                                    todo={this.formatEditAction}
                                 />
-                                }
+                            }
+                        />
+                        <Route 
+                            exact
+                            path="/editing/source"
+                            render={() => 
+                                <ChoicePage
+                                    header={"Choose your SOURCE."}
+                                    info={this.props.database.sources}
+                                    next={"/editing/who"}
+                                    button={"/editing/source"}
+                                />
+                            }
+                        />
+                        <Route 
+                            exact
+                            path="/editing/who"
+                            render={() => 
+                                <CharacterPage
+                                    next={"/editing/intersection"}
+                                    button={"/editing/who"}
+                                />
+                            }
+                        />
+                        <Route 
+                            exact
+                            path="/editing/intersection"
+                            render={() => 
+                                <IntersectionPage
+                                    header={"Intersection: "}
+                                    info={this.props.database.intersections}
+                                    role={this.props.role}
+                                    source={this.props.source}
+                                    next={"/editing/skills/roleskillschoice"}
+                                />
+                            }
+                        />
+                        <Redirect exact from="/editing/skills/" to="/editing/skills/roleskillschoice" />
+                        <Route 
+                            path="/editing/skills"
+                            render={() => 
+                                <SkillsPage 
+                                    button={"skills"}
+                                    rolename={this.props.role.title}
+                                    sourcename={this.props.source.title}
+                                    database={this.props.database}
+                                    next={"/editing/finish"}
+                                    // info={this.props.database}
+                                />
+                            }
+                        />
+                        <Route
+                            exact
+                            path="/editing/finish"
+                            render={() =>
+                                <FinishPage 
+                                    button={"finish"}
+                                    next={"/final/title"}
                             />
-                        </Switch>
-                        <div id={'footer-hyphen'}> - </div>
+                            }
+                        />
+                    </Switch>
+                    <div id={'footer-hyphen'}> - </div>
                 </div>
         );
     }

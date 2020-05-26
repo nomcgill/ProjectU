@@ -27,7 +27,6 @@ export default function Main() {
               component={EditingMain}
             />
             <Route
-              exact
               path="/rolling"
               component={RollThatDice}
             />

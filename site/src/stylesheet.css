@@ -72,6 +72,7 @@ main, #fixed-top {
 
 .heavy {
   font-weight: bold;
+  letter-spacing: .05em;
 }
 
 .underline {
@@ -155,4 +156,8 @@ main {
 .aware {
   z-index: 999;
   position: relative;
+}
+
+button {
+  outline: none;
 }

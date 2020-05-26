@@ -14,22 +14,6 @@ import Arrow from '../../ImageStore/fliparrow.png'
 // import { action } from '../actions'
 
 export default function EditingPane(props) {
-
-    // if (document.getElementById('name')){
-    //     document.getElementById('name').classList.remove("hidden")
-    //     document.getElementById('titles').classList.remove("hidden")
-    //     document.getElementById('arrow-box').classList.remove("hidden")
-    // }
-
-    // if (document.getElementById('character-pane-skills-numbers')){
-    //     document.getElementById('character-pane-skills-numbers').classList.add('hidden')
-    // }
-
-    // if (document.getElementById('dimmer')){
-    //     document.getElementById('dimmer').classList.add('hidden')
-    // }
-
-
     
     return (
         <div id={'character-editing-pane'}>

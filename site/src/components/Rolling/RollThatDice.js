@@ -10,6 +10,7 @@ import {
 
 import './rollthatdice.css'
 import Dice from '../../ImageStore/dice.png'
+import ActionBreakdown from './ActionBreakdown'
 
 import {updateActionStatus} from '../../actions'
 
@@ -43,8 +44,7 @@ class RollThatDice extends React.Component {
                 </div>
                 <div id={'action-description-container'}>
                     <div id={'action-description'}>
-                        {/* <div className={'remove-sides'}></div>  */}
-                        <div id={'affect-role'}>
+                        <div id={'affect-roll'}>
                             <div className={'affect-button'}>
                                 <div>▲</div>
                                 <div id={'strengthen-word'}>Strengthen</div>
@@ -66,46 +66,21 @@ class RollThatDice extends React.Component {
                                 step={'1'}
                                 className={''} />
                             <div id={'action-level-names'}>
-                                {/* <div> */}
                                     <div>Critical Success</div>
                                     <div>Success</div>
                                     <div>Minor Success</div>
-                                {/* </div> */}
                                 <br></br>
-                                {/* <div> */}
                                     <div>Minor Setback</div>
                                     <div>Setback</div>
                                     <div>Critical Setback</div>
-                                {/* </div> */}
                             </div>
                             <div className={'remove-sides'}></div>
-                            {/* <table id={'roll-stats-box'}> */}
-                                {/* <tr> */}
-                                    {/* <td id={'roll-stats-button'}>?</td> */}
-                                {/* </tr> */}
-                            {/* </table> */}
                         </div>
-                        {/* <div className={'remove-sides'}></div>  */}
                     </div>
-                    {/* <div id={'roll-that-dice-row'}> */}
-                        <button id={'roll-that-dice'}>ROLL</button>
-                    {/* </div> */}
-                <div id={'roll-stats-button'}>?</div>
+                    <button id={'roll-that-dice'}>ROLL</button>
+                    <div id={'roll-stats-button'}>?</div>
                 </div>
-                <div id={'action-breakdown'}>
-                    <div id={'button-breakdown-row'}>
-                        <button className={'action-button'}>Muscle</button>
-                        <button className={'action-button'}>Evaluate</button>
-                        <button className={'action-button'}>Influence</button>
-                        <button className={'action-button'}>Channel</button>
-                    </div>
-                    <div className={'action-details'}>
-                        <h4>Action Info:</h4>
-                        <p>Use that thinking cap to get a pressing question truthfully—if not in detail—answered by the GM. </p>
-                    </div>
-                </div>
-                {/* </div> */}
-                {/* <div className={'bottom-fill'}>-</div> */}
+                <ActionBreakdown />
             </div>
         );
     }
