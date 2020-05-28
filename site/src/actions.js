@@ -178,3 +178,9 @@ export const resetFilters = () => ({
 export const updateActionStatus = () => dispatch => {
     console.log(`let's update this actionStatus`)
 }
+
+export const UPDATE_ACTION_DETAILS = 'UPDATE_ACTION_DETAILS';
+export const updateActionDetails = tab => ({
+    type: UPDATE_ACTION_DETAILS,
+    tab
+})

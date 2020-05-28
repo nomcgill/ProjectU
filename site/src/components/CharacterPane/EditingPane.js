@@ -17,14 +17,15 @@ export default function EditingPane(props) {
     
     return (
         <div id={'character-editing-pane'}>
-            <div>
-                <h2>Find Hero</h2>
-            </div>
-            <Link to={'/final/title/'}>
+            <Link to={'/final/title/'} className={'button'}>
                 <div>
                     <h2>View This Hero</h2>
                 </div>
             </Link>
+            <div className={'vertical-stacked'}>
+                <div className={'button'}><h2>Find</h2></div>
+                <div className={'button'}><h2>Save</h2></div>
+            </div>
         </div>
     );
 }

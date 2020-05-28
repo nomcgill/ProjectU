@@ -133,5 +133,10 @@ export const reducer = (state = initialState, action) => {
         })
     }
 
+    if (action.type === actions.UPDATE_ACTION_DETAILS){
+        return Object.assign({}, state, {
+            savedActionTab: action.tab
+        })
+    }
     return state;
 }

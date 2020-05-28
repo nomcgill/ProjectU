@@ -47,7 +47,9 @@ export class App extends React.Component {
                 </div>
                 <div id={'back-pane'} />
                 {/* <div id={"dimmer"}/> */}
-                <Main />
+                <Main
+                  savedActionTab={this.props.savedActionTab}
+                />
             </div>
           </Switch>
         </Router>
@@ -57,7 +59,8 @@ export class App extends React.Component {
 
 const mapStateToProps = state => ({
   hitpoints: state.hitpoints,
-  database: state.database
+  database: state.database,
+  savedActionTab: state.savedActionTab
 });
 
 export default connect(mapStateToProps)(App);

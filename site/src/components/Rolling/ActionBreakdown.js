@@ -51,8 +51,6 @@ export default function ActionBreakdown(props) {
     })
 
     function actionInfo(action){
-        // console.log("run")
-        // debugger;
         if (action.title === "muscle"){
             return (
                 <div className={'action-detail-text'}>
@@ -73,17 +71,18 @@ export default function ActionBreakdown(props) {
                         <li><span className={'heavy'}>Intuit</span>, as in a lie, love, or other intent.</li>
                         <li><span className={'heavy'}>Recall</span>, as in history or past experience.</li>
                     </ul>
-                    
-                    <p className={''}>Use that thinking cap to get a pressing question truthfully—if not in detail—answered by the GM.</p>
-                    <ul>
-                        <li>What haven't I noticed yet?</li>
-                        <li>Who is in the most danger?</li>
-                        <li>What caused that?</li>
-                        <li>How can I escape that?</li>
-                        <li>Should I trust them?</li>
-                        <li>How do they feel about me?</li>
-                        <li>How long will this last?</li>
-                    </ul>
+                    <div className={'action-detail-extra'}>                    
+                        <p>Use that thinking cap to get a pressing question truthfully—if not in detail—answered by the GM.</p>
+                        <ul>
+                            <li>What haven't I noticed yet?</li>
+                            <li>Who is in the most danger?</li>
+                            <li>What caused that?</li>
+                            <li>How can I escape that?</li>
+                            <li>Should I trust them?</li>
+                            <li>How do they feel about me?</li>
+                            <li>How long will this last?</li>
+                        </ul>
+                    </div>
                 </div>
             )
         }
@@ -113,16 +112,19 @@ export default function ActionBreakdown(props) {
     }
 
     const actionDescriptionComponents = actions.map((action, key) => {
-
+        // console.log(props.savedActionTab)
+        // props.savedActionTab()
         return (
             <Route 
                 exact
                 path={'/rolling/' + action.title}
-                render={() => 
+                render={(p) => 
                     <ActionDescriptionComp
                         title={capitalize(action.title)}
+                        route={action.title}
                         snippet={action.snippet}
                         info={actionInfo(action)}
+                        savedTab={props.savedActionTab}
                     />
                 }
                 key={key}
@@ -130,14 +132,18 @@ export default function ActionBreakdown(props) {
         )
     })
 
+    let savedActionTab = (props.savedActionTab) ? props.savedActionTab : 'muscle'
+    // debugger;
     return(
         <div id={'action-breakdown'}>
             <div id={'action-info-top-tab'}>
                 <h4>Actions ►</h4>
                 {actionLinks}
             </div>
-            <Redirect exact from="/rolling" to="/rolling/muscle" />
-            {actionDescriptionComponents}
+            <Switch>
+                <Redirect exact from="/rolling" to={"/rolling/" + savedActionTab} />
+                {actionDescriptionComponents}
+            </Switch>
         </div>
     )
 

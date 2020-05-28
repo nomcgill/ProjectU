@@ -161,3 +161,7 @@ main {
 button {
   outline: none;
 }
+
+.highlight-nav {
+  pointer-events: none;
+}

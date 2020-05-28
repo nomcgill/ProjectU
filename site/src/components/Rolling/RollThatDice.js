@@ -12,7 +12,7 @@ import './rollthatdice.css'
 import Dice from '../../ImageStore/dice.png'
 import ActionBreakdown from './ActionBreakdown'
 
-import {updateActionStatus} from '../../actions'
+import {updateActionStatus, updateActionDetails} from '../../actions'
 
 class RollThatDice extends React.Component {
 
@@ -22,7 +22,15 @@ class RollThatDice extends React.Component {
         this.props.dispatch(updateActionStatus(input))
     }
 
+
+    // saveTheTab(tab){
+    //     console.log('saveTheTab is run')
+    //     console.log(this.props.savedActionTab)
+    //     this.props.dispatch(updateActionDetails(tab))
+    // }
+
     render(){
+        const savedActionTab = (this.props.savedActionTab) ? this.props.savedActionTab : false
         return (
             <div id={'roll-page'}>
                 <div id={'dice-area'}>
@@ -80,7 +88,9 @@ class RollThatDice extends React.Component {
                     <button id={'roll-that-dice'}>ROLL</button>
                     <div id={'roll-stats-button'}>?</div>
                 </div>
-                <ActionBreakdown />
+                <ActionBreakdown 
+                    savedActionTab={savedActionTab}
+                />
             </div>
         );
     }
@@ -88,7 +98,8 @@ class RollThatDice extends React.Component {
 
 const mapStateToProps = state => ({
     skills: state.skills,
-    actionStatus: state.actionStatus
+    actionStatus: state.actionStatus,
+    savedActionTab: state.savedActionTab
 });
 
 export default connect(mapStateToProps)(RollThatDice);

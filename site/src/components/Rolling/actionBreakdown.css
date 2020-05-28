@@ -124,6 +124,10 @@
     padding-bottom: 18px;
 }
 
+.action-detail-extra {
+    margin-top: 10px;
+}
+
 @media all and (min-width: 475px) { 
 
     #action-breakdown {

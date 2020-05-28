@@ -30,6 +30,7 @@ export default function Main() {
               path="/rolling"
               component={RollThatDice}
             />
+            {/* <Redirect exact from="/rolling" to={"/rolling/muscle"} /> */}
         </div>
       </main>
   );

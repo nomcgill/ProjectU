@@ -14,7 +14,7 @@ const sampleChoices = {
                 action: false,
                 type: false,
                 damage: false,
-                category: false, 
+                category: false,
                 description: "Against any intangible attack (psionic, curse, mind control etc.) which should cause unwanted movement or action, a paladin can instead choose to remain still."
             },
             {
