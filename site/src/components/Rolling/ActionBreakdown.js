@@ -112,8 +112,7 @@ export default function ActionBreakdown(props) {
     }
 
     const actionDescriptionComponents = actions.map((action, key) => {
-        // console.log(props.savedActionTab)
-        // props.savedActionTab()
+
         return (
             <Route 
                 exact
@@ -125,6 +124,7 @@ export default function ActionBreakdown(props) {
                         snippet={action.snippet}
                         info={actionInfo(action)}
                         savedTab={props.savedActionTab}
+                        actionSuccess={props.actionSuccess}
                     />
                 }
                 key={key}

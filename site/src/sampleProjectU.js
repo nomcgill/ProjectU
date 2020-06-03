@@ -13,6 +13,38 @@ const sampleProjectU = {
         label: "Toggle Quick-Rules",
         action: ""
     },
+    actionSuccess: [
+        {
+            title: "Critical Success",
+            description: "Do what you want, plus a bonus.",
+            evaluateDesc: "Ask two questions from the list below."
+        },   
+        {
+            title: "Success",
+            description: "Do what you want.",
+            evaluateDesc: "Ask one question from the list below."
+        },
+        {   
+            title: "Minor Success",
+            description: "Do what you want, but pay a small price",
+            evaluateDesc: "Ask a question from the list below, but pay a small price."
+        },
+        {   
+            title: "Minor Setback",
+            description: "Don't do what you want.",
+            evaluateDesc: "Fail to get a question answered."
+        },
+        {   
+            title: "Setback",
+            description: "Don’t do what you want and pay a small price.",
+            evaluateDesc: "Get no questions answered and pay a small price."
+        },   
+        {
+            title: "Critical Setback",
+            description: "Don’t do what you want and pay a large price.",
+            evaluateDesc: "Get no questions answered and pay a large price"
+        },   
+    ],
     intersections: [
         {
             title: "Paladin",

@@ -1,30 +1,62 @@
 
-#upper-hand-column > #upper-hand-switch, 
+.gray {
+    background-color: rgb(114, 114, 114) !important;
+}
+
+.gray:hover {
+    background-color: rgb(145, 145, 145) !important;
+}
+
+.gray:active {
+    background-color: rgb(88, 88, 88) !important;
+}
+
+#upper-hand-column > #upper-hand-switch,
 #affect-roll .affect-button,
-#roll-that-dice {
+#clear-roll-row .roll-that-dice,
+#clear-roll {
     background-color: rgb(101, 167, 121);
+    border-bottom: solid 2px rgb(27, 27, 27);
+    outline: none;
+    -webkit-touch-callout: none;
+      -webkit-user-select: none; 
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
 }
 
 #upper-hand-column > #upper-hand-switch:hover, 
 #affect-roll .affect-button:hover, 
-#roll-that-dice:hover {
+.roll-that-dice:hover,
+#clear-roll-row *:hover {
     background-color: rgb(112, 175, 131);
     cursor: pointer;
 }
 
 #upper-hand-column > #upper-hand-switch:active,
 #affect-roll .affect-button:active, 
-#roll-that-dice:active {
+.roll-that-dice:active,
+#clear-roll-row *:active {
     background-color: rgb(89, 155, 109);
+}
+
+#affect-roll #weaken-button {
+    background-color: rgb(170, 51, 51);
+}
+
+#affect-roll #weaken-button:hover {
+    background-color: rgb(184, 63, 63);
+}
+
+#affect-roll #weaken-button:active {
+    background-color: rgb(145, 39, 39);
 }
 
 #roll-page {
     background-color: rgb(70, 70, 70);
-    /* height: 600px; */
     width: 100%;
     position: absolute;
-    /* bottom: 0px; */
-    /* margin: 15px; */
 }
 
 #roll-area {
@@ -36,6 +68,10 @@
     margin: 0 auto;
     width: 340px;
     display: grid;
+    grid-template-columns: 30% 47%;
+}
+
+#dice-area.double-dice-layout {
     grid-template-columns: 30% 35% 35%;
 }
 
@@ -104,6 +140,23 @@
     color: white;
 }
 
+#dice-1-section {
+    margin-right: 5px;
+}
+
+#dice-2-section {
+    margin-left: -10px;
+    margin-top: 25px;
+}
+
+#dice-2-section .action-dice {
+    width: 75px;
+}
+
+#dice-2-section .action-roll-result {
+    font-size: 30px;
+}
+
 .action-dice {
     /* margin: 0 auto; */
     /* background-color: white; */
@@ -112,14 +165,21 @@
     width: 100px;
     padding-left: 15px; 
     -webkit-transition: -webkit-transform .2s ease-in-out;
-    transition:         transform .2s ease-in-out;
+    transition: transform .2s ease-in-out;
     filter: invert(80%);
     margin-bottom: -10px;
 }
 
+.chosen-roll {
+    font-weight: bold;
+    /* text-shadow: 10x 10px white; */
+}
+
+
 #dice-2-section .action-dice {
     -webkit-transform: rotate(10deg);
     transform: rotate(10deg);
+    margin-left: 0px;
 }
 
 .action-dice:hover {
@@ -128,16 +188,18 @@
 }
 
 .action-dice:active {
-    -webkit-transform: rotate(180deg) !important;
-    transform: rotate(180deg) !important;
+    -webkit-transform: rotate(-150deg) !important;
+    transform: rotate(-150deg) !important;
+    /* transform: translateY(50px); */
 }
 
 .action-roll-result {
     margin: 0 auto;
     font-size: 40px;
     width: 100px;
-    margin-top: 5px;
+    margin-top: 8px;
     margin-bottom: 5px;
+    margin-left: 9px;
 }
 
 #action-description-container {
@@ -151,7 +213,7 @@
     display: inline-grid;
     width: 100%;
     grid-template-columns: 50% 50%;
-    color: white;
+    color: rgb(187, 187, 187);
 }
 
 .remove-sides {
@@ -166,6 +228,11 @@
     line-height: 21px;
     /* width: 150px; */
     /* margin: 0 auto; */
+}
+
+#strengthened-weakened {
+    font-size: .95em;
+    color: white;
 }
 
 #affect-roll > * {
@@ -214,12 +281,12 @@
     /* height: 100px; */
     -webkit-appearance: none;
     height: 2px;
-    width: 159px;
+    width: 162px;
     position: relative;
     right: 65px;
     top: 77px;
     /* opacity: .5; */
-    background-color: rgb(32, 32, 32);
+    background-color: rgba(32, 32, 32, 0.158);
 }
 
   /* Mouse-over effects */
@@ -229,16 +296,35 @@
   
   /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
   #action-level-slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-    appearance: none;
-    width: 20px; /* Set a specific slider handle width */
-    height: 10px; /* Slider handle height */
-    background: white; /* Green background */
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-   -moz-border-radius: 5px;
-   -o-border-radius: 5px;
+      /* pointer-events: none; */
+
+      -webkit-appearance: none;
+      border: none;
+      height: 22px;
+      width: 22px;
+      background-size: 21px 12.5px;
+      /* border-radius: 50%; */
+      background-color: transparent;
+      background-image: url(../../ImageStore/chevron.png);
+      background-position: center center;
+      background-repeat: no-repeat;
+      filter: invert(100%);
+
+    /* Override the default look */
+    /* -webkit-appearance: none; */
+    /* appearance: none; */
+    /* width: 20px; */
+    /* height: 10px; */
+
+    /* background-image: url(../../ImageStore/dice.png); */
+
+    /* background: white; */
+    /* border-radius: 5px; */
+    /* -webkit-border-radius: 5px; */
+   /* -moz-border-radius: 5px; */
+   /* -o-border-radius: 5px; */
    /* box-shadow: 0px 0px 2px white; */
+
    /* border: solid 2px black; */
     /* cursor: pointer; Cursor on hover */
   }
@@ -258,18 +344,48 @@
     line-height: 23.14px;
 }
 
+.highlight-success {
+    color: white;
+    /* font-weight: bold; */
+    text-shadow: 0px 0px 8px rgb(255, 255, 255);
+}
+
+.highlight-success-strong {
+    color: white;
+    text-shadow: 0px 0px 8px rgb(0, 236, 126);
+}
+
+.highlight-success-weak {
+    color: white;
+    text-shadow: 0px 0px 8px rgb(255, 0, 0);
+}
+
 #action-level-names {
     width: 125px;
 }
 
-#action-level-names > *:first-child {
-    /* margin-bottom: 9px; */
+#clear-roll-row {
+    text-align: center;
 }
 
-#roll-that-dice {
+#clear-roll-row > * {
+    display: inline;
+}
+
+#clear-roll {
+    margin-right: 20px;
+    /* margin-top: 3px; */
+    font-size: 25px;
+    /* margin-bottom: 10px; */
+    padding: 10px;
+    color: white;
+    border-radius: 12px;
+}
+
+.roll-that-dice {
     width: 170px;
     height: 45px;
-    display: block;
+    /* display: block; */
     /* border: solid 1px white; */
     border: none;
     border-radius: 12px;
@@ -282,15 +398,18 @@
     text-align: center;
     height: 30px;
     width: 30px;
-    background-color: rgb(40, 71, 155);
+    background-color: rgb(95, 77, 255);
+    color: white;
     border-radius: 15px;
     padding: 8px 11px 3px;
-    color: white;
+    /* color: white; */
     position: relative;
     right: 0px;
     bottom: 20px;
     float: right;
+    /* position: absolute; */
     display: flex;
+    cursor: pointer;
 }
 
 #bottom-fill {

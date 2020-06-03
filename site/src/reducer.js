@@ -138,5 +138,30 @@ export const reducer = (state = initialState, action) => {
             savedActionTab: action.tab
         })
     }
+
+    if (action.type === actions.UPPER_HAND_TOGGLE){
+        return Object.assign({}, state, {
+            upperHand: !action.priorState
+        })        
+    }
+
+    if (action.type === actions.UPDATE_STRENGTHEN){
+        return Object.assign({}, state, {
+            strengthened: action.newState
+        })
+    }
+
+    if (action.type === actions.SAVE_THE_ROLL){
+        return Object.assign({}, state, {
+            diceResults: action.array
+        })
+    }
+
+    if (action.type === actions.UPDATE_SNIPPET){
+        return Object.assign({}, state, {
+            actionSnippet: action.action
+        })
+    }
+
     return state;
 }

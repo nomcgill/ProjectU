@@ -10,9 +10,7 @@ import {
 } from 'react-router-dom';
 import './actionBreakdown.css'
 
-import {updateActionDetails} from '../../actions'
-
-// import {toggleItemFavorite} from '../../actions'
+import {updateActionDetails, action} from '../../actions'
 
 class ActionDescriptionComp extends React.Component {
 
@@ -21,12 +19,27 @@ class ActionDescriptionComp extends React.Component {
         if (tab !== this.props.savedTab){
             this.props.dispatch(updateActionDetails(tab))
         }
-        // console.log(prop)
-        // this.props.savedTab
-        // console.log(this.props.p)
+        // console.log(this.props.actionSnippet)
+        // console.log(this.props.actionSuccess)
+    }
+
+    successDescription(actionSnippet, actionType){
+        if (actionSnippet){
+            // debugger;
+            let successDescription = 
+                (actionType === "Evaluate") ? actionSnippet.evaluateDesc :
+                (actionType === "Influence" || actionType === "Muscle" || actionType === "Channel") ? actionSnippet.description : 
+                ""
+            return successDescription
+        }
+        else {
+            return ""
+        }
     }
     
     render(){
+        let actionSnippet = this.props.actionSnippet
+        let successTitle = actionSnippet ? actionSnippet.title : "Roll For Success"
         return (
             <div className={'action-details'}>
                 <div className={'action-details-top'}>
@@ -35,8 +48,8 @@ class ActionDescriptionComp extends React.Component {
                         <div className={'action-banner-snippet'}>{this.props.snippet}</div>
                     </div>
                     <div className={'action-success'}>
-                        <div className={'action-example-title heavy'}>Critical Setback</div>
-                        <div className={'action-example-text'}>Don’t do what you want and pay a large price.</div>
+                        <div className={'action-example-title heavy'}>{successTitle}</div>
+                        <div className={'action-example-text'}>{this.successDescription(actionSnippet, this.props.title)}</div>
                     </div>
                 </div>
                 <div className={'action-details-info'}>
@@ -48,7 +61,8 @@ class ActionDescriptionComp extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    savedActionTab: state.savedActionTab
+    savedActionTab: state.savedActionTab,
+    actionSnippet: state.actionSnippet
 });
 
 export default connect(mapStateToProps)(ActionDescriptionComp);

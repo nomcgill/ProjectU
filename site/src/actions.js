@@ -175,12 +175,49 @@ export const resetFilters = () => ({
     type: RESET_FILTERS
 })
 
-export const updateActionStatus = () => dispatch => {
-    console.log(`let's update this actionStatus`)
+export const updateActionStatus = input => dispatch => {
+    console.log(`slider level: ` + input)
 }
 
 export const UPDATE_ACTION_DETAILS = 'UPDATE_ACTION_DETAILS';
 export const updateActionDetails = tab => ({
     type: UPDATE_ACTION_DETAILS,
     tab
+})
+
+export const UPPER_HAND_TOGGLE = 'UPPER_HAND_TOGGLE';
+export const upperHandToggle = priorState => ({
+    type: UPPER_HAND_TOGGLE,
+    priorState
+})
+
+export const strengthOrWeak = (priorState, upOrDown) => dispatch => {
+    // debugger;
+    if (upOrDown && priorState < 5){
+        let newState = priorState + 1
+        dispatch(updateStrengthen(newState))
+    }
+    if (!upOrDown && priorState > -5){
+        let newState = priorState - 1
+        dispatch(updateStrengthen(newState))
+    }
+    // dispatch(updatStrengthen(1))
+}
+
+export const UPDATE_STRENGTHEN = 'UPDATE_STRENGTHEN';
+export const updateStrengthen = newState => ({
+    type: UPDATE_STRENGTHEN,
+    newState
+})
+
+export const SAVE_THE_ROLL = 'SAVE_THE_ROLL';
+export const saveTheRoll = array => ({
+    type: SAVE_THE_ROLL,
+    array
+})
+
+export const UPDATE_SNIPPET = 'UPDATE_SNIPPET';
+export const updateSnippet = action => ({
+    type: UPDATE_SNIPPET,
+    action
 })
