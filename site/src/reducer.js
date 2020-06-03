@@ -163,5 +163,22 @@ export const reducer = (state = initialState, action) => {
         })
     }
 
+    if (action.type === actions.ADD_TO_PRIOR){
+        let priorResults = action.priorResults
+        // console.log(state.rollHistory)
+        return Object.assign({}, state, {
+            rollHistory: [priorResults, ...state.rollHistory]
+        })
+
+
+
+        // let ingredient = action.ingredient;
+            
+        // return Object.assign({}, state, {
+        //     ingredients: [...state.ingredients, ingredient]
+        // })
+        // console.log(action.priorResults)
+    }
+
     return state;
 }

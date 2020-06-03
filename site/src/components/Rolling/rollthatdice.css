@@ -53,8 +53,21 @@
     background-color: rgb(145, 39, 39);
 }
 
+#clear-roll-row .roll-that-dice#the-clear-button {
+    background-color: rgb(161, 161, 95);
+}
+
+#clear-roll-row .roll-that-dice#the-clear-button:hover {
+    background-color: rgb(182, 182, 54);
+}
+
+#clear-roll-row .roll-that-dice#the-clear-button:active {
+    background-color: rgb(160, 160, 17);
+}
+
 #roll-page {
     background-color: rgb(70, 70, 70);
+    padding: 7px 0px;
     width: 100%;
     position: absolute;
 }
@@ -65,10 +78,12 @@
 }
 
 #dice-area {
+    padding-left: 4px;
     margin: 0 auto;
     width: 340px;
     display: grid;
     grid-template-columns: 30% 47%;
+    margin-bottom: -10px;
 }
 
 #dice-area.double-dice-layout {
@@ -76,7 +91,7 @@
 }
 
 #upper-hand-column {
-    height: 97%;
+    height: 90%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 50%;
@@ -96,6 +111,7 @@
 #upper-hand-column > #upper-hand-switch {
     border-radius: 10px;
     padding: 14px;
+    height: 60px;
     /* margin: 10px 0px; */
 }
 
@@ -104,6 +120,8 @@
     /* margin-bottom: 15px; */
     padding: 8px 6px 0px;
     border-radius: 10px;
+    cursor: default;
+    height: 69px;
     /* border-right: solid 1px white; */
 }
 
@@ -112,17 +130,27 @@
     padding-bottom: 0px;
 }
 
-#prior-roll:hover {
+.prior-roll:hover {
     background-color: rgb(87, 87, 87);
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
-#prior-roll:active {
+.prior-roll:active {
     background-color: rgb(102, 102, 102);
+}
+
+#prior-roll-head {
+    /* text-decoration: underline; */
 }
 
 #upper-hand-column #prior-roll-number {
     font-size: 30px;
+}
+
+#upper-hand-column #prior-roll-result {
+    font-size: .95em;
+    margin-top: 10px;
+    /* padding: 10px; */
 }
 /* 
 #upper-hand-button {
@@ -133,6 +161,7 @@
 .one-dice-section {
     display: inline-block;
     margin: 0 auto;
+    /* margin-bottom: -10px; */
     margin-top: 15px;
     /* width: 340px; */
     /* display: block; */
@@ -193,6 +222,11 @@
     /* transform: translateY(50px); */
 }
 
+.action-dice-activate {
+    -webkit-transform: rotate(-150deg) !important;
+    transform: rotate(-150deg) !important;
+}
+
 .action-roll-result {
     margin: 0 auto;
     font-size: 40px;
@@ -202,10 +236,24 @@
     margin-left: 9px;
 }
 
+.green-success, .red-success {
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.274);
+}
+
+.green-success {
+    color: rgb(127, 214, 153);
+    /* text-shadow: 0px 0px 20px rgb(0, 112, 50); */
+}
+
+.red-success {
+    color: rgb(236, 81, 81);
+    /* text-shadow: 0px 0px 20px red; */
+}
+
 #action-description-container {
     background-image: linear-gradient( rgb(70,70,70),rgb(90, 90, 90) );
     border-radius: 10px;
-    padding: 20px 10px;
+    padding: 10px 10px 20px;
     margin: 0 2.5%;
 }
 
@@ -296,8 +344,6 @@
   
   /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
   #action-level-slider::-webkit-slider-thumb {
-      /* pointer-events: none; */
-
       -webkit-appearance: none;
       border: none;
       height: 22px;
@@ -394,6 +440,11 @@
     font-size: 25px;
 }
 
+.disable {
+    pointer-events: none !important;
+    background-color: gray !important;
+}
+
 #roll-stats-button {
     text-align: center;
     height: 30px;
@@ -421,7 +472,8 @@
 @media all and (min-width: 475px) { 
 
     #dice-area {
-        width: 430px
+        width: 430px;
+        height: 173px;
     }
 
     #action-description-container, #action-breakdown {

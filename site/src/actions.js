@@ -221,3 +221,9 @@ export const updateSnippet = action => ({
     type: UPDATE_SNIPPET,
     action
 })
+
+export const ADD_TO_PRIOR = 'ADD_TO_PRIOR';
+export const addToPrior = priorResults => ({
+    type: ADD_TO_PRIOR,
+    priorResults
+})

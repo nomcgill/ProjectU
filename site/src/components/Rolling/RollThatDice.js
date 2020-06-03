@@ -11,8 +11,9 @@ import {
 import './rollthatdice.css'
 import Dice from '../../ImageStore/dice.png'
 import ActionBreakdown from './ActionBreakdown'
+import RollHistory from './RollHistory'
 
-import {updateActionStatus, updateActionDetails, upperHandToggle, strengthOrWeak, updateStrengthen, saveTheRoll, updateSnippet} from '../../actions'
+import {updateActionStatus, updateActionDetails, upperHandToggle, strengthOrWeak, updateStrengthen, saveTheRoll, updateSnippet, addToPrior} from '../../actions'
 
 class RollThatDice extends React.Component {
 
@@ -28,16 +29,15 @@ class RollThatDice extends React.Component {
 
     displayAll(){
         this.grayThemOut()
+
         let upperHandStatus = (this.props.upperHand) ? true : false
         this.displayUpperHand(upperHandStatus)
-        // console.log('create action to display ' + upperHandStatus)
+
         let strengthLevel = (this.props.strengthened) ? this.props.strengthened : 0
         this.strengthLevelButtons(strengthLevel)
-        // console.log('create action to display ' + strengthLevel)
+
         let diceResults = this.props.diceResults
-        // console.log('diceResults: ' + diceResults)
         this.displaySuccessLevel(strengthLevel, diceResults)
-        // console.log(this.props.priorResults)
     }
 
     grayThemOut(){
@@ -73,24 +73,25 @@ class RollThatDice extends React.Component {
     }
 
     displaySuccessLevel(strengthLevel, diceResults){
-        // var scanning = document.body.classList.contains('highlight-success')
-        // console.log(scanning)
         var levelLabels = document.getElementsByClassName('success-level')
         for (let i=0; i < levelLabels.length; i++){
             let actionLabel = levelLabels[i]
             if (actionLabel.classList[1] === "highlight-success-strong"){
                 actionLabel.classList.remove('highlight-success-strong')
+                actionLabel.classList.remove('current-success')
             }
             if (actionLabel.classList[1] === "highlight-success-weak"){
                 actionLabel.classList.remove('highlight-success-weak')
+                actionLabel.classList.remove('current-success')
             }
             if (actionLabel.classList[1] === "highlight-success"){
                 actionLabel.classList.remove('highlight-success')
+                actionLabel.classList.remove('current-success')
             }
         }
-        let theRoll = (diceResults) ? Math.max(...diceResults) : false
-        let sortedResults = diceResults ? (diceResults.sort(function(a, b){return b-a})) : false
-        this.displayRoll(sortedResults, theRoll)
+        let sortedRolls = (diceResults) ? this.returnRollsSorted(diceResults) : false
+        let theRoll = (sortedRolls) ? sortedRolls[0] : false
+        this.displayRoll(sortedRolls)
         let successDigit = 
             (theRoll === 20) ? 1 :
             (theRoll === 10 || theRoll === 12 || theRoll === 14 || theRoll === 16 || theRoll === 18) ? 2 :
@@ -101,10 +102,9 @@ class RollThatDice extends React.Component {
             4
         document.getElementById('action-level-slider').value = successDigit
         //stops here if theRoll isn't a real roll
-        if (successDigit===4){
+        if (successDigit === 4){
             return
         }
-        // console.log(strengthLevel)
         let successRating = successDigit
         for (let i = 0; i < Math.abs(strengthLevel); i++){
             if (strengthLevel > 0 ){
@@ -144,12 +144,15 @@ class RollThatDice extends React.Component {
                 let targetId = "success-level-" + properNumber
                 if (strengthLevel > 0 ){
                     document.getElementById(targetId).classList.add('highlight-success-strong')
+                    document.getElementById(targetId).classList.add('current-success')
                 }
                 if (strengthLevel < 0 ){
                     document.getElementById(targetId).classList.add('highlight-success-weak')
+                    document.getElementById(targetId).classList.add('current-success')
                 }
                 if (strengthLevel === 0 ){
                     document.getElementById(targetId).classList.add('highlight-success')
+                    document.getElementById(targetId).classList.add('current-success')
                 }
                 
             }
@@ -158,7 +161,52 @@ class RollThatDice extends React.Component {
 
     }
 
-    displayRoll(results, chosenRoll){
+    returnRollsSorted(diceResults){
+        if (diceResults){
+            let sortedPointValues = []
+            diceResults.forEach(theRoll => {
+                let successValue = ((theRoll === 20) ? 1 :
+                        (theRoll === 10 || theRoll === 12 || theRoll === 14 || theRoll === 16 || theRoll === 18) ? 2 :
+                        (theRoll === 2 || theRoll === 4 || theRoll === 6 || theRoll === 8) ? 3 : 
+                        (theRoll === 1 || theRoll === 3 || theRoll === 5 || theRoll === 7 || theRoll === 9) ? 5 :
+                        (theRoll === 11 || theRoll === 13 || theRoll === 15 || theRoll === 17) ? 6 :
+                        (theRoll === 19) ? 7 : 
+                        4)
+                sortedPointValues.push(successValue)
+            })
+            let unsortedPointValues = []
+            sortedPointValues.forEach(roll => {
+                unsortedPointValues.push(roll)
+            })            
+            sortedPointValues.sort(function(a, b){return a-b});
+
+            if (sortedPointValues[0] === unsortedPointValues[0]){
+                if (sortedPointValues[0] === sortedPointValues[1]){
+                    if (diceResults[0] % 2 == 0){ //is even then we want greater first
+                        return diceResults.sort(function(a, b){return b-a});
+                    }
+                    else {
+                        return diceResults.sort(function(a, b){return a-b});
+                    }
+                }
+                return diceResults
+            }
+            else {
+                let sortedDiceResults = [diceResults[1],diceResults[0]]
+                if (sortedPointValues[0] === sortedPointValues[1]){
+                    if (sortedDiceResults[0] % 2 == 0){ //is even then we want greater first
+                        return sortedDiceResults.sort(function(a, b){return b-a});
+                    }
+                    else {
+                        return sortedDiceResults.sort(function(a, b){return a-b});
+                    }
+                }
+                return sortedDiceResults
+            }            
+        }
+    }
+
+    displayRoll(results){
         let section1 = document.getElementById('dice-1-section')
         let section2 = document.getElementById('dice-2-section')
         let roll1 = document.getElementById('dice-1-number')
@@ -167,15 +215,26 @@ class RollThatDice extends React.Component {
         if (roll1.classList.contains('chosen-roll')){
             roll1.classList.remove('chosen-roll')
         }
+        roll1.classList.remove('green-success')
+        roll1.classList.remove('red-success')
+        roll2.classList.remove('green-success')
+        roll2.classList.remove('red-success')
         if (section1){
             diceArea.classList.remove('double-dice-layout')
             let results1 = results ? results[0] : '--'
             roll1.innerText = results1
             if (results1 !== '--'){
                 roll1.classList.add('chosen-roll')
+                if (results1 % 2 === 0){ //is even then display green
+                    roll1.classList.add('green-success')
+                }
+                else { //otherwise display red
+                    roll1.classList.add('red-success')
+                }
             }
         }
         if (section2){
+            // document.getElementById('2nd-dice').classList.add('')
             section2.classList.add('hidden')
         }
         if (this.props.upperHand){
@@ -183,22 +242,15 @@ class RollThatDice extends React.Component {
             diceArea.classList.add('double-dice-layout')
             let results2 = results.length > 1 ? results[1] : '--'
             roll2.innerText = results2
-            // debugger;
+            if (results2 !== '--'){
+                if (results2 % 2 === 0){ //is even then display green
+                    roll2.classList.add('green-success')
+                }
+                else { //otherwise display red
+                    roll2.classList.add('red-success')
+                }
+            }
         }
-    }
-
-    clearRoll(){
-        const promise1 = new Promise((resolve, reject) => {
-            resolve(
-                this.props.dispatch(updateStrengthen(0)))
-            });
-        promise1.then(() => {
-            this.props.dispatch(upperHandToggle(true))
-        }).then(() => {
-            this.props.dispatch(saveTheRoll(false))
-        }).then(() =>{
-            this.displayAll()
-        });
     }
 
     upperHandSwitch(){
@@ -240,7 +292,56 @@ class RollThatDice extends React.Component {
         });
         promise1.then(() => {
             this.displayAll()
+        }).then(() => {
+            document.getElementById('the-roll-button').classList.add('hidden')
+            document.getElementById('the-clear-button').classList.remove('hidden')
+            document.getElementById('the-clear-button').classList.add('disable')
+            document.getElementsByClassName('action-dice')[0].classList.add('action-dice-activate')
+            document.getElementsByClassName('action-dice')[1].classList.add('action-dice-activate')
+        }).then(() => {
+            setTimeout(function(){
+                document.getElementsByClassName('action-dice')[0].classList.remove('action-dice-activate')
+                document.getElementsByClassName('action-dice')[1].classList.remove('action-dice-activate')
+            }, 200)
+            setTimeout(function(){
+                document.getElementById('the-clear-button').classList.remove('disable')
+            }, 2000)
         });        
+    }
+
+    clearRoll(){
+        const promise1 = new Promise((resolve, reject) => {
+            //string
+            let actionStatus = document.getElementsByClassName('current-success')[0].innerText
+            let chosenRoll = document.getElementsByClassName('chosen-roll')[0].innerText
+            let upperHand = (this.props.upperHand) ? this.props.upperHand : false
+            let strengthened = (this.props.strengthened) ? this.props.strengthened : false
+            let timeStamp = Math.round(new Date().getTime()/1000)
+            let priorResults = {
+                actionStatus: actionStatus,
+                upperHand: upperHand,
+                strengthened: strengthened,
+                diceResults: this.props.diceResults,
+                chosenRoll: chosenRoll,
+                timeStamp: timeStamp
+            }
+            resolve(
+                this.props.dispatch(addToPrior(priorResults))
+            )
+        });
+        promise1.then(() => {
+            // console.log(this.props.rollHistory)
+            this.props.dispatch(updateStrengthen(0))
+        }).then(() => {
+            this.props.dispatch(upperHandToggle(true))
+        }).then(() => {
+            this.props.dispatch(saveTheRoll(false))
+        }).then(() => {
+            document.getElementById('the-roll-button').classList.remove('hidden')
+            document.getElementById('the-clear-button').classList.add('hidden')
+        }).then(() =>{
+            this.displayAll()
+        });
     }
 
     render(){
@@ -250,10 +351,9 @@ class RollThatDice extends React.Component {
                 <div id={'dice-area'}>
                     <div id={'upper-hand-column'}>
                         <div id={'upper-hand-switch'} onClick={()=> this.upperHandSwitch()}>Upper Hand</div>
-                        <div id={'prior-roll'}>
-                            <div>Prior Roll</div>
-                            <div id={'prior-roll-number'}>16</div>
-                        </div>
+                        <RollHistory
+                            rollHistory={this.props.rollHistory}
+                        />
                     </div>
                     <div className={'one-dice-section'} id={'dice-1-section'}>
                         <img className={'action-dice'} src={Dice} />
@@ -302,7 +402,7 @@ class RollThatDice extends React.Component {
                     <div id={'clear-roll-row'}>
                         {/* <div id={'clear-roll'} onClick={() => this.clearRoll()}>C</div> */}
                         <button className={'roll-that-dice'} id={'the-roll-button'} onClick={() => this.handleRollClick()}>ROLL</button>
-                        <button className={'roll-that-dice'} id={'the-clear-button'} onClick={() => this.clearRoll()}>CLEAR</button>
+                        <button className={'roll-that-dice hidden'} id={'the-clear-button'} onClick={() => this.clearRoll()}>CLEAR</button>
                     </div>
                     <div id={'roll-stats-button'}>?</div>
                 </div>
@@ -323,7 +423,8 @@ const mapStateToProps = state => ({
     strengthened: state.strengthened,
     diceResults: state.diceResults,
     priorResults: state.priorResults,
-    actionSuccess: state.database.actionSuccess
+    actionSuccess: state.database.actionSuccess,
+    rollHistory: state.rollHistory    
 });
 
 export default connect(mapStateToProps)(RollThatDice);

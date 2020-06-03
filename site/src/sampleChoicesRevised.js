@@ -9,6 +9,7 @@ const sampleChoicesRevised = {
     backgroundPresent: false,
     backgroundFuture: false,
     displayFavorites: false,
+    rollHistory: [],
     currentSkills: [
         {
             name: "Wrath",

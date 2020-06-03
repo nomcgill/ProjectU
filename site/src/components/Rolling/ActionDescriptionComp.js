@@ -19,13 +19,10 @@ class ActionDescriptionComp extends React.Component {
         if (tab !== this.props.savedTab){
             this.props.dispatch(updateActionDetails(tab))
         }
-        // console.log(this.props.actionSnippet)
-        // console.log(this.props.actionSuccess)
     }
 
     successDescription(actionSnippet, actionType){
         if (actionSnippet){
-            // debugger;
             let successDescription = 
                 (actionType === "Evaluate") ? actionSnippet.evaluateDesc :
                 (actionType === "Influence" || actionType === "Muscle" || actionType === "Channel") ? actionSnippet.description : 
