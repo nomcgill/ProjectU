@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux';
 
+// import Knight from '../../../ImageStore/knight.png'
+
 export default function RoleSourceOption(props) {
 
     // const buttons = ["role","source","who","skills","finish"]
@@ -30,9 +32,10 @@ export default function RoleSourceOption(props) {
 
     return (
         <div className={"choice-box"} onClick={() => onClick()}>
-            <h3>{props.section.title}</h3>
-            <p>{props.section.description}</p>
-            <p>Given Skills: Justice, Soulbind</p>
+            <h3 className={'edit-section-title'}>{props.section.title}</h3>
+            <img src={props.img} className={'role-icon-img'} />
+            <p>{props.section.tagline}</p>
+            {/* <p>Given Skills: Justice, Soulbind</p> */}
             {/* <div className={props.section.title + "-traits-dropdown"}>{props.section.traits[0].description} traits dropdown</div> */}
         </div>
     );

@@ -4,9 +4,19 @@ import {connect} from 'react-redux';
 import RoleSourceOption from './RoleSourceOption'
 import NextButton from '../NextButton.js'
 
-// import { action } from '../actions'
+// import Knight from '../../../ImageStore/knight.jpg'
+import Knight from '../../../ImageStore/knight.png'
+import Elementalist from '../../../ImageStore/elementalist.png'
 
 export default function ChoicePage(props) {
+
+    function findImg(title){
+        return (
+            title === "Knight" ? Knight :
+            title === "Elementalist" ? Elementalist :
+            ''
+        )
+    }
 
     // debugger;
     // console.log(props.todo(true))
@@ -16,6 +26,7 @@ export default function ChoicePage(props) {
             key={section.title + "-key"}
             section={section}
             button={props.button}
+            img={findImg(section.title)}
         />
     ) : ""
 

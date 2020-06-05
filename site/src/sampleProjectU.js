@@ -207,7 +207,10 @@ const sampleProjectU = {
     roles: [
         {
             title: "Knight",
-            description: "A Knight Description",
+            tagline: "With resolve and discipline, one can make the difference.",
+            description: "The Knight is one who has vowed to follow a strict chivalrous code. No matter the details or level of devotion, two pledges are certain: you will fear their god and honor your love. When the time comes, you see no option but to sacrifice their being for those they have vowed to protect.",
+            alternateWounds: "broken heart, Beloved disturbance.",
+            uniqueTraits: "A Knight’s Oath, Courtly Love, Truth",
             traits: [ 
                 {
                     name: "A Knight's Oath",
@@ -275,6 +278,7 @@ const sampleProjectU = {
         {
             title: "Elementalist",
             description: "An Elementalist Description",
+            tagline: "The components of creation listen to those who properly ask.",
             traits: [ 
                 {
                     name: "A Knight's Oath",

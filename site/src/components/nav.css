@@ -53,6 +53,10 @@ nav * {
     z-index: 1000;
 }
 
+#game-title {
+    padding-bottom: 10px;
+}
+
 #menu {
     /* display: none; */
     position: absolute;
