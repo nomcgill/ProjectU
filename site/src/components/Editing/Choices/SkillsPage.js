@@ -14,24 +14,6 @@ import SkillsChoiceSection from './SkillsChoiceSection'
 import NextButton from '../NextButton.js'
 
 export class SkillsPage extends React.Component {
-    
-    // updateAvailable(){
-    //     // console.log(this.props.database)
-    //     if (document.getElementById("level-box")){
-    //         document.getElementById("level-box").classList.add("aware")
-    //         document.getElementById("character-pane-skills-numbers").classList.remove("hidden")
-    //     }
-    // }
-    
-    // to remove highlight!
-    // componentDidUpdate(){
-    //     const levelBox = document.getElementById("level-box")
-    //     console.log(levelBox)
-    //     if (levelBox.classList.contains("aware") == true){
-    //         console.log("trying")
-    //         levelBox.classList.remove("aware")
-    //     }
-    // }
 
     grabAllSelectedItems(){
         const allItems = document.getElementsByClassName('info')

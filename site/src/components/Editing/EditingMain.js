@@ -25,6 +25,24 @@ export class EditingMain extends React.Component {
         this.props.dispatch(formatEditingPage(false))
     }
 
+    hidePopups(){
+        if (document.getElementsByClassName('popup')){
+            let elements = document.getElementsByClassName('popup')
+            // debugger;
+            for (let i = 0; i <elements.length; i++){
+                elements[i].classList.add('hidden')
+            }
+        }
+    }
+        
+    componentDidMount(){
+        this.hidePopups()
+    }
+
+    componentDidUpdate(){
+        this.hidePopups()
+    }
+
     render() {
 
         function capitalize(insert){
@@ -52,7 +70,6 @@ export class EditingMain extends React.Component {
                     </ul>
                     <Switch>
                         <Route 
-                            exact
                             path="/editing/role"
                             render={() => 
                                 <ChoicePage
@@ -61,11 +78,11 @@ export class EditingMain extends React.Component {
                                     next={"/editing/source"}
                                     button={"/editing/role"}
                                     todo={this.formatEditAction}
+                                    rolesource={'role'}
                                 />
                             }
                         />
                         <Route 
-                            exact
                             path="/editing/source"
                             render={() => 
                                 <ChoicePage
@@ -73,6 +90,7 @@ export class EditingMain extends React.Component {
                                     info={this.props.database.sources}
                                     next={"/editing/who"}
                                     button={"/editing/source"}
+                                    rolesource={'source'}
                                 />
                             }
                         />

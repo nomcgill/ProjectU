@@ -76,15 +76,15 @@ class RollThatDice extends React.Component {
         var levelLabels = document.getElementsByClassName('success-level')
         for (let i=0; i < levelLabels.length; i++){
             let actionLabel = levelLabels[i]
-            if (actionLabel.classList[1] === "highlight-success-strong"){
+            if (actionLabel.classList[2] === "highlight-success-strong"){
                 actionLabel.classList.remove('highlight-success-strong')
                 actionLabel.classList.remove('current-success')
             }
-            if (actionLabel.classList[1] === "highlight-success-weak"){
+            if (actionLabel.classList[2] === "highlight-success-weak"){
                 actionLabel.classList.remove('highlight-success-weak')
                 actionLabel.classList.remove('current-success')
             }
-            if (actionLabel.classList[1] === "highlight-success"){
+            if (actionLabel.classList[2] === "highlight-success"){
                 actionLabel.classList.remove('highlight-success')
                 actionLabel.classList.remove('current-success')
             }
@@ -143,18 +143,23 @@ class RollThatDice extends React.Component {
                     successRating
                 let targetId = "success-level-" + properNumber
                 if (strengthLevel > 0 ){
-                    document.getElementById(targetId).classList.add('highlight-success-strong')
+                    // document.getElementById(targetId).classList.add('highlight-success-strong')
                     document.getElementById(targetId).classList.add('current-success')
                 }
                 if (strengthLevel < 0 ){
-                    document.getElementById(targetId).classList.add('highlight-success-weak')
+                    // document.getElementById(targetId).classList.add('highlight-success-weak')
                     document.getElementById(targetId).classList.add('current-success')
                 }
                 if (strengthLevel === 0 ){
-                    document.getElementById(targetId).classList.add('highlight-success')
+                    // document.getElementById(targetId).classList.add('highlight-success')
                     document.getElementById(targetId).classList.add('current-success')
                 }
-                
+                if (successRating < 4){
+                    document.getElementById(targetId).classList.add('highlight-success-strong')
+                }
+                if (successRating > 4){
+                    document.getElementById(targetId).classList.add('highlight-success-weak')
+                }
             }
 
         })

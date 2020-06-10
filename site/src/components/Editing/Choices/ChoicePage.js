@@ -7,6 +7,11 @@ import NextButton from '../NextButton.js'
 // import Knight from '../../../ImageStore/knight.jpg'
 import Knight from '../../../ImageStore/knight.png'
 import Elementalist from '../../../ImageStore/elementalist.png'
+import BountyHunter from '../../../ImageStore/bountyhunter.png'
+import Morph from '../../../ImageStore/morph.png'
+import Sayer from '../../../ImageStore/sayer.png'
+import Shade from '../../../ImageStore/shade.png'
+import Tactician from '../../../ImageStore/tactician.png'
 
 export default function ChoicePage(props) {
 
@@ -14,19 +19,29 @@ export default function ChoicePage(props) {
         return (
             title === "Knight" ? Knight :
             title === "Elementalist" ? Elementalist :
+            title === "Bounty Hunter" ? BountyHunter :
+            title === "Morph" ? Morph :
+            title === "Sayer" ? Sayer :
+            title === "Shade" ? Shade :
+            title === "Tactician" ? Tactician :
             ''
         )
     }
 
-    // debugger;
-    // console.log(props.todo(true))
-    // debugger;
+    function elementId(title){
+        return (
+            title === "Bounty Hunter" ? "Bounty-Hunter" : title
+        )
+    }
+
     const eachBox = (props.info) ? props.info.map(section => 
         <RoleSourceOption 
             key={section.title + "-key"}
             section={section}
             button={props.button}
             img={findImg(section.title)}
+            elementId={elementId(section.title)}
+            rolesource={props.rolesource}
         />
     ) : ""
 
@@ -49,7 +64,9 @@ export default function ChoicePage(props) {
             <div className="choice-header-box">
                 <h2>{props.header}</h2>
             </div>
-            {eachBox}
+            <div className={'roll-source-edit-grid ' + props.rolesource}>
+                {eachBox}
+            </div>
             <NextButton next={props.next} />
         </div>
     );

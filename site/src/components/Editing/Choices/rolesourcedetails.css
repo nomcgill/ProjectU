@@ -1,0 +1,121 @@
+
+.scrollable-content {
+    overflow-y: scroll;
+    max-height: 170px;
+    /* border-top: solid 1px white; */
+    /* border-bottom: solid 1px white; */
+    background-color: rgba(41, 41, 41, 0.192);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f100; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(64, 187, 125); 
+    /* cursor: pointer; */
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(142, 207, 175); 
+  }
+
+.scrollable-content > * {
+    padding: 5px 20px 10px;
+}
+
+.rolesource-trait-section {
+    overflow-y: scroll;
+    max-height: 250px;
+    padding: 10px 20px 10px;
+}
+
+.rolesource-given-skills-tag {
+    font-size: 1.15em;
+    margin-bottom: 7px;
+    text-align: center;
+    /* text-align: left; */
+    /* text-decoration: underline; */
+}
+
+.trait-block {
+    font-size: 1.15em;
+    border: solid 1px #888;
+    background-color: rgba(0, 0, 0, 0.808); /* Black w/ opacity */
+    border-radius: 5px;
+    margin: 0 0 7px;
+    /* padding: 5px; */
+}
+
+.trait-block-button {
+    font-size: 14px;
+    display: inline;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.trait-block-button:hover {
+    background-color: rgba(26, 26, 26, 0.808); /* Black w/ opacity */
+}
+
+.trait-block-button:active {
+    background-color: rgba(8, 8, 8, 0.808); /* Black w/ opacity */
+}
+
+.accept-or-decline {
+    /* text-align: center; */
+}
+
+.accept-or-decline button {
+    font-size: 18px;
+    width: 100%;
+    /* height: 30px; */
+    border: solid 1px rgba(255, 255, 255, 0.596);
+    border-top: none;
+    outline: none;
+
+    display: inline-block;
+    padding: 10px 15px;
+    line-height: 15px;
+    /* font-size: 20px; */
+    border-radius: 0;
+    -webkit-appearance: none;
+    /* height: 100%; */
+    color: white;
+}
+
+#decline-rolesource-choice {
+    background-color: rgb(202, 41, 41);
+    cursor: pointer;
+}
+
+#decline-rolesource-choice:hover {
+    background-color: rgb(214, 64, 64);
+}
+
+#decline-rolesource-choice:active {
+    background-color: rgb(170, 30, 30);
+}
+
+#accept-rolesource-choice {
+    background-color: rgb(3, 148, 76);
+    cursor: pointer;
+}
+
+#accept-rolesource-choice:hover {
+    background-color: rgb(25, 177, 101);
+}
+
+#accept-rolesource-choice:active {
+    background-color: rgb(2, 117, 59);
+}
