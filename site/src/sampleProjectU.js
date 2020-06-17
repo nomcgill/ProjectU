@@ -439,7 +439,7 @@ const sampleProjectU = {
             tagline: "The components of creation listen to those who properly ask.",
             traits: [ 
                 {
-                    name: "A Knight's Oath",
+                    name: "Knight's Oath",
                     action: false,
                     damage: false,
                     description: `

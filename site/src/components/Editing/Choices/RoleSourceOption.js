@@ -20,14 +20,15 @@ export default function RoleSourceOption(props) {
     // }
 
     // to remove highlight!
-    const levelBox = document.getElementById("level-box")
-    const skillsNumbers = document.getElementById("character-pane-skills-numbers")
-    if (levelBox){
-        if (levelBox.classList.contains("aware") == true){
-            levelBox.classList.remove("aware")
-            skillsNumbers.classList.add("hidden")
-        }
-    }
+    // const levelBox = document.getElementById("level-box")
+    // const skillsNumbers = document.getElementById("character-pane-skills-numbers")
+    // if (levelBox){
+    //     if (levelBox.classList.contains("aware") == true){
+    //         console.log('what is happening here')
+    //         levelBox.classList.remove("aware")
+    //         skillsNumbers.classList.add("hidden")
+    //     }
+    // }
 
     function onClick(input){
         let elementPopup = document.getElementById('popup-' + props.elementId)

@@ -19,6 +19,21 @@ export class RoleSourceDetails extends React.Component {
         return joined.replace(/[^\w\s]/gi, '')
     }
 
+    componentDidUpdate(){
+        this.keepPopupVisible()
+    }
+
+    keepPopupVisible(){
+        console.log(this.props.elementId)
+        let thisPopup = "popup-" + document.getElementById(this.props.elementId)
+        if (document.getElementById(this.props.elementId)){
+            console.log(thisPopup)
+            thisPopup.classList.remove('hidden')
+            // debugger;
+        }
+    }
+
+
   render() {
 
     let traitNames = () => {
@@ -49,6 +64,7 @@ export class RoleSourceDetails extends React.Component {
         return (
             <Route 
                 exact
+                key={'key-' + name}
                 path={`/editing/${this.props.rolesource}/${name}`} 
                 render={() => 
                     <TinyTrait
@@ -73,7 +89,7 @@ export class RoleSourceDetails extends React.Component {
             </div>
             <div className={'rolesource-trait-section'}>
                 <p className={'rolesource-given-skills-tag'}>Given Skills</p>
-                <ul>
+                <ul className={'choice-skill-nav'}>
                     {skillNavs}
                 </ul>
                 <Switch>

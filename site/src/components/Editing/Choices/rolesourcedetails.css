@@ -34,7 +34,6 @@
 }
 
 .rolesource-trait-section {
-    overflow-y: scroll;
     max-height: 250px;
     padding: 10px 20px 10px;
 }
@@ -70,6 +69,12 @@
 
 .trait-block-button:active {
     background-color: rgba(8, 8, 8, 0.808); /* Black w/ opacity */
+}
+
+.trait-description {
+    overflow-y: scroll;
+    max-height: 170px;
+    background-color: rgba(41, 41, 41, 0.192);
 }
 
 .accept-or-decline {
@@ -118,4 +123,12 @@
 
 #accept-rolesource-choice:active {
     background-color: rgb(2, 117, 59);
+}
+
+.choice-skill-nav {
+    list-style: none;
+}
+
+.choice-skill-nav * {
+    color: white;
 }

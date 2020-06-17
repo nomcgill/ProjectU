@@ -6,10 +6,7 @@ export default function Popup(props) {
 
     function hideWindow(){
         let elementId = document.getElementById(props.popupId)
-        // console.log(elementId)
-        // console.log(typeof elementId)
         elementId.classList.add("hidden")
-        // debugger;
     }
 
     // let className = props.popupId === "popup-Knight" ? " hidden" : " hidden"

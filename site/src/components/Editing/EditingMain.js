@@ -25,22 +25,33 @@ export class EditingMain extends React.Component {
         this.props.dispatch(formatEditingPage(false))
     }
 
-    hidePopups(){
+    hidePopups(hideAll){
+        let keepExposed =[]
         if (document.getElementsByClassName('popup')){
             let elements = document.getElementsByClassName('popup')
+            // let exposedItem = document.getElementById('')
             // debugger;
             for (let i = 0; i <elements.length; i++){
-                elements[i].classList.add('hidden')
+                let element = elements[i]
+                if (element.classList[2] !== "hidden"){
+                    keepExposed.push(element)
+                    element.classList.add('hidden')
+                }
+                // if (element){
+                // }
             }
+        }
+        if (keepExposed.length > 0 && !hideAll){
+            keepExposed[0].classList.remove('hidden')
         }
     }
         
     componentDidMount(){
-        this.hidePopups()
+        this.hidePopups(true)
     }
 
     componentDidUpdate(){
-        this.hidePopups()
+        this.hidePopups(false)
     }
 
     render() {
