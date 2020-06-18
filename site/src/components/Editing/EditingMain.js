@@ -25,33 +25,19 @@ export class EditingMain extends React.Component {
         this.props.dispatch(formatEditingPage(false))
     }
 
-    hidePopups(hideAll){
-        let keepExposed =[]
-        if (document.getElementsByClassName('popup')){
-            let elements = document.getElementsByClassName('popup')
-            // let exposedItem = document.getElementById('')
-            // debugger;
-            for (let i = 0; i <elements.length; i++){
-                let element = elements[i]
-                if (element.classList[2] !== "hidden"){
-                    keepExposed.push(element)
-                    element.classList.add('hidden')
-                }
-                // if (element){
-                // }
-            }
-        }
-        if (keepExposed.length > 0 && !hideAll){
-            keepExposed[0].classList.remove('hidden')
-        }
-    }
-        
-    componentDidMount(){
-        this.hidePopups(true)
-    }
-
     componentDidUpdate(){
-        this.hidePopups(false)
+        // if (){
+            let elementRole = document.getElementById('choice-box-' + this.props.role)
+            let elementSource = document.getElementById('choice-box-' + this.props.source)
+
+            // let roleElement = document.getElementById('')
+            if (this.props.role && elementRole ){
+                elementRole.classList.add('chosen-rolesource')
+            }
+            if (this.props.source && elementSource){
+                elementSource.classList.add('chosen-rolesource')
+            }
+        // }
     }
 
     render() {

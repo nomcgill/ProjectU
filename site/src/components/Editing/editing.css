@@ -572,6 +572,19 @@ input:focus {
     height: 110px;
 }
 
+.chosen-rolesource {
+    background-color: rgba(40, 214, 98, 0.39);
+}
+
+.chosen-rolesource:hover {
+    background-color: rgba(125, 255, 168, 0.39);
+    
+}
+
+.chosen-rolesource:active {
+    background-color: rgba(0, 92, 31, 0.39);
+}
+
 @media all and (min-width: 603px) { 
 
     #editing-nav > #who-nav, #editing-nav > #intersection-nav {

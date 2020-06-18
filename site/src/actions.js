@@ -227,3 +227,16 @@ export const addToPrior = priorResults => ({
     type: ADD_TO_PRIOR,
     priorResults
 })
+
+export const updateRoleSource = (roleSource, title, priorRole, priorSource) => dispatch => {
+    if (roleSource ===  "role" && priorRole){
+        alert("Role is changing to " + title + ". Previous " + priorRole + " skills are being deleted.")
+    }
+    if (roleSource ===  "source" && priorSource){
+        alert("Source is changing to " + title + ". Previous " + priorSource + " skills are being deleted.")
+    }
+
+    //state is currently not changing!
+    console.log(roleSource, title)
+
+}

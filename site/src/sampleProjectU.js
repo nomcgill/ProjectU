@@ -359,32 +359,37 @@ const sampleProjectU = {
             sampleSkills: "Hope, Fervor, Lancelot",
             traits: [ 
                 {
-                    name: "Knight's Oath",
-                    action: false,
+                    name: "Truth",
+                    action: "Passive",
+                    skillLevel: "Given",
+                    category: "Role",
                     damage: false,
-                    description: `
-                        Similar to Paladin's Sacred Oath, the Knight chooses a god to follow. The player must make 2 promises to the god that begin with either:
-                        "I promise to always..." or "I promise to never..." 
-                        As long as these promises are held, they receive a blessing called the Lord On High. This blessing will revive the Knight in a new, purified body and soul within 50 ft of their Soulbind by the following sunrise, with all memories intact up to the point of their death. The Lord On High blessing will only work once and will subsequently leave the Knight. Under normal circumstances, the Knight is unaware of the blessing’s presence.
-                    `
+                    flavor: "Knights specialize in the diverse breadth of all weapons.",
+                    flavor2: false,
+                    impact: "For purposes of penalties, no crafted weapon is considered unnatural to the Knight. Improvised Object penalties remain unaffected.",
+                    favorite: false,
                 },
                 {
-                    name: "Truth",
-                    action: false,
+                    name: "Knight's Oath",
+                    action: "Passive",
+                    skillLevel: "Given",
+                    category: "Role",
                     damage: false,
-                    description: "For purposes of penalties, no crafted weapon is considered unnatural to the Knight. Improvised Object penalties remain unaffected."
+                    flavor: `Similar to Paladin's Sacred Oath, the Knight chooses a god to follow. The player must make 2 promises to the god that begin with either:`,
+                    flavor2: `I promise to always..." or "I promise to never...`,
+                    impact: `As long as these promises are held, they receive a blessing called the Lord On High. This blessing will revive the Knight in a new, purified body and soul within 50 ft of their Soulbind by the following sunrise, with all memories intact up to the point of their death. The Lord On High blessing will only work once and will subsequently leave the Knight. Under normal circumstances, the Knight is unaware of the blessing’s presence.`
                 },
                 {
                     name: "Courtly Love",
-                    action: false,
+                    action: "Passive",
+                    skillLevel: `Given`,
+                    category: "Role",
                     damage: false,
-                    description: `
-                        The Knight bestows a token of love upon someone that they cherish immensely. Upon acceptance, the recipient becomes the Knight’s Beloved. The token and its Beloved owner affect many of the Knight’s abilities. 
-                        A Knight without a Beloved cannot use any of their role skills.
-                        A Knight always knows the location of the token of love.
-                        A Knight remains in tune with any pain, physical or emotional, felt by their Beloved.
-                        The Knight may only have one Beloved at a time. Once chosen, this bond of Courtly Love can only be broken upon an extreme change in circumstances, such as death or betrayal.                    
-                    `
+                    flavor: `The Knight bestows a token of love upon someone that they cherish immensely. Upon acceptance, the recipient becomes the Knight’s Beloved. The token and its Beloved owner affect many of the Knight’s abilities.`,
+                    flavor2: `A Knight without a Beloved cannot use any of their role skills.`,
+                    flavor3: `A Knight always knows the location of the token of love.`,
+                    flavor4: `A Knight remains in tune with any pain, physical or emotional, felt by their Beloved.`,
+                    impact: `The Knight may only have one Beloved at a time. Once chosen, this bond of Courtly Love can only be broken upon an extreme change in circumstances, such as death or betrayal.`
                 }
             ],
             skills: {

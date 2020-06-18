@@ -57,3 +57,8 @@ main.popup-active *:not(.popup) {
     text-align: center;
     margin: 10px;
 }
+
+.scrollable-popup-portion {
+    overflow-y: scroll;
+    height: 60vh;
+}

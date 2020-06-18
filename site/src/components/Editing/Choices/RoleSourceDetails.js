@@ -12,6 +12,8 @@ import {
 import './rolesourcedetails.css'
 import TinyTrait from './TinyTrait'
 
+import { updateRoleSource } from '../../../actions'
+
 export class RoleSourceDetails extends React.Component {
 
     joinWords(string){
@@ -33,6 +35,24 @@ export class RoleSourceDetails extends React.Component {
         }
     }
 
+    choose(roleSource){
+        let popup = ('popup-' + this.props.elementId)
+        let title = this.props.details.title
+        if (title !== this.props.role && title !== this.props.source){
+            this.props.dispatch(updateRoleSource(roleSource, title, this.props.role, this.props.source))
+            document.getElementById(popup).classList.add("hidden")
+        }
+        else if (title === this.props.role || title === this.props.source){
+            alert(`Choice wasn't changed.`)
+        }
+        else (
+            alert("error choosing")
+        )
+        // let elementId = document.getElementById(this.props.popupId)
+        // elementId.classList.add("hidden")
+        //hide window
+    }
+
 
   render() {
 
@@ -45,35 +65,36 @@ export class RoleSourceDetails extends React.Component {
         return list
     }
 
-    let skillNavs = this.props.details.traits.map(trait => {
-        let name = this.joinWords(trait.name)
-        return (
-            <li key={'trait-nav-' + name} id={'trait-nav-' + name}>
-                <NavLink
-                    to={`/editing/${this.props.rolesource}/${name}`} 
-                    activeClassName={"highlight-trait-nav"}
-                >
-                    {trait.name}
-                </NavLink>
-            </li>
-        )
-    })
+    // let skillNavs = this.props.details.traits.map(trait => {
+    //     let name = this.joinWords(trait.name)
+    //     return (
+    //         <li key={'trait-nav-' + name} id={'trait-nav-' + name}>
+    //             <NavLink
+    //                 to={`/editing/${this.props.rolesource}/${name}`} 
+    //                 activeClassName={"highlight-trait-nav"}
+    //             >
+    //                 {trait.name}
+    //             </NavLink>
+    //         </li>
+    //     )
+    // })
 
     let traitBlocks = this.props.details.traits.map(trait => {
         let name = this.joinWords(trait.name)
         return (
-            <Route 
-                exact
-                key={'key-' + name}
-                path={`/editing/${this.props.rolesource}/${name}`} 
-                render={() => 
+            // <Route 
+            //     exact
+            //     key={'key-' + name}
+            //     path={`/editing/${this.props.rolesource}/${name}`} 
+            //     render={() => 
                     <TinyTrait
+                        key={trait.name + this.props.elementId}
                         name={trait.name}
                         trait={trait}
                         elementId={this.props.elementId}
                     />
-                }
-            />
+                // }
+            // />
         )
     })
 
@@ -82,24 +103,31 @@ export class RoleSourceDetails extends React.Component {
       return (
         <div className={'role-source-popup-details'}>
             <h1>{this.props.details.title}</h1>
-            <div className={'scrollable-content'}>
-                <p>{this.props.details.description}</p>
-                <p>Alternate Wounds: {this.props.details.alternateWounds}</p>
-                <p>Sample Skills: {sampleSkills}</p>
-            </div>
-            <div className={'rolesource-trait-section'}>
-                <p className={'rolesource-given-skills-tag'}>Given Skills</p>
-                <ul className={'choice-skill-nav'}>
-                    {skillNavs}
-                </ul>
-                <Switch>
-                    {traitBlocks}
-                </Switch>
+            <div className={'role-source-overlay'} />
+            <div className={'scrollable-popup-portion'}>
+                <div className={'scrollable-content'}>
+                    <p>{this.props.details.description}</p>
+                    <p>Alternate Wounds: {this.props.details.alternateWounds}</p>
+                    <p>Sample Skills: {sampleSkills}</p>
+                </div>
+                <div className={'rolesource-trait-section'}>
+                    <h2 className={'rolesource-given-skills-tag'}>Given Skills</h2>
+                    <ul className={'choice-skill-nav'}>
+                        {/* {skillNavs} */}
+                    </ul>
+                    {/* <Switch> */}
+                        {traitBlocks}
+                    {/* </Switch> */}
+                </div>
             </div>
             <div className={'accept-or-decline'}>
                 {/* <button id={'decline-rolesource-choice'}>Go Back</button> */}
                 {/* <button id={'accept-rolesource-choice'}>&#10004;</button> */}
-                <button id={'accept-rolesource-choice'}>Choose {this.props.details.title}</button>
+                <button 
+                    onClick={() => this.choose(this.props.rolesource)} 
+                    id={'accept-rolesource-choice'}>
+                        Choose {this.props.details.title}
+                    </button>
             </div>
             {/* <p>{traitNames()}</p> */}
         </div>
@@ -109,7 +137,9 @@ export class RoleSourceDetails extends React.Component {
 
 const mapStateToProps = state => ({
   name: state.name,
-  database: state.database
+  database: state.database,
+  role: state.role,
+  source: state.source
 });
 
 export default connect(mapStateToProps)(RoleSourceDetails);

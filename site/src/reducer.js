@@ -8,6 +8,8 @@ const initialState = sampleChoicesRevised
 
 export const reducer = (state = initialState, action) => {
 
+    console.log(state)
+
     if (action.type === actions.FETCH_PROJECTU_SUCCESS) {
         return Object.assign({}, state, {
             database: action.projectu
@@ -169,15 +171,6 @@ export const reducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             rollHistory: [priorResults, ...state.rollHistory]
         })
-
-
-
-        // let ingredient = action.ingredient;
-            
-        // return Object.assign({}, state, {
-        //     ingredients: [...state.ingredients, ingredient]
-        // })
-        // console.log(action.priorResults)
     }
 
     return state;

@@ -1,10 +1,16 @@
+.role-source-popup-details h1 {
+    /* background-color: green; */
+    /* background: linear-gradient(180deg, rgba(0, 255, 115, 0.8), rgba(0, 255, 98, 0) 100%); */
+    color: white;
+    text-shadow: 0 0 5px rgb(92, 92, 92);
+    padding-bottom: 7px;
+    margin-bottom: 0px;
+}
 
 .scrollable-content {
-    overflow-y: scroll;
-    max-height: 170px;
-    /* border-top: solid 1px white; */
-    /* border-bottom: solid 1px white; */
-    background-color: rgba(41, 41, 41, 0.192);
+    /* overflow-y: scroll; */
+    /* max-height: 170px; */
+    /* background-color: rgba(41, 41, 41, 0.192); */
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -34,12 +40,13 @@
 }
 
 .rolesource-trait-section {
-    max-height: 250px;
-    padding: 10px 20px 10px;
+    /* max-height: 250px; */
+    /* padding: px 0px; */
+    margin-bottom: 40px;
 }
 
 .rolesource-given-skills-tag {
-    font-size: 1.15em;
+    /* font-size: 1.15em; */
     margin-bottom: 7px;
     text-align: center;
     /* text-align: left; */
@@ -72,8 +79,8 @@
 }
 
 .trait-description {
-    overflow-y: scroll;
-    max-height: 170px;
+    /* overflow-y: scroll; */
+    /* max-height: 170px; */
     background-color: rgba(41, 41, 41, 0.192);
 }
 
@@ -131,4 +138,35 @@
 
 .choice-skill-nav * {
     color: white;
+}
+
+.role-source-overlay {
+    position: absolute;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.801), rgba(8, 8, 8, 0) 20px);
+    pointer-events: none;
+    /* top: 0px; */
+    /* left: 0px; */
+    width: 100%;
+    /* background-color: white; */
+    height: 60vh;
+}
+
+.one-trait {
+    border-left: solid 3px white;
+    margin: 0px 10px 25px;
+    /* padding-bottom: 1px; */
+}
+
+.one-trait > * {
+    margin-left: 10px;
+}
+
+.one-trait h2 {
+    font-size: 1.1em;
+    padding-top: 3px;
+    padding-bottom: 2px;
+}
+
+.trait-description-part {
+    margin: 8px 0px;
 }
