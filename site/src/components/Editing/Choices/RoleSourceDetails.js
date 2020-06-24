@@ -12,7 +12,7 @@ import {
 import './rolesourcedetails.css'
 import TinyTrait from './TinyTrait'
 
-import { updateRoleSource } from '../../../actions'
+import { updateRoleSource, updateSkillBank } from '../../../actions'
 
 export class RoleSourceDetails extends React.Component {
 
@@ -26,7 +26,7 @@ export class RoleSourceDetails extends React.Component {
     }
 
     keepPopupVisible(){
-        console.log(this.props.elementId)
+        // console.log(this.props.elementId)
         let thisPopup = "popup-" + document.getElementById(this.props.elementId)
         if (document.getElementById(this.props.elementId)){
             console.log(thisPopup)
@@ -36,10 +36,11 @@ export class RoleSourceDetails extends React.Component {
     }
 
     choose(roleSource){
+        // console.log(this.props.currentSkills)
         let popup = ('popup-' + this.props.elementId)
         let title = this.props.details.title
         if (title !== this.props.role && title !== this.props.source){
-            this.props.dispatch(updateRoleSource(roleSource, title, this.props.role, this.props.source))
+            this.props.dispatch(updateRoleSource(this.props.currentSkills, this.props.database, roleSource, title, this.props.role, this.props.source))
             document.getElementById(popup).classList.add("hidden")
         }
         else if (title === this.props.role || title === this.props.source){
@@ -48,9 +49,13 @@ export class RoleSourceDetails extends React.Component {
         else (
             alert("error choosing")
         )
+        // console.log(this.props.role, this.props.source, this.props.intersection, this.props.currentSkills)
         // let elementId = document.getElementById(this.props.popupId)
         // elementId.classList.add("hidden")
         //hide window
+        // console.log(this.props.currentSkills)
+
+        // database, role, source, intersection
     }
 
 
@@ -139,7 +144,8 @@ const mapStateToProps = state => ({
   name: state.name,
   database: state.database,
   role: state.role,
-  source: state.source
+  source: state.source,
+  currentSkills: state.currentSkills
 });
 
 export default connect(mapStateToProps)(RoleSourceDetails);

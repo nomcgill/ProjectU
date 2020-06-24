@@ -15,7 +15,7 @@
 
 #character-pane > * {
     text-align: center;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     /* margin: 6px; */
     /* margin-top: 6px;
     margin-bottom: 6px; */
@@ -37,8 +37,70 @@
     background-color: rgba(255, 255, 255, 0.226);
 }
 
+#titles * {
+    /* text-align: center; */
+}
+
+#source-role {
+    height: 100%;
+    /* text-align: center; */
+}
+
+.each-source-role {
+    height: 50%;
+    display: table;
+}
+
+.each-source-role > * {
+    display: table-cell;
+    vertical-align: middle;
+    /* text-align: center; */
+
+    /* margin: 0 auto; */
+}
+
+#titles {
+    /* display: inline-block; */
+}
+
+#titles a {
+    /* height: 100%; */
+}
+
+.each-source-role {
+    /* height: 50%;
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center; */
+    /* line-height: 18px; */
+}
+
+
 #source-role > * {
-    line-height: 30px;
+    /* #titles { */
+        /* display: table; */
+        /* width: 100%; */
+        /* Width of parent */
+        /* height: 50%; */
+        /* Height of parent */
+        /* overflow: hidden; */
+    /* height: 50%; */
+    /* line-height: 18px; */
+}
+
+#source-role > * {
+    /* display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center; */
+}
+
+#source-role {
+
+    /* line-height: 18px; */
 }
 
 #name {
@@ -128,10 +190,6 @@
 -moz-box-shadow: 0px 0px 0px 1px rgba(255,0,0,1);
 box-shadow: 0px 0px 0px 1px rgba(255,0,0,1);
 } */
-
-#titles {
-    padding: 6px;
-}
 
 .character-pane-box > * {
     padding: 1px;

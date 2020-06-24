@@ -42,8 +42,12 @@ export default function TitlePane(props) {
             <div id={'titles'}>
                 <Link to={'/editing/role'}>
                     <div id={'source-role'}>
-                        <h3>{props.source}</h3>
-                        <h3>{props.role}</h3>
+                        <div className={'each-source-role'}>
+                            <p>{props.source}</p>
+                        </div>
+                        <div className={'each-source-role'}>
+                            <p>{props.role}</p>
+                        </div>
                     </div>
                 </Link>
             </div>
@@ -51,6 +55,9 @@ export default function TitlePane(props) {
                 <h3 id={'name'}>
                     {props.name}
                 </h3>
+                {/* <h3 id={'name-title'}>
+                    {props.title}
+                </h3> */}
             </Link>
             <Link to={'/final/tracking'}>
               <div id={'arrow-box'} className={'character-pane-box'}>

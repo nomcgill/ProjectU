@@ -11,7 +11,7 @@ import {
 
 import './editing.css'
 
-import {formatEditingPage} from '../../actions.js' 
+import {formatEditingPage, updateSkillBank} from '../../actions.js' 
 
 import ChoicePage from './Choices/ChoicePage'
 import IntersectionPage from './Choices/IntersectionPage'
@@ -25,19 +25,55 @@ export class EditingMain extends React.Component {
         this.props.dispatch(formatEditingPage(false))
     }
 
-    componentDidUpdate(){
-        // if (){
+    updateSkillBank(){
+        let database = this.props.database
+        let role = this.props.role
+        let source = this.props.source
+        let intersection = this.props.intersection
+        this.props.dispatch(updateSkillBank(database, role, source, intersection))
+    }
+
+    choiceBoxHighlight(){
+
+        const promise1 = new Promise((resolve, reject) => {
+            let choiceBoxes = [...(document.querySelectorAll('.choice-box'))]
+            resolve(
+                choiceBoxes.forEach(box => {
+                    box.classList.remove('chosen-rolesource')
+                    // box.classList.remove('chosen-rolesource')
+                    // console.log(box)
+                })
+            );
+          });
+          
+          promise1.then(() => {
             let elementRole = document.getElementById('choice-box-' + this.props.role)
             let elementSource = document.getElementById('choice-box-' + this.props.source)
-
-            // let roleElement = document.getElementById('')
-            if (this.props.role && elementRole ){
+            // console.log(elementRole)
+            // console.log(elementSource)
+            if (this.props.role && elementRole){
+                // console.log(elementRole)
                 elementRole.classList.add('chosen-rolesource')
             }
             if (this.props.source && elementSource){
+                // console.log(elementSource)
                 elementSource.classList.add('chosen-rolesource')
             }
-        // }
+            // expected output: "Success!"
+          });
+
+        // debugger;
+    }
+
+    componentDidUpdate(){
+        // console.log('Updated')
+        this.updateSkillBank()
+        this.choiceBoxHighlight()
+    }
+
+    componentDidMount(){
+        // console.log('Mounted')
+        this.choiceBoxHighlight()
     }
 
     render() {

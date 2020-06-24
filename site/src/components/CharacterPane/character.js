@@ -85,6 +85,7 @@ export class Character extends React.Component {
                           source={this.props.source}
                           role={this.props.role}
                           level={this.props.level}
+                          title={this.props.title}
                         />
                     }
                 />
@@ -120,7 +121,8 @@ const mapStateToProps = state => ({
   intersection: state.intersection,
   level: state.level,
   name: state.name,
-  navBar: state.navBar
+  navBar: state.navBar,
+  title: state.title
 });
 
 export default connect(mapStateToProps)(Character);

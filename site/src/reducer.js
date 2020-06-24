@@ -8,7 +8,7 @@ const initialState = sampleChoicesRevised
 
 export const reducer = (state = initialState, action) => {
 
-    console.log(state)
+    // console.log(state)
 
     if (action.type === actions.FETCH_PROJECTU_SUCCESS) {
         return Object.assign({}, state, {
@@ -160,6 +160,7 @@ export const reducer = (state = initialState, action) => {
     }
 
     if (action.type === actions.UPDATE_SNIPPET){
+
         return Object.assign({}, state, {
             actionSnippet: action.action
         })
@@ -170,6 +171,31 @@ export const reducer = (state = initialState, action) => {
         // console.log(state.rollHistory)
         return Object.assign({}, state, {
             rollHistory: [priorResults, ...state.rollHistory]
+        })
+    }
+
+    if (action.type === actions.SKILLBANK_STATE){
+
+        return Object.assign({}, state, {
+            skillBank: action.skillBank
+        })
+    }
+
+    if (action.type === actions.CURRENT_SKILLS_STATE_UPDATE){
+
+        return Object.assign({}, state, {
+            currentSkills: action.revisedSkills
+        })
+    }
+
+    if (action.type === actions.ROLE_SOURCE_STATE_UPDATE){
+        console.log(action.role)
+        console.log(action.source)
+
+        return Object.assign({}, state, {
+            role: action.role,
+            source: action.source,
+            intersection: false
         })
     }
 

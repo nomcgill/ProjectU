@@ -228,15 +228,102 @@ export const addToPrior = priorResults => ({
     priorResults
 })
 
-export const updateRoleSource = (roleSource, title, priorRole, priorSource) => dispatch => {
+export const updateRoleSource = (currentSkills, database, roleSource, title, priorRole, priorSource) => dispatch => {
     if (roleSource ===  "role" && priorRole){
-        alert("Role is changing to " + title + ". Previous " + priorRole + " skills are being deleted.")
+        let filteredSkills = []
+        currentSkills.forEach(skill => {
+            if (skill.category === "Role" || skill.category === "Intersection"){
+                return
+            }
+            filteredSkills.push(skill)
+        })
+        let newGivenSkills = []
+        database.roles.forEach(role => {
+            if (role.title === title){
+
+                newGivenSkills.push(...role.traits)
+            }
+        })
+
+        let revisedSkills = [...newGivenSkills, ...filteredSkills]
+
+        dispatch(currentSkillsStateUpdate(revisedSkills))
+        dispatch(roleSourceStateUpdate(title, priorSource))
     }
+
     if (roleSource ===  "source" && priorSource){
-        alert("Source is changing to " + title + ". Previous " + priorSource + " skills are being deleted.")
+        let filteredSkills = []
+        currentSkills.forEach(skill => {
+            // console.log(skill)
+
+            if (skill.category === "Source" || skill.category === "Intersection"){
+                return
+            }
+            filteredSkills.push(skill)
+        })
+        let newGivenSkills = []
+        database.sources.forEach(source => {
+            if (source.title === title){
+
+                newGivenSkills.push(...source.traits)
+            }
+        })
+
+        let revisedSkills = [...newGivenSkills, ...filteredSkills]
+
+        dispatch(currentSkillsStateUpdate(revisedSkills))
+        dispatch(roleSourceStateUpdate(priorRole, title))
     }
 
     //state is currently not changing!
-    console.log(roleSource, title)
-
+    // console.log(roleSource, title)
 }
+
+export const CURRENT_SKILLS_STATE_UPDATE = 'CURRENT_SKILLS_STATE_UPDATE';
+export const currentSkillsStateUpdate = revisedSkills => ({
+    type: CURRENT_SKILLS_STATE_UPDATE,
+    revisedSkills
+})
+
+export const ROLE_SOURCE_STATE_UPDATE = 'ROLE_SOURCE_STATE_UPDATE';
+export const roleSourceStateUpdate = (role, source) => ({
+    type: ROLE_SOURCE_STATE_UPDATE,
+    role,
+    source
+})
+
+export const updateSkillBank = (database, role, source, intersection) => dispatch => {
+
+    let skillBank = new Object()
+    let roleSkills = []
+    let sourceSkills = []
+    let intersectionSkills = []
+    database.roles.forEach(oneRole => {
+        if (oneRole.title === role){
+            let allSkills = [...oneRole.skills.basic,...oneRole.skills.advanced,...oneRole.skills.master]
+            roleSkills.push(...allSkills)
+        }
+    }) 
+    database.sources.forEach(oneSource => {
+        if (oneSource.title === source){
+            let allSkills = [...oneSource.skills.basic,...oneSource.skills.advanced,...oneSource.skills.master]
+            sourceSkills.push(...allSkills)
+        }
+    })
+    database.intersections.forEach(oneIntersection => {
+        return
+        // return (oneIntersection.title === source ? intersectionSkills.push(oneIntersection) : false)
+        // return (oneSource.title === source ? sourceSkills.push(oneSource) : false)
+    })
+    skillBank.role = roleSkills.length > 0 ? roleSkills : false
+    skillBank.source = sourceSkills.length > 0 ? sourceSkills : false
+    skillBank.intersection = intersectionSkills.length > 0 ? intersectionSkills : false
+
+    // console.log(skillBank)
+}
+
+export const SKILLBANK_STATE = 'SKILLBANK_STATE';
+export const skillBankState = skillBank => ({
+    type: SKILLBANK_STATE,
+    skillBank
+})
