@@ -37,23 +37,28 @@
     background-color: rgba(255, 255, 255, 0.226);
 }
 
-#titles * {
-    /* text-align: center; */
+#titles {
+    /* display: table; */
 }
 
 #source-role {
-    height: 100%;
+    height: 60px;
+    margin: 6px;
     /* text-align: center; */
 }
 
 .each-source-role {
     height: 50%;
     display: table;
+    text-align: center;
+    width: 100%;
 }
 
 .each-source-role > * {
     display: table-cell;
     vertical-align: middle;
+    /* width: 100px; */
+    /* width: 100%; */
     /* text-align: center; */
 
     /* margin: 0 auto; */
@@ -107,6 +112,7 @@
     line-height: 62px;
     font-size: 1.6em;
     margin: 5px;
+    margin-left: 0px;
 }
 
 .character-pane-box {

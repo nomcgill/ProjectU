@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import NextButton from '../NextButton.js';
 
-import {updateLevel, acceptGlobalUpdateVisual, updateName, changeBackgroundText} from '../../../actions.js';
+import {updateLevel, acceptGlobalUpdateVisual, updateName, changeBackgroundText, updateCurrentBackground} from '../../../actions.js';
 // import {acceptGlobalUpdateVisual} from '../../../actions'
 
 
@@ -15,6 +15,7 @@ class CharacterPage extends React.Component {
         this.nameInput = React.createRef();
         this.titleInput = React.createRef();
         this.levelInput = React.createRef();
+        this.backgroundFeature = React.createRef();
         this.descriptionInput = React.createRef();
     }
       
@@ -34,6 +35,7 @@ class CharacterPage extends React.Component {
         document.getElementById('input-present').value = present
         document.getElementById('input-future').value = future
 
+        this.preloadBackgroundFeat()
     }
 
     handleKeyPress(){
@@ -45,18 +47,22 @@ class CharacterPage extends React.Component {
     }
 
     handleClick(clicked){
-        // TRUE OR FALSE DETERMINES TOP OR BOTTOM OF DIV TO SCROLL
+        // alert('reaching handleClick')
+        // BLOCK: One of start, center, end, or nearest. Defaults to start.
         if (clicked === "name"){
-            this.nameInput.current.scrollIntoView({block: "end", behavior: "smooth"})
+            this.nameInput.current.scrollIntoView({block: "center", behavior: "smooth"})
         }
         if (clicked === "title"){
-            this.titleInput.current.scrollIntoView({block: "end", behavior: "smooth"})
+            this.titleInput.current.scrollIntoView({block: "center", behavior: "smooth"})
         }
         if (clicked === "level"){
-            // this.levelInput.current.scrollIntoView(false)
+            // this.levelInput.current.scrollIntoView({block: "center", behavior: "smooth"})
+        }
+        if (clicked === "background-feature"){
+            this.backgroundFeature.current.scrollIntoView({block: "center", behavior: "smooth"})
         }
         if (clicked === "description"){
-            this.descriptionInput.current.scrollIntoView({block: "end", behavior: "smooth"})
+            this.descriptionInput.current.scrollIntoView({block: "nearest", behavior: "smooth"})
         }
     }
 
@@ -79,6 +85,34 @@ class CharacterPage extends React.Component {
         }
     }
 
+    handleBackgroundFeature(){
+        const promise1 = new Promise((resolve, reject) => {
+            let feature = document.getElementById('background-features-dropdown');
+            resolve(
+                this.props.dispatch(updateCurrentBackground(feature.value, this.props.backgrounds))
+            );
+        });
+        promise1.then(() => {
+            document.getElementById('background-feature-description').innerText = this.props.currentBackground.description
+        // expected output: "Success!"
+        });
+          
+
+        // console.log(feature.value)
+    }
+
+    preloadBackgroundFeat(){
+        let feature = document.getElementById('background-features-dropdown');
+        let currentBackground = this.props.currentBackground ? this.props.currentBackground.title : false
+        feature.value = currentBackground
+        if (currentBackground){
+            document.getElementById('background-feature-description').innerText = this.props.currentBackground.description
+        }
+        else {
+            document.getElementById('background-feature-description').innerText = "Choose an option from the dropdown above."
+        }
+    }
+
     handleBackgroundChange(){
         let past = document.getElementById('input-past').value
         let present = document.getElementById('input-present').value
@@ -86,7 +120,28 @@ class CharacterPage extends React.Component {
         this.props.dispatch(changeBackgroundText(past,present,future))
     }
 
+    
+    capitalize(insert){
+        return insert.charAt(0).toUpperCase() + insert.slice(1)
+    }
+
     render(){
+
+        const backgroundFeats = this.props.database.backgrounds.map(feature => {
+            return (
+                <option 
+                    value={feature.title}
+                    key={feature.title}
+                    >
+                        {feature.title}
+                </option>
+                // <BackgroundFeature 
+                //     feature={feature}
+                //     key={feature.title}
+                // />
+            )
+        })
+
         return (
             <div className={"name-page choice-page"}>
                 {/* <div className={'editing-pane-section'}> */}
@@ -126,9 +181,18 @@ class CharacterPage extends React.Component {
                         </div>
                     </label>
                 </div>
+                <div id={'background-feature'} className={'editing-pane-section'}>
+                    <label ref={this.backgroundFeature} htmlFor={'background-feature-box'} onClick={() => this.handleClick('background-feature')}>
+                        <h2 className={'background-header'} id={'background-header-title'}>What BACKGROUND do you come from?</h2>
+                        <select name="background feats" id="background-features-dropdown" onChange={() => this.handleBackgroundFeature()}>
+                            {backgroundFeats}
+                        </select>
+                        <p id={'background-feature-description'}></p>
+                    </label>
+                </div>
                 <div className={'editing-pane-section'}>
                     <label ref={this.descriptionInput} htmlFor={'description-box'} onClick={() => this.handleClick("description")}>
-                        <h2 className={'background-header'} id={'background-header-title'}>BACKGROUND</h2>
+                        <h2>BACKGROUND NOTES</h2>
                         <p className={'background-header'}>(The below is for narrative purposes only.)</p>
                         <h3 className={'description-header'}>PAST,<span className={'tiny-description'}> such as family, birthplace, and tragedy.</span></h3>
                         <textarea id={'input-past'} onChange={() => this.handleBackgroundChange()} className={"description-box"} placeholder={'Once upon a time, in a forest not so far away...'}></textarea>
@@ -155,6 +219,8 @@ const mapStateToProps = state => ({
     level: state.level,
     name: state.name,
     title: state.title,
+    backgrounds: state.database.backgrounds,
+    currentBackground: state.currentBackground,
     backgroundPast: state.backgroundPast,
     backgroundPresent: state.backgroundPresent,
     backgroundFuture: state.backgroundFuture

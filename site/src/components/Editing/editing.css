@@ -408,6 +408,37 @@ input:focus {
     width: 340px;
 }
 
+#background-feature {
+    /* height: 215px; */
+}
+
+#background-features-dropdown {
+    width: 200px;
+    height: 30px;
+    font-size: 18px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    margin: 15px auto 10px;
+    text-align: center;
+    display: block;
+    /* padding: 10px; */
+}
+
+#background-features-dropdown option {
+    background-color: rgba(0, 0, 0, 0.568);
+    font-size: 15px;
+    /* height: 40px; */
+}
+
+#background-features-dropdown option:hover {
+    background-color: rgba(53, 53, 53, 0.568);
+}
+
+#background-feature-description {
+    padding: 5px 5px 10px;
+}
+
 .who-input-box {
     margin: 0 auto;
     display: block;
@@ -452,6 +483,11 @@ input:focus {
     padding: 20px;
     margin: 20px 15px;
     border-radius: 10px;
+    color: white;
+}
+
+.editing-pane-section h2 {
+    text-align: center;
 }
 
 #myRange {

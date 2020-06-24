@@ -199,5 +199,12 @@ export const reducer = (state = initialState, action) => {
         })
     }
 
+    if (action.type === actions.UPDATE_BACKGROUND_FEATURE_STATE){
+     
+        return Object.assign({}, state, {
+            currentBackground: action.newBackground,
+        })
+    }
+
     return state;
 }

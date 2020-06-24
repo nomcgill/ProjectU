@@ -327,3 +327,17 @@ export const skillBankState = skillBank => ({
     type: SKILLBANK_STATE,
     skillBank
 })
+
+export const updateCurrentBackground = (backgroundTitle, backgroundOptions) => dispatch => {
+    backgroundOptions.forEach(background => {
+        if (background.title === backgroundTitle){
+            dispatch(updateBackgroundFeatureState(background))
+        }
+    })
+}
+
+export const UPDATE_BACKGROUND_FEATURE_STATE = 'UPDATE_BACKGROUND_FEATURE_STATE';
+export const updateBackgroundFeatureState = newBackground => ({
+    type: UPDATE_BACKGROUND_FEATURE_STATE,
+    newBackground
+})

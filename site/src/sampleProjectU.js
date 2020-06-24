@@ -45,6 +45,64 @@ const sampleProjectU = {
             evaluateDesc: "Get no questions answered and pay a large price"
         },   
     ],
+    backgrounds: [
+        {
+            title: "Politics",
+            description: "You are owed a favor from a high-profile person. (Deliberate)"
+        },
+        {
+            title: "Orphan",
+            description: "Most people cannot recall that they’ve ever met you unless you make an impression."
+        },
+        {
+            title: "Military",
+            description: "Decrease the amount of damage you take from your setbacks by 1."
+        },
+        {
+            title: "Agriculture",
+            description: "You can expertly hunt, trap, and prepare meals from animals in the wild."
+        },
+        {
+            title: "Academics",
+            description: "Strengthen Evaluate rolls pertaining to your field of study."
+        },
+        {
+            title: "Seaworthy",
+            description: "You can single-handedly captain ships that require a full crew and navigate using only stars."
+        },
+        {
+            title: "Artist",
+            description: "Gain the Upper Hand on all rolls when using your artistic medium (performance, creation, etc.)."
+        },
+        {
+            title: "Medicine",
+            description: "Once per day you can make a second Weakened roll to heal one injury from a player."
+        },
+        {
+            title: "Arcana",
+            description: "strengthen based on the kind of magic you used (figure out how to explain)."
+        },
+        {
+            title: "Refugee",
+            description: "Required sleep time is halved. Odds/Evens: Nightmares prevent you from healing when resting."
+        },
+        {
+            title: "Clergy",
+            description: "Your knowledge of a religion is unlimited. Any related church/temple will want to help you."
+        },
+        {
+            title: "Renowned",
+            description: "When considering someone you’ve never met, roll odds/evens: they already know your deeds."
+        },
+        {
+            title: "Noble",
+            description: "Begin the adventure with certain excessive material items."
+        },
+        {
+            title: "Primitive",
+            description: "Exchange the ability to read and write languages for the ability to perfectly predict weather and read stars."
+        }
+    ],
     intersections: [
         {
             title: "Paladin",
