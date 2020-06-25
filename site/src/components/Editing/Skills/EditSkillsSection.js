@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Item from './Item'
 
 export default function EditSkillsSection(props) {
-    console.log(props)
+    // console.log(props)
 
     // const sourceTitle = props.title
     // const roleTitle = props.title

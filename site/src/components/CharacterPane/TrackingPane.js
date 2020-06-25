@@ -10,7 +10,8 @@ import {
 } from 'react-router-dom';
 
 import Arrow from '../../ImageStore/fliparrow.png'
-import Dice from '../../ImageStore/dice.png'
+import Notepad from '../../ImageStore/notepad.png'
+// import Dice from '../../ImageStore/dice.png'
 
 import {updateOverstepped} from '../../actions'
 
@@ -35,6 +36,9 @@ export class TrackingPane extends React.Component {
                     <h3>Overstep</h3>
                     <input type={'checkbox'} id={'overstep-check'} name={'overstep-check'} onClick={() => this.updateOverstep()} />
                 </label>
+                <div id={'tracking-notes'}>
+                    <img src={Notepad} id={'notepad'} />
+                </div>
                 <div className={'character-pane-box'} id={'hp-box'}>
                     <h3>HP</h3>
                     <div id={'hp-line'}>

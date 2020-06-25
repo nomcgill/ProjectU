@@ -394,10 +394,10 @@ p.background-header {
 }
 
 #editing-main .skill-list .info {
-    /* text-align: left; */
     display: inline-grid;
-    grid-template-columns: 7% auto;
-    /* grid-template-rows: auto; */
+    grid-template-columns: 15px auto;
+    width: 100%;
+    cursor: pointer;
 }
 
 .open-box .skill-top {

@@ -76,11 +76,11 @@ export default function Item(props) {
     }
 
     function onItemClick(item){
-        console.log(item)
+        // console.log(item)
         let checkbox = document.getElementById(item)
         // console.log(props.info.name)
         // console.log(checkbox)
-        console.log(checkbox.checked)
+        // console.log(checkbox.checked)
 
         // const allItems = document.getElementsByClassName('info')
         // const allItemsArray = [...allItems]
@@ -103,7 +103,7 @@ export default function Item(props) {
                     {props.info.name} &#x2771;
                     {isActive()}
                 </p>
-                <p>{flavor(props.info)}</p>
+                {flavor(props.info)}
                 {/* <p>{props.info.impact} {usesDamage()}</p> */}
             </div>
         </label>

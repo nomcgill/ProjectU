@@ -118,6 +118,7 @@
 .character-pane-box {
     line-height: 70px;
     vertical-align: middle;
+    /* border-radius: 6px; */
 }
 
 #overstep-box label {
@@ -139,7 +140,7 @@
 }
 
 #overstep-box:active {
-    background-color: rgba(255, 255, 255, 0.637);
+    background-color: rgba(160, 160, 160, 0.253);
 }
 
 #overstep-check {
@@ -177,9 +178,12 @@
     background-color: rgba(255, 255, 255, 0.171);   
 }
 
-#hp-box {
+#hp-box, #damage-box {
     line-height: 28px;
-    padding-top: 4px;
+    /* padding-top: 4px; */
+    border-radius: 6px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 #hp-line > * {
@@ -187,8 +191,11 @@
 }
 
 #damage-box {
-    line-height: 28px;
+    /* line-height: 28px;
     padding-top: 4px;
+    border-radius: 6px;
+    margin-top: 4px;
+    margin-bottom: 4px; */
 }
 
 /* #overstep-check {
@@ -203,8 +210,31 @@ box-shadow: 0px 0px 0px 1px rgba(255,0,0,1);
 
 #character-tracking-pane {
     display: grid;
-    grid-template-columns: auto auto auto 65px;
+    grid-template-columns: auto auto auto auto 65px;
     height: 72px;    
+}
+
+#tracking-notes {
+    /* line-height: 72px; */
+    /* vertical-align: middle; */
+}
+
+#notepad {
+    width: 48px;
+    height: 58px;
+    margin: 4.5px 0px;
+    margin-left: -3px;
+    border-radius: 10px;
+    /* padding: 4.5px; */
+}
+
+#notepad:hover {
+    background-color: rgba(216, 216, 216, 0.548);
+    cursor: pointer;
+}
+
+#notepad:active {
+    background-color: rgba(216, 216, 216, 0.267);
 }
 
 #flip-arrow {
