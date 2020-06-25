@@ -341,3 +341,9 @@ export const updateBackgroundFeatureState = newBackground => ({
     type: UPDATE_BACKGROUND_FEATURE_STATE,
     newBackground
 })
+
+export const LAST_ROLL_STATE = 'LAST_ROLL_STATE';
+export const lastRollState = lastRoll => ({
+    type: LAST_ROLL_STATE,
+    lastRoll
+})

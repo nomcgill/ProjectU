@@ -16,7 +16,7 @@ import {formatEditingPage, updateSkillBank} from '../../actions.js'
 import ChoicePage from './Choices/ChoicePage'
 import IntersectionPage from './Choices/IntersectionPage'
 import CharacterPage from './MiscInfo/CharacterPage'
-import SkillsPage from './Choices/SkillsPage'
+import SkillsPage from './Skills/SkillsPage'
 import FinishPage from './MiscInfo/FinishPage'
 
 export class EditingMain extends React.Component {
@@ -156,9 +156,6 @@ export class EditingMain extends React.Component {
                             render={() => 
                                 <SkillsPage 
                                     button={"skills"}
-                                    rolename={this.props.role.title}
-                                    sourcename={this.props.source.title}
-                                    database={this.props.database}
                                     next={"/editing/finish"}
                                     // info={this.props.database}
                                 />

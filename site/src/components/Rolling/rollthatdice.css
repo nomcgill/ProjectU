@@ -1,13 +1,13 @@
 
-.gray {
+#roll-page .gray {
     background-color: rgb(114, 114, 114) !important;
 }
 
-.gray:hover {
+#roll-page .gray:hover {
     background-color: rgb(145, 145, 145) !important;
 }
 
-.gray:active {
+#roll-page .gray:active {
     background-color: rgb(88, 88, 88) !important;
 }
 

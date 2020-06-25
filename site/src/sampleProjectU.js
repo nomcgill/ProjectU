@@ -306,7 +306,7 @@ const sampleProjectU = {
                     },
                     {
                         name: "Valor",
-                        action: false,
+                        action: "Passive",
                         skillLevel: "Advanced",
                         category: "Role",
                         damage: false,
@@ -317,7 +317,7 @@ const sampleProjectU = {
                 master: [
                     {
                         name: "Anything For You",
-                        action: false,
+                        action: "Passive",
                         skillLevel: "Master",
                         category: "Role",
                         damage: false,
@@ -411,7 +411,7 @@ const sampleProjectU = {
                     },
                     {
                         name: "Valor",
-                        action: false,
+                        action: "Passive",
                         skillLevel: "Advanced",
                         category: "Role",
                         damage: false,
@@ -422,7 +422,7 @@ const sampleProjectU = {
                 master: [
                     {
                         name: "Anything For You",
-                        action: false,
+                        action: "Passive",
                         skillLevel: "Master",
                         category: "Role",
                         damage: false,
@@ -623,7 +623,7 @@ const sampleProjectU = {
                     },
                     {
                         name: "Valor",
-                        action: false,
+                        action: "Passive",
                         skillLevel: "Advanced",
                         category: "Role",
                         damage: false,
@@ -634,7 +634,7 @@ const sampleProjectU = {
                 master: [
                     {
                         name: "Anything For You",
-                        action: false,
+                        action: "Passive",
                         skillLevel: "Master",
                         category: "Role",
                         damage: false,

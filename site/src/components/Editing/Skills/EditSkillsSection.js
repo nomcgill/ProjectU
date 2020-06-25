@@ -1,9 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux';
 
-import Item from '../../Item.js' 
+import Item from './Item'
 
 export default function EditSkillsSection(props) {
+    console.log(props)
 
     // const sourceTitle = props.title
     // const roleTitle = props.title
@@ -13,7 +14,7 @@ export default function EditSkillsSection(props) {
     const items = props.info.map((item, count) => 
         <Item 
             key={"intersection-" + count}
-            class={theTitle + "-info info none skills-item-" + count}
+            class={theTitle + "-info info hidden skills-item-" + count}
             count={count}
             info={item}
             title={props.title}
@@ -21,8 +22,8 @@ export default function EditSkillsSection(props) {
     )
 
     function toggleDetails(){
-        document.getElementById(theTitle + "-plus").classList.toggle("none")
-        document.getElementById(theTitle + "-minus").classList.toggle("none")
+        document.getElementById(theTitle + "-plus").classList.toggle("hidden")
+        document.getElementById(theTitle + "-minus").classList.toggle("hidden")
         document.getElementById(theTitle + "-line").classList.toggle("gray")
         document.getElementById(theTitle + "-line").classList.toggle("whited")
         document.getElementById(theTitle + "-box").classList.toggle("open-box")   
@@ -30,7 +31,7 @@ export default function EditSkillsSection(props) {
         // document.getElementsByClassName("intersection-item-0").childNodes[0].classList.add('first-item')    
         let relevantA = document.getElementsByClassName(theTitle + "-info")
         for ( let i=0;i<relevantA.length;i++){
-            relevantA[i].classList.toggle("none")
+            relevantA[i].classList.toggle("hidden")
         }
     }
 
@@ -38,19 +39,24 @@ export default function EditSkillsSection(props) {
         <div className={theTitle + '-box skillbox'} id={theTitle + "-box"}>
             <div 
                 id={theTitle + "-line"}
-                className={"whited skill-top"} 
+                className={"skill-top"} 
                 onClick={() => toggleDetails()}
             >
                 <div className={"skill-box-header-left"}>
-                    <h2>
-                        {theTitle}
-                    </h2>
-                    <p className={'tracking-skill-choices'}><span className={'tracking-skill-numbers'}>{props.numberChosen} / {props.available}</span> at lvl 3.</p>
+                    <div className={'skill-top-table'}>
+                        <h2>
+                            {theTitle}
+                        </h2>
+                    {/* </div> */}
+                    {/* <br /> */}
+                    {/* <div className={"skill-top-table"}> */}
+                        <p className={'tracking-skill-choices'}><span className={'tracking-skill-numbers'}>{props.numberChosen} / {props.available}</span> at lvl 3.</p>
+                    </div>
                 </div>
                 <h3 className={"plus-sign"} id={theTitle + "-plus"}>
                     +
                 </h3>
-                <h3 className={"minus-sign none"} id={theTitle + "-minus"}>
+                <h3 className={"minus-sign hidden"} id={theTitle + "-minus"}>
                     -
                 </h3>
             </div>

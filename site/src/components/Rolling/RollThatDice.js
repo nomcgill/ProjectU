@@ -14,7 +14,7 @@ import Dice from '../../ImageStore/dice.png'
 import ActionBreakdown from './ActionBreakdown'
 import RollHistory from './RollHistory'
 
-import {updateActionStatus, updateActionDetails, upperHandToggle, strengthOrWeak, updateStrengthen, saveTheRoll, updateSnippet, addToPrior} from '../../actions'
+import {lastRollState, updateActionStatus, updateActionDetails, upperHandToggle, strengthOrWeak, updateStrengthen, saveTheRoll, updateSnippet, addToPrior} from '../../actions'
 
 class RollThatDice extends React.Component {
 
@@ -28,6 +28,11 @@ class RollThatDice extends React.Component {
         this.displayAll()
     }
 
+    componentWillUnmount(){
+        // this.props.dispatch(addToPrior(this.props.lastRoll))
+        // console.log(this.props.lastRoll)
+    }
+
     displayAll(){
         this.grayThemOut()
 
@@ -39,6 +44,12 @@ class RollThatDice extends React.Component {
 
         let diceResults = this.props.diceResults
         this.displaySuccessLevel(strengthLevel, diceResults)
+
+        if (document.getElementById('the-clear-button') && diceResults){
+            document.getElementById('the-roll-button').classList.add('hidden')
+            document.getElementById('the-clear-button').classList.remove('hidden')
+        }
+
     }
 
     grayThemOut(){
@@ -299,6 +310,7 @@ class RollThatDice extends React.Component {
         promise1.then(() => {
             this.displayAll()
         }).then(() => {
+            // console.log('dispatch action to change nextRollReady state to false')
             document.getElementById('the-roll-button').classList.add('hidden')
             document.getElementById('the-clear-button').classList.remove('hidden')
             document.getElementById('the-clear-button').classList.add('disable')
@@ -310,32 +322,45 @@ class RollThatDice extends React.Component {
                 document.getElementsByClassName('action-dice')[1].classList.remove('action-dice-activate')
             }, 200)
             setTimeout(function(){
-                document.getElementById('the-clear-button').classList.remove('disable')
+                // this.prepareClearButton()
+                if (document.getElementById('the-clear-button')){
+                    document.getElementById('the-clear-button').classList.remove('disable')
+                }
             }, 2000)
         });        
     }
 
+    // prepareClearButton(){
+    // }
+
+    storeRoll(){
+        let actionStatus = document.getElementsByClassName('current-success')[0].innerText
+        let chosenRoll = document.getElementsByClassName('chosen-roll')[0].innerText
+        let upperHand = (this.props.upperHand) ? this.props.upperHand : false
+        let strengthened = (this.props.strengthened) ? this.props.strengthened : false
+        let timeStamp = Math.round(new Date().getTime()/1000)
+        let priorResults = {
+            actionStatus: actionStatus,
+            upperHand: upperHand,
+            strengthened: strengthened,
+            diceResults: this.props.diceResults,
+            chosenRoll: chosenRoll,
+            timeStamp: timeStamp
+        }
+
+        this.props.dispatch(lastRollState(priorResults))
+        // return priorResults
+    }
+
     clearRoll(){
         const promise1 = new Promise((resolve, reject) => {
-            //string
-            let actionStatus = document.getElementsByClassName('current-success')[0].innerText
-            let chosenRoll = document.getElementsByClassName('chosen-roll')[0].innerText
-            let upperHand = (this.props.upperHand) ? this.props.upperHand : false
-            let strengthened = (this.props.strengthened) ? this.props.strengthened : false
-            let timeStamp = Math.round(new Date().getTime()/1000)
-            let priorResults = {
-                actionStatus: actionStatus,
-                upperHand: upperHand,
-                strengthened: strengthened,
-                diceResults: this.props.diceResults,
-                chosenRoll: chosenRoll,
-                timeStamp: timeStamp
-            }
             resolve(
-                this.props.dispatch(addToPrior(priorResults))
+                this.storeRoll()
             )
         });
         promise1.then(() => {
+            this.props.dispatch(addToPrior(this.props.lastRoll))
+        }).then(() => {
             // console.log(this.props.rollHistory)
             this.props.dispatch(updateStrengthen(0))
         }).then(() => {
@@ -345,6 +370,7 @@ class RollThatDice extends React.Component {
         }).then(() => {
             document.getElementById('the-roll-button').classList.remove('hidden')
             document.getElementById('the-clear-button').classList.add('hidden')
+            // console.log('dispatch action to change nextRollReady state to true')
         }).then(() =>{
             this.displayAll()
         });
@@ -428,6 +454,7 @@ const mapStateToProps = state => ({
     upperHand: state.upperHand,
     strengthened: state.strengthened,
     diceResults: state.diceResults,
+    lastRoll: state.lastRoll,
     priorResults: state.priorResults,
     actionSuccess: state.database.actionSuccess,
     rollHistory: state.rollHistory    

@@ -189,8 +189,8 @@ export const reducer = (state = initialState, action) => {
     }
 
     if (action.type === actions.ROLE_SOURCE_STATE_UPDATE){
-        console.log(action.role)
-        console.log(action.source)
+        // console.log(action.role)
+        // console.log(action.source)
 
         return Object.assign({}, state, {
             role: action.role,
@@ -203,6 +203,13 @@ export const reducer = (state = initialState, action) => {
      
         return Object.assign({}, state, {
             currentBackground: action.newBackground,
+        })
+    }
+
+    if (action.type === actions.LAST_ROLL_STATE){
+
+        return Object.assign({}, state, {
+            lastRoll: action.lastRoll
         })
     }
 

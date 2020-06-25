@@ -1,5 +1,4 @@
 
-
 #editing-main {
     width: 100%;
 }
@@ -321,14 +320,65 @@ p.background-header {
     margin-top: 8px;
     margin-bottom: 8px ;
     max-width: 650px;
+    width: 100%;
 }
 
-#skills-page .skillbox:hover {
+.open-box .skill-top:hover {
+    /* background-color: rgb(114,114,114); */
+
+}
+
+.skillbox .skill-top:active {
+    background-color: rgb(82, 82, 82);
+}
+
+.open-box .skill-top {
+    border: solid 2px rgba(26, 26, 26, 0);
+}
+
+.skill-top {
+    border: solid 2px rgb(26, 26, 26);
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    vertical-align: middle;
+    height: 70px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.skill-top > * {
+    /* display: flex; */
+    align-items: center;
+    vertical-align: middle;
+    height: 100%;
+    /* width: 100%; */
+}
+
+.skill-top .plus-sign, .skill-top .minus-sign  {
+    display: flex;
+}
+
+#skills-page .skill-top:hover {
     border: solid 2px rgb(201, 201, 201);
 }
 
 #editing-main .skill-box-header-left {
     text-align: left;
+    width: 250px;
+    vertical-align: middle;
+    /* align-content: center; */
+    height: 100%;
+    /* display: table-column; */
+    /* display: table; */
+}
+
+#editing-main .skill-box-header-left > * {
+    width: 100%;
+    height: 49%;
+    /* display: table-cell; */
+    vertical-align: middle;
+    /* display: flex; */
 }
 
 #editing-main .tracking-skill-numbers {
@@ -339,6 +389,10 @@ p.background-header {
     /* text-align: left; */
 } 
 
+#editing-main .skill-list {
+    text-align: left;
+}
+
 #editing-main .skill-list .info {
     /* text-align: left; */
     display: inline-grid;
@@ -346,15 +400,43 @@ p.background-header {
     /* grid-template-rows: auto; */
 }
 
-#editing-main label:hover {
-    /* cursor: pointer; */
-    /* background-color: rgba(255, 255, 255, 0.034); */
+.open-box .skill-top {
+    top: 125px;
+    position: sticky;
+}
+
+.skill-box-header-left {
+    display: table;
+}
+
+.skill-top-table {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.item-name {
+    font-size: 1.3em;
+}
+
+.action-status {
+    color: rgb(255, 103, 2);
+}
+
+.action-passive {
+    color: rgba(182, 182, 182, 0.925);
 }
 
 #editing-main .editing-item-content {
-    padding: 10px;
+    padding: 0px 6px;
+    margin: 7px 0px;
     text-align: left;
+    border-left: solid 4px rgba(255, 255, 255, 0);
     /* vertical-align: middle; */
+}
+
+#editing-main .editing-item-content:hover {
+    border-left: solid 4px white;
+    /* background-color: rgba(255, 255, 255, 0.103); */
 }
 
 .edit-skills-checkbox {
@@ -364,13 +446,12 @@ p.background-header {
     border: none;
     background-color: none;
     width: 10px;
-    height: 80px;
-    /* line-height: 80px; */
-    /* vertical-align: middle; */
     transition: 0.2s;
     position: relative;
-    /* text-align: right; */
+    z-index: -1;
     margin: 0 auto;
+    margin-top: 4px;
+    margin-bottom: 3px;
 }
 
 .edit-skills-checkbox:checked {
