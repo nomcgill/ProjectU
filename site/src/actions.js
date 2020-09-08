@@ -1,5 +1,8 @@
 import React from 'react';
-import sampleProjectU from './sampleProjectU.js'
+import sampleProjectU from './sampleProjectU.json'
+
+import fetchingItems from './fetchingItems.json'
+
 // import Swal from 'sweetalert2'
 // import withReactContent from 'sweetalert2-react-content'
 
@@ -15,7 +18,20 @@ export const fetchProjectUSuccess = (projectu) => ({
 });
 
 export const fetchProjectU = () => dispatch => {
-    dispatch(fetchProjectUSuccess(sampleProjectU))
+    const databaseURL = fetchingItems.databaseURL
+
+    fetch(databaseURL)
+    .then(res => {
+        return res.json();
+    })
+    .then(database => {
+        dispatch(fetchProjectUSuccess(database[0]))
+    })
+    .catch((error) => {
+        console.log(error)
+    });
+        // dispatch(fetchProjectUSuccess(sampleProjectU))
+    // let parsedSampleProjectU = JSON.parse(sampleProjectU)
 }
 
 export const CHARACTER_PANE_UPDATE_SUCCESS = 'CHARACTER_PANE_UPDATE';

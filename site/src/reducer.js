@@ -1,15 +1,14 @@
 import * as actions from './actions';
 import sampleProjectU from './sampleProjectU'
 import sampleChoices from './sampleChoices'
-import sampleChoicesRevised from './sampleChoicesRevised'
-import cleanSlate from './cleanSlate'
+import sampleChoicesRevised from './sampleChoicesRevised.json'
+import cleanSlate from './cleanSlate.json'
 
 const initialState = sampleChoicesRevised
 
 export const reducer = (state = initialState, action) => {
 
-    // console.log(state)
-
+    // console.log(JSON.stringify(initialState))
     if (action.type === actions.FETCH_PROJECTU_SUCCESS) {
         return Object.assign({}, state, {
             database: action.projectu

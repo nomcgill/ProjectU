@@ -5,7 +5,7 @@
 
 .one-skill:hover {
     /* background-color: rgb(155, 155, 155); */
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 #one-skill > * {
@@ -37,6 +37,10 @@
 
 .skill-header-open {
     background-color: rgb(209, 197, 157);
+}
+
+.skill-head-pane {
+    cursor: pointer !important;
 }
 
 .skill-head-pane-top {

@@ -1,0 +1,29 @@
+@keyframes slidein {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
+#loading-page {
+    text-align: center;
+    padding-top: 50%;
+}
+
+#loading-box {
+    border: solid 2px black;
+    padding: 5%;
+    margin: 5%;
+}
+
+#loading-bar {
+    background: black;
+    width: 90%;
+    height: 30px;
+    transform-origin: left center;
+    display: block;
+    margin: 5%;
+    /* text-align: left; */
+}
+
+.slide-in {
+    animation: 7s slidein;
+}
