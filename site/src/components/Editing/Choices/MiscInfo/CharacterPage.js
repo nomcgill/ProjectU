@@ -1,9 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux';
 
-import NextButton from '../NextButton.js';
+import NextButton from '../../NextButton.js';
 
-import {updateLevel, acceptGlobalUpdateVisual, updateName, changeBackgroundText, updateCurrentBackground} from '../../../actions.js';
+import {
+    updateLevel,
+    updateLevelVisual, 
+    updateName, 
+    changeBackgroundText, 
+    updateCurrentBackground
+} from '../../../../actions.js';
 // import {acceptGlobalUpdateVisual} from '../../../actions'
 
 
@@ -18,10 +24,10 @@ class CharacterPage extends React.Component {
         this.backgroundFeature = React.createRef();
         this.descriptionInput = React.createRef();
     }
-      
+    
     componentDidMount(){
         let stateLevel = this.props.level
-        this.props.dispatch(acceptGlobalUpdateVisual(stateLevel))
+        this.props.dispatch(updateLevelVisual(stateLevel))
         let theName = (this.props.name === 'Nameless') ? '' : this.props.name
         let theTitle = (this.props.title === '') ? '' : this.props.title
         document.getElementById("input-name").value = theName
@@ -67,22 +73,36 @@ class CharacterPage extends React.Component {
     }
 
     handleSlider(){
+        let leveling = this.props.database.levelingNumbers
+        let currentLevel = this.props.level
+
         let slider = document.getElementById("myRange");
         let input = slider.value
-        this.props.dispatch(updateLevel(input))
+
+        this.props.dispatch(updateLevelVisual(input))
     }
 
     levelChangeClick(change){
+        let currentLevel = this.props.level
+
         let slider = document.getElementById("myRange");
         let oldLevel = Number(slider.value)
         if (change === true && oldLevel < 12){
             let newLevel = oldLevel + 1
-            this.props.dispatch(updateLevel(newLevel))
+            this.props.dispatch(updateLevelVisual(newLevel))
         }
         if (change === false && oldLevel > 1){
             let newLevel = oldLevel - 1
-            this.props.dispatch(updateLevel(newLevel))
+            this.props.dispatch(updateLevelVisual(newLevel))
         }
+    }
+
+    updateLevel(){
+        let slider = document.getElementById("myRange");
+        let input = slider.value
+        this.props.dispatch(updateLevel(this.props.level, input, this.props.database.levelingNumbers))
+        console.log(this.props.level)
+        console.log(this.props)
     }
 
     handleBackgroundFeature(){
@@ -180,6 +200,9 @@ class CharacterPage extends React.Component {
                             </div>
                         </div>
                     </label>
+                    <div className={'button-container'} >
+                        <button className={"level-button"} id={'submit-level-button'} onClick={() => this.updateLevel()}>Save Level</button>
+                    </div>                
                 </div>
                 <div id={'background-feature'} className={'editing-pane-section'}>
                     <label ref={this.backgroundFeature} htmlFor={'background-feature-box'} onClick={() => this.handleClick('background-feature')}>
@@ -217,6 +240,7 @@ const mapStateToProps = state => ({
     source: state.source,
     database: state.database,
     level: state.level,
+    levelingNumbers: state.levelingNumbers,
     name: state.name,
     title: state.title,
     backgrounds: state.database.backgrounds,

@@ -441,6 +441,7 @@ class RollThatDice extends React.Component {
                 <ActionBreakdown 
                     savedActionTab={savedActionTab}
                     actionSuccess={this.props.actionSuccess}
+                    actionDescriptions={this.props.actionDescriptions}
                 />
             </div>
         );
@@ -457,7 +458,8 @@ const mapStateToProps = state => ({
     lastRoll: state.lastRoll,
     priorResults: state.priorResults,
     actionSuccess: state.database.actionSuccess,
-    rollHistory: state.rollHistory    
+    actionDescriptions: state.database.actionDescriptions,  
+    rollHistory: state.rollHistory
 });
 
 export default connect(mapStateToProps)(RollThatDice);

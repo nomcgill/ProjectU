@@ -15,7 +15,7 @@ import Tactician from '../../../ImageStore/tactician.png'
 import Chakrah from '../../../ImageStore/chakrah.png'
 import Demonic from '../../../ImageStore/demonic.png'
 import Divine from '../../../ImageStore/divine.png'
-import Natural from '../../../ImageStore/nature.png'
+import Nature from '../../../ImageStore/nature.png'
 
 export default function ChoicePage(props) {
 
@@ -31,7 +31,7 @@ export default function ChoicePage(props) {
             title === "Chakrah" ? Chakrah :
             title === "Demonic" ? Demonic :
             title === "Divine" ? Divine :
-            title === "Natural" ? Natural :
+            title === "Nature" ? Nature :
             ''
         )
     }

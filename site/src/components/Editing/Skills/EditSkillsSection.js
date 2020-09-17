@@ -18,6 +18,7 @@ export default function EditSkillsSection(props) {
             count={count}
             info={item}
             title={props.title}
+            updateSkills={(chosenSkillTitles)=> props.updateSkills(chosenSkillTitles)}
         />
     )
 
@@ -33,6 +34,7 @@ export default function EditSkillsSection(props) {
         for ( let i=0;i<relevantA.length;i++){
             relevantA[i].classList.toggle("hidden")
         }
+        props.checkmarkWhatsSeen()
     }
 
     return (

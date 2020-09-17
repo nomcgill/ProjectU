@@ -44,3 +44,7 @@
 .gray *:hover,.whited *:hover,.gray *:active,.whited *:active {
     cursor:pointer;
 }
+
+#intersection-headline {
+    margin: 10px 30px 30px;
+}

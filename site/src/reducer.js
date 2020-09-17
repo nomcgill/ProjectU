@@ -28,8 +28,10 @@ export const reducer = (state = initialState, action) => {
     }
 
     if (action.type === actions.UPDATE_GLOBAL_LEVEL){
+        console.log(action.newMaximums)
         return Object.assign({}, state, {
-            level: action.newLevel
+            level: action.newLevel,
+            levelingNumbers: action.newMaximums
         })
     }
 
@@ -182,8 +184,15 @@ export const reducer = (state = initialState, action) => {
 
     if (action.type === actions.CURRENT_SKILLS_STATE_UPDATE){
 
+        // console.log(action.revisedSkills)
         return Object.assign({}, state, {
             currentSkills: action.revisedSkills
+        })
+    }
+
+    if (action.type === actions.CHANGE_CHOICE_TALLY){
+        return Object.assign({}, state, {
+            quantityChosen: action.totals
         })
     }
 

@@ -13,6 +13,10 @@ import ChoicePage from '../Choices/ChoicePage'
 import SkillsChoiceSection from './SkillsChoiceSection'
 import NextButton from '../NextButton.js'
 
+// import updateSkillSet from '../../../actions'
+import {updateRoleSource, updateSkillsFromSkillsList, tallyUpChoices} from '../../../actions'
+
+
 export class SkillsPage extends React.Component {
 
     grabAllSelectedItems(){
@@ -29,13 +33,121 @@ export class SkillsPage extends React.Component {
         console.log(allSelectedItemsArray)
     }
 
+    updateSkills(chosenSkillTitles, where, how){
+        // console.log(chosenSkillTitles)
+        //which role or source
+        // console.log(where)
+        // role or source
+        // console.log(how)
+
+        let roleOrSourceDatabase = this.props.database[how + 's']
+        let relevantCategory = roleOrSourceDatabase.filter(each => each.title === where)
+        let relevantCategorySkills = relevantCategory[0].skills
+        let skillsList = [...relevantCategorySkills.basic, ...relevantCategorySkills.advanced, ...relevantCategorySkills.master]
+        let matchingSkills = []
+        skillsList.forEach(databaseSkill => {
+            let dashedName = databaseSkill.name.replace(/ /g, "-");
+            chosenSkillTitles.forEach(chosenSkillName=>{
+                if (dashedName === chosenSkillName){
+                    matchingSkills.push(databaseSkill)
+                }
+            })
+        })
+
+        // export const updateRoleSource = (currentSkills, database, roleSource, title, priorRole, priorSource) => dispatch => {
+        // this.props.dispatch(updateRoleSource(matchingSkills, this.props.database, how, where, this.props.role, this.props.source))
+
+        // this.props.dispatch(updateSkillSet(matchingSkills))
+        
+        // this.props.dispatch(matchingSkills)
+
+        this.props.dispatch(updateSkillsFromSkillsList(matchingSkills,this.props.currentSkills, how))
+                // console.log('skillspage skills...')        
+                // console.log(matchingSkills)
+                // console.log('currentskills...')
+                // console.log(this.props.currentSkills)
+    }
+
+    tallyCurrentSkills(currentSkills){
+        this.props.dispatch(tallyUpChoices(currentSkills))
+    }
+
+    checkWhatsSeen(){
+        let chosenSkillNames = this.props.currentSkills.map(oneSkill => {
+            return oneSkill.name    
+        })
+        // console.log(chosenSkillNames)
+        const allItems = document.getElementsByClassName('info')
+        const allItemsArray = [...allItems]
+        const itemsList = []
+        chosenSkillNames.forEach(name => {
+            // debugger;
+            let dashedName = name.replace(/ /g, "-");
+            allItemsArray.forEach((item) => {
+                if (item.id === dashedName){
+                    let checkboxId = document.getElementById(item.id + '-checkbox')
+                    checkboxId.checked = true
+                }
+            })
+        })
+
+    }
+
     componentDidMount(){
-        // this.updateAvailable()
+        this.checkWhatsSeen()
+        this.tallyCurrentSkills(this.props.currentSkills)
+    }
+    
+    componentDidUpdate(){
+        this.checkWhatsSeen()
+        // console.log(this.props.currentSkills)
     }
 
     render() {
-        // console.log(this.props.info)
-        // debugger;
+
+        // console.log(this.props.levelingNumbers)
+
+        let currentRoleName = this.props.role
+        let currentSourceName = this.props.source
+
+        let currentRole = this.props.database.roles.filter(databaseRole => {
+            if (databaseRole.title === currentRoleName){
+
+                return databaseRole
+            }
+        })
+        let currentSource = this.props.database.sources.filter(databaseSource => {
+            if (databaseSource.title === currentSourceName){
+                return databaseSource
+            }
+        })
+        
+
+        let quantityChosen = this.props.quantityChosen ? this.props.quantityChosen : 
+        {   
+            Role: {
+                Basic: 0,
+                Advanced: 0,
+                Master: 0,
+            },
+            Source: {
+                Basic: 0,
+                Advanced: 0,
+                Master: 0
+            }
+        }
+        
+            // Role: {
+            //     Basic: 0,
+            //     Advanced: 0,
+            //     Master: 0,
+            // },
+            // Source: {
+            //     Basic: 0,
+            //     Advanced: 0,
+            //     Master: 0
+            // }
+
         return (
             <div id={"skills-page"} className={"choice-page choice-header-box"}>
                 <h2 id={"choose-skills"}>Choose your SKILLS.</h2>
@@ -45,7 +157,7 @@ export class SkillsPage extends React.Component {
                         activeClassName={'highlight-skill-tab'}
                     >
                         <div id={"role-skill-nav"} className={'skill-nav'}>
-                            Knight
+                            {this.props.role}
                         </div>
                     </NavLink>
                     <NavLink 
@@ -53,7 +165,7 @@ export class SkillsPage extends React.Component {
                         activeClassName={'highlight-skill-tab'}
                     >
                         <div id={"source-skill-nav"} className={'skill-nav'}>
-                            Divine
+                            {this.props.source}
                         </div>
                     </NavLink>
                 </div>
@@ -63,16 +175,28 @@ export class SkillsPage extends React.Component {
                             path="/editing/skills/roleskillschoice"
                             render={() => 
                                 <SkillsChoiceSection 
-                                    info={this.props.database.roles[0]}
+                                    info={currentRole[0]}
+                                    levelingNumbers={this.props.levelingNumbers.Role}
+                                    updateSkills={(chosenSkillTitles, where)=> this.updateSkills(chosenSkillTitles, where, "role")}
+                                    checkmarkWhatsSeen={()=> this.checkWhatsSeen()}
+                                    currentBasicChosen={quantityChosen.Role.Basic}
+                                    currentAdvancedChosen={quantityChosen.Role.Advanced}
+                                    currentMasterChosen={quantityChosen.Role.Master}
+                                    />
+                                }
                                 />
-                            }
-                        />
                         <Route 
                             exact
                             path="/editing/skills/sourceskillschoice"
                             render={() => 
                                 <SkillsChoiceSection 
-                                    info={this.props.database.sources[0]}
+                                info={currentSource[0]}
+                                levelingNumbers={this.props.levelingNumbers.Source}
+                                updateSkills={(chosenSkillTitles, where)=> this.updateSkills(chosenSkillTitles, where, "source")}
+                                checkmarkWhatsSeen={()=> this.checkWhatsSeen()}
+                                currentBasicChosen={quantityChosen.Source.Basic}
+                                currentAdvancedChosen={quantityChosen.Source.Advanced}
+                                currentMasterChosen={quantityChosen.Source.Master}
                                 />
                             }
                         />
@@ -86,14 +210,16 @@ export class SkillsPage extends React.Component {
   
   const mapStateToProps = state => ({
     name: state.name,
-    skills: state.skills,
+    currentSkills: state.currentSkills,
     intersection: state.intersection,
     role: state.role,
     source: state.source,
-    database: state.database
+    level: state.level,
+    database: state.database,
+    levelingNumbers: state.levelingNumbers,
+    quantityChosen: state.quantityChosen
     // sourcename: props.sourcename,
     // rolename: props.rolename
-
   });
 
   export default connect(mapStateToProps)(SkillsPage);

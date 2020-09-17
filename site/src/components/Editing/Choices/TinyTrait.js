@@ -8,11 +8,42 @@ export default function TinyTrait(props) {
     }
 
     let description = (trait) => {
+        
         let flavor = trait.flavor ? trait.flavor : '' 
         let flavor2 = trait.flavor2 ? trait.flavor2 : false
         let flavor3 = trait.flavor3 ? trait.flavor3 : false
         let flavor4 = trait.flavor4 ? trait.flavor4 : false
-        let impact = trait.impact ? trait.impact : ''
+        let impact = typeof trait.impact === "object" ? "You must choose an option." :
+                     trait.impact ? trait.impact :  
+                     ''
+        let impact2 = trait.impact2 ? trait.impact2 : ''
+
+        if (typeof flavor !== "string"){
+            console.log(trait)
+            console.log(flavor)
+            // debugger;
+        }
+        if (typeof flavor2 !== "string"){
+            if (flavor2 !== false){
+                console.log(trait)
+                console.log(flavor2)
+            }
+            // debugger;
+        }
+        if (typeof impact !== "string"){
+            if (impact !== false){
+                console.log(trait)
+                console.log(impact)
+            }
+            // debugger;
+        }
+        if (typeof impact2 !== "string"){
+            if (impact2 !== false){
+                console.log(trait)
+                console.log(impact2)
+            }
+            // debugger;
+        }
 
         if (flavor4){
             return (
@@ -54,10 +85,12 @@ export default function TinyTrait(props) {
         }
     }
 
+    let specialization = props.trait.bountyCategory ? <p className={'italic'}>{'from ' + props.trait.bountyCategory + ' specialization.'}</p> : ''
 
     return (
         <div className={'one-trait'}>
             <h2>{props.name} ({props.trait.action})</h2>
+            {specialization}
             {description(props.trait)}
         </div>
     )

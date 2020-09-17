@@ -1,5 +1,9 @@
 {
-    "level": 1,
+    "level": 6,
+    "levelingNumbers" : {
+      "Role": {"Basic": 5},
+      "Source": {"Basic": 4}
+    },
     "name": "Nameless",
     "title": "",
     "role": "Knight",
@@ -72,7 +76,7 @@
         "skillLevel": "Basic",
         "category": "Source",
         "damage": 2,
-        "flavor": false,
+        "flavor": " ",
         "impact": "Your target is a creature at least 10ft tall, or 15ft long/wide. Deal 2X.",
         "favorite": false,
         "fullText": "HEAVENFALL MUSCLE BASIC DIVINE 2 YOUR TARGET IS A CREATURE AT LEAST 10FT TALL, OR 15FT LONG/WIDE. DEAL 2X. DAMAGE "
@@ -85,9 +89,33 @@
         "damage": false,
         "flavor": "Celestial pathways traverse your mind, sometimes inspiring surreal insight.",
         "impact": "Out of Danger, you are using any Evaluate skill. Odds/Evens: Ask an additional question.",
-        "additionalImpact": "In Danger. The first Action that you take in a fight may be preceded by one free question from the Evaluate list.",
-        "favorite": false,
-        "fullText": "PRAYER OF WHISPERS EVALUATE BASIC DIVINE CELESTIAL PATHWAYS TRAVERSE YOUR MIND, SOMETIMES INSPIRING SURREAL INSIGHT. OUT OF DANGER, YOU ARE USING ANY EVALUATE SKILL. ODDS/EVENS: ASK AN ADDITIONAL QUESTION. "
+        "plea": {
+          "name": "Whispering Plea",
+          "action": "Passive",
+          "skillLevel": "Basic",
+          "category": "Source",
+          "damage": false,
+          "flavor": " ",
+          "impact": "In Danger. The first Action that you take in a fight may be preceded by one free question from the Evaluate list."
+        }
+      },
+      {
+        "name": "Prayer of Prophecy",
+        "action": "Passive",
+        "skillLevel": "Advanced",
+        "category": "Source",
+        "damage": false,
+        "flavor": " ",
+        "impact": "Out of Danger. An ally in sight’s action results in a Critical Setback. Their result instead becomes a Minor Setback.",
+        "plea": {
+          "name": "Prophetic Plea",
+          "action": "Active",
+          "skillLevel": "Advanced",
+          "category": "Source",
+          "damage": false,
+          "flavor": " ",
+          "impact": "In Danger. Gain the Upper Hand on your next action."
+        }
       }
     ]
   }

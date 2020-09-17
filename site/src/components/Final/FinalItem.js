@@ -1,10 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux';
 
+import PleaFormat from '../PleaFormat'
+
 import './skill.css'
 
 import GoldStar from '../../ImageStore/goldstar.png'
 import GrayStar from '../../ImageStore/graystar.png'
+import { action } from '../../actions';
 
 // import {toggleItemFavorite} from '../../actions'
 
@@ -58,6 +61,19 @@ export default function FinalItem(props) {
     // impact: "Add 1X damage on Successes and Complete Successes for Muscle actions.",
     // favorite: false
 
+    let flavor = typeof props.skill.flavor === 'string' ? props.skill.flavor : 'Choice must be made.'
+    let impact = typeof props.skill.impact === 'string' ? props.skill.impact : 'Choice must be made.'
+    // console.log(props.skill)
+
+    function pleaFormat(plea){
+        return (
+            <PleaFormat plea={plea} />
+        )
+    }
+
+    let plea = props.skill.plea ? pleaFormat(props.skill.plea) : ''
+    // console.log(props.skill.plea)
+
     return (
         <div className={'one-skill'} id={props.skill.name}>
             <div className={'skill-head-pane skill-header-open'} onClick={e => toggleDetails(e)}>
@@ -72,8 +88,9 @@ export default function FinalItem(props) {
                 </div>
             </div>
             <div className={'skill-dropdown ' + hideDropdown}>
-                <p className={'skill-condition'}>{props.skill.flavor}</p>
-                <p className={'skill-result heavy'}>{props.skill.impact}</p>
+                <p className={'skill-condition'}>{flavor}</p>
+                <p className={'skill-result heavy'}>{impact}</p>
+                {plea}
             </div>         
         </div>
     )

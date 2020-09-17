@@ -15,9 +15,9 @@ import {formatEditingPage, updateSkillBank} from '../../actions.js'
 
 import ChoicePage from './Choices/ChoicePage'
 import IntersectionPage from './Choices/IntersectionPage'
-import CharacterPage from './MiscInfo/CharacterPage'
 import SkillsPage from './Skills/SkillsPage'
-import FinishPage from './MiscInfo/FinishPage'
+import CharacterPage from './Choices/MiscInfo/CharacterPage'
+import FinishPage from './Choices/MiscInfo/FinishPage'
 
 export class EditingMain extends React.Component {
 
@@ -142,10 +142,11 @@ export class EditingMain extends React.Component {
                             path="/editing/intersection"
                             render={() => 
                                 <IntersectionPage
-                                    header={"Intersection: "}
-                                    info={this.props.database.intersections}
+                                    currentSkills={this.props.skills}
+                                    info={this.props.database}
                                     role={this.props.role}
                                     source={this.props.source}
+                                    level={this.props.level}
                                     next={"/editing/skills/roleskillschoice"}
                                 />
                             }
@@ -184,7 +185,8 @@ export class EditingMain extends React.Component {
     intersection: state.intersection,
     role: state.role,
     source: state.source,
-    database: state.database
+    database: state.database,
+    level: state.level
   });
 
   export default connect(mapStateToProps)(EditingMain);

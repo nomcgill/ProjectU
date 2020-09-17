@@ -124,6 +124,10 @@
     margin-top: 10px;
 }
 
+.action-detail-extra ul {
+    margin: 8px 0 8px;
+}
+
 @media all and (min-width: 475px) { 
 
     #action-breakdown {

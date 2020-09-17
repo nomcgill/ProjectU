@@ -18,19 +18,21 @@ export const fetchProjectUSuccess = (projectu) => ({
 });
 
 export const fetchProjectU = () => dispatch => {
-    const databaseURL = fetchingItems.databaseURL
+    // const databaseURL = fetchingItems.databaseURL
 
-    fetch(databaseURL)
-    .then(res => {
-        return res.json();
-    })
-    .then(database => {
-        dispatch(fetchProjectUSuccess(database[0]))
-    })
-    .catch((error) => {
-        console.log(error)
-    });
-        // dispatch(fetchProjectUSuccess(sampleProjectU))
+    // fetch(databaseURL)
+    // .then(res => {
+    //     return res.json();
+    // })
+    // .then(database => {
+    //     dispatch(fetchProjectUSuccess(database[0]))
+    // })
+    // .catch((error) => {
+    //     console.log(error)
+    // });
+
+    dispatch(fetchProjectUSuccess(sampleProjectU))
+
     // let parsedSampleProjectU = JSON.parse(sampleProjectU)
 }
 
@@ -78,15 +80,42 @@ export const acceptGlobalUpdateVisual = (stateLevel) => dispatch => {
     slider.value = stateLevel
 }
 
-export const updateLevel = (input) => dispatch => {
-    dispatch(updateGlobalLevel(input))
-    dispatch(acceptGlobalUpdateVisual(input))
-} 
+export const updateLevelVisual = (input) => dispatch => {
+
+
+    let slider = document.getElementById("myRange");
+    let output = document.getElementById("level-display");
+    output.innerHTML = input
+    slider.value = input
+
+    // if (input < currentLevel){
+    //     alert("Are you sure? Lowering your level means forgetting skills—most recent skill choices are removed first.")
+    // }
+    // dispatch(updateGlobalLevel(input))
+    // dispatch(acceptGlobalUpdateVisual(input))
+
+    
+    // console.log(maximums)
+    // dispatch(updateLevelMaximums(maximums))
+}
+
+
+export const updateLevel = (currentLevel, newLevel, levelingNumbers) => dispatch => {
+
+    if (newLevel < currentLevel){
+        console.log("Warning!!! Lowering your level may have deleted your most recently chosen skills!")
+    }
+
+    let newMaximums = levelingNumbers[newLevel]
+
+    dispatch(updateGlobalLevel(newLevel, newMaximums))
+}
 
 export const UPDATE_GLOBAL_LEVEL = 'UPDATE_GLOBAL_LEVEL';
-export const updateGlobalLevel = (newLevel) => ({
+export const updateGlobalLevel = (newLevel, newMaximums) => ({
     type: UPDATE_GLOBAL_LEVEL,
-    newLevel
+    newLevel,
+    newMaximums
 })
 
 export const UPDATE_NAME = 'UPDATE_NAME';
@@ -245,6 +274,12 @@ export const addToPrior = priorResults => ({
 })
 
 export const updateRoleSource = (currentSkills, database, roleSource, title, priorRole, priorSource) => dispatch => {
+    // console.log(currentSkills)
+    // console.log(database)
+    // console.log(roleSource)
+    // console.log(title)
+    // console.log(priorRole)
+    // console.log(priorSource)
     if (roleSource ===  "role" && priorRole){
         let filteredSkills = []
         currentSkills.forEach(skill => {
@@ -295,6 +330,34 @@ export const updateRoleSource = (currentSkills, database, roleSource, title, pri
     // console.log(roleSource, title)
 }
 
+export const updateSkillsFromSkillsList = (selected, currentSkills, roleOrSource) => dispatch => {
+    // console.log(roleOrSource)
+    //filter out previous role or source skills from currentSkills, creating a new array without them
+    function capitalizeFirstLetter(string){
+        return string.charAt(0).toUpperCase() + string.slice(1)
+    }
+    let capitalRoleOrSource = capitalizeFirstLetter(roleOrSource)
+    function isRoleOrSourceSkill(currentSkill){
+        return currentSkill.category !== capitalRoleOrSource || currentSkill.skillLevel === "Given"
+        // console.log(currentSkill)
+    }
+
+    let cleansedFromRoleOrSource = currentSkills.filter(isRoleOrSourceSkill)
+    let revisedSkills = [...selected, ...cleansedFromRoleOrSource]
+    
+    // merge 'selected' with that array
+
+
+    // console.log(selected)
+    // console.log(currentSkills)
+    // console.log(cleansedFromRoleOrSource)
+    // console.log(revisedSkills)
+
+    dispatch(currentSkillsStateUpdate(revisedSkills))
+    dispatch(tallyUpChoices(revisedSkills))
+}
+
+
 export const CURRENT_SKILLS_STATE_UPDATE = 'CURRENT_SKILLS_STATE_UPDATE';
 export const currentSkillsStateUpdate = revisedSkills => ({
     type: CURRENT_SKILLS_STATE_UPDATE,
@@ -337,6 +400,52 @@ export const updateSkillBank = (database, role, source, intersection) => dispatc
 
     // console.log(skillBank)
 }
+
+export const tallyUpChoices = (currentSkills) => dispatch => {
+    // console.log(currentSkills)
+    let roleBasic = []
+    let roleAdvanced = []
+    let roleMaster = []
+    let sourceBasic = []
+    let sourceAdvanced = []
+    let sourceMaster = []
+
+    currentSkills.forEach(oneSkill => {
+        if (oneSkill.category === "Role"){
+            return oneSkill.skillLevel === "Basic" ? roleBasic.push(oneSkill) :
+            oneSkill.skillLevel === "Advanced" ? roleAdvanced.push(oneSkill) :
+            oneSkill.skillLevel === "Master" ? roleMaster.push(oneSkill) : 
+            false
+        }
+        if (oneSkill.category === "Source"){
+            return oneSkill.skillLevel === "Basic" ? sourceBasic.push(oneSkill) :
+            oneSkill.skillLevel === "Advanced" ? sourceAdvanced.push(oneSkill) :
+            oneSkill.skillLevel === "Master" ? sourceMaster.push(oneSkill) : 
+            false
+        }
+    })
+
+    let totals = {
+        Role: {
+            Basic: roleBasic.length,
+            Advanced: roleAdvanced.length,
+            Master: roleMaster.length
+        },
+        Source: {
+            Basic: sourceBasic.length,
+            Advanced: sourceAdvanced.length,
+            Master: sourceMaster.length
+        }
+    }
+
+    dispatch(changeChoiceTally(totals))
+}
+
+export const CHANGE_CHOICE_TALLY = 'CHANGE_CHOICE_TALLY';
+export const changeChoiceTally = totals => ({
+    type: CHANGE_CHOICE_TALLY,
+    totals
+})
 
 export const SKILLBANK_STATE = 'SKILLBANK_STATE';
 export const skillBankState = skillBank => ({

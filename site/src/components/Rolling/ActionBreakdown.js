@@ -51,63 +51,45 @@ export default function ActionBreakdown(props) {
     })
 
     function actionInfo(action){
-        if (action.title === "muscle"){
+        let databaseActions = props.actionDescriptions
+        // console.log(databaseActions)
+        
+        let mappedActionsDescriptions = databaseActions[action.title].map(oneAction => {
+            return (
+            <li><span className={'heavy'}>{oneAction.label}</span>, {oneAction.description}</li>
+                )
+        })
+
+        let mappedEvaluateQuestions = databaseActions.evaluateQuestions.map(oneQuestion => {
+            // console.log(oneQuestion)
+            return (
+                <li>{oneQuestion}</li>
+            )
+        })
+
+        let extraEvaluate = action.title === "evaluate" ? 
+        (
+            <div className={'action-detail-extra'}>                    
+                <p>Use that thinking cap to get a pressing question truthfully—if not in detail—answered by the GM.</p>
+                <ul>
+                    {mappedEvaluateQuestions}
+                </ul>
+            </div>
+        )
+        : ''
+
+
+        if (action.title === "muscle","intuit","channel"){
+            console.log(action.title)
             return (
                 <div className={'action-detail-text'}>
                     <ul className={'action-samples'}>
-                        <li><span className={'heavy'}>Flex</span>, as in to bash, overpower, lift, pounce, or swordfight.</li>
-                        <li><span className={'heavy'}>Stunt</span>, as in to dodge, maneuver, or dance.</li>
-                        <li><span className={'heavy'}>Sneak</span>, as in to hide appearance or avoid detection.</li>
+                        {mappedActionsDescriptions}
+                        {extraEvaluate}
                     </ul>
 
                 </div>
             )
-        }
-        if (action.title === "evaluate"){
-            return (
-                <div className={'action-detail-text'}>
-                    <ul className={'action-samples'}>
-                        <li><span className={'heavy'}>Solve</span>, as in an estimate, riddle, or lockpick.</li>
-                        <li><span className={'heavy'}>Intuit</span>, as in a lie, love, or other intent.</li>
-                        <li><span className={'heavy'}>Recall</span>, as in history or past experience.</li>
-                    </ul>
-                    <div className={'action-detail-extra'}>                    
-                        <p>Use that thinking cap to get a pressing question truthfully—if not in detail—answered by the GM.</p>
-                        <ul>
-                            <li>What haven't I noticed yet?</li>
-                            <li>Who is in the most danger?</li>
-                            <li>What caused that?</li>
-                            <li>How can I escape that?</li>
-                            <li>Should I trust them?</li>
-                            <li>How do they feel about me?</li>
-                            <li>How long will this last?</li>
-                        </ul>
-                    </div>
-                </div>
-            )
-        }
-        if (action.title === "influence"){
-            return (
-                <div className={'action-detail-text'}>
-                    <ul className={'action-samples'}>
-                        <li><span className={'heavy'}>Sweet Talk</span>, as in bribe or entice.</li>
-                        <li><span className={'heavy'}>Bully</span>, as in intimidate or threaten.</li>
-                        <li><span className={'heavy'}>Deceive</span>, as in to lie or omit without suspicion.</li>
-                        <li><span className={'heavy'}>Burn a Bridge</span>.</li>
-                    </ul>
-                </div>
-                )
-        }
-        if (action.title === "channel"){
-            return (
-                <div className={'action-detail-text'}>
-                    <ul className={'action-samples'}>
-                        <li>Harness your <span className={'heavy'}>Power Source</span>. When you want to 
-                        do something that you believe your character is capable of because they possess 
-                        magical abilities, use Harness Power.</li>
-                    </ul>
-                </div>
-                )
         }
     }
 

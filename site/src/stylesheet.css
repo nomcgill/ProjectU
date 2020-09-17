@@ -81,6 +81,10 @@ main, #fixed-top {
   letter-spacing: .05em;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .underline {
   text-decoration: underline ;
 }

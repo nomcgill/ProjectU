@@ -13,30 +13,43 @@ import EditSkillsSection from './EditSkillsSection'
 // import { action } from '../actions'
 
 export default function SkillsChoiceSection(props) {
-    // console.log(props.info.skills)
+
+    let maximum = props.levelingNumbers
+    let basicMax = maximum.Basic
+    let advancedMax = maximum.Advanced ? maximum.Advanced : 0
+    let masterMax = maximum.Master ? maximum.Master : 0
+
+    // props.updateSkills('skillschoicesection')
+
     return (
         <div className={'skill-section'}>
             <EditSkillsSection
                 title={"Basic"}
                 info={props.info.skills.basic}
                 role={props.info.title}
-                numberChosen={'4'}
-                available={'10'}
-            />
+                numberChosen={props.currentBasicChosen}
+                available={basicMax}
+                updateSkills={(chosenSkillTitles) => props.updateSkills(chosenSkillTitles, props.info.title)}
+                checkmarkWhatsSeen={()=> props.checkmarkWhatsSeen()}
+                />
             <EditSkillsSection
                 title={"Advanced"}
                 info={props.info.skills.advanced}
                 role={props.info.title}
-                numberChosen={'5'}
-                available={'8'}
-            />
+                numberChosen={props.currentAdvancedChosen}
+                available={advancedMax}
+                updateSkills={(chosenSkillTitles) => props.updateSkills(chosenSkillTitles, props.info.title)}
+                checkmarkWhatsSeen={()=> props.checkmarkWhatsSeen()}
+                />
             <EditSkillsSection
                 title={"Master"} 
                 info={props.info.skills.master}
                 role={props.info.title}
-                numberChosen={'2'}
-                available={'4'}
-            />
+                numberChosen={props.currentMasterChosen}
+                available={masterMax}
+                updateSkills={(chosenSkillTitles) => props.updateSkills(chosenSkillTitles, props.info.title)}
+                checkmarkWhatsSeen={()=> props.checkmarkWhatsSeen()}
+                />
         </div>  
     );
 }

@@ -112,8 +112,8 @@ export class RoleSourceDetails extends React.Component {
             <div className={'scrollable-popup-portion'}>
                 <div className={'scrollable-content'}>
                     <p>{this.props.details.description}</p>
-                    <p>Alternate Wounds: {this.props.details.alternateWounds}</p>
-                    <p>Sample Skills: {sampleSkills}</p>
+                    {/* <p>Alternate Wounds: {this.props.details.alternateWounds}</p>
+                    <p>Sample Skills: {sampleSkills}</p> */}
                 </div>
                 <div className={'rolesource-trait-section'}>
                     <h2 className={'rolesource-given-skills-tag'}>Given Skills</h2>
