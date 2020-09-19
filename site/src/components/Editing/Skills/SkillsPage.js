@@ -66,6 +66,7 @@ export class SkillsPage extends React.Component {
                 // console.log(matchingSkills)
                 // console.log('currentskills...')
                 // console.log(this.props.currentSkills)
+        this.tallyCurrentSkills(this.props.currentSkills)
     }
 
     tallyCurrentSkills(currentSkills){
@@ -182,6 +183,7 @@ export class SkillsPage extends React.Component {
                                     currentBasicChosen={quantityChosen.Role.Basic}
                                     currentAdvancedChosen={quantityChosen.Role.Advanced}
                                     currentMasterChosen={quantityChosen.Role.Master}
+                                    level={this.props.level}
                                     />
                                 }
                                 />
@@ -197,6 +199,7 @@ export class SkillsPage extends React.Component {
                                 currentBasicChosen={quantityChosen.Source.Basic}
                                 currentAdvancedChosen={quantityChosen.Source.Advanced}
                                 currentMasterChosen={quantityChosen.Source.Master}
+                                level={this.props.level}
                                 />
                             }
                         />

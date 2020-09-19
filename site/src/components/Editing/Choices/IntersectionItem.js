@@ -5,16 +5,16 @@ import PleaFormat from '../../PleaFormat'
 
 export default function Item(props) {
 
-    const itemLabel = props.title + '-' + props.count
-
     let dashedName = props.info.name.replace(/ /g, "-");
+    
+    const itemLabel = props.dashedName
 
     const usesDamage = () => {
-        if (props.info.damage){
-            return (
-            <span className={"damage heavy"} id={"damage-mod" + dashedName}> Deal {props.info.damage}X.</span>
-            )
-        }
+        // if (props.info.damage){
+        //     return (
+        //     <span className={"damage heavy"} id={"damage-mod" + dashedName}> Deal {props.info.damage}X.</span>
+        //     )
+        // }
     }
 
     const isActive = () => {
@@ -79,28 +79,32 @@ export default function Item(props) {
         }
     }
 
-    function onItemClick(item){
+    function onItemClick(item, alreadyHave){
         // console.log(item)
         // console.log(props.info)
-        // let checkbox = document.getElementById(item)
+        let checkbox = document.getElementById(item)
         // console.log(dashedName)
         // console.log(checkbox)
         // console.log(checkbox.checked)
 
-        const allItems = document.getElementsByClassName('info')
+        const allItems = document.getElementsByClassName('item')
+        // console.log(allItems)
         const allItemsArray = [...allItems]
         const chosenSkillTitles = []
+        const chosenDivs = []
         allItemsArray.map((item) => {
+            // console.log(allItemsArray)
             let singleInput = item.children[0]
             // console.log(singleInput.checked)
             if (singleInput.checked){
+                chosenDivs.push(item)
                 chosenSkillTitles.push(item.id)
                 // allSelectedItemsArray.push(props.info)
             }
         })
         // console.log(allSelectedItemsArray)
-        props.updateSkills(chosenSkillTitles)
-        
+        props.updateSkills(chosenSkillTitles, checkboxID, alreadyHave)
+        props.updateCheckbox(chosenDivs)
         // debugger;
     }
 
@@ -113,19 +117,18 @@ export default function Item(props) {
         )
     }
     let plea = props.info.plea ? pleaFormat(props.info.plea) : ''
-
+    // console.log(props)
     return (
         <label className={"item " + props.class} id={dashedName} htmlFor={checkboxID}>
-            <input type={'checkbox'} name={itemLabel} onClick={() => onItemClick(checkboxID)} id={checkboxID} className={'edit-skills-checkbox'} />
-            <div className={'editing-item-content'} id={itemLabel}>
+            <input type={'radio'} name={props.info.skillLevel + '-intersection-radio'} onClick={() => onItemClick(checkboxID, props.alreadyHave)} id={checkboxID} className={'edit-skills-checkbox'} />
+            <div className={'intersection-item-content'} id={checkboxID + '-div'}>
                 <p className={"item-name"}>
-                    {props.info.name} &#x2771;
+                    {props.info.name}
                     <br />
                     {isActive()}
                 </p>
                 {flavor(props.info)}
                 {plea}
-                {/* <p>{props.info.impact} {usesDamage()}</p> */}
             </div>
         </label>
     );

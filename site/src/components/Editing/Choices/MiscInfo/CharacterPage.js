@@ -98,11 +98,12 @@ class CharacterPage extends React.Component {
     }
 
     updateLevel(){
+        // console.log(this.props.currentSkills)
         let slider = document.getElementById("myRange");
         let input = slider.value
-        this.props.dispatch(updateLevel(this.props.level, input, this.props.database.levelingNumbers))
-        console.log(this.props.level)
-        console.log(this.props)
+        this.props.dispatch(updateLevel(this.props.level, input, this.props.database.levelingNumbers, this.props.currentSkills))
+        // console.log(this.props.level)
+        // console.log(this.props)
     }
 
     handleBackgroundFeature(){
@@ -161,7 +162,8 @@ class CharacterPage extends React.Component {
                 // />
             )
         })
-
+        // console.log(this.props)
+        // console.log(this.props.currentSkills)
         return (
             <div className={"name-page choice-page"}>
                 {/* <div className={'editing-pane-section'}> */}
@@ -234,7 +236,8 @@ class CharacterPage extends React.Component {
 
 const mapStateToProps = state => ({
     who: state.who,
-    skills: state.skills,
+    // skills: state.skills,
+    currentSkills: state.currentSkills,
     intersection: state.intersection,
     role: state.role,
     source: state.source,

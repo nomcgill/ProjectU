@@ -19,8 +19,6 @@ export default function SkillsChoiceSection(props) {
     let advancedMax = maximum.Advanced ? maximum.Advanced : 0
     let masterMax = maximum.Master ? maximum.Master : 0
 
-    // props.updateSkills('skillschoicesection')
-
     return (
         <div className={'skill-section'}>
             <EditSkillsSection
@@ -31,7 +29,8 @@ export default function SkillsChoiceSection(props) {
                 available={basicMax}
                 updateSkills={(chosenSkillTitles) => props.updateSkills(chosenSkillTitles, props.info.title)}
                 checkmarkWhatsSeen={()=> props.checkmarkWhatsSeen()}
-                />
+                level={props.level}
+            />
             <EditSkillsSection
                 title={"Advanced"}
                 info={props.info.skills.advanced}
@@ -40,7 +39,8 @@ export default function SkillsChoiceSection(props) {
                 available={advancedMax}
                 updateSkills={(chosenSkillTitles) => props.updateSkills(chosenSkillTitles, props.info.title)}
                 checkmarkWhatsSeen={()=> props.checkmarkWhatsSeen()}
-                />
+                level={props.level}
+            />
             <EditSkillsSection
                 title={"Master"} 
                 info={props.info.skills.master}
@@ -49,7 +49,8 @@ export default function SkillsChoiceSection(props) {
                 available={masterMax}
                 updateSkills={(chosenSkillTitles) => props.updateSkills(chosenSkillTitles, props.info.title)}
                 checkmarkWhatsSeen={()=> props.checkmarkWhatsSeen()}
-                />
+                level={props.level}
+            />
         </div>  
     );
 }

@@ -14,7 +14,7 @@ import Dice from '../../ImageStore/dice.png'
 import ActionBreakdown from './ActionBreakdown'
 import RollHistory from './RollHistory'
 
-import {lastRollState, updateActionStatus, updateActionDetails, upperHandToggle, strengthOrWeak, updateStrengthen, saveTheRoll, updateSnippet, addToPrior} from '../../actions'
+import {lastRollState, updateActionStatus, updateActionDetails, updateLevel, upperHandToggle, strengthOrWeak, updateStrengthen, saveTheRoll, updateSnippet, addToPrior} from '../../actions'
 
 class RollThatDice extends React.Component {
 
@@ -26,6 +26,8 @@ class RollThatDice extends React.Component {
 
     componentDidMount(){
         this.displayAll()
+        let stateLevel = this.props.level
+        this.props.dispatch(updateLevel(stateLevel, false, this.props.database.levelingNumbers, this.props.currentSkills))
     }
 
     componentWillUnmount(){
@@ -449,7 +451,7 @@ class RollThatDice extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    skills: state.skills,
+    // skills: state.skills,
     actionStatus: state.actionStatus,
     savedActionTab: state.savedActionTab,
     upperHand: state.upperHand,
@@ -459,7 +461,10 @@ const mapStateToProps = state => ({
     priorResults: state.priorResults,
     actionSuccess: state.database.actionSuccess,
     actionDescriptions: state.database.actionDescriptions,  
-    rollHistory: state.rollHistory
+    rollHistory: state.rollHistory,
+    level: state.level,
+    database: state.database,
+    currentSkills: state.currentSkills
 });
 
 export default connect(mapStateToProps)(RollThatDice);

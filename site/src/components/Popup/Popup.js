@@ -67,7 +67,7 @@ export class Popup extends React.Component {
 
 const mapStateToProps = state => ({
     who: state.who,
-    skills: state.skills,
+    // skills: state.skills,
     intersection: state.intersection,
     role: state.role,
     source: state.source,

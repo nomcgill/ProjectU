@@ -5,7 +5,7 @@ import './final.css'
 import FinalTopPane from './FinalTopPane'
 import FinalBody from './FinalBody'
 
-import { toggleFavorite, toggleOpen, gatherItemText, gatherFilters, updateInputState, resetFilters } from '../../actions'
+import { toggleFavorite, toggleOpen, gatherItemText, gatherFilters, updateInputState, resetFilters, updateLevel } from '../../actions'
 
 export class Final extends React.Component {
     
@@ -28,6 +28,11 @@ export class Final extends React.Component {
             this.updateFilter()
             document.getElementById('search-bar').value = ''
         })
+    }
+
+    componentDidMount(){
+        let stateLevel = this.props.level
+        this.props.dispatch(updateLevel(stateLevel, false, this.props.database.levelingNumbers, this.props.currentSkills))
     }
 
     render() {
@@ -78,7 +83,8 @@ const mapStateToProps = state => ({
     filterType: state.filterType,
     filterActive: state.filterActive,
     filterCategory: state.filterCategory,
-    filterFavorite: state.filterFavorite
+    filterFavorite: state.filterFavorite,
+    level: state.level
 });
 
   export default connect(mapStateToProps)(Final);

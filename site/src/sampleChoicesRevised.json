@@ -1,5 +1,5 @@
 {
-    "level": 6,
+    "level": 11,
     "levelingNumbers" : {
       "Role": {"Basic": 5},
       "Source": {"Basic": 4}
@@ -18,7 +18,7 @@
       {
         "name": "Wrath",
         "action": "Passive",
-        "skillLevel": "Given",
+        "skillLevel": "Advanced",
         "category": "Intersection",
         "damage": false,
         "flavor": "You are invigorated by your Power Source when your strikes land.",

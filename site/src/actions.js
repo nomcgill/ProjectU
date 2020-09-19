@@ -100,15 +100,18 @@ export const updateLevelVisual = (input) => dispatch => {
 }
 
 
-export const updateLevel = (currentLevel, newLevel, levelingNumbers) => dispatch => {
+export const updateLevel = (currentLevel, newLevel, levelingNumbers, currentSkills) => dispatch => {
 
-    if (newLevel < currentLevel){
-        console.log("Warning!!! Lowering your level may have deleted your most recently chosen skills!")
+    if (newLevel && newLevel < currentLevel){
+        console.log("Warning!!! You might be homebrewed for your current level!")
     }
 
-    let newMaximums = levelingNumbers[newLevel]
+    let level = newLevel ? newLevel : currentLevel
 
-    dispatch(updateGlobalLevel(newLevel, newMaximums))
+    let newMaximums = levelingNumbers[level]
+    // console.log(currentSkills)
+    dispatch(updateGlobalLevel(level, newMaximums))
+    dispatch(filterOutIntersectionSkills(currentSkills, level))
 }
 
 export const UPDATE_GLOBAL_LEVEL = 'UPDATE_GLOBAL_LEVEL';
@@ -357,6 +360,113 @@ export const updateSkillsFromSkillsList = (selected, currentSkills, roleOrSource
     dispatch(tallyUpChoices(revisedSkills))
 }
 
+export const updateSkillsFromIntersection = (selectedNames, currentSkills, database) => dispatch => {
+    // console.log(selectedNames)
+    // console.log(currentSkills)
+    let selectedSkills = []
+    selectedNames.forEach(skillName => {
+        database.intersections.forEach(intersection => {
+            intersection.traits.forEach(skill=>{
+                // console.log(skillName)
+                let dashedDatabaseName= skill.name.replace(/ /g, "-")
+                // console.log(dashedDatabaseName)
+                if (skillName === dashedDatabaseName){
+                    // console.log(skill.name)
+                    selectedSkills.push(skill)
+                }
+            })
+        })
+    }) 
+    // console.log(selectedSkills)
+    
+    let noIntersection = currentSkills.filter(skill=> skill.category !== "Intersection")
+    let mergeWithSelectedIntersections = [...noIntersection,...selectedSkills]
+    
+    let revisedSkills = mergeWithSelectedIntersections
+    dispatch(currentSkillsStateUpdate(revisedSkills))
+}
+
+export const filterOutIntersectionSkills = (currentSkills, level) => dispatch => {
+    console.log(currentSkills)
+
+    function notAnIntersection(skill){
+        return skill.category !== "Intersection"
+    }
+    function notAMasterIntersection(skill){
+
+    }
+
+    // function notAnIntersectionOrMasterIntersection(skill){
+    //     if (skill.skillLevel === "Master"){
+    //         return
+    //     }
+    //     if (skill.category === "Intersection"){
+    //         return
+    //     }
+    // }
+    // function notAMaster(skill){
+        //     return skill.skillLevel !== "Master"
+        // }
+        
+        
+        if (level < 6){
+            // this is good!
+            console.log('less than 6')
+            let notIntersections = currentSkills.filter(notAnIntersection)
+            dispatch(currentSkillsStateUpdate(notIntersections))
+        }
+        else if (level < 11) {
+            console.log('between 6 and 10')
+
+            let noMasterIntersections = []
+
+            function checkForMasterIntersections(){
+                if (skill.category === "Intersection"){
+                    if (skill.skillLevel === "Advanced"){
+                        
+                    }
+                    if (skill.skillLevel === "Basic"){
+                        return skill
+                    }
+                    if (skill.skillLevel === "Given"){
+                        return skill
+                    }
+                    console.log(skill)
+                    // return (skill.skillLevel === "Advanced" || skill.skillLevel === "Basic" || skill.skillLevel === "Given")
+                }
+                if (skill.category !== "Intersection"){
+                    console.log(skill)
+                    return
+                }
+            }
+
+
+            // let revisedSkills = []
+            // let naughtyList = []
+            // currentSkills.forEach(skill=>{
+            //     if (skill.category === "Intersection" && skill.skillLevel === "Master"){
+            //         naughtyList.push(skill)
+            //     }
+            // })
+            // console.log([...naughtyList])
+            // let notMasterIntersections = currentSkills.filter(notAnIntersectionOrMasterIntersection)
+            // let notBoth = currentSkills.filter(notAMasterIntersection)
+            dispatch(currentSkillsStateUpdate(noMasterIntersections))
+        }
+        else {
+            console.log('level 11 or 12')
+            dispatch(currentSkillsStateUpdate(currentSkills))
+
+        }
+        // filter out the master intersections
+        // let revisedSkills = currentSkills.filter(notAnIntersection).filter(notAMaster)
+            // return (skill.category === "Intersection" && skill.skillLevel === "Master")
+    // console.log(currentSkills)
+    // dispatch(currentSkillsStateUpdate(revisedSkills))
+    // let cleansedFromRoleOrSource = currentSkills.filter(isRoleOrSourceSkill)
+    // let revisedSkills = [...selected, ...cleansedFromRoleOrSource]
+    
+}
 
 export const CURRENT_SKILLS_STATE_UPDATE = 'CURRENT_SKILLS_STATE_UPDATE';
 export const currentSkillsStateUpdate = revisedSkills => ({

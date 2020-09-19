@@ -36,7 +36,7 @@ export class FinalProfile extends React.Component {
   
   const mapStateToProps = state => ({
     name: state.name,
-    skills: state.skills,
+    // skills: state.skills,
     intersection: state.intersection,
     role: state.role,
     source: state.source

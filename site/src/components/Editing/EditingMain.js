@@ -11,7 +11,7 @@ import {
 
 import './editing.css'
 
-import {formatEditingPage, updateSkillBank} from '../../actions.js' 
+import {formatEditingPage, updateSkillBank, updateLevel} from '../../actions.js' 
 
 import ChoicePage from './Choices/ChoicePage'
 import IntersectionPage from './Choices/IntersectionPage'
@@ -69,13 +69,17 @@ export class EditingMain extends React.Component {
         // console.log('Updated')
         this.updateSkillBank()
         this.choiceBoxHighlight()
+        let stateLevel = this.props.level
+        // this.props.dispatch(updateLevel(stateLevel, false, this.props.database.levelingNumbers, this.props.currentSkills))
     }
-
+    
     componentDidMount(){
         // console.log('Mounted')
         this.choiceBoxHighlight()
+        let stateLevel = this.props.level
+        this.props.dispatch(updateLevel(stateLevel, false, this.props.database.levelingNumbers, this.props.currentSkills))
     }
-
+    
     render() {
 
         function capitalize(insert){
@@ -142,8 +146,8 @@ export class EditingMain extends React.Component {
                             path="/editing/intersection"
                             render={() => 
                                 <IntersectionPage
-                                    currentSkills={this.props.skills}
-                                    info={this.props.database}
+                                    currentSkills={this.props.currentSkills}
+                                    database={this.props.database}
                                     role={this.props.role}
                                     source={this.props.source}
                                     level={this.props.level}
@@ -179,14 +183,15 @@ export class EditingMain extends React.Component {
     }
   }
   
-  const mapStateToProps = state => ({
+const mapStateToProps = state => ({
     who: state.who,
-    skills: state.skills,
+    // skills: state.skills,
     intersection: state.intersection,
     role: state.role,
     source: state.source,
     database: state.database,
-    level: state.level
-  });
+    level: state.level,
+    currentSkills: state.currentSkills
+});
 
-  export default connect(mapStateToProps)(EditingMain);
+export default connect(mapStateToProps)(EditingMain);

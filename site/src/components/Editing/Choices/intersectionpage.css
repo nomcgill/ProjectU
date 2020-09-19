@@ -1,17 +1,32 @@
+.intersection-page {
+    color: white;
+}
+
+#intersection-header {
+    text-align: center;
+    max-width: 500px;
+    margin: 15px auto;
+}
+
 #intersection-peek-box {
     margin: 3%;
 }
 
 #intersection-peek-bar {
-    /* display: flex; */
     text-align: center;
-    /* justify-content: space-between; */
     border: solid 2px white;
     padding: 3px;
+    margin-bottom: 10px;
 }
 
-#intersection-content {
-    padding: 10px;
+.intersection-section {
+    padding: 0px 12px 20px;
+    margin: 10px auto;
+    max-width: 600px;
+    border: solid 1px rgba(255, 255, 255, 0.158);
+    border-radius: 10px;
+    width: 90%;
+    background-color: rgb(36, 36, 36);
 }
 
 .gray {
@@ -46,5 +61,59 @@
 }
 
 #intersection-headline {
-    margin: 10px 30px 30px;
+    margin: 10px 30px 20px;
+}
+
+.intersection-page {
+    /* margin: 15px; */
+}
+
+.intersection-path-header {
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+.intersection-item-content {
+    background-color: rgb(24, 23, 23);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    border: solid 2px rgba(255, 166, 0, 0.048);
+}
+
+.skill-description-part {
+    padding: 4px;
+}
+
+#intersection-content .item-name {
+    text-align: center;
+}
+
+.non-select {
+    pointer-events: none;
+}
+
+.non-select .intersection-item-content {
+    opacity: 50%;
+    pointer-events: none;
+}
+
+.intersection-section .intersection-item-content.intersection-selected {
+    background-color: gray;
+}
+
+.edit-skills-checkbox:checked {
+    /* height: 100px; */
+    /* background-color: white; */
+}
+
+.selected-intersection {
+    background-color: rgb(83, 63, 49);
+    border: solid 2px orange;
+}
+
+@media all and (min-width: 640px) { 
+
+
 }

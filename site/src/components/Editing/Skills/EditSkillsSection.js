@@ -36,7 +36,7 @@ export default function EditSkillsSection(props) {
         }
         props.checkmarkWhatsSeen()
     }
-
+    // console.log(props)
     return (
         <div className={theTitle + '-box skillbox'} id={theTitle + "-box"}>
             <div 
@@ -52,7 +52,8 @@ export default function EditSkillsSection(props) {
                     {/* </div> */}
                     {/* <br /> */}
                     {/* <div className={"skill-top-table"}> */}
-                        <p className={'tracking-skill-choices'}><span className={'tracking-skill-numbers'}>{props.numberChosen} / {props.available}</span> at lvl 3.</p>
+                        <p className={'tracking-skill-choices'}><span className={'tracking-skill-numbers'}>
+                            {props.numberChosen} / {props.available}</span> at lvl {props.level}</p>
                     </div>
                 </div>
                 <h3 className={"plus-sign"} id={theTitle + "-plus"}>
