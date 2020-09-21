@@ -284,6 +284,10 @@ export const updateRoleSource = (currentSkills, database, roleSource, title, pri
     // console.log(priorRole)
     // console.log(priorSource)
     if (roleSource === "role" && priorRole){
+        let decisionTraits = currentSkills.filter(skill=>{
+            return skill.decisionTrait === true
+        })
+        // console.log(decisionTraits)
         let filteredSkills = []
         currentSkills.forEach(skill => {
             if (skill.category === "Role" || skill.category === "Intersection"){
@@ -299,7 +303,7 @@ export const updateRoleSource = (currentSkills, database, roleSource, title, pri
             }
         })
 
-        let revisedSkills = [...newGivenSkills, ...filteredSkills]
+        let revisedSkills = [...newGivenSkills, ...filteredSkills, ...decisionTraits]
 
         dispatch(currentSkillsStateUpdate(revisedSkills))
         dispatch(roleSourceStateUpdate(title, priorSource))
@@ -563,7 +567,13 @@ export const checkRoleSource = (roleSource, turnoff, allStateData) => dispatch =
 
     }
     else if(roleSource === "Elementalist"){
-        console.log(allStateData)
+        let foundCore = allStateData.currentSkills.filter(skill=>{
+            return (skill.name.substring(0,7) === "Core of")        
+        })
+        // console.log(foundCore)
+        if (foundCore.length > 0){
+            dispatch(chooseRoleSourceButtonAvailable(true))
+        }
         
     }
     else if(roleSource === "Bounty Hunter"){
@@ -608,12 +618,16 @@ export const doubleCheckDecisionTraits = (allData) => dispatch => {
     // console.log(allData.currentSkills)
 
     if (source !== "Demonic"){
-        // debugger;
         let noDemonicOrigin = allData.currentSkills.filter(skill=>{
             return (skill.name !== "Fiend" && skill.name !== "Devil" && skill.name !== "Abomination")
         })
-        // console.log("not demonic!")
         dispatch(currentSkillsStateUpdate(noDemonicOrigin))
+    }
+    if (role !== "Elementalist"){
+        let noElementalistCore = allData.currentSkills.filter(skill=>{
+            return (skill.name.substring(0,7) !== "Core of")
+        })
+        dispatch(currentSkillsStateUpdate(noElementalistCore))
     }
     if (source !== "Chakrah"){
 
@@ -634,6 +648,14 @@ export const updateDemonic = (origin, currentSkills) => dispatch => {
     dispatch(currentSkillsStateUpdate(revisedSkills))
 }
 
+export const updateCore = (core, currentSkills) => dispatch => {
+    let removedPossibleCore = currentSkills.filter(skill => {
+        return (skill.name.substring(0,7) !== "Core of")
+    })
+    let revisedSkills = [...removedPossibleCore, core]
+    dispatch(currentSkillsStateUpdate(revisedSkills))
+}
+
 export const updateChakrah = (tattooSkill, currentSkills, add) => dispatch => {
     // add means checkbox is checked, so we add
     if (add){
@@ -643,6 +665,7 @@ export const updateChakrah = (tattooSkill, currentSkills, add) => dispatch => {
         let revisedSkills = [...removePossibleDuplicate, tattooSkill]
         dispatch(currentSkillsStateUpdate(revisedSkills))
     }   
+    // otherwise it's unchecked, so we remove
     else {
         let removedTattoo = currentSkills.filter(skill => {
             return (skill.name !== tattooSkill.name)

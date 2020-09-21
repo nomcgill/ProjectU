@@ -26,7 +26,7 @@ main.popup-active *:not(.popup) {
     color: white;
     /* text-align: center; */
     /* background-color: rgba(0, 17, 8, 0.788); */
-    background-color: rgba(0, 0, 0, 0.849);
+    background-color: rgb(14, 14, 14);
     /* padding: 10px; */
     border: 1px solid #888;
     width: 92%;

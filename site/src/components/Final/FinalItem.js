@@ -48,7 +48,6 @@ export default function FinalItem(props) {
         let itemText = name + action + skillLevel + category + damage + flavor + impact + damageWord + impact2
         // console.log(itemText)
         props.gatherItemText(props.skill.name, itemText.toUpperCase())
-        console.log(impact2)
     }
 
     if (!props.skill.fullText){

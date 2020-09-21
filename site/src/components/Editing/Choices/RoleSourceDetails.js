@@ -11,7 +11,7 @@ import BountyHunterDecision from './RoleChoices/BountyHunterDecision'
 import MorphDecision from './RoleChoices/MorphDecision'
 import KnightDecision from './RoleChoices/KnightDecision'
 
-import { updateRoleSource, updateSkillBank, roleSourceReady, updateDemonic, updateChakrah } from '../../../actions'
+import { updateRoleSource, updateSkillBank, roleSourceReady, updateDemonic, updateChakrah, updateCore } from '../../../actions'
 
 export class RoleSourceDetails extends React.Component {
 
@@ -46,40 +46,36 @@ export class RoleSourceDetails extends React.Component {
         }
     }
 
-    updateChakrah(tattooSkill){
-        // console.log(tattooSkill)
-        let joinedName = this.joinWords(tattooSkill.name)
-        let selected = document.getElementById(joinedName + '-radio')
-        const promise1 = new Promise((resolve, reject) => {
-            if (selected){
+    updateCore(core){
+        // console.log(origin)
+        let selected = document.getElementById(this.joinWords(core.name) + '-radio')
+        if (selected.checked){
+            const promise1 = new Promise((resolve, reject) => {
                 resolve(
-                    this.props.dispatch(updateChakrah(tattooSkill, this.props.currentSkills, selected.checked))
+                    this.props.dispatch(updateCore(core, this.props.currentSkills))
                 );
-            }
-        })      
-        promise1.then(() => {
-            this.updateChakrahVisual()
-        });     
+              });
+              
+              promise1.then(() => {
+                let roleSource = this.props.details.title
+                this.props.checkRoleSource(roleSource)
+                this.updateElementalistVisual()
+              });     
+        }
     }
-
-    updateChakrahVisual(){
-        Array.from(document.getElementsByClassName('chakrah-decision-button')).forEach(element=> 
+    
+    updateElementalistVisual(){
+        Array.from(document.getElementsByClassName('core-decision-button')).forEach(element=> 
             element.classList.remove('selected-decision-trait'))
-        let foundTattoos = this.props.currentSkills.filter(skill=>{
-            return skill.name.substring(0,6) === "Tattoo" && skill.category === "Source"
+        let foundCore = this.props.currentSkills.filter(skill=> {
+            return (skill.name.substring(0,7) === "Core of")        
         })
-        // console.log(foundTattoos)
-        foundTattoos.forEach(tattoo=>{
-            let tattooId = this.joinWords(tattoo.name)
-            if (document.getElementById(tattooId)){
-                document.getElementById(tattooId).classList.add('selected-decision-trait')
+        if (foundCore[0]){
+            let coreId = this.joinWords(foundCore[0].name)
+            if (document.getElementById(coreId)){
+                document.getElementById(coreId).classList.add('selected-decision-trait')
             }
-        })
-        // if (foundOrigin[0]){
-        //     if (document.getElementById(foundOrigin[0].name)){
-        //         document.getElementById(foundOrigin[0].name).classList.add('selected-decision-trait')
-        //     }
-        // }
+        }
     }
 
     updateDemonicVisual(){
@@ -93,6 +89,36 @@ export class RoleSourceDetails extends React.Component {
                 document.getElementById(foundOrigin[0].name).classList.add('selected-decision-trait')
             }
         }
+    }
+    
+    updateChakrah(tattooSkill){
+        // console.log(tattooSkill)
+        let joinedName = this.joinWords(tattooSkill.name)
+        let selected = document.getElementById(joinedName + '-radio')
+        const promise1 = new Promise((resolve, reject) => {
+            if (selected){
+                resolve(
+                    this.props.dispatch(updateChakrah(tattooSkill, this.props.currentSkills, selected.checked))
+                    );
+            }
+        })      
+        promise1.then(() => {
+            this.updateChakrahVisual()
+        });     
+    }
+    
+    updateChakrahVisual(){
+        Array.from(document.getElementsByClassName('chakrah-decision-button')).forEach(element=> 
+            element.classList.remove('selected-decision-trait'))
+        let foundTattoos = this.props.currentSkills.filter(skill=>{
+            return skill.name.substring(0,6) === "Tattoo" && skill.category === "Source"
+        })
+        foundTattoos.forEach(tattoo=>{
+            let tattooId = this.joinWords(tattoo.name)
+            if (document.getElementById(tattooId)){
+                document.getElementById(tattooId).classList.add('selected-decision-trait')
+            }
+        })
     }
 
     componentDidUpdate(){
@@ -128,13 +154,6 @@ export class RoleSourceDetails extends React.Component {
         else (
             alert("error choosing")
         )
-        // console.log(this.props.role, this.props.source, this.props.intersection, this.props.currentSkills)
-        // let elementId = document.getElementById(this.props.popupId)
-        // elementId.classList.add("hidden")
-        //hide window
-        // console.log(this.props.currentSkills)
-
-        // database, role, source, intersection
     }
 
 
@@ -207,6 +226,7 @@ export class RoleSourceDetails extends React.Component {
             return (
                 <ElementalistDecision
                     database={this.props.database}
+                    updateCore={(core)=>this.updateCore(core)}
                 />
             )   
         }
@@ -246,13 +266,21 @@ export class RoleSourceDetails extends React.Component {
         }
     }
 
-    let playingAsTitle = this.props.details.playingAs ? 'Playing As' : ''
+    let playingAsTitle = this.props.details.playingAs ? 'Playing the ' + this.props.details.title : ''
 
     let playingAs = this.props.details.playingAs ? this.props.details.playingAs.map((oneLine, index) => {
         return ( 
             <p key={index} className={'playing-as-content'}>{oneLine}</p>
         )
     }) : ''
+    let playingAsSection = this.props.details.playingAs ? 
+        (                
+            <div className={'playing-as'}>
+                <h3>{playingAsTitle}</h3>
+                {playingAs}
+            </div>
+        ) : ''
+    
 
     return (
         <div className={'role-source-popup-details'}>
@@ -265,10 +293,7 @@ export class RoleSourceDetails extends React.Component {
                     {/* <p>Alternate Wounds: {this.props.details.alternateWounds}</p>
                     <p>Sample Skills: {sampleSkills}</p> */}
                 </div>
-                <div className={'playing-as'}>
-                    <h3>{playingAsTitle}</h3>
-                    {playingAs}
-                </div>
+                {playingAsSection}
                 <div className={'rolesource-trait-section'}>
                     <h2 className={'rolesource-given-skills-tag'}>Given Skills</h2>    
                     {/* Unique Component for individual rolesources that require choices to be made. These choices must update the state somehow. */}

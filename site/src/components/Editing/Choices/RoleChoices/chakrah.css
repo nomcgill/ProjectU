@@ -1,6 +1,9 @@
 .chakrah-choice {
     margin: 10px;
     text-align: center;
+    background-color: rgb(44, 44, 44);
+    border-radius: 6px;
+    padding: 9px 5px 6px;
 }
 
 .chakrah-choice input {
@@ -23,11 +26,29 @@
     /* border: solid 2px white; */
 }
 
-@media all and (min-width: 500px) { 
-    .chakrah-options-section {
+.chakrah-options-section {
+    /* border: solid 2px white;     */
+    background-color: rgb(68, 68, 68);
+    margin: 10px 7px;
+    padding: 10px 5px 7px;
+    border-radius: 6px;
+}
+
+.chakrah-decision-button {
+    /* background-color: rgb(88, 88, 88); */
+}
+
+@media all and (min-width: 500px) {
+
+    .chakrah-options-section-grid {
         width: 100%;
         display: inline-grid;
         grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .chakrah-decision-button {
+        padding: 20px;
+        /* height: 100px; */
     }
 
 }

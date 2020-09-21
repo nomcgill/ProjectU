@@ -67,16 +67,20 @@ export default function ChakrahDecision(props) {
             <p>Do you have any powerful tattoos that help you achieve your non-physical goals?</p>
             <p>Strengthen actions of any tattoo type chosen below.</p>
             <div className={'chakrah-options'}>
-                <h4>Influence Actions</h4>
                 <div className={'chakrah-options-section'}>
-                    {chakrahOptionsInfluence}
+                    <h4>Influence Actions</h4>
+                    <div className={'chakrah-options-section-grid'}>
+                        {chakrahOptionsInfluence}
+                    </div>
                 </div>
-                <h4>Evaluate Actions</h4>
                 <div className={'chakrah-options-section'}>
-                    {chakrahOptionsEvaluate}
+                    <h4>Evaluate Actions</h4>
+                    <div className={'chakrah-options-section-grid'}>
+                        {chakrahOptionsEvaluate}
+                    </div>
                 </div>
             </div>
-            <p className={'italic'}>Tattoos will count towards your Basic Source skills level limit!</p>
+            <p className={'italic'}>Tattoos will count towards your Basic Source skills tally!</p>
         </div>
     )
 

@@ -42,7 +42,7 @@ export default function DemonicDecision(props) {
             <div className={'demon-options'}>
                 {demonOptions}
             </div>
-            <p className={'italic'}>Origin effects are only realized starting at level 5.'</p>
+            <p className={'italic'}>Origin effects are only realized starting at level 5.</p>
         </div>
     )
 
