@@ -31,8 +31,10 @@ export class Final extends React.Component {
     }
 
     componentDidMount(){
-        let stateLevel = this.props.level
-        this.props.dispatch(updateLevel(stateLevel, false, this.props.database.levelingNumbers, this.props.currentSkills))
+        if (this.props.database){
+            let stateLevel = this.props.level
+            this.props.dispatch(updateLevel(stateLevel, false, this.props.database.levelingNumbers, this.props.currentSkills))
+        }
     }
 
     render() {
@@ -56,6 +58,7 @@ export class Final extends React.Component {
                                 role={this.props.role}
                                 source={this.props.source}
                                 intersection={this.props.intersection}
+                                level={this.props.level}
                             />
                         {/* </div> */}
                     {/* }

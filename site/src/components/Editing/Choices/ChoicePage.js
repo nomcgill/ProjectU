@@ -42,6 +42,7 @@ export default function ChoicePage(props) {
         )
     }
 
+    // console.log(props)
     const eachBox = (props.info) ? props.info.map(section => 
         <RoleSourceOption 
             key={section.title + "-key"}
@@ -50,6 +51,7 @@ export default function ChoicePage(props) {
             img={findImg(section.title)}
             elementId={elementId(section.title)}
             rolesource={props.rolesource}
+            checkRoleSource={props.checkRoleSource}
         />
     ) : ""
 

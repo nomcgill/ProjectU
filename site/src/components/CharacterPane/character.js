@@ -16,10 +16,14 @@ import EditingPane from './EditingPane.js'
 import Arrow from '../../ImageStore/fliparrow.png'
 import './character.css'
 
-import { characterPaneUpdate } from '../../actions'
+import { characterPaneUpdate, doubleCheckDecisionTraits } from '../../actions'
 
 
 export class Character extends React.Component {
+
+  onClick(){
+    this.props.dispatch(doubleCheckDecisionTraits(this.props.allData))
+  }
 
   // componentDidMount(){
   //     this.props.dispatch(characterPaneUpdate(true))
@@ -74,7 +78,7 @@ export class Character extends React.Component {
     // debugger;
     return (
       // <Router>
-          <div id={'character-pane'} className={'aware'}>
+          <div id={'character-pane'} className={'aware'} onClick={()=>this.onClick()}>
             {/* <Redirect exact from="/final" to="/final/title" /> */}
                 <Route 
                     // exact
@@ -116,6 +120,7 @@ export class Character extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  allData: state,
   source: state.source,
   role: state.role,
   intersection: state.intersection,

@@ -1,0 +1,33 @@
+.chakrah-choice {
+    margin: 10px;
+    text-align: center;
+}
+
+.chakrah-choice input {
+    display: none;
+}
+
+.chakrah-choice h4 {
+    font-size: 1.2em;
+}
+
+.chakrah-choice h3 {
+    margin: 3px;
+}
+
+.chakrah-choice p {
+    margin: 8px;
+}
+
+.demon-options > * {
+    /* border: solid 2px white; */
+}
+
+@media all and (min-width: 500px) { 
+    .chakrah-options-section {
+        width: 100%;
+        display: inline-grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+}

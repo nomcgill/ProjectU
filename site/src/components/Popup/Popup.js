@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 
 import './popup.css'
+import { checkRoleSource, doubleCheckDecisionTraits } from '../../actions';
 
 export class Popup extends React.Component {
 
@@ -39,6 +40,15 @@ export class Popup extends React.Component {
     componentDidMount(){
         this.hidePopups(true)
         // console.log('mount')
+        // if (this.props.popupId){
+        //     window.addEventListener('click', function(e){   
+        //         if (document.getElementById(this.props.popupId).contains(e.target)){
+        //             console.log('inside')
+        //         } else{
+        //             console.log('outside')
+        //         }
+        //     });
+        // }
     }
     
     componentDidUpdate(){
@@ -49,10 +59,16 @@ export class Popup extends React.Component {
     hideWindow(){
         let elementId = document.getElementById(this.props.popupId)
         elementId.classList.add("hidden")
+        Array.from(document.getElementsByClassName('accept-rolesource-button')).forEach(element => {
+          element.classList.add('non-select')  
+        })
+        this.props.dispatch(checkRoleSource(false,false))
+        this.props.dispatch(doubleCheckDecisionTraits(this.props.allData))
     }
 
     // let className = props.popupId === "popup-Knight" ? " hidden" : " hidden"
-    render(){
+    render(){            
+        // console.log(this.props.popupId)
         return (
             //add hidden to class name
             <div className={"popup " + this.props.popupClass} id={this.props.popupId}>
@@ -66,12 +82,14 @@ export class Popup extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    allData: state,
     who: state.who,
     // skills: state.skills,
     intersection: state.intersection,
     role: state.role,
     source: state.source,
-    database: state.database
+    database: state.database,
+    roleSourceReady: state.roleSourceReady
 });
 
 export default connect(mapStateToProps)(Popup);

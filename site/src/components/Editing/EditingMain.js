@@ -11,7 +11,7 @@ import {
 
 import './editing.css'
 
-import {formatEditingPage, updateSkillBank, updateLevel} from '../../actions.js' 
+import {formatEditingPage, updateSkillBank, updateLevel, checkRoleSource} from '../../actions.js' 
 
 import ChoicePage from './Choices/ChoicePage'
 import IntersectionPage from './Choices/IntersectionPage'
@@ -20,6 +20,11 @@ import CharacterPage from './Choices/MiscInfo/CharacterPage'
 import FinishPage from './Choices/MiscInfo/FinishPage'
 
 export class EditingMain extends React.Component {
+
+    joinWords(string){
+        let joined = string.split(" ").join("")
+        return joined.replace(/[^\w\s]/gi, '')
+    }
 
     formatEditAction(){
         this.props.dispatch(formatEditingPage(false))
@@ -31,6 +36,26 @@ export class EditingMain extends React.Component {
         let source = this.props.source
         let intersection = this.props.intersection
         this.props.dispatch(updateSkillBank(database, role, source, intersection))
+    }
+
+    checkRoleSource(roleSource){
+        const promise1 = new Promise((resolve, reject) => {
+            // let requirements = "requirements"
+            resolve(
+                this.props.dispatch(checkRoleSource(roleSource, false, this.props.all))
+            );
+          });
+          
+          
+          promise1.then(() => {
+              if (this.props.roleSourceReady){
+                // let joinedTitle = this.joinWords(this.props.details.title)
+                Array.from(document.getElementsByClassName('accept-rolesource-button')).forEach(element=>{
+                    element.classList.remove('non-select')
+                })
+            }
+            // expected output: "Success!"
+          });
     }
 
     choiceBoxHighlight(){
@@ -116,18 +141,20 @@ export class EditingMain extends React.Component {
                                     button={"/editing/role"}
                                     todo={this.formatEditAction}
                                     rolesource={'role'}
+                                    checkRoleSource={(roleSource) => this.checkRoleSource(roleSource)}
+                                    />
+                                }
                                 />
-                            }
-                        />
                         <Route 
                             path="/editing/source"
                             render={() => 
                                 <ChoicePage
-                                    header={"Choose your SOURCE."}
-                                    info={this.props.database.sources}
+                                header={"Choose your SOURCE."}
+                                info={this.props.database.sources}
                                     next={"/editing/who"}
                                     button={"/editing/source"}
                                     rolesource={'source'}
+                                    checkRoleSource={(roleSource) => this.checkRoleSource(roleSource)}
                                 />
                             }
                         />
@@ -184,6 +211,7 @@ export class EditingMain extends React.Component {
   }
   
 const mapStateToProps = state => ({
+    all: state,
     who: state.who,
     // skills: state.skills,
     intersection: state.intersection,
@@ -191,7 +219,8 @@ const mapStateToProps = state => ({
     source: state.source,
     database: state.database,
     level: state.level,
-    currentSkills: state.currentSkills
+    currentSkills: state.currentSkills,
+    roleSourceReady: state.roleSourceReady
 });
 
 export default connect(mapStateToProps)(EditingMain);

@@ -35,6 +35,7 @@ export default function FinalItem(props) {
         (props.skill.category === "Source") ? props.source : ""
 
     const allWords = () => {
+        // debugger;
         let name = (props.skill.name) ? String(props.skill.name + ' ') : ''
         let action = (props.skill.action) ? String(props.skill.action + ' ') : ''
         let skillLevel = (props.skill.skillLevel) ? String(props.skill.skillLevel + ' ') : ''
@@ -42,10 +43,12 @@ export default function FinalItem(props) {
         let damage = (props.skill.damage) ? String(props.skill.damage + ' ') : ''
         let flavor = (props.skill.flavor) ? String(props.skill.flavor + ' ') : ''
         let impact = (props.skill.impact) ? String(props.skill.impact + ' ') : ''
+        let impact2 = (props.skill.impact2) ? String(props.skill.impact2 + ' ') : ''
         let damageWord = (props.skill.damage) ? ("damage ") : ''
-        let itemText = name + action + skillLevel + category + damage + flavor + impact + damageWord
+        let itemText = name + action + skillLevel + category + damage + flavor + impact + damageWord + impact2
         // console.log(itemText)
         props.gatherItemText(props.skill.name, itemText.toUpperCase())
+        console.log(impact2)
     }
 
     if (!props.skill.fullText){
@@ -63,6 +66,8 @@ export default function FinalItem(props) {
 
     let flavor = typeof props.skill.flavor === 'string' ? props.skill.flavor : 'Choice must be made.'
     let impact = typeof props.skill.impact === 'string' ? props.skill.impact : 'Choice must be made.'
+    let impact2 = props.skill.impact2 ? props.skill.impact2 : ''
+    let demonicOriginNote = props.skill.demonicOriginNote && props.level <= 5 ? props.skill.demonicOriginNote : ''
     // console.log(props.skill)
 
     function pleaFormat(plea){
@@ -73,7 +78,7 @@ export default function FinalItem(props) {
 
     let plea = props.skill.plea ? pleaFormat(props.skill.plea) : ''
     // console.log(props.skill.plea)
-
+    // console.log(props)
     return (
         <div className={'one-skill'} id={props.skill.name}>
             <div className={'skill-head-pane skill-header-open'} onClick={e => toggleDetails(e)}>
@@ -88,8 +93,10 @@ export default function FinalItem(props) {
                 </div>
             </div>
             <div className={'skill-dropdown ' + hideDropdown}>
+                <p className={'skill-result heavy red'}>{demonicOriginNote}</p>
                 <p className={'skill-condition'}>{flavor}</p>
                 <p className={'skill-result heavy'}>{impact}</p>
+                <p className={'skill-result heavy'}>{impact2}</p>
                 {plea}
             </div>         
         </div>

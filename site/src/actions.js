@@ -224,7 +224,7 @@ export const resetFilters = () => ({
 })
 
 export const updateActionStatus = input => dispatch => {
-    console.log(`slider level: ` + input)
+    // console.log(`slider level: ` + input)
 }
 
 export const UPDATE_ACTION_DETAILS = 'UPDATE_ACTION_DETAILS';
@@ -283,7 +283,7 @@ export const updateRoleSource = (currentSkills, database, roleSource, title, pri
     // console.log(title)
     // console.log(priorRole)
     // console.log(priorSource)
-    if (roleSource ===  "role" && priorRole){
+    if (roleSource === "role" && priorRole){
         let filteredSkills = []
         currentSkills.forEach(skill => {
             if (skill.category === "Role" || skill.category === "Intersection"){
@@ -306,6 +306,10 @@ export const updateRoleSource = (currentSkills, database, roleSource, title, pri
     }
 
     if (roleSource ===  "source" && priorSource){
+        let decisionTraits = currentSkills.filter(skill=>{
+            return skill.decisionTrait === true
+        })
+        // console.log(decisionTraits)
         let filteredSkills = []
         currentSkills.forEach(skill => {
             // console.log(skill)
@@ -317,13 +321,13 @@ export const updateRoleSource = (currentSkills, database, roleSource, title, pri
         })
         let newGivenSkills = []
         database.sources.forEach(source => {
-            if (source.title === title){
-
+            if (source.title === title && source.traits){
                 newGivenSkills.push(...source.traits)
             }
         })
 
-        let revisedSkills = [...newGivenSkills, ...filteredSkills]
+        let revisedSkills = [...newGivenSkills, ...filteredSkills, ...decisionTraits]
+        // console.log(revisedSkills)
 
         dispatch(currentSkillsStateUpdate(revisedSkills))
         dispatch(roleSourceStateUpdate(priorRole, title))
@@ -387,85 +391,36 @@ export const updateSkillsFromIntersection = (selectedNames, currentSkills, datab
 }
 
 export const filterOutIntersectionSkills = (currentSkills, level) => dispatch => {
-    console.log(currentSkills)
-
+    // console.log(currentSkills)
     function notAnIntersection(skill){
         return skill.category !== "Intersection"
-    }
-    function notAMasterIntersection(skill){
-
-    }
-
-    // function notAnIntersectionOrMasterIntersection(skill){
-    //     if (skill.skillLevel === "Master"){
-    //         return
-    //     }
-    //     if (skill.category === "Intersection"){
-    //         return
-    //     }
-    // }
-    // function notAMaster(skill){
-        //     return skill.skillLevel !== "Master"
-        // }
-        
-        
+    }       
+        // filter out ALL intersections
         if (level < 6){
-            // this is good!
-            console.log('less than 6')
+            // console.log('less than 6')
             let notIntersections = currentSkills.filter(notAnIntersection)
             dispatch(currentSkillsStateUpdate(notIntersections))
         }
+        // filter out the master intersections
         else if (level < 11) {
-            console.log('between 6 and 10')
-
-            let noMasterIntersections = []
-
-            function checkForMasterIntersections(){
+            // console.log('between 6 and 10')
+            let masterIntersections = []
+            currentSkills.forEach(skill => {
                 if (skill.category === "Intersection"){
-                    if (skill.skillLevel === "Advanced"){
-                        
+                    if (skill.skillLevel === "Master"){
+                        masterIntersections.push(skill)
                     }
-                    if (skill.skillLevel === "Basic"){
-                        return skill
-                    }
-                    if (skill.skillLevel === "Given"){
-                        return skill
-                    }
-                    console.log(skill)
-                    // return (skill.skillLevel === "Advanced" || skill.skillLevel === "Basic" || skill.skillLevel === "Given")
                 }
-                if (skill.category !== "Intersection"){
-                    console.log(skill)
-                    return
-                }
-            }
-
-
-            // let revisedSkills = []
-            // let naughtyList = []
-            // currentSkills.forEach(skill=>{
-            //     if (skill.category === "Intersection" && skill.skillLevel === "Master"){
-            //         naughtyList.push(skill)
-            //     }
-            // })
-            // console.log([...naughtyList])
-            // let notMasterIntersections = currentSkills.filter(notAnIntersectionOrMasterIntersection)
-            // let notBoth = currentSkills.filter(notAMasterIntersection)
+            })
+            let noMasterIntersections = currentSkills.filter(skill => {
+                return skill !== masterIntersections[0]
+            })
             dispatch(currentSkillsStateUpdate(noMasterIntersections))
         }
         else {
-            console.log('level 11 or 12')
+            // console.log('level 11 or 12')
             dispatch(currentSkillsStateUpdate(currentSkills))
-
         }
-        // filter out the master intersections
-        // let revisedSkills = currentSkills.filter(notAnIntersection).filter(notAMaster)
-            // return (skill.category === "Intersection" && skill.skillLevel === "Master")
-    // console.log(currentSkills)
-    // dispatch(currentSkillsStateUpdate(revisedSkills))
-    // let cleansedFromRoleOrSource = currentSkills.filter(isRoleOrSourceSkill)
-    // let revisedSkills = [...selected, ...cleansedFromRoleOrSource]
-    
 }
 
 export const CURRENT_SKILLS_STATE_UPDATE = 'CURRENT_SKILLS_STATE_UPDATE';
@@ -535,6 +490,13 @@ export const tallyUpChoices = (currentSkills) => dispatch => {
         }
     })
 
+    //check for tattoos!
+    currentSkills.forEach(oneSkill=> {
+        if (oneSkill.name.substring(0,6) === "Tattoo"){
+            sourceBasic.push(oneSkill)
+        }
+    })
+
     let totals = {
         Role: {
             Basic: roleBasic.length,
@@ -582,3 +544,111 @@ export const lastRollState = lastRoll => ({
     type: LAST_ROLL_STATE,
     lastRoll
 })
+
+// This action checks the required choices to make before the Choose button becomes available.
+export const checkRoleSource = (roleSource, turnoff, allStateData) => dispatch => {
+    // console.log(roleSource)
+    if (
+        roleSource === "Tactician" ||
+        roleSource === "Shade" ||
+        roleSource === "Sayer" ||
+        roleSource === "Divine" ||
+        roleSource === "Nature" ||
+        roleSource === "Chakrah"
+    ){
+        dispatch(chooseRoleSourceButtonAvailable(true))
+    }
+    else if(roleSource === "Knight"){
+        console.log(allStateData)
+
+    }
+    else if(roleSource === "Elementalist"){
+        console.log(allStateData)
+        
+    }
+    else if(roleSource === "Bounty Hunter"){
+        console.log(allStateData)
+        
+    }
+    else if(roleSource === "Morph"){
+        console.log(allStateData)
+        
+    }
+    else if(roleSource === "Demonic"){
+        // console.log(allStateData)
+        let foundOrigin = allStateData.currentSkills.filter(skill=>{
+            return skill.name === "Fiend" || skill.name === "Abomination" || skill.name === "Devil"
+        })
+        if (foundOrigin.length > 0){
+            // console.log(foundOrigin)
+            dispatch(chooseRoleSourceButtonAvailable(true))
+        }
+        
+    }
+    else {
+        //if false will make all rolesource accept buttons unavailable
+        return dispatch(chooseRoleSourceButtonAvailable(turnoff))
+    }
+}
+
+export const CHOOSE_ROLESOURCE_BUTTON_AVAILABLE = 'CHOOSE_ROLESOURCE_BUTTON_AVAILABLE';
+export const chooseRoleSourceButtonAvailable = boolean => ({
+    type: CHOOSE_ROLESOURCE_BUTTON_AVAILABLE,
+    boolean
+})
+
+export const roleSourceReady = (roleSource) => dispatch => {
+    // return true
+}
+
+export const doubleCheckDecisionTraits = (allData) => dispatch => {
+    // console.log(allData)
+    let role = allData.role
+    let source = allData.source
+    // console.log(allData.currentSkills)
+
+    if (source !== "Demonic"){
+        // debugger;
+        let noDemonicOrigin = allData.currentSkills.filter(skill=>{
+            return (skill.name !== "Fiend" && skill.name !== "Devil" && skill.name !== "Abomination")
+        })
+        // console.log("not demonic!")
+        dispatch(currentSkillsStateUpdate(noDemonicOrigin))
+    }
+    if (source !== "Chakrah"){
+
+        let noChakrahTattoos = allData.currentSkills.filter(skill=>{
+            return (skill.name.substring(0,6) !== "Tattoo")
+        })
+        dispatch(currentSkillsStateUpdate(noChakrahTattoos))
+    }
+    
+}
+
+export const updateDemonic = (origin, currentSkills) => dispatch => {
+
+    let removedPossibleOrigin = currentSkills.filter(skill => {
+        return (skill.name !== "Fiend" && skill.name !== "Devil" && skill.name !== "Abomination")
+    })
+    let revisedSkills = [...removedPossibleOrigin, origin]
+    dispatch(currentSkillsStateUpdate(revisedSkills))
+}
+
+export const updateChakrah = (tattooSkill, currentSkills, add) => dispatch => {
+    // add means checkbox is checked, so we add
+    if (add){
+        let removePossibleDuplicate = currentSkills.filter(skill => {
+            return (skill.name !== tattooSkill.name)
+        })
+        let revisedSkills = [...removePossibleDuplicate, tattooSkill]
+        dispatch(currentSkillsStateUpdate(revisedSkills))
+    }   
+    else {
+        let removedTattoo = currentSkills.filter(skill => {
+            return (skill.name !== tattooSkill.name)
+        })
+        let revisedSkills = [...removedTattoo]
+        dispatch(currentSkillsStateUpdate(revisedSkills))
+    }
+
+}

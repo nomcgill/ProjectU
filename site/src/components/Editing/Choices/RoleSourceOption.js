@@ -11,6 +11,7 @@ export default function RoleSourceOption(props) {
     function onClick(input){
         let elementPopup = document.getElementById('popup-' + props.elementId)
         elementPopup.classList.remove('hidden')
+        props.checkRoleSource(props.section.title)
     }
 
     return (
@@ -29,6 +30,7 @@ export default function RoleSourceOption(props) {
                         img={props.img}
                         elementId={props.elementId}
                         rolesource={props.rolesource}
+                        checkRoleSource={props.checkRoleSource}
                     />
                 }
                 popupId={'popup-' + props.elementId}

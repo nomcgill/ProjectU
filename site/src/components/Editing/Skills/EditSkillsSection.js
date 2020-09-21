@@ -36,6 +36,8 @@ export default function EditSkillsSection(props) {
         }
         props.checkmarkWhatsSeen()
     }
+
+    
     // console.log(props)
     return (
         <div className={theTitle + '-box skillbox'} id={theTitle + "-box"}>

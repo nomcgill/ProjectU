@@ -1,0 +1,50 @@
+
+#character-editing-pane .profile-popup {
+    margin: 0;
+}
+
+#popup-save .popup-inside {
+    height: 370px;
+}
+
+.profile-popup .popup-inside {
+    height: 280px;
+    /* text-align: left; */
+}
+
+.profile-popup-section {
+    border: solid 1px white;
+    margin: 0px 10px 10px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(14, 14, 14);
+}
+
+.profile-popup-text {
+    font-size: .96em;
+    padding: 10px;
+    max-width: 280px;
+    margin: 0 auto;
+    line-height: .92em;
+}
+
+#find-hero-input {
+    text-align: center;
+    width: 205px;
+    padding: 3px;
+    /* height: 16px; */
+    font-size: 15px;
+}
+
+#save-hero-button {
+    font-size: 15px;
+    padding: 6px 8px 5px;
+    border: none;
+    background-color: rgb(100, 100, 100);
+    color: white;
+    border: solid 1px white;
+}
+
+#popup-save .profile-popup-text {
+    padding: 5px;
+}

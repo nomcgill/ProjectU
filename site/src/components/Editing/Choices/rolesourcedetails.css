@@ -170,3 +170,35 @@
 .trait-description-part {
     margin: 8px 0px;
 }
+
+.accept-or-decline .non-select {
+    cursor: default !important;
+    background-color: rgb(92, 91, 91) !important;
+    color: gray;
+}
+
+/* COMMON DECISION CSS BELOW*/
+
+.rolesource-trait-section .selected-decision-trait {
+    background-color: rgb(156, 66, 33);
+    /* border: solid 2px orangered */
+}
+
+.rolesource-trait-section .selected-decision-trait:hover {
+    background-color: rgb(177, 78, 42);
+    /* border: solid 2px orangered */
+}
+
+
+.decision-button {
+    /* border: solid 2px white; */
+    background-color: rgb(48, 48, 48);
+    padding: 10px 5px 5px;
+    border-radius: 7px;
+    margin: 6px;
+    cursor: pointer;
+}
+
+.decision-button:hover {
+    background-color: rgb(61, 61, 61);
+}

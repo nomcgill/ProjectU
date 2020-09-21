@@ -71,41 +71,45 @@ export default function IntersectionInfo(props) {
             {/* <h2>{intersection.title}</h2> */}
             <div className={"intersection-section"}>
                 <h3 className={'intersection-path-header'}>Level 6 Path</h3>
-                <IntersectionOption
-                    skill={advancedSkills[0]}
-                    count={0}
-                    updateSkills={(chosenSkillTitles, checkboxID, alreadyHave) => oneAtATimeCheckbox(chosenSkillTitles, checkboxID, alreadyHave)}
-                    notAvailable={notAvailable("Advanced")}
-                    updateCheckbox={(chosenDivs) => updateCheckboxVisual(chosenDivs)}
-                    alreadyHave={filterCurrentIntersectionSkills}
+                <div className={'intersection-section-inline'}>
+                    <IntersectionOption
+                        skill={advancedSkills[0]}
+                        count={0}
+                        updateSkills={(chosenSkillTitles, checkboxID, alreadyHave) => oneAtATimeCheckbox(chosenSkillTitles, checkboxID, alreadyHave)}
+                        notAvailable={notAvailable("Advanced")}
+                        updateCheckbox={(chosenDivs) => updateCheckboxVisual(chosenDivs)}
+                        alreadyHave={filterCurrentIntersectionSkills}
+                        />
+                    <IntersectionOption
+                        skill={advancedSkills[1]}
+                        count={1}
+                        updateSkills={(chosenSkillTitles, checkboxID, alreadyHave) => oneAtATimeCheckbox(chosenSkillTitles, checkboxID, alreadyHave)}
+                        notAvailable={notAvailable("Advanced")}
+                        updateCheckbox={(chosenDivs) => updateCheckboxVisual(chosenDivs)}
+                        alreadyHave={filterCurrentIntersectionSkills}
                     />
-                <IntersectionOption
-                    skill={advancedSkills[1]}
-                    count={1}
-                    updateSkills={(chosenSkillTitles, checkboxID, alreadyHave) => oneAtATimeCheckbox(chosenSkillTitles, checkboxID, alreadyHave)}
-                    notAvailable={notAvailable("Advanced")}
-                    updateCheckbox={(chosenDivs) => updateCheckboxVisual(chosenDivs)}
-                    alreadyHave={filterCurrentIntersectionSkills}
-                />
+                </div>
             </div>
             <div className={"intersection-section"}>
                 <h3 className={'intersection-path-header'}>Level 11 Path</h3>
-                <IntersectionOption 
-                    skill={masterSkills[0]}
-                    count={0}
-                    updateSkills={(chosenSkillTitles, checkboxID, alreadyHave) => oneAtATimeCheckbox(chosenSkillTitles, checkboxID, alreadyHave)}
-                    notAvailable={notAvailable("Master")}      
-                    updateCheckbox={(chosenDivs) => updateCheckboxVisual(chosenDivs)}   
-                    alreadyHave={filterCurrentIntersectionSkills}
-                />
-                <IntersectionOption 
-                    skill={masterSkills[1]}
-                    count={1}
-                    updateSkills={(chosenSkillTitles, checkboxID, alreadyHave) => oneAtATimeCheckbox(chosenSkillTitles, checkboxID, alreadyHave)}
-                    notAvailable={notAvailable("Master")}      
-                    updateCheckbox={(chosenDivs) => updateCheckboxVisual(chosenDivs)}
-                    alreadyHave={filterCurrentIntersectionSkills}              
-                />
+                <div className={'intersection-section-inline'}>
+                    <IntersectionOption 
+                        skill={masterSkills[0]}
+                        count={0}
+                        updateSkills={(chosenSkillTitles, checkboxID, alreadyHave) => oneAtATimeCheckbox(chosenSkillTitles, checkboxID, alreadyHave)}
+                        notAvailable={notAvailable("Master")}      
+                        updateCheckbox={(chosenDivs) => updateCheckboxVisual(chosenDivs)}   
+                        alreadyHave={filterCurrentIntersectionSkills}
+                    />
+                    <IntersectionOption 
+                        skill={masterSkills[1]}
+                        count={1}
+                        updateSkills={(chosenSkillTitles, checkboxID, alreadyHave) => oneAtATimeCheckbox(chosenSkillTitles, checkboxID, alreadyHave)}
+                        notAvailable={notAvailable("Master")}      
+                        updateCheckbox={(chosenDivs) => updateCheckboxVisual(chosenDivs)}
+                        alreadyHave={filterCurrentIntersectionSkills}              
+                    />
+                </div>
             </div>
         </div>
     );

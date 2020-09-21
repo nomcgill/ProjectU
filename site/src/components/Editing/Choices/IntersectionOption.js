@@ -16,7 +16,7 @@ export default function IntersectionOption(props) {
     return (
         <div>
             <IntersectionItem 
-                class={'intersection-option ' + props.notAvailable}
+                class={'intersection-option intersection-box-label ' + props.notAvailable}
                 count={props.count}
                 info={props.skill}
                 title={props.title}

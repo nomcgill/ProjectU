@@ -35,6 +35,7 @@ export default function FinalBody(props) {
                     source={props.source}
                     intersection={props.intersection}
                     key={key}
+                    level={props.level}
                 />
             )
         }
