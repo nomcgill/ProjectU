@@ -61,12 +61,15 @@ export class SkillsPage extends React.Component {
         
         // this.props.dispatch(matchingSkills)
 
-        this.props.dispatch(updateSkillsFromSkillsList(matchingSkills,this.props.currentSkills, how))
-                // console.log('skillspage skills...')        
-                // console.log(matchingSkills)
-                // console.log('currentskills...')
-                // console.log(this.props.currentSkills)
-        this.tallyCurrentSkills(this.props.currentSkills)
+        const promise1 = new Promise((resolve, reject) => {
+            resolve(
+                this.props.dispatch(updateSkillsFromSkillsList(matchingSkills,this.props.currentSkills, how))
+            );
+          });
+          
+          promise1.then(() => {
+            this.tallyCurrentSkills(this.props.currentSkills)
+        });
     }
 
     tallyCurrentSkills(currentSkills){

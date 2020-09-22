@@ -11,16 +11,29 @@ import BountyHunterDecision from './RoleChoices/BountyHunterDecision'
 import MorphDecision from './RoleChoices/MorphDecision'
 import KnightDecision from './RoleChoices/KnightDecision'
 
-import { updateRoleSource, updateSkillBank, roleSourceReady, updateDemonic, updateChakrah, updateCore } from '../../../actions'
+import { 
+    updateRoleSource, 
+    updateDemonic, 
+    updateChakrah, 
+    updateCore, 
+    updateMorph, 
+    updateBounty,
+    updateAllChoicesVisually 
+} from '../../../actions'
 
 export class RoleSourceDetails extends React.Component {
 
     componentDidMount(){
-        // console.log(this.props)
         // this.props.dispatch(roleSourceReady(roleSource))
+
+    }
+
+    updateAllVisuals(){
         this.updateDemonicVisual()
         this.updateChakrahVisual()
-
+        this.updateElementalistVisual()
+        this.updateMorphVisual()
+        this.updateBountyVisual()
     }
 
     joinWords(string){
@@ -29,25 +42,76 @@ export class RoleSourceDetails extends React.Component {
     }
 
     updateDemonic(origin){
-        // console.log(origin)
         let selected = document.getElementById(origin.name + '-radio')
         if (selected.checked){
             const promise1 = new Promise((resolve, reject) => {
                 resolve(
                     this.props.dispatch(updateDemonic(origin, this.props.currentSkills))
                 );
+            });
+              
+            promise1.then(() => {
+                let roleSource = this.props.details.title
+                this.props.checkRoleSource(roleSource)
+                this.props.dispatch(updateAllChoicesVisually(this.props.currentSkills))
+                // this.updateDemonicVisual()
+            });     
+        }
+    }
+    
+    // updateDemonicVisual(){
+    //     Array.from(document.getElementsByClassName('demon-decision-button')).forEach(element=> 
+    //         element.classList.remove('selected-decision-trait'))
+    //     let foundOrigin = this.props.currentSkills.filter(skill=>{
+    //         return skill.name === "Fiend" || skill.name === "Abomination" || skill.name === "Devil"
+    //     })
+    //     if (foundOrigin[0]){
+    //         if (document.getElementById(foundOrigin[0].name)){
+    //             document.getElementById(foundOrigin[0].name).classList.add('selected-decision-trait')
+    //         }
+    //     }
+    // }
+
+    updateMorph(beast, animalTextId){
+        let joinedName = this.joinWords(beast.name)
+        let selected = document.getElementById(joinedName + '-radio')
+        if (selected.checked){
+            const promise1 = new Promise((resolve, reject) => {
+                resolve(
+                    this.props.dispatch(updateMorph(beast, this.props.currentSkills, animalTextId))
+                );
               });
               
               promise1.then(() => {
+                  console.log(this.props.currentSkills)
                 let roleSource = this.props.details.title
                 this.props.checkRoleSource(roleSource)
-                this.updateDemonicVisual()
+                // this.updateMorphVisual(animalTextId)
+                this.props.dispatch(updateAllChoicesVisually(this.props.currentSkills))
               });     
         }
     }
 
+    // updateMorphVisual(){
+    //     Array.from(document.getElementsByClassName('beast-decision-button')).forEach(element=> 
+    //         element.classList.remove('selected-decision-trait'))
+    //     Array.from(document.getElementsByClassName('beast-name-inputs')).forEach(element=>
+    //         element.classList.add('hidden'))
+    //     let foundBeast = this.props.currentSkills.filter(skill=> {
+    //         let endOfSkillName = skill.name.slice(skill.name.length - 11);
+    //         return (endOfSkillName === "Small Beast" || endOfSkillName === "Large Beast" || endOfSkillName === "edium Beast")
+    //     })
+    //     if (foundBeast[0]){
+    //         let beastId = this.joinWords(foundBeast[0].name)
+    //         if (document.getElementById(beastId)){
+    //             document.getElementById(beastId).classList.add('selected-decision-trait')
+    //             document.getElementById('name-'+beastId).classList.remove('hidden')
+    //             document.getElementById('animal-'+beastId).classList.remove('hidden')
+    //         }
+    //     }
+    // }
+    
     updateCore(core){
-        // console.log(origin)
         let selected = document.getElementById(this.joinWords(core.name) + '-radio')
         if (selected.checked){
             const promise1 = new Promise((resolve, reject) => {
@@ -59,40 +123,27 @@ export class RoleSourceDetails extends React.Component {
               promise1.then(() => {
                 let roleSource = this.props.details.title
                 this.props.checkRoleSource(roleSource)
-                this.updateElementalistVisual()
+                // this.updateElementalistVisual()
+                this.props.dispatch(updateAllChoicesVisually(this.props.currentSkills))
               });     
         }
     }
     
-    updateElementalistVisual(){
-        Array.from(document.getElementsByClassName('core-decision-button')).forEach(element=> 
-            element.classList.remove('selected-decision-trait'))
-        let foundCore = this.props.currentSkills.filter(skill=> {
-            return (skill.name.substring(0,7) === "Core of")        
-        })
-        if (foundCore[0]){
-            let coreId = this.joinWords(foundCore[0].name)
-            if (document.getElementById(coreId)){
-                document.getElementById(coreId).classList.add('selected-decision-trait')
-            }
-        }
-    }
+    // updateElementalistVisual(){
+    //     Array.from(document.getElementsByClassName('core-decision-button')).forEach(element=> 
+    //         element.classList.remove('selected-decision-trait'))
+    //     let foundCore = this.props.currentSkills.filter(skill=> {
+    //         return (skill.name.substring(0,7) === "Core of")        
+    //     })
+    //     if (foundCore[0]){
+    //         let coreId = this.joinWords(foundCore[0].name)
+    //         if (document.getElementById(coreId)){
+    //             document.getElementById(coreId).classList.add('selected-decision-trait')
+    //         }
+    //     }
+    // }
 
-    updateDemonicVisual(){
-        Array.from(document.getElementsByClassName('demon-decision-button')).forEach(element=> 
-            element.classList.remove('selected-decision-trait'))
-        let foundOrigin = this.props.currentSkills.filter(skill=>{
-            return skill.name === "Fiend" || skill.name === "Abomination" || skill.name === "Devil"
-        })
-        if (foundOrigin[0]){
-            if (document.getElementById(foundOrigin[0].name)){
-                document.getElementById(foundOrigin[0].name).classList.add('selected-decision-trait')
-            }
-        }
-    }
-    
     updateChakrah(tattooSkill){
-        // console.log(tattooSkill)
         let joinedName = this.joinWords(tattooSkill.name)
         let selected = document.getElementById(joinedName + '-radio')
         const promise1 = new Promise((resolve, reject) => {
@@ -103,40 +154,68 @@ export class RoleSourceDetails extends React.Component {
             }
         })      
         promise1.then(() => {
-            this.updateChakrahVisual()
+            this.props.dispatch(updateAllChoicesVisually(this.props.currentSkills))
         });     
     }
-    
-    updateChakrahVisual(){
-        Array.from(document.getElementsByClassName('chakrah-decision-button')).forEach(element=> 
-            element.classList.remove('selected-decision-trait'))
-        let foundTattoos = this.props.currentSkills.filter(skill=>{
-            return skill.name.substring(0,6) === "Tattoo" && skill.category === "Source"
-        })
-        foundTattoos.forEach(tattoo=>{
-            let tattooId = this.joinWords(tattoo.name)
-            if (document.getElementById(tattooId)){
-                document.getElementById(tattooId).classList.add('selected-decision-trait')
+
+    updateBounty(specialization, radio){
+        // console.log('heard')
+        let selected = document.getElementById(radio)
+        const promise1 = new Promise((resolve, reject) => {
+            if (selected){
+                resolve(
+                    this.props.dispatch(updateBounty(specialization, this.props.currentSkills, selected.checked))
+                );
             }
-        })
+        })      
+        promise1.then(() => {
+            let roleSource = this.props.details.title
+            this.props.checkRoleSource(roleSource)
+            // this.updateBountyVisual()
+            this.props.dispatch(updateAllChoicesVisually(this.props.currentSkills))
+        });     
     }
+
+    // updateBountyVisual(){
+    //     Array.from(document.getElementsByClassName('specialty-decision-button')).forEach(element=> 
+    //         element.classList.remove('selected-decision-trait'))
+    //     let existingSpecialtySkills = this.props.currentSkills.filter(skill=>{
+    //         return (skill.bountyCategory && skill.skillLevel === "Given")
+    //     })
+    //     if (existingSpecialtySkills.length > 0){
+    //         let specialtyId = existingSpecialtySkills[0].bountyCategory
+    //         if (document.getElementById(specialtyId)){
+    //             document.getElementById(specialtyId).classList.add('selected-decision-trait')
+    //         }
+    //     }
+    // }
+    
+    // updateChakrahVisual(){
+    //     Array.from(document.getElementsByClassName('chakrah-decision-button')).forEach(element=> 
+    //         element.classList.remove('selected-decision-trait'))
+    //     let foundTattoos = this.props.currentSkills.filter(skill=>{
+    //         return skill.name.substring(0,6) === "Tattoo" && skill.category === "Source"
+    //     })
+    //     foundTattoos.forEach(tattoo=>{
+    //         let tattooId = this.joinWords(tattoo.name)
+    //         if (document.getElementById(tattooId)){
+    //             document.getElementById(tattooId).classList.add('selected-decision-trait')
+    //         }
+    //     })
+    // }
 
     componentDidUpdate(){
         this.keepPopupVisible()
     }
 
     keepPopupVisible(){
-        // console.log(this.props.elementId)
         let thisPopup = "popup-" + document.getElementById(this.props.elementId)
         if (document.getElementById(this.props.elementId)){
-            console.log(thisPopup)
             thisPopup.classList.remove('hidden')
-            // debugger;
         }
     }
 
     choose(roleSource){
-        // console.log(this.props.currentSkills)
         let popup = ('popup-' + this.props.elementId)
         let title = this.props.details.title
         // let roleSourceReady = this.props.dispatch(roleSourceReady(roleSource))
@@ -234,6 +313,7 @@ export class RoleSourceDetails extends React.Component {
             return (
                 <BountyHunterDecision
                     database={this.props.database}
+                    updateBounty={(specialization, radioId)=>this.updateBounty(specialization, radioId)}
                 />
             )
             
@@ -242,6 +322,7 @@ export class RoleSourceDetails extends React.Component {
             return (
                 <MorphDecision
                     database={this.props.database}
+                    updateMorph={(beast, animalTextId)=>this.updateMorph(beast, animalTextId)}
                 />
             )
             

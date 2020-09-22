@@ -551,6 +551,12 @@ export const lastRollState = lastRoll => ({
 
 // This action checks the required choices to make before the Choose button becomes available.
 export const checkRoleSource = (roleSource, turnoff, allStateData) => dispatch => {
+
+
+    //updating all them buttons upon popup open! (but there's not always a need if it's not being fed the state)
+    if (allStateData){
+        dispatch(updateAllChoicesVisually(allStateData.currentSkills))
+    }
     // console.log(roleSource)
     if (
         roleSource === "Tactician" ||
@@ -578,10 +584,26 @@ export const checkRoleSource = (roleSource, turnoff, allStateData) => dispatch =
     }
     else if(roleSource === "Bounty Hunter"){
         console.log(allStateData)
-        
+        // debugger;
+        let foundSpecialty = allStateData.currentSkills.filter(skill=> {
+            return skill.decisionTrait})
+        // debugger;
+        // console.log(foundSpecialty)
+        if (foundSpecialty.length > 0){
+            dispatch(chooseRoleSourceButtonAvailable(true))
+        }
     }
     else if(roleSource === "Morph"){
         console.log(allStateData)
+        let foundForm = allStateData.currentSkills.filter(skill=>{
+            if (skill.decisionTrait){
+                let endOfSkillName = skill.name.slice(skill.name.length - 11);
+                return (endOfSkillName === "Small Beast" || endOfSkillName === "Large Beast" || endOfSkillName === "edium Beast")
+            }
+        })
+        if (foundForm.length > 0){
+            dispatch(chooseRoleSourceButtonAvailable(true))
+        }
         
     }
     else if(roleSource === "Demonic"){
@@ -612,31 +634,48 @@ export const roleSourceReady = (roleSource) => dispatch => {
 }
 
 export const doubleCheckDecisionTraits = (allData) => dispatch => {
-    // console.log(allData)
+    console.log(allData)
     let role = allData.role
     let source = allData.source
-    // console.log(allData.currentSkills)
+
+    let revisedSkills = [...allData.currentSkills]
 
     if (source !== "Demonic"){
-        let noDemonicOrigin = allData.currentSkills.filter(skill=>{
+        let noDemonicOrigin = revisedSkills.filter(skill=>{
             return (skill.name !== "Fiend" && skill.name !== "Devil" && skill.name !== "Abomination")
         })
-        dispatch(currentSkillsStateUpdate(noDemonicOrigin))
+        revisedSkills = [...noDemonicOrigin]
     }
+    // console.log(revisedSkills)
+    if (role !== "Morph"){
+        let noBeastForms = revisedSkills.filter(skill=>{
+        let endOfSkillName = skill.name.slice(skill.name.length - 11);
+            return (endOfSkillName !== "Small Beast" && endOfSkillName !== "Large Beast" && endOfSkillName !== "edium Beast")
+        })
+        revisedSkills = [...noBeastForms]
+    }
+    // console.log(revisedSkills)
     if (role !== "Elementalist"){
-        let noElementalistCore = allData.currentSkills.filter(skill=>{
+        let noElementalistCore = revisedSkills.filter(skill=>{
             return (skill.name.substring(0,7) !== "Core of")
         })
-        dispatch(currentSkillsStateUpdate(noElementalistCore))
+        revisedSkills = [...noElementalistCore]
     }
+    // console.log(revisedSkills)
     if (source !== "Chakrah"){
-
-        let noChakrahTattoos = allData.currentSkills.filter(skill=>{
+        let noChakrahTattoos = revisedSkills.filter(skill=>{
             return (skill.name.substring(0,6) !== "Tattoo")
         })
-        dispatch(currentSkillsStateUpdate(noChakrahTattoos))
+        revisedSkills = [...noChakrahTattoos]
     }
-    
+    if (role !== "Bounty Hunter"){
+        let noBountySpecialization = revisedSkills.filter(skill=>{
+            return !skill.bountyCategory
+        })
+        revisedSkills = [...noBountySpecialization]   
+    }
+    // console.log(revisedSkills)
+    dispatch(currentSkillsStateUpdate(revisedSkills))
 }
 
 export const updateDemonic = (origin, currentSkills) => dispatch => {
@@ -646,6 +685,27 @@ export const updateDemonic = (origin, currentSkills) => dispatch => {
     })
     let revisedSkills = [...removedPossibleOrigin, origin]
     dispatch(currentSkillsStateUpdate(revisedSkills))
+}
+
+export const updateMorph = (beast, currentSkills, animalTextId) => dispatch => {
+    
+    let removedPossibleBeast = currentSkills.filter(skill => {
+        let endOfSkillName = skill.name.slice(skill.name.length - 11);
+        return (endOfSkillName !== "Small Beast" && endOfSkillName !== "Large Beast" && endOfSkillName !== "edium Beast")
+    })
+
+    let beastText = document.getElementById(animalTextId).value
+    let newAnimalTitle = beastText.length > 0 ? beastText + ' Form - ' + beast.name : 'Animal Form - ' + beast.name
+
+    let target = {...beast};
+    let source = {beastName: newAnimalTitle};
+
+    const sameBeastNewTitle = Object.assign(target, source);
+
+    // console.log(sameBeastNewTitle)
+    let revisedSkills = [...removedPossibleBeast, sameBeastNewTitle]
+    dispatch(currentSkillsStateUpdate(revisedSkills))
+
 }
 
 export const updateCore = (core, currentSkills) => dispatch => {
@@ -673,5 +733,122 @@ export const updateChakrah = (tattooSkill, currentSkills, add) => dispatch => {
         let revisedSkills = [...removedTattoo]
         dispatch(currentSkillsStateUpdate(revisedSkills))
     }
+}
 
+export const updateBounty = (specialtySkills, currentSkills) => dispatch => {
+
+    // console.log(currentSkills)
+    let newSpecialty = specialtySkills[0].bountyCategory
+    let oppositeSpecialty = 
+        newSpecialty === "Ranged" ? "Melee" :
+        newSpecialty === "Melee" ? "Ranged" :
+        console.log('Something went wrong.')
+
+    let removedPreexistingDecision = currentSkills.filter(skill => {
+        return !skill.decisionTrait
+    })
+
+    let removedOppositeSpecialtySkills = removedPreexistingDecision.filter(skill=> {
+        return skill.bountyCategory !== oppositeSpecialty
+    })
+
+    // console.log(removedPreexistingSpecialtySkills)
+    let revisedSkills = [...removedOppositeSpecialtySkills, ...specialtySkills]
+    dispatch(currentSkillsStateUpdate(revisedSkills))
+}
+
+
+
+export const updateDemonicVisual = (currentSkills) => dispatch => {
+    Array.from(document.getElementsByClassName('demon-decision-button')).forEach(element=> 
+        element.classList.remove('selected-decision-trait'))
+    let foundOrigin = currentSkills.filter(skill=>{
+        return skill.name === "Fiend" || skill.name === "Abomination" || skill.name === "Devil"
+    })
+    if (foundOrigin[0]){
+        if (document.getElementById(foundOrigin[0].name)){
+            document.getElementById(foundOrigin[0].name).classList.add('selected-decision-trait')
+        }
+    }
+}
+
+export const updateMorphVisual = (currentSkills) => dispatch => {
+    Array.from(document.getElementsByClassName('beast-decision-button')).forEach(element=> 
+        element.classList.remove('selected-decision-trait'))
+    Array.from(document.getElementsByClassName('beast-name-inputs')).forEach(element=>
+        element.classList.add('hidden'))
+    let foundBeast = currentSkills.filter(skill=> {
+        let endOfSkillName = skill.name.slice(skill.name.length - 11);
+        return (endOfSkillName === "Small Beast" || endOfSkillName === "Large Beast" || endOfSkillName === "edium Beast")
+    })
+    if (foundBeast[0]){
+        function joinWords(string){
+            let joined = string.split(" ").join("")
+            return joined.replace(/[^\w\s]/gi, '')
+        }
+        let beastId = joinWords(foundBeast[0].name)
+        if (document.getElementById(beastId)){
+            document.getElementById(beastId).classList.add('selected-decision-trait')
+            document.getElementById('name-'+beastId).classList.remove('hidden')
+            document.getElementById('animal-'+beastId).classList.remove('hidden')
+        }
+    }
+}
+
+export const updateElementalistVisual = (currentSkills) => dispatch => {
+    Array.from(document.getElementsByClassName('core-decision-button')).forEach(element=> 
+        element.classList.remove('selected-decision-trait'))
+    let foundCore = currentSkills.filter(skill=> {
+        return (skill.name.substring(0,7) === "Core of")        
+    })
+    if (foundCore[0]){
+        function joinWords(string){
+            let joined = string.split(" ").join("")
+            return joined.replace(/[^\w\s]/gi, '')
+        }
+        let coreId = joinWords(foundCore[0].name)
+        if (document.getElementById(coreId)){
+            document.getElementById(coreId).classList.add('selected-decision-trait')
+        }
+    }
+}
+
+export const updateBountyVisual = (currentSkills) => dispatch => {
+    Array.from(document.getElementsByClassName('specialty-decision-button')).forEach(element=> 
+        element.classList.remove('selected-decision-trait'))
+    let existingSpecialtySkills = currentSkills.filter(skill=>{
+        return (skill.bountyCategory && skill.skillLevel === "Given")
+    })
+    if (existingSpecialtySkills.length > 0){
+        let specialtyId = existingSpecialtySkills[0].bountyCategory
+        if (document.getElementById(specialtyId)){
+            document.getElementById(specialtyId).classList.add('selected-decision-trait')
+        }
+    }
+}    
+
+export const updateChakrahVisual = (currentSkills) => dispatch => {
+    Array.from(document.getElementsByClassName('chakrah-decision-button')).forEach(element=> 
+        element.classList.remove('selected-decision-trait'))
+    let foundTattoos = currentSkills.filter(skill=>{
+        return skill.name.substring(0,6) === "Tattoo" && skill.category === "Source"
+    })
+    foundTattoos.forEach(tattoo=>{
+        function joinWords(string){
+            let joined = string.split(" ").join("")
+            return joined.replace(/[^\w\s]/gi, '')
+        }
+        let tattooId = joinWords(tattoo.name)
+        if (document.getElementById(tattooId)){
+            document.getElementById(tattooId).classList.add('selected-decision-trait')
+        }
+    })
+}
+
+export const updateAllChoicesVisually = (currentSkills) => dispatch => {
+    dispatch(updateDemonicVisual(currentSkills))
+    dispatch(updateMorphVisual(currentSkills))
+    dispatch(updateElementalistVisual(currentSkills))
+    dispatch(updateBountyVisual(currentSkills))
+    dispatch(updateChakrahVisual(currentSkills))
 }

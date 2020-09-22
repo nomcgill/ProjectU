@@ -10,11 +10,11 @@ export default function Item(props) {
     let dashedName = props.info.name.replace(/ /g, "-");
 
     const usesDamage = () => {
-        if (props.info.damage){
-            return (
-            <span className={"damage heavy"} id={"damage-mod" + dashedName}> Deal {props.info.damage}X.</span>
-            )
-        }
+        // if (props.info.damage){
+        //     return (
+        //     <span className={"damage heavy"} id={"damage-mod" + dashedName}> Deal {props.info.damage}X.</span>
+        //     )
+        // }
     }
 
     const isActive = () => {
@@ -113,13 +113,15 @@ export default function Item(props) {
         )
     }
     let plea = props.info.plea ? pleaFormat(props.info.plea) : ''
+    let specialization = props.info.bountyCategory ? <span className={''}>{'(' + props.info.bountyCategory + ' spec.)'}</span> : ''
+
 
     return (
         <label className={"item " + props.class} id={dashedName} htmlFor={checkboxID}>
             <input type={'checkbox'} name={itemLabel} onClick={() => onItemClick(checkboxID)} id={checkboxID} className={'edit-skills-checkbox'} />
             <div className={'editing-item-content'} id={itemLabel}>
                 <p className={"item-name"}>
-                    {props.info.name} &#x2771;
+                    {props.info.name} {specialization}
                     <br />
                     {isActive()}
                 </p>

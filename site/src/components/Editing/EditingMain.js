@@ -49,6 +49,7 @@ export class EditingMain extends React.Component {
           
           promise1.then(() => {
               if (this.props.roleSourceReady){
+                  console.log("Is this ever even happening?")
                 // let joinedTitle = this.joinWords(this.props.details.title)
                 Array.from(document.getElementsByClassName('accept-rolesource-button')).forEach(element=>{
                     element.classList.remove('non-select')

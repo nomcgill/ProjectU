@@ -1,0 +1,30 @@
+
+.elementalist-choice {
+    margin: 10px;
+    text-align: center;
+}
+
+.elemenatlist-choice h4 {
+    font-size: 1.2em;
+}
+
+.elementalist-choice input {
+    display: none;
+}
+
+.elementalist-choice h3 {
+    margin: 3px;
+}
+
+.elementalist-choice p {
+    margin: 8px;
+}
+
+.demon-options > * {
+    /* border: solid 2px white; */
+}
+
+@media all and (min-width: 640px) { 
+
+
+}

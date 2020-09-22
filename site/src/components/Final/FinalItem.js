@@ -75,14 +75,17 @@ export default function FinalItem(props) {
         )
     }
 
+    let name = props.skill.beastName ? props.skill.beastName : props.skill.name
+    // console.log(props.skill)
+    let bountyHunterSpecialization = props.skill.bountyCategory ? '(' + props.skill.bountyCategory + ' spec.)' : '' 
     let plea = props.skill.plea ? pleaFormat(props.skill.plea) : ''
     // console.log(props.skill.plea)
     // console.log(props)
     return (
-        <div className={'one-skill'} id={props.skill.name}>
+        <div className={'one-skill'} id={name}>
             <div className={'skill-head-pane skill-header-open'} onClick={e => toggleDetails(e)}>
                 <div className={'skill-head-pane-top'}>
-                    <h3>{props.skill.name}</h3>
+                    <h3>{props.skill.name} {bountyHunterSpecialization}</h3>
                     <img src={GoldStar} className={'item-gold-star favorite-star ' + goldClass} onClick={e => toggleFavorite(e, true)} />
                     <img src={GrayStar} className={'item-gray-star favorite-star ' + grayClass} onClick={e => toggleFavorite(e, false)} />
                 </div>

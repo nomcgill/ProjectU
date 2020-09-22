@@ -12,13 +12,6 @@ export default function DemonicDecision(props) {
         return joined.replace(/[^\w\s]/gi, '')
     }
 
-    function removeHighlights(){
-
-    }
-
-
-
-
     let demonOptions = demonicInfo.decisionTraits.map((origin, count) => {
         let joinedName = joinWords(origin.name)
         return (
