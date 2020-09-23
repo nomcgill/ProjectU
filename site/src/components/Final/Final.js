@@ -5,7 +5,7 @@ import './final.css'
 import FinalTopPane from './FinalTopPane'
 import FinalBody from './FinalBody'
 
-import { toggleFavorite, toggleOpen, gatherItemText, gatherFilters, updateInputState, resetFilters, updateLevel } from '../../actions'
+import { toggleFavorite, toggleOpen, gatherItemText, gatherFilters, updateInputState, resetFilters, updateLevel, updateForRedirect } from '../../actions'
 
 export class Final extends React.Component {
     
@@ -31,6 +31,9 @@ export class Final extends React.Component {
     }
 
     componentDidMount(){
+        if (this.props.redirect){
+            this.props.dispatch(updateForRedirect(false))
+        }
         if (this.props.database){
             let stateLevel = this.props.level
             this.props.dispatch(updateLevel(stateLevel, false, this.props.database.levelingNumbers, this.props.currentSkills))
@@ -39,6 +42,7 @@ export class Final extends React.Component {
 
     render() {
         const shownSkills = (this.props.currentlyShown === undefined) ? this.props.currentSkills : this.props.currentlyShown
+        // console.log(this.props.currentSkills)
         return (
             <div id={'final-page'}>
 
@@ -46,7 +50,7 @@ export class Final extends React.Component {
                     // path="/skillview"
                     render={() =>  */}
                         {/* <div> */}
-                            <FinalTopPane 
+                            <FinalTopPane
                                 updateFilter={() => this.updateFilter()}
                                 resetFilters={() => this.resetFilters()}
                             />
@@ -56,6 +60,7 @@ export class Final extends React.Component {
                                 toggleOpen={(item) => this.props.dispatch(toggleOpen(item))}
                                 gatherItemText={(name, text) => this.props.dispatch(gatherItemText(name,text))}
                                 role={this.props.role}
+                                // currentBackground={this.props.currentBackground}
                                 source={this.props.source}
                                 intersection={this.props.intersection}
                                 level={this.props.level}
@@ -76,6 +81,7 @@ export class Final extends React.Component {
   }
   
 const mapStateToProps = state => ({
+    redirect: state.redirect,
     name: state.name,
     currentSkills: state.currentSkills,
     currentlyShown: state.currentlyShown,
@@ -87,6 +93,7 @@ const mapStateToProps = state => ({
     filterActive: state.filterActive,
     filterCategory: state.filterCategory,
     filterFavorite: state.filterFavorite,
+    // currentBackground: state.currentBackground,
     level: state.level
 });
 

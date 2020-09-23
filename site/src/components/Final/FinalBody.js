@@ -7,7 +7,7 @@ import FinalItem from './FinalItem'
 
 export default function FinalBody(props) {
     
-    let sortedSkills = function alphabeticalSortSkills(){
+    let sortedSkills = () => {
 
         if (props.shownSkills.length > 0){
             const skillNames = []
@@ -25,12 +25,39 @@ export default function FinalBody(props) {
                 })
             })
 
-            return alphabetizedSkills.map((skill, key) => 
+            let noDuplicatesAlphabetizedSkills = []
+
+            //Loop through each of the object in the original array
+
+            alphabetizedSkills.forEach(function(item) {
+                // If noDuplicatesAlphabetizedSkills .length is zero then just push the first element
+                // else in noDuplicatesAlphabetizedSkills find if a json object already exist which have same
+                // type_id & full_empty. If it does not exist it will return undefined
+                if (noDuplicatesAlphabetizedSkills.length !== 0) {
+                    var _isPresent = noDuplicatesAlphabetizedSkills.find(function(secItem) {
+                        // the below line is for if checking for duplicates of more than one key value
+                        // return secItem.name === item.name && secItem.full_empty === item.full_empty
+                        return secItem.name === item.name
+                    })
+                    // If element is not present then push this json pbject
+                    if (_isPresent == undefined) {
+                        noDuplicatesAlphabetizedSkills.push(item)
+                    }
+                } else {  // this will execute only once when noDuplicatesAlphabetizedSkills length is 0
+
+                    noDuplicatesAlphabetizedSkills.push(item)
+                }
+            })
+
+            // console.log(noDuplicatesAlphabetizedSkills)
+
+            return noDuplicatesAlphabetizedSkills.map((skill, key) => 
                 <FinalItem
                     skill={skill}
                     toggleFavorite={props.toggleFavorite}
                     toggleOpen={props.toggleOpen}
                     gatherItemText={props.gatherItemText}
+                    // currentBackground ={props.currentBackground}
                     role={props.role}
                     source={props.source}
                     intersection={props.intersection}

@@ -110,7 +110,7 @@ class CharacterPage extends React.Component {
         const promise1 = new Promise((resolve, reject) => {
             let feature = document.getElementById('background-features-dropdown');
             resolve(
-                this.props.dispatch(updateCurrentBackground(feature.value, this.props.backgrounds))
+                this.props.dispatch(updateCurrentBackground(feature.value, this.props.backgrounds, this.props.currentSkills))
             );
         });
         promise1.then(() => {
@@ -162,7 +162,7 @@ class CharacterPage extends React.Component {
                 // />
             )
         })
-        // console.log(this.props)
+        // console.log(this.props.currentBackground)
         // console.log(this.props.currentSkills)
         return (
             <div className={"name-page choice-page"}>

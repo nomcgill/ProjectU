@@ -24,12 +24,22 @@ export class TrackingPane extends React.Component {
         }
     }
 
+    updateHP(){
+        // alert("This doesn't do anything yet...")
+    }
+
     updateOverstep(){
         var checkbox = document.getElementById("overstep-check")
         this.props.dispatch(updateOverstepped(checkbox.checked))
     }
 
-    render(){   
+    render(){
+
+        let roleDataArray = this.props.databaseRoles.filter(oneRole => oneRole.title === this.props.role) 
+        let roleData = roleDataArray[0]
+        let currentHP = this.props.currentHP ? this.props.currentHP : roleData.hp
+        let damage = roleData.damage
+
         return (
             <div id={'character-tracking-pane'}>
                 <label className={'character-pane-box'} id={'overstep-box'} htmlFor={'overstep-check'}>
@@ -41,14 +51,14 @@ export class TrackingPane extends React.Component {
                 </div>
                 <div className={'character-pane-box'} id={'hp-box'}>
                     <h3>HP</h3>
-                    <div id={'hp-line'}>
-                        <h2 id={'current-hp'} onClick={() => this.updateHP()}>20 </h2>
-                        <h3>/20</h3>
+                    <div id={'hp-line'} onClick={() => this.updateHP()}>
+                        <h2 id={'current-hp'}>{currentHP} </h2>
+                        <h3>/{roleData.hp}</h3>
                     </div>
                 </div>
                 <div className={'character-pane-box'} id={'damage-box'}>
                     <h3>DMG</h3>
-                    <h2>5</h2>
+                    <h2>{damage}</h2>
                 </div>
                 <Link to={'/final/title'}>
                     <div id={'arrow-box'} className={'character-pane-box'}>
@@ -63,7 +73,10 @@ export class TrackingPane extends React.Component {
 
 const mapStateToProps = state => ({
     hitpoints: state.hitpoints,
-    overstepped: state.overstepped
+    overstepped: state.overstepped,
+    currentHP: state.currentHP,
+    role: state.role,
+    databaseRoles: state.database.roles
   });
   
   export default connect(mapStateToProps)(TrackingPane);

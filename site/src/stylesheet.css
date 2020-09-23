@@ -51,7 +51,7 @@ main {
   top: 0;
   /* width: 800px; */
   overflow: hidden;
-  background-color: white;
+  /* background-color: white; */
   position: absolute;
   z-index: -1;
   left: 0;

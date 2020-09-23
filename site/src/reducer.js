@@ -39,6 +39,10 @@ export const reducer = (state = initialState, action) => {
             rollHistory: action.fetchedHero.rollHistory,
             title: action.fetchedHero.title,
             heroNotes: action.fetchedHero.heroNotes,
+            hitpoints: action.fetchedHero.hitpoints,
+            overstepped: action.fetchedHero.overstepped,
+            currentHP: action.fetchedHero.currentHP,
+
             heroID: action.fetchedHero._id
         })
     }
@@ -209,11 +213,38 @@ export const reducer = (state = initialState, action) => {
         })
     }
 
+    if (action.type === actions.UPDATE_FOR_REDIRECT){
+
+        return Object.assign({}, state, {
+            redirect: action.redirect
+        })
+    }
+
     if (action.type === actions.CURRENT_SKILLS_STATE_UPDATE){
+        // console.log("run")
+
+        let noDuplicates = []
+        //Might as well check for duplicates
+        //Loop through each of the object in the original array
+        action.revisedSkills.forEach(function(item) {
+            if (noDuplicates.length !== 0) {
+                var _isPresent = noDuplicates.find(function(secItem) {
+                    // the below line is for if checking for duplicates of more than one key value
+                    // return secItem.name === item.name && secItem.full_empty === item.full_empty
+                    return secItem.name === item.name
+                })
+                // If element is not present then push this json pbject
+                if (_isPresent == undefined) {
+                    noDuplicates.push(item)
+                }
+            } else {  // this will execute only once when noDuplicates length is 0
+                noDuplicates.push(item)
+            }
+        })
 
         // console.log(action.revisedSkills)
         return Object.assign({}, state, {
-            currentSkills: action.revisedSkills
+            currentSkills: noDuplicates
         })
     }
 

@@ -32,7 +32,9 @@ export default function FinalItem(props) {
     let shownCategory = 
         (props.skill.category === "Intersection") ? props.intersection :
         (props.skill.category === "Role") ? props.role :
-        (props.skill.category === "Source") ? props.source : ""
+        (props.skill.category === "Source") ? props.source : 
+        (props.skill.category === "Background") ? "Background" :
+        ''
 
     const allWords = () => {
         // debugger;
@@ -88,7 +90,7 @@ export default function FinalItem(props) {
         <div className={'one-skill'} id={name}>
             <div className={'skill-head-pane skill-header-open'} onClick={e => toggleDetails(e)}>
                 <div className={'skill-head-pane-top'}>
-                    <h3>{props.skill.name} {bountyHunterSpecialization}</h3>
+                    <h3>{name} {bountyHunterSpecialization}</h3>
                     <img src={GoldStar} className={'item-gold-star favorite-star ' + goldClass} onClick={e => toggleFavorite(e, true)} />
                     <img src={GrayStar} className={'item-gray-star favorite-star ' + grayClass} onClick={e => toggleFavorite(e, false)} />
                 </div>

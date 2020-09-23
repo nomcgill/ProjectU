@@ -1,4 +1,11 @@
 import React from 'react';
+import {
+    BrowserRouter as Router,
+    Route,
+    Redirect,
+    Switch
+  } from 'react-router-dom';
+
 import sampleProjectU from './sampleProjectU.json'
 
 import fetchingItems from './fetchingItems.json'
@@ -55,11 +62,18 @@ export const getHeroById = (id) => dispatch => {
         dispatch(updateStateWithNewHero(heroData))
         return heroData
     })
-    .then(heroData=>alert(heroData.name + ' data retrieved!'))
+    .then(()=>alert("Hero has been loaded!"))
+    .then(()=> dispatch(updateForRedirect(true)) )
     .catch((error) => {
         console.log(error)
     });
 }
+
+export const UPDATE_FOR_REDIRECT = 'UPDATE_FOR_REDIRECT';
+export const updateForRedirect = (redirect) => ({
+    type: UPDATE_FOR_REDIRECT,
+    redirect
+})
 
 export const UPDATE_STATE_WITH_NEW_HERO = 'UPDATE_STATE_WITH_NEW_HERO';
 export const updateStateWithNewHero = (fetchedHero) => ({
@@ -84,7 +98,7 @@ export const overwriteHero = (data, id) => dispatch => {
     })
     .then(response => response.json())
     .then(data => {
-        alert('Success: ' + data.name + " has been updated in the database!");
+        alert('Your hero has been updated in the database!');
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -607,10 +621,26 @@ export const skillBankState = skillBank => ({
     skillBank
 })
 
-export const updateCurrentBackground = (backgroundTitle, backgroundOptions) => dispatch => {
+export const updateCurrentBackground = (backgroundTitle, backgroundOptions, currentSkills) => dispatch => {
+
     backgroundOptions.forEach(background => {
         if (background.title === backgroundTitle){
+
             dispatch(updateBackgroundFeatureState(background))
+
+
+            let backGroundObject = new Object();
+            backGroundObject.name = background.title
+            backGroundObject.action = "Passive"
+            backGroundObject.skillLevel = "Given"
+            backGroundObject.category = "Background"
+            backGroundObject.damage = false
+            backGroundObject.flavor = " "
+            backGroundObject.impact = background.description
+
+            let revisedSkills = [...currentSkills, backGroundObject]
+            // console.log(revisedSkills)
+            dispatch(currentSkillsStateUpdate(revisedSkills))
         }
     })
 }
@@ -772,10 +802,13 @@ export const updateMorph = (beast, currentSkills, animalTextId) => dispatch => {
     let beastText = document.getElementById(animalTextId).value
     let newAnimalTitle = beastText.length > 0 ? beastText + ' Form - ' + beast.name : 'Animal Form - ' + beast.name
 
+    // console.log(newAnimalTitle)
+
     let target = {...beast};
     let source = {beastName: newAnimalTitle};
 
     const sameBeastNewTitle = Object.assign(target, source);
+    console.log(sameBeastNewTitle)
 
     // console.log(sameBeastNewTitle)
     let revisedSkills = [...removedPossibleBeast, sameBeastNewTitle]
@@ -848,6 +881,8 @@ export const updateDemonicVisual = (currentSkills) => dispatch => {
 }
 
 export const updateMorphVisual = (currentSkills) => dispatch => {
+    // console.log('run')
+    // console.log(currentSkills)
     Array.from(document.getElementsByClassName('beast-decision-button')).forEach(element=> 
         element.classList.remove('selected-decision-trait'))
     Array.from(document.getElementsByClassName('beast-name-inputs')).forEach(element=>
@@ -863,9 +898,22 @@ export const updateMorphVisual = (currentSkills) => dispatch => {
         }
         let beastId = joinWords(foundBeast[0].name)
         if (document.getElementById(beastId)){
+            document.getElementById(beastId + '-radio').checked = true
             document.getElementById(beastId).classList.add('selected-decision-trait')
             document.getElementById('name-'+beastId).classList.remove('hidden')
             document.getElementById('animal-'+beastId).classList.remove('hidden')
+            // The input text placeholder for beastName below
+            // console.log(foundBeast[0].beastName)
+            if (foundBeast[0].beastName.slice(0, 7) !== "Animal "){
+                let foundBeastName = foundBeast[0].beastName
+                let getFormIndex = (str) => str.indexOf('Form')
+                let tinyBeastName = foundBeastName.slice(0, getFormIndex(foundBeastName))
+                let placeholder = tinyBeastName.length > 1 ? tinyBeastName : '  '
+                document.getElementById('name-' + beastId).placeholder = placeholder
+            }
+            else {
+                document.getElementById('name-' + beastId).placeholder = ''
+            }
         }
     }
 }

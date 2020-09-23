@@ -1,5 +1,5 @@
 {
-    "level": 11,
+    "level": 9,
     "levelingNumbers" : {
       "Role": {"Basic": 5},
       "Source": {"Basic": 4}
@@ -16,6 +16,17 @@
     "rollHistory": [],
     "heroNotes": false,
     "currentSkills": [
+      {
+        "name": "Wrath",
+        "action": "Passive",
+        "skillLevel": "Advanced",
+        "category": "Intersection",
+        "damage": false,
+        "flavor": "You are invigorated by your Power Source when your strikes land.",
+        "impact": "Add 1X damage on Successes and Complete Successes for Muscle actions.",
+        "favorite": true,
+        "fullText": "WRATH PASSIVE GIVEN PALADIN YOU ARE INVIGORATED BY YOUR POWER SOURCE WHEN YOUR STRIKES LAND. ADD 1X DAMAGE ON SUCCESSES AND COMPLETE SUCCESSES FOR MUSCLE ACTIONS. "
+      },
       {
         "name": "Wrath",
         "action": "Passive",

@@ -24,15 +24,10 @@ import {
 export class RoleSourceDetails extends React.Component {
 
     componentDidMount(){
-
-    }
-
-    updateAllVisuals(){
-        this.updateDemonicVisual()
-        this.updateChakrahVisual()
-        this.updateElementalistVisual()
-        this.updateMorphVisual()
-        this.updateBountyVisual()
+        // console.log(this.props.currentSkills)
+        // if(this.props.currentSkills){
+            this.props.dispatch(updateAllChoicesVisually(this.props.currentSkills))
+        // }
     }
 
     joinWords(string){
@@ -60,8 +55,13 @@ export class RoleSourceDetails extends React.Component {
     updateMorph(beast, animalTextId){
         let joinedName = this.joinWords(beast.name)
         let selected = document.getElementById(joinedName + '-radio')
+        // console.log(selected)
+        console.log(selected.checked)
+        // console.log(joinedName)
+        // debugger;
         if (selected.checked){
             const promise1 = new Promise((resolve, reject) => {
+                // console.log(selected.checked)
                 resolve(
                     this.props.dispatch(updateMorph(beast, this.props.currentSkills, animalTextId))
                 );
@@ -150,7 +150,7 @@ export class RoleSourceDetails extends React.Component {
             document.getElementById(popup).classList.add("hidden")
         }
         else if (title === this.props.role || title === this.props.source){
-            alert(`Choice wasn't changed.`)
+            document.getElementById(popup).classList.add("hidden")
         }
         else (
             alert("error choosing")

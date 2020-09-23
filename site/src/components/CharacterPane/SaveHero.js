@@ -29,6 +29,9 @@ export class SaveHero extends React.Component {
     hero.rollHistory = this.props.rollHistory
     hero.title = this.props.title
     hero.heroNotes = this.props.heroNotes
+    hero.hitpoints = this.props.hitpoints
+    hero.overstepped = this.props.overstepped
+    hero.currentHP = this.props.currentHP
     return hero
   }
 
@@ -49,7 +52,7 @@ export class SaveHero extends React.Component {
     });
     promise1.then(() => {
       let newHeroId = this.props.heroID
-      alert("Your new Hero Code for this profile is: " + newHeroId)
+      // alert("Your new Hero Code for this profile is: " + newHeroId)
       // document.getElementById('existing-id').innerText = newHeroId
     });    
   }
@@ -101,6 +104,9 @@ const mapStateToProps = state => ({
   rollHistory: state.rollHistory,
   title: state.title,
   heroNotes: state.heroNotes,
+  hitpoints: state.hitpoints,
+  overstepped: state.overstepped,
+  currentHP: state.currentHP
 });
 
 export default connect(mapStateToProps)(SaveHero);
