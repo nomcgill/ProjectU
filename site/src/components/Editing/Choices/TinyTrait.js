@@ -19,28 +19,23 @@ export default function TinyTrait(props) {
         let impact2 = trait.impact2 ? trait.impact2 : ''
 
         if (typeof flavor !== "string"){
-            console.log(trait)
-            console.log(flavor)
             // debugger;
         }
         if (typeof flavor2 !== "string"){
             if (flavor2 !== false){
-                console.log(trait)
-                console.log(flavor2)
+
             }
             // debugger;
         }
         if (typeof impact !== "string"){
             if (impact !== false){
-                console.log(trait)
-                console.log(impact)
+
             }
             // debugger;
         }
         if (typeof impact2 !== "string"){
             if (impact2 !== false){
-                console.log(trait)
-                console.log(impact2)
+
             }
             // debugger;
         }

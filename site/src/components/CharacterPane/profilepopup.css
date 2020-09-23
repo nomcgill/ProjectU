@@ -48,3 +48,8 @@
 #popup-save .profile-popup-text {
     padding: 5px;
 }
+
+#retrieve-hero-button {
+    height: 30px;
+    width: 55px;
+}

@@ -18,7 +18,8 @@ export const fetchProjectUSuccess = (projectu) => ({
 });
 
 export const fetchProjectU = () => dispatch => {
-    // const databaseURL = fetchingItems.databaseURL
+
+    const databaseURL = fetchingItems.databaseURL
 
     // fetch(databaseURL)
     // .then(res => {
@@ -35,6 +36,88 @@ export const fetchProjectU = () => dispatch => {
 
     // let parsedSampleProjectU = JSON.parse(sampleProjectU)
 }
+
+export const getHeroById = (id) => dispatch => {
+    console.log(id)
+    const heroURL = fetchingItems.heroURL + id
+
+
+    fetch(heroURL)
+    .then(res => {
+        return res.json();
+    })
+    .then(heroData => {
+        // console.log(heroData._id) ID STRING
+        // console.log(heroData.name) NAME 
+        // console.log(typeof heroData) OBJECT
+        // console.log(heroData)
+        // return heroData._id
+        dispatch(updateStateWithNewHero(heroData))
+        return heroData
+    })
+    .then(heroData=>alert(heroData.name + ' data retrieved!'))
+    .catch((error) => {
+        console.log(error)
+    });
+}
+
+export const UPDATE_STATE_WITH_NEW_HERO = 'UPDATE_STATE_WITH_NEW_HERO';
+export const updateStateWithNewHero = (fetchedHero) => ({
+    type: UPDATE_STATE_WITH_NEW_HERO,
+    fetchedHero
+})
+
+export const overwriteHero = (data, id) => dispatch => {
+
+    console.log("PUT overwriting with...")
+    // console.log(id)
+    // console.log(data)
+
+    let heroURL = fetchingItems.heroURL + id
+
+    fetch(heroURL, {
+        method: 'PUT', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Success: ' + data.name + " has been updated in the database!");
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
+}
+
+export const postNewHero = (data) => dispatch => {
+    
+    console.log('Trying to post new hero...')
+    // console.log(data)
+
+    fetch(fetchingItems.heroURL, {
+        method: 'POST', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        dispatch(updateHeroIdState(data._id))
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+export const UPDATE_HERO_ID = 'UPDATE_HERO_ID';
+export const updateHeroIdState = (id) => ({
+    type: UPDATE_HERO_ID,
+    id
+})
 
 export const CHARACTER_PANE_UPDATE_SUCCESS = 'CHARACTER_PANE_UPDATE';
 export const characterPaneUpdateSuccess = (newStatus) => ({
@@ -58,7 +141,6 @@ export const updateOverstepped = (newStatus) => ({
 // })
 
 export const formatEditingPage = (editing) => dispatch => {
-    console.log("formatPage run")
     // console.log(editing)
     // debugger;
     // if (document.getElementById('name')){
@@ -103,7 +185,7 @@ export const updateLevelVisual = (input) => dispatch => {
 export const updateLevel = (currentLevel, newLevel, levelingNumbers, currentSkills) => dispatch => {
 
     if (newLevel && newLevel < currentLevel){
-        console.log("Warning!!! You might be homebrewed for your current level!")
+        // console.log("Warning!!! You might be homebrewed for your current level!")
     }
 
     let level = newLevel ? newLevel : currentLevel
@@ -277,13 +359,8 @@ export const addToPrior = priorResults => ({
 })
 
 export const updateRoleSource = (currentSkills, database, roleSource, title, priorRole, priorSource) => dispatch => {
-    // console.log(currentSkills)
-    // console.log(database)
-    // console.log(roleSource)
-    // console.log(title)
-    // console.log(priorRole)
-    // console.log(priorSource)
-    if (roleSource === "role" && priorRole){
+
+    if (roleSource === "role"){
         let decisionTraits = currentSkills.filter(skill=>{
             return skill.decisionTrait === true
         })
@@ -309,7 +386,7 @@ export const updateRoleSource = (currentSkills, database, roleSource, title, pri
         dispatch(roleSourceStateUpdate(title, priorSource))
     }
 
-    if (roleSource ===  "source" && priorSource){
+    else if (roleSource ===  "source"){
         let decisionTraits = currentSkills.filter(skill=>{
             return skill.decisionTrait === true
         })
@@ -336,6 +413,7 @@ export const updateRoleSource = (currentSkills, database, roleSource, title, pri
         dispatch(currentSkillsStateUpdate(revisedSkills))
         dispatch(roleSourceStateUpdate(priorRole, title))
     }
+
 
     //state is currently not changing!
     // console.log(roleSource, title)
@@ -564,13 +642,10 @@ export const checkRoleSource = (roleSource, turnoff, allStateData) => dispatch =
         roleSource === "Sayer" ||
         roleSource === "Divine" ||
         roleSource === "Nature" ||
-        roleSource === "Chakrah"
+        roleSource === "Chakrah" ||
+        roleSource === "Knight"
     ){
         dispatch(chooseRoleSourceButtonAvailable(true))
-    }
-    else if(roleSource === "Knight"){
-        console.log(allStateData)
-
     }
     else if(roleSource === "Elementalist"){
         let foundCore = allStateData.currentSkills.filter(skill=>{
@@ -583,7 +658,7 @@ export const checkRoleSource = (roleSource, turnoff, allStateData) => dispatch =
         
     }
     else if(roleSource === "Bounty Hunter"){
-        console.log(allStateData)
+        // console.log(allStateData)
         // debugger;
         let foundSpecialty = allStateData.currentSkills.filter(skill=> {
             return skill.decisionTrait})
@@ -594,7 +669,7 @@ export const checkRoleSource = (roleSource, turnoff, allStateData) => dispatch =
         }
     }
     else if(roleSource === "Morph"){
-        console.log(allStateData)
+        // console.log(allStateData)
         let foundForm = allStateData.currentSkills.filter(skill=>{
             if (skill.decisionTrait){
                 let endOfSkillName = skill.name.slice(skill.name.length - 11);
@@ -634,7 +709,7 @@ export const roleSourceReady = (roleSource) => dispatch => {
 }
 
 export const doubleCheckDecisionTraits = (allData) => dispatch => {
-    console.log(allData)
+    // console.log(allData)
     let role = allData.role
     let source = allData.source
 

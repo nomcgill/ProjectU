@@ -12,8 +12,9 @@ import {
 import Dice from '../../ImageStore/dice.png'
 
 export class Roll extends React.Component {
-
+    
     render() {
+        // console.log(this.props.allState)
         function onMouseOver(){
             document.getElementById('diagonal-background').classList.add('hovering-roll-border')
         }
@@ -43,6 +44,7 @@ export class Roll extends React.Component {
 }
   
 const mapStateToProps = state => ({
+    allState: state,
     name: state.name,
     // skills: state.skills,
     intersection: state.intersection,

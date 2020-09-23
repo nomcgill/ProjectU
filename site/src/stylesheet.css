@@ -16,8 +16,8 @@
 }
 
 html {
-  height: 100%; 
-  background-color: gray;
+  /* height: 100%;  */
+  background-color: rgb(44, 44, 44);
 }
 
 body {
@@ -37,6 +37,7 @@ body {
   /* display: table; */
   /* grid-row-gap: 0px; */
   height: 100%;
+  /* background-color: rgb(71, 71, 71); */
   /* background-color: white; */
 }
 
@@ -160,6 +161,7 @@ main {
 
 #bottom-pane {
   text-align: center;
+  /* bottom: 0px; */
   padding: 25px 0 17px;
 }
 

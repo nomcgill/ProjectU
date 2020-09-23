@@ -24,7 +24,6 @@ import {
 export class RoleSourceDetails extends React.Component {
 
     componentDidMount(){
-        // this.props.dispatch(roleSourceReady(roleSource))
 
     }
 
@@ -54,23 +53,9 @@ export class RoleSourceDetails extends React.Component {
                 let roleSource = this.props.details.title
                 this.props.checkRoleSource(roleSource)
                 this.props.dispatch(updateAllChoicesVisually(this.props.currentSkills))
-                // this.updateDemonicVisual()
             });     
         }
     }
-    
-    // updateDemonicVisual(){
-    //     Array.from(document.getElementsByClassName('demon-decision-button')).forEach(element=> 
-    //         element.classList.remove('selected-decision-trait'))
-    //     let foundOrigin = this.props.currentSkills.filter(skill=>{
-    //         return skill.name === "Fiend" || skill.name === "Abomination" || skill.name === "Devil"
-    //     })
-    //     if (foundOrigin[0]){
-    //         if (document.getElementById(foundOrigin[0].name)){
-    //             document.getElementById(foundOrigin[0].name).classList.add('selected-decision-trait')
-    //         }
-    //     }
-    // }
 
     updateMorph(beast, animalTextId){
         let joinedName = this.joinWords(beast.name)
@@ -83,33 +68,12 @@ export class RoleSourceDetails extends React.Component {
               });
               
               promise1.then(() => {
-                  console.log(this.props.currentSkills)
                 let roleSource = this.props.details.title
                 this.props.checkRoleSource(roleSource)
-                // this.updateMorphVisual(animalTextId)
                 this.props.dispatch(updateAllChoicesVisually(this.props.currentSkills))
               });     
         }
     }
-
-    // updateMorphVisual(){
-    //     Array.from(document.getElementsByClassName('beast-decision-button')).forEach(element=> 
-    //         element.classList.remove('selected-decision-trait'))
-    //     Array.from(document.getElementsByClassName('beast-name-inputs')).forEach(element=>
-    //         element.classList.add('hidden'))
-    //     let foundBeast = this.props.currentSkills.filter(skill=> {
-    //         let endOfSkillName = skill.name.slice(skill.name.length - 11);
-    //         return (endOfSkillName === "Small Beast" || endOfSkillName === "Large Beast" || endOfSkillName === "edium Beast")
-    //     })
-    //     if (foundBeast[0]){
-    //         let beastId = this.joinWords(foundBeast[0].name)
-    //         if (document.getElementById(beastId)){
-    //             document.getElementById(beastId).classList.add('selected-decision-trait')
-    //             document.getElementById('name-'+beastId).classList.remove('hidden')
-    //             document.getElementById('animal-'+beastId).classList.remove('hidden')
-    //         }
-    //     }
-    // }
     
     updateCore(core){
         let selected = document.getElementById(this.joinWords(core.name) + '-radio')
@@ -128,20 +92,6 @@ export class RoleSourceDetails extends React.Component {
               });     
         }
     }
-    
-    // updateElementalistVisual(){
-    //     Array.from(document.getElementsByClassName('core-decision-button')).forEach(element=> 
-    //         element.classList.remove('selected-decision-trait'))
-    //     let foundCore = this.props.currentSkills.filter(skill=> {
-    //         return (skill.name.substring(0,7) === "Core of")        
-    //     })
-    //     if (foundCore[0]){
-    //         let coreId = this.joinWords(foundCore[0].name)
-    //         if (document.getElementById(coreId)){
-    //             document.getElementById(coreId).classList.add('selected-decision-trait')
-    //         }
-    //     }
-    // }
 
     updateChakrah(tattooSkill){
         let joinedName = this.joinWords(tattooSkill.name)
@@ -175,34 +125,6 @@ export class RoleSourceDetails extends React.Component {
             this.props.dispatch(updateAllChoicesVisually(this.props.currentSkills))
         });     
     }
-
-    // updateBountyVisual(){
-    //     Array.from(document.getElementsByClassName('specialty-decision-button')).forEach(element=> 
-    //         element.classList.remove('selected-decision-trait'))
-    //     let existingSpecialtySkills = this.props.currentSkills.filter(skill=>{
-    //         return (skill.bountyCategory && skill.skillLevel === "Given")
-    //     })
-    //     if (existingSpecialtySkills.length > 0){
-    //         let specialtyId = existingSpecialtySkills[0].bountyCategory
-    //         if (document.getElementById(specialtyId)){
-    //             document.getElementById(specialtyId).classList.add('selected-decision-trait')
-    //         }
-    //     }
-    // }
-    
-    // updateChakrahVisual(){
-    //     Array.from(document.getElementsByClassName('chakrah-decision-button')).forEach(element=> 
-    //         element.classList.remove('selected-decision-trait'))
-    //     let foundTattoos = this.props.currentSkills.filter(skill=>{
-    //         return skill.name.substring(0,6) === "Tattoo" && skill.category === "Source"
-    //     })
-    //     foundTattoos.forEach(tattoo=>{
-    //         let tattooId = this.joinWords(tattoo.name)
-    //         if (document.getElementById(tattooId)){
-    //             document.getElementById(tattooId).classList.add('selected-decision-trait')
-    //         }
-    //     })
-    // }
 
     componentDidUpdate(){
         this.keepPopupVisible()
@@ -327,13 +249,13 @@ export class RoleSourceDetails extends React.Component {
             )
             
         }
-        if (roleSourceTitle === "Knight"){
-            return (
-                <KnightDecision
-                    database={this.props.database}
-                />
-            )
-        }
+        // if (roleSourceTitle === "Knight"){
+        //     return (
+        //         <KnightDecision
+        //             database={this.props.database}
+        //         />
+        //     )
+        // }
         
     }
 

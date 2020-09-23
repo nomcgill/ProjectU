@@ -64,6 +64,9 @@ export default function FinalItem(props) {
     // favorite: false
 
     let flavor = typeof props.skill.flavor === 'string' ? props.skill.flavor : 'Choice must be made.'
+    let flavor2 = props.skill.flavor2 ? <p className={'skill-condition'}>{props.skill.flavor2}</p> : ''
+    let flavor3 = props.skill.flavor3 ? <p className={'skill-condition'}>{props.skill.flavor3}</p> : ''
+    let flavor4 = props.skill.flavor4 ? <p className={'skill-condition'}>{props.skill.flavor4}</p> : ''
     let impact = typeof props.skill.impact === 'string' ? props.skill.impact : 'Choice must be made.'
     let impact2 = props.skill.impact2 ? props.skill.impact2 : ''
     let demonicOriginNote = props.skill.demonicOriginNote && props.level <= 5 ? props.skill.demonicOriginNote : ''
@@ -97,6 +100,9 @@ export default function FinalItem(props) {
             <div className={'skill-dropdown ' + hideDropdown}>
                 <p className={'skill-result heavy red'}>{demonicOriginNote}</p>
                 <p className={'skill-condition'}>{flavor}</p>
+                {flavor2}
+                {flavor3}
+                {flavor4}
                 <p className={'skill-result heavy'}>{impact}</p>
                 <p className={'skill-result heavy'}>{impact2}</p>
                 {plea}

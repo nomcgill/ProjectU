@@ -54,9 +54,9 @@ export default function ActionBreakdown(props) {
         let databaseActions = props.actionDescriptions
         // console.log(databaseActions)
         
-        let mappedActionsDescriptions = databaseActions[action.title].map(oneAction => {
+        let mappedActionsDescriptions = databaseActions[action.title].map((oneAction, count) => {
             return (
-            <li><span className={'heavy'}>{oneAction.label}</span>, {oneAction.description}</li>
+            <li key={count} ><span className={'heavy'}>{oneAction.label}</span>, {oneAction.description}</li>
                 )
         })
 
@@ -80,7 +80,6 @@ export default function ActionBreakdown(props) {
 
 
         if (action.title === "muscle","intuit","channel"){
-            console.log(action.title)
             return (
                 <div className={'action-detail-text'}>
                     <ul className={'action-samples'}>

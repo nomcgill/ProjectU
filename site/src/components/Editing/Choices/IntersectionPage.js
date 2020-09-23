@@ -12,9 +12,11 @@ export class IntersectionPage extends React.Component {
 
 
     componentDidMount(){
-        let intersectionSkills = this.props.currentSkills.filter(skill => skill.category === "Intersection")
-        let dashedSkillNames = intersectionSkills.map(skill => skill.name.replace(/ /g, "-"))
-        this.updateVisuals(dashedSkillNames)
+        let intersectionSkills = this.props.currentSkills ? this.props.currentSkills.filter(skill => skill.category === "Intersection") : false
+        let dashedSkillNames = intersectionSkills ? intersectionSkills.map(skill => skill.name.replace(/ /g, "-")) : false
+        if (dashedSkillNames) {
+            this.updateVisuals(dashedSkillNames)
+        }
     }
 
     updateSkills(selectedSkills){
@@ -127,15 +129,21 @@ export class IntersectionPage extends React.Component {
 
         // let intersection = 'Warlock'
 
+        function startsWithVowel(word){
+            return /[aeiou]/i.test(word[0]);
+        }
+
+        let aOrAn = (word) => startsWithVowel(word) === true ? 'an' : 'a'
+
         function header(){
             if (passed.level > 5){
                 return (
-                    "As a " + passed.role + " who draws power from " + passed.source + " energies, you've gained the unique aptitudes of a " + intersection.title + "."
+                    "As " + aOrAn(passed.role) + ' ' + passed.role + " who draws power from " + passed.source + " energies, you've gained the unique aptitudes of a " + intersection.title + "."
                 )
             }
             else {
                 return (
-                    'At levels 6 and 11, Heroes have the choice of a unique skill based on the intersection of your Role and Source.'
+                    'At levels 6 and 11, Heroes have the choice of a unique skill based on the Intersection of your Role and Source.'
                 )
             }
         }
@@ -164,8 +172,8 @@ export class IntersectionPage extends React.Component {
             )
         }
         
-        // THEY DON'T HAVE AN INTERSECTION
-        else {
+        // THEY DON'T HAVE AN INTERSECTION BUT THEY'VE CHOSEN THEIR ROLE & SOURCE
+        else if(passed.database && passed.role && passed.source && passed.level) {
             // console.log("don't have intersection")
             return (
                 <div className={"intersection-page choice-page"}>
@@ -191,6 +199,19 @@ export class IntersectionPage extends React.Component {
                 </div>
             );
         }
+        else {
+            return (
+                <div className={"intersection-page choice-page"}>
+                    <div id={'intersection-header'}>
+                        <h2>Intersection</h2>
+                        <div className={'no-rolesource-notice'}>
+                            <p>First, choose a Role and Source.</p>
+                            <p id="intersection-headline">{header()}</p>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 
@@ -198,8 +219,8 @@ const mapStateToProps = state => ({
     // who: state.who,
     // // skills: state.skills,
     // intersection: state.intersection,
-    // role: state.role,
-    // source: state.source,
+    role: state.role,
+    source: state.source,
     database: state.database,
     // level: state.level,
     currentSkills: state.currentSkills

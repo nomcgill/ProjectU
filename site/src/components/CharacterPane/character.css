@@ -127,16 +127,16 @@
 
 #overstep-box {
     line-height: 24px;
-    border: solid 2px black;
+    /* border: solid 2px black; */
     border-radius: 6px;
-    background-color: rgba(255, 255, 255, 0.425);
+    background-color: rgba(255, 255, 255, 0.349);
     margin: 4px;
     padding: 3px 0px;
     /* max-width: 130px; */
 }
 
 #overstep-box:hover {
-    background-color: rgba(255, 255, 255, 0.507);
+    background-color: rgba(255, 255, 255, 0.623);
 }
 
 #overstep-box:active {

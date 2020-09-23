@@ -1,3 +1,8 @@
+#final-page {
+    background-color: rgb(71, 71, 71);
+    color: white;
+}
+
 #final-top-pane {
     margin-bottom: 55px;
 }
@@ -74,6 +79,7 @@
 }
 
 #search input {
+    background-color: rgb(177, 177, 177);
     height: 35px;
     font-size: 1.4em;
     text-align: right;
@@ -240,6 +246,7 @@ body #filters > button:active {
     /* border-right: solid 1px black; */
     /* border-left: solid 1px black; */
     /* width: 169px; */
+    color: white;
     padding-left: 5px;
     text-decoration: underline;
     /* position: absolute; */

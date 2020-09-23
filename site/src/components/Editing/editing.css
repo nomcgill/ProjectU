@@ -14,6 +14,7 @@
 }
 
 #editing-nav {
+    color: black;
     display: inline-flex;
     position: relative;
     margin: 0 auto;
@@ -342,7 +343,7 @@ p.background-header {
     display: inline-flex;
     justify-content: space-between;
     vertical-align: middle;
-    height: 70px;
+    height: 61px;
     padding: 10px;
     cursor: pointer;
 }
@@ -730,6 +731,23 @@ input:focus {
 
 .chosen-rolesource:active {
     background-color: rgba(0, 92, 31, 0.39);
+}
+
+#finish-page {
+    color: white;
+    text-align: center;
+}
+
+#finish-page p {
+    padding: 30px;
+}
+
+#create-pdf-button {
+    color: black;
+}
+
+.no-rolesource-notice {
+    padding: 27px;
 }
 
 @media all and (min-width: 603px) { 

@@ -5,6 +5,7 @@ import sampleChoicesRevised from './sampleChoicesRevised.json'
 import cleanSlate from './cleanSlate.json'
 
 const initialState = sampleChoicesRevised
+// const initialState = cleanSlate
 
 export const reducer = (state = initialState, action) => {
 
@@ -12,6 +13,33 @@ export const reducer = (state = initialState, action) => {
     if (action.type === actions.FETCH_PROJECTU_SUCCESS) {
         return Object.assign({}, state, {
             database: action.projectu
+        })
+    }
+
+    if (action.type === actions.UPDATE_HERO_ID) {
+        return Object.assign({}, state, {
+            heroID: action.id
+        })
+    }
+
+    if (action.type === actions.UPDATE_STATE_WITH_NEW_HERO){
+        // console.log(action.fetchedHero)
+        return Object.assign({}, state, {
+            backgroundFuture: action.fetchedHero.backgroundFuture,
+            backgroundPast: action.fetchedHero.backgroundPast,
+            backgroundPresent: action.fetchedHero.backgroundPresent,
+            currentBackground: action.fetchedHero.currentBackground,
+            currentSkills: action.fetchedHero.currentSkills,
+            displayFavorites: action.fetchedHero.displayFavorites,
+            level: action.fetchedHero.level,
+            quantityChosen: action.fetchedHero.quantityChosen,
+            name: action.fetchedHero.name,
+            role: action.fetchedHero.role,
+            source: action.fetchedHero.source,
+            rollHistory: action.fetchedHero.rollHistory,
+            title: action.fetchedHero.title,
+            heroNotes: action.fetchedHero.heroNotes,
+            heroID: action.fetchedHero._id
         })
     }
 

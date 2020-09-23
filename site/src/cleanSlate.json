@@ -1,34 +1,25 @@
 {
-    "database": false,
-    "editing": true,
-    "level": 1,
-    "hitpoints": 20,
-    "damage": 4,
-    "intersection": {
-      "title": false,
-      "traits": []
-    },
-    "name": false,
-    "source": {
-      "title": false,
-      "traits": []
-    },
-    "role": {
-      "title": false,
-      "traits": []
-    },
-    "skills": {
-      "basic": {
-        "title": "Basic",
-        "moves": []
-      },
-      "advanced": {
-        "title": "Advanced",
-        "moves": []
-      },
-      "master": {
-        "title": "Master",
-        "moves": []
-      }
+  "backgroundFuture": false,
+  "backgroundPast": false,
+  "backgroundPresent": false,
+  "currentSkills": [
+  ],
+  "database": false,
+  "displayFavorites": false,
+  "filterFavorite": false,
+  "heroNotes": false,
+  "intersection": false,
+  "level": 1,
+  "levelingNumbers": {
+    "1": {
+      "Role": { "Basic": 2 },
+      "Source": { "Basic": 2 }
     }
+  },
+  "name": "Nameless",
+  "role": false,
+  "rollHistory": [],
+  "savedActionTab": "muscle",
+  "source": false,
+  "title": "" 
 }

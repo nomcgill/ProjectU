@@ -25,12 +25,12 @@ export class SkillsPage extends React.Component {
         const allSelectedItemsArray = []
         allItemsArray.map((item) => {
             let singleInput = item.children[0]
-            console.log(singleInput.checked)
+            // console.log(singleInput.checked)
             if (singleInput.checked){
                 allSelectedItemsArray.push(item)
             }
         })
-        console.log(allSelectedItemsArray)
+        // console.log(allSelectedItemsArray)
     }
 
     updateSkills(chosenSkillTitles, where, how){
@@ -141,17 +141,17 @@ export class SkillsPage extends React.Component {
             }
         }
         
-            // Role: {
-            //     Basic: 0,
-            //     Advanced: 0,
-            //     Master: 0,
-            // },
-            // Source: {
-            //     Basic: 0,
-            //     Advanced: 0,
-            //     Master: 0
-            // }
+        //First make sure that the User has chosen a Role AND a Source!
+        if (!this.props.role || !this.props.source){
+            return (
+                <div id={"skills-page"} className={"choice-page choice-header-box"}>
+                    <h2 id={"choose-skills"}>Choose your SKILLS.</h2>
+                    <p className={'no-rolesource-notice'}>But first, you'll need to choose your Role and Source! Use the navigation links above to build the first parts of your Hero.</p>
+                </div>
+            )
+        }
 
+        //Role and Source has been chosen!
         return (
             <div id={"skills-page"} className={"choice-page choice-header-box"}>
                 <h2 id={"choose-skills"}>Choose your SKILLS.</h2>

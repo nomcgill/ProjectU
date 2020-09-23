@@ -12,7 +12,7 @@ export default function IntersectionInfo(props) {
         currentSkill.category === "Intersection"
     )
 
-    let skills = props.intersection.traits
+    let skills = props.intersection ? props.intersection.traits : []
     let advancedSkills = skills.filter(skill => skill.skillLevel === "Advanced")
     let masterSkills = skills.filter(skill => skill.skillLevel === "Master")
 

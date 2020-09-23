@@ -5,9 +5,10 @@ import PleaFormat from '../../PleaFormat'
 
 export default function Item(props) {
 
-    let dashedName = props.info.name.replace(/ /g, "-");
     
-    const itemLabel = props.dashedName
+    let dashedName = props.info ? props.info.name.replace(/ /g, "-") : ''
+    
+    const itemLabel = props.dashedName ? props.dashedName : ''
 
     const usesDamage = () => {
         // if (props.info.damage){
@@ -116,7 +117,9 @@ export default function Item(props) {
             />
         )
     }
-    let plea = props.info.plea ? pleaFormat(props.info.plea) : ''
+    let plea = props.info && props.info.plea ? pleaFormat(props.info.plea) : ''
+
+    
     // console.log(props)
     return (
         <label className={"item " + props.class} id={dashedName} htmlFor={checkboxID}>

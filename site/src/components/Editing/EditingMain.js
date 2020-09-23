@@ -49,8 +49,6 @@ export class EditingMain extends React.Component {
           
           promise1.then(() => {
               if (this.props.roleSourceReady){
-                  console.log("Is this ever even happening?")
-                // let joinedTitle = this.joinWords(this.props.details.title)
                 Array.from(document.getElementsByClassName('accept-rolesource-button')).forEach(element=>{
                     element.classList.remove('non-select')
                 })
@@ -112,17 +110,35 @@ export class EditingMain extends React.Component {
             return insert.charAt(0).toUpperCase() + insert.slice(1)
         }
 
+        // let intersectionPath = ''
+        // let editSkillsPath = ''
+
         const steps = ["role","source","who","intersection","skills"]
 
-        const navsteps = steps.map(step =>
-            <li key={step+"1"} id={step + "-nav"}>
-                <NavLink 
-                    to={`/editing/${step}`} 
-                    activeClassName={"highlight-nav"}
-                >
-                    {capitalize(step)}
-                </NavLink>
-            </li>
+        const navsteps = steps.map(step => {
+            // let path = 
+            //     step === "role" ? 'editing/role' :
+            //     step === "source" ? 'editing/source' :
+            //     step === "who" ? 'editing/who' :
+            //     step === "intersection" ? intersectionPath :
+            //     step === "skills" ? editSkillsPath : 
+            //     console.log("what in tarnation")
+            let shouldBeInactive = !this.props.role || !this.props.source ? true : false
+            let selectableClass = 
+                step === "intersection" && shouldBeInactive ? 'non-select nullify-nav' :
+                step === "skills" && shouldBeInactive ? 'non-select nullify-nav' : 
+                ''
+            return (
+                <li key={step+"1"} className={''} id={step + "-nav"}>
+                    <NavLink 
+                        to={`/editing/${step}`} 
+                        activeClassName={"highlight-nav"}
+
+                        >
+                        {capitalize(step)}
+                    </NavLink>
+                </li>
+            )}
         )
 
         return (
@@ -201,6 +217,7 @@ export class EditingMain extends React.Component {
                                 <FinishPage 
                                     button={"finish"}
                                     next={"/final/title"}
+                                    heroName={this.props.name}
                             />
                             }
                         />
