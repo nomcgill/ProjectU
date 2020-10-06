@@ -4,8 +4,8 @@ import sampleChoices from './sampleChoices'
 import sampleChoicesRevised from './sampleChoicesRevised.json'
 import cleanSlate from './cleanSlate.json'
 
-const initialState = sampleChoicesRevised
-// const initialState = cleanSlate
+// const initialState = sampleChoicesRevised
+const initialState = cleanSlate
 
 export const reducer = (state = initialState, action) => {
 
