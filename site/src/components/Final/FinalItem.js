@@ -80,9 +80,11 @@ export default function FinalItem(props) {
         )
     }
 
+    let demonicOriginTitle = props.skill.demonicOriginNote ? " Origin" : ''
+
     let name = props.skill.beastName ? props.skill.beastName : props.skill.name
     // console.log(props.skill)
-    let bountyHunterSpecialization = props.skill.bountyCategory ? '(' + props.skill.bountyCategory + ' spec.)' : '' 
+    let bountyHunterSpecialization = props.skill.bountyCategory ? ' (' + props.skill.bountyCategory + ' spec.)' : '' 
     let plea = props.skill.plea ? pleaFormat(props.skill.plea) : ''
     // console.log(props.skill.plea)
     // console.log(props)
@@ -90,7 +92,10 @@ export default function FinalItem(props) {
         <div className={'one-skill'} id={name}>
             <div className={'skill-head-pane skill-header-open'} onClick={e => toggleDetails(e)}>
                 <div className={'skill-head-pane-top'}>
-                    <h3>{name} {bountyHunterSpecialization}</h3>
+                    <h3>{name} 
+                        {bountyHunterSpecialization}
+                        {demonicOriginTitle}
+                    </h3>
                     <img src={GoldStar} className={'item-gold-star favorite-star ' + goldClass} onClick={e => toggleFavorite(e, true)} />
                     <img src={GrayStar} className={'item-gray-star favorite-star ' + grayClass} onClick={e => toggleFavorite(e, false)} />
                 </div>

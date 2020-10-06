@@ -31,6 +31,8 @@ export class Final extends React.Component {
     }
 
     componentDidMount(){
+        //updateFilter will update currentlyShown
+        this.updateFilter()
         if (this.props.redirect){
             this.props.dispatch(updateForRedirect(false))
         }
