@@ -136,7 +136,7 @@ export class IntersectionPage extends React.Component {
         let aOrAn = (word) => startsWithVowel(word) === true ? 'an' : 'a'
 
         function header(){
-            if (passed.level > 5){
+            if (passed.level > 5 && passed.role && passed.source){
                 return (
                     "As " + aOrAn(passed.role) + ' ' + passed.role + " who draws power from " + passed.source + " energies, you've gained the unique aptitudes of a " + intersection.title + "."
                 )

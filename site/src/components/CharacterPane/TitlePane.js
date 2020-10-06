@@ -14,6 +14,7 @@ import Arrow from '../../ImageStore/fliparrow.png'
 // import { action } from '../actions'
 
 export default function TitlePane(props) {
+    // console.log(props)
 
     // if (document.getElementById('name')){
     //     document.getElementById('name').classList.remove("hidden")
@@ -51,10 +52,11 @@ export default function TitlePane(props) {
                     </div>
                 </Link>
             </div>
-            <Link to={'/editing/who'}>
+            <Link to={'/editing/who'} id={'name-and-title'}>
                 <h3 id={'name'}>
                     {props.name}
                 </h3>
+                <p id={'hero-title'}>{props.title}</p>
                 {/* <h3 id={'name-title'}>
                     {props.title}
                 </h3> */}

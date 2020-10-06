@@ -658,8 +658,13 @@ export const lastRollState = lastRoll => ({
 })
 
 // This action checks the required choices to make before the Choose button becomes available.
+// true will successfully disable the button
 export const checkRoleSource = (roleSource, turnoff, allStateData) => dispatch => {
-
+    // console.log('heard')
+    // console.log(roleSource)
+    // console.log(turnoff)
+    dispatch(chooseRoleSourceButtonAvailable(false))
+    // debugger;
 
     //updating all them buttons upon popup open! (but there's not always a need if it's not being fed the state)
     if (allStateData){
@@ -691,8 +696,8 @@ export const checkRoleSource = (roleSource, turnoff, allStateData) => dispatch =
         // console.log(allStateData)
         // debugger;
         let foundSpecialty = allStateData.currentSkills.filter(skill=> {
-            return skill.decisionTrait})
-        // debugger;
+            return skill.decisionTrait && skill.bountyCategory
+        })
         // console.log(foundSpecialty)
         if (foundSpecialty.length > 0){
             dispatch(chooseRoleSourceButtonAvailable(true))
@@ -717,14 +722,10 @@ export const checkRoleSource = (roleSource, turnoff, allStateData) => dispatch =
             return skill.name === "Fiend" || skill.name === "Abomination" || skill.name === "Devil"
         })
         if (foundOrigin.length > 0){
-            // console.log(foundOrigin)
+            console.log(foundOrigin)
             dispatch(chooseRoleSourceButtonAvailable(true))
         }
         
-    }
-    else {
-        //if false will make all rolesource accept buttons unavailable
-        return dispatch(chooseRoleSourceButtonAvailable(turnoff))
     }
 }
 

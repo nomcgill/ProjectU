@@ -40,6 +40,9 @@ export class EditingMain extends React.Component {
 
     checkRoleSource(roleSource){
         const promise1 = new Promise((resolve, reject) => {
+            Array.from(document.getElementsByClassName('accept-rolesource-button')).forEach(element=>{
+                element.classList.add('non-select')
+            })
             // let requirements = "requirements"
             resolve(
                 this.props.dispatch(checkRoleSource(roleSource, false, this.props.all))

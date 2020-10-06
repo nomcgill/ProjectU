@@ -178,7 +178,7 @@ class CharacterPage extends React.Component {
                     </label>
                     <label ref={this.titleInput} htmlFor={'input-title'} id={'label-input-title'} className={"choice-header-box"} onClick={() => this.handleClick("title")}>
                         <h2>Do you have a TITLE?</h2>
-                        <input id={'input-title'} className={'who-input-box'} autoComplete={'off'} onChange={() => this.handleKeyPress()} maxLength={'30'} placeholder={'the Usurper'} />
+                        <input id={'input-title'} className={'who-input-box'} autoComplete={'off'} onChange={() => this.handleKeyPress()} maxLength={'23'} placeholder={'the Usurper'} />
                         {/* <p id={'input-name-example'} className={'who-example'}>ex. Harriet Striker <span className={'underline'}>the Forsworn</span></p> */}
                         <p id={'optional'}>(optional)</p>
                     </label>

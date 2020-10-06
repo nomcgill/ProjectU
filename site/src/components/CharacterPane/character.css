@@ -23,22 +23,22 @@
 
 #character-title-pane {
     display: grid;
-    grid-template-columns: 65px auto auto 65px;
+    grid-template-columns: 65px auto 65px;
     background-color: rgb(209, 100, 28)
 }
 
-#source-role:hover, #name:hover {
+#name-and-title {
+    margin: 5px;
+}
+
+#source-role:hover, #name-and-title:hover {
     cursor:pointer;
     background-color: rgba(255, 255, 255, 0.13);
     border-radius: 4px;
 }
 
-#source-role:active, #name:active {
+#source-role:active, #name-and-title:active {
     background-color: rgba(255, 255, 255, 0.226);
-}
-
-#titles {
-    /* display: table; */
 }
 
 #source-role {
@@ -65,7 +65,7 @@
 }
 
 #titles {
-    /* display: inline-block; */
+    display: none;
 }
 
 #titles a {
@@ -109,10 +109,13 @@
 }
 
 #name {
-    line-height: 62px;
-    font-size: 1.6em;
-    margin: 5px;
-    margin-left: 0px;
+    line-height: 40px;
+    font-size: 1.1em;
+    /* margin-left: 5px; */
+}
+
+#hero-title {
+    /* display: none; */
 }
 
 .character-pane-box {
@@ -404,4 +407,31 @@ box-shadow: 0px 0px 0px 1px rgba(255,0,0,1);
 #dice:active {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
+}
+
+@media all and (min-width: 600px) { 
+
+    #character-title-pane {
+        grid-template-columns: 65px auto auto 65px;
+    }
+
+    #titles {
+        display: block;
+    }
+
+    #name-and-title {
+        margin-left: 0px;
+        /* line-height: 40px; */
+    }
+
+    #hero-title {
+        /* display: block; */
+    }
+    
+}
+
+@media all and (min-width: 450px) { 
+    #name {
+        font-size: 1.6em
+    }
 }

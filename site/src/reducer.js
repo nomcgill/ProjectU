@@ -280,7 +280,7 @@ export const reducer = (state = initialState, action) => {
     }
 
     if (action.type === actions.CHOOSE_ROLESOURCE_BUTTON_AVAILABLE){
-
+        // console.log(action.boolean)
         return Object.assign({}, state, {
             roleSourceReady: action.boolean
         })
