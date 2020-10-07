@@ -105,6 +105,14 @@
     
 }
 
+.edit-element-list {
+    color: burlywood;
+}
+
+.edit-skill-description-part {
+    margin: 7px 0;
+}
+
 .choice-box {
     background-color: rgba(255, 255, 255, 0.151);
     color: white;

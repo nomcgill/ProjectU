@@ -31,52 +31,28 @@ export default function Item(props) {
     }
 
     const checkboxID = dashedName + '-checkbox'
+    // console.log(props)
+    let descriptionClassName = 'edit-skill-description-part'
+    let elementList = props.info.elementList ? <p className={descriptionClassName + ' edit-element-list'}>{props.info.elementList}</p> : ''
+    // console.log(elementList)
 
     let flavor = (skill) => {
-        let flavor = skill.flavor ? skill.flavor : '' 
-        let flavor2 = skill.flavor2 ? skill.flavor2 : false
-        let flavor3 = skill.flavor3 ? skill.flavor3 : false
-        let flavor4 = skill.flavor4 ? skill.flavor4 : false
-        let impact = skill.impact ? skill.impact : ''
-
-        if (flavor4){
+        let flavor = skill.flavor ? <p className={descriptionClassName}>{skill.flavor}</p> : '' 
+        let flavor2 = skill.flavor2 ? <p className={descriptionClassName}>{skill.flavor2}</p> : ''
+        let flavor3 = skill.flavor3 ? <p className={descriptionClassName}>{skill.flavor3}</p> : ''
+        let flavor4 = skill.flavor4 ? <p className={descriptionClassName}>{skill.flavor4}</p> : ''
+        let impact = skill.impact ? <p className={descriptionClassName}>{skill.impact}</p> : ''
             return (
                 <div className={'skill-description'}>
-                    <p className={'skill-description-part'}>{flavor}</p>
-                    <p className={'skill-description-part'}>{flavor2}</p>
-                    <p className={'skill-description-part'}>{flavor3}</p>
-                    <p className={'skill-description-part'}>{flavor4}</p>
-                    <p className={'skill-description-part'}>{impact} {usesDamage()}</p>
+                    {elementList}
+                    {flavor}
+                    {flavor2}
+                    {flavor3}
+                    {flavor4}
+                    {impact}
                 </div>
             )
-        }
-        else if (flavor3){
-            return (
-                <div className={'skill-description'}>
-                    <p className={'skill-description-part'}>{flavor}</p>
-                    <p className={'skill-description-part'}>{flavor2}</p>
-                    <p className={'skill-description-part'}>{flavor3}</p>
-                    <p className={'skill-description-part'}>{impact} {usesDamage()}</p>
-                </div>
-            )
-        }
-        else if (flavor2){
-            return (
-                <div className={'skill-description'}>
-                    <p className={'skill-description-part'}>{flavor}</p>
-                    <p className={'skill-description-part'}>{flavor2}</p>
-                    <p className={'skill-description-part'}>{impact} {usesDamage()}</p>
-                </div>
-            )
-        }
-        else {
-            return (
-                <div className={'skill-description'}>
-                    <p className={'skill-description-part'}>{flavor}</p>
-                    <p className={'skill-description-part'}>{impact} {usesDamage()}</p>
-                </div>
-            )
-        }
+        
     }
 
     function onItemClick(item){

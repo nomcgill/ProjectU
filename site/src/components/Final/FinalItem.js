@@ -86,6 +86,8 @@ export default function FinalItem(props) {
     // console.log(props.skill)
     let bountyHunterSpecialization = props.skill.bountyCategory ? ' (' + props.skill.bountyCategory + ' spec.)' : '' 
     let plea = props.skill.plea ? pleaFormat(props.skill.plea) : ''
+    // console.log(props.skill)
+    let elementList = props.skill.elementList ? <p className={'element-list'}>{props.skill.elementList}</p> : ''
     // console.log(props.skill.plea)
     // console.log(props)
     return (
@@ -106,6 +108,7 @@ export default function FinalItem(props) {
             </div>
             <div className={'skill-dropdown ' + hideDropdown}>
                 <p className={'skill-result heavy red'}>{demonicOriginNote}</p>
+                {elementList}
                 <p className={'skill-condition'}>{flavor}</p>
                 {flavor2}
                 {flavor3}

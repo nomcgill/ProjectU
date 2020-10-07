@@ -722,7 +722,7 @@ export const checkRoleSource = (roleSource, turnoff, allStateData) => dispatch =
             return skill.name === "Fiend" || skill.name === "Abomination" || skill.name === "Devil"
         })
         if (foundOrigin.length > 0){
-            console.log(foundOrigin)
+            // console.log(foundOrigin)
             dispatch(chooseRoleSourceButtonAvailable(true))
         }
         

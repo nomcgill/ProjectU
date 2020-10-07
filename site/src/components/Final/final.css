@@ -268,6 +268,12 @@ body #filters > button:active {
     text-align: center;
 }
 
+.element-list {
+    color: rgb(26, 102, 52);
+    font-weight: bold;
+    /* font-style: italic; */
+}
+
 @media all and (min-width: 400px) { 
     #final-top-pane {
         margin-bottom: 40px;
