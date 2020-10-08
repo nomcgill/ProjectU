@@ -2,7 +2,7 @@ import * as actions from './actions';
 import sampleChoices from './sampleChoices'
 import sampleChoicesRevised from './sampleChoicesRevised.json'
 import cleanSlate from './cleanSlate.json'
-// import sampleProjectU from './sampleProjectU'
+import sampleProjectU from './sampleProjectU'
 
 // const initialState = sampleChoicesRevised
 const initialState = cleanSlate
