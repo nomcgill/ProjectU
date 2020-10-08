@@ -1,0 +1,4 @@
+{
+    "databaseURL": "https://vgeps0cos2.execute-api.us-east-1.amazonaws.com/dev/database",
+    "heroURL": "https://vgeps0cos2.execute-api.us-east-1.amazonaws.com/dev/hero/"
+}
