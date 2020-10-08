@@ -6,7 +6,7 @@ import {
     Switch
   } from 'react-router-dom';
 
-import sampleProjectU from './sampleProjectU.json'
+// import sampleProjectU from './sampleProjectU.json'
 
 import fetchingItems from './fetchingItems.json'
 
@@ -28,20 +28,18 @@ export const fetchProjectU = () => dispatch => {
 
     const databaseURL = fetchingItems.databaseURL
 
-    // fetch(databaseURL)
-    // .then(res => {
-    //     return res.json();
-    // })
-    // .then(database => {
-    //     dispatch(fetchProjectUSuccess(database[0]))
-    // })
-    // .catch((error) => {
-    //     console.log(error)
-    // });
+    fetch(databaseURL)
+    .then(res => {
+        return res.json();
+    })
+    .then(database => {
+        dispatch(fetchProjectUSuccess(database[0]))
+    })
+    .catch((error) => {
+        console.log(error)
+    });
 
-    dispatch(fetchProjectUSuccess(sampleProjectU))
-
-    // let parsedSampleProjectU = JSON.parse(sampleProjectU)
+    // dispatch(fetchProjectUSuccess(sampleProjectU))
 }
 
 export const getHeroById = (id) => dispatch => {
