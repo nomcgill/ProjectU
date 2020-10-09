@@ -47,9 +47,18 @@ class CharacterPage extends React.Component {
     handleKeyPress(){
         let inputName = document.getElementById("input-name").value ? document.getElementById("input-name").value : 'Nameless'
         let inputTitle = document.getElementById("input-title").value ? document.getElementById("input-title").value : ''
-        document.getElementById('new-hero-name').innerText = inputName
-        document.getElementById('new-hero-title').innerText = inputTitle
-        this.props.dispatch(updateName(inputName,inputTitle))
+        document.getElementById('new-hero-name').innerText = inputName.trim()
+        document.getElementById('new-hero-title').innerText = inputTitle.trim()
+        const promise1 = new Promise((resolve, reject) => {
+            resolve(
+                this.props.dispatch(updateName(inputName.trim(),inputTitle.trim()))
+            );
+          });
+          
+          promise1.then((value) => {
+            //   let trimmed = inputTitle.trim()
+            //   for (inputTitle.length)
+        });
     }
 
     handleClick(clicked){

@@ -105,6 +105,9 @@ export class Character extends React.Component {
                   path="/editing"
                   render={() =>
                     <EditingPane
+                      role={this.props.role}
+                      source={this.props.source}
+                      name={this.props.name}
                     />
                   }
                 />

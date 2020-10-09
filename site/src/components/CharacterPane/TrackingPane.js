@@ -37,8 +37,13 @@ export class TrackingPane extends React.Component {
 
         let roleDataArray = this.props.databaseRoles.filter(oneRole => oneRole.title === this.props.role) 
         let roleData = roleDataArray[0]
-        let currentHP = this.props.currentHP ? this.props.currentHP : roleData.hp
-        let damage = roleData.damage
+        let roleDataHp = roleData ? roleData.hp : '?'
+        console.log(roleData)
+        let currentHP = 
+            this.props.currentHP ? this.props.currentHP : 
+            roleData ? roleData.hp :
+            '?'
+        let damage = roleData ? roleData.damage : '?'
 
         return (
             <div id={'character-tracking-pane'}>
@@ -53,7 +58,7 @@ export class TrackingPane extends React.Component {
                     <h3>HP</h3>
                     <div id={'hp-line'} onClick={() => this.updateHP()}>
                         <h2 id={'current-hp'}>{currentHP} </h2>
-                        <h3>/{roleData.hp}</h3>
+                        <h3>/{roleDataHp}</h3>
                     </div>
                 </div>
                 <div className={'character-pane-box'} id={'damage-box'}>

@@ -106,7 +106,7 @@ export const overwriteHero = (data, id) => dispatch => {
 
 export const postNewHero = (data) => dispatch => {
     
-    console.log('Trying to post new hero...')
+    // console.log('Trying to post new hero...')
     // console.log(data)
 
     fetch(fetchingItems.heroURL, {
@@ -368,6 +368,12 @@ export const ADD_TO_PRIOR = 'ADD_TO_PRIOR';
 export const addToPrior = priorResults => ({
     type: ADD_TO_PRIOR,
     priorResults
+})
+
+export const UPDATE_INTERSECTION = 'UPDATE_INTERSECTION'
+export const updateIntersection = intersection => ({
+    type: UPDATE_INTERSECTION,
+    intersection
 })
 
 export const updateRoleSource = (currentSkills, database, roleSource, title, priorRole, priorSource) => dispatch => {

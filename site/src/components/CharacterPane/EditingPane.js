@@ -25,18 +25,24 @@ export default function EditingPane(props) {
         elementPopup.classList.remove('hidden')
     }    
 
-    // console.log(props)
+    let nonSelect = 
+        !props.role || 
+        !props.source || 
+        !props.name || 
+        props.name === "Nameless" ? 
+        'non-select' : 
+        ''
     
     return (
         <div id={'character-editing-pane'}>
-            <Link to={'/final/title/'} className={'button'}>
+            <Link to={'/final/title/'} className={'button ' + nonSelect}>
                 <div>
                     <h2>View This Hero</h2>
                 </div>
             </Link>
             <div className={'vertical-stacked'}>
                 <div className={'button'} onClick={() => onClick('popup-find')} ><h2>Find</h2></div>
-                <div className={'button'} onClick={() => onClick('popup-save')} ><h2>Save</h2></div>
+                <div className={'button ' + nonSelect} onClick={() => onClick('popup-save')} ><h2>Save</h2></div>
             </div>
             <Popup 
                 popupContent={

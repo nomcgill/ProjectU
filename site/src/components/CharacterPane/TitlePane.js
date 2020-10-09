@@ -30,7 +30,9 @@ export default function TitlePane(props) {
     //     document.getElementById('dimmer').classList.add('hidden')
     // }
 
+    let bigName = props.title.length > 0 ? '' : 'big-name' 
 
+    // console.log(props.title.length > 0)
     
     return (
         <div id={'character-title-pane'}>
@@ -53,7 +55,7 @@ export default function TitlePane(props) {
                 </Link>
             </div>
             <Link to={'/editing/who'} id={'name-and-title'}>
-                <h3 id={'name'}>
+                <h3 id={'name'} className={bigName}>
                     {props.name}
                 </h3>
                 <p id={'hero-title'}>{props.title}</p>

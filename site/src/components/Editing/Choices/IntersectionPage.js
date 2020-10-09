@@ -6,7 +6,7 @@ import IntersectionInfo from './IntersectionInfo'
 
 import './intersectionpage.css'
 
-import { updateSkillsFromIntersection } from '../../../actions'
+import { updateSkillsFromIntersection, updateIntersection } from '../../../actions'
 
 export class IntersectionPage extends React.Component {
 
@@ -124,6 +124,7 @@ export class IntersectionPage extends React.Component {
 
         // console.log(databaseIntersectionArray)
         let intersection = databaseIntersectionArray[0]
+        this.props.dispatch(updateIntersection(intersection))
         // debugger;
         // console.log(intersection)
 

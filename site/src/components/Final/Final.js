@@ -45,6 +45,7 @@ export class Final extends React.Component {
     render() {
         const shownSkills = (this.props.currentlyShown === undefined) ? this.props.currentSkills : this.props.currentlyShown
         // console.log(this.props.currentSkills)
+        // console.log(this.props.intersection)
         return (
             <div id={'final-page'}>
 

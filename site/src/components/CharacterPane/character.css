@@ -27,6 +27,14 @@
     background-color: rgb(209, 100, 28)
 }
 
+#character-editing-pane .non-select {
+    background-color: rgba(110, 110, 110, 0.158);
+}
+
+#character-editing-pane .non-select * {
+    color: rgba(255, 255, 255, 0.356);
+}
+
 #name-and-title {
     margin: 5px;
 }
@@ -112,6 +120,10 @@
     line-height: 40px;
     font-size: 1.1em;
     /* margin-left: 5px; */
+}
+
+#name.big-name {
+    line-height: 62px;
 }
 
 #hero-title {

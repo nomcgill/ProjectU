@@ -42,7 +42,7 @@ export const reducer = (state = initialState, action) => {
             hitpoints: action.fetchedHero.hitpoints,
             overstepped: action.fetchedHero.overstepped,
             currentHP: action.fetchedHero.currentHP,
-
+            intersection: action.fetchedHero.intersection,
             heroID: action.fetchedHero._id
         })
     }
@@ -283,6 +283,13 @@ export const reducer = (state = initialState, action) => {
         // console.log(action.boolean)
         return Object.assign({}, state, {
             roleSourceReady: action.boolean
+        })
+    }
+
+    if (action.type === actions.UPDATE_INTERSECTION){
+
+        return Object.assign({}, state, {
+            intersection: action.intersection
         })
     }
 

@@ -25,12 +25,14 @@ export default function FinalItem(props) {
         props.toggleFavorite(itemName)
     }
 
+    // console.log(props)
+
     let goldClass = (props.skill.favorite) ? '' : "hidden"
     let grayClass = (props.skill.favorite) ? 'hidden' : ""
     let actionColor = (props.skill.action === "Passive") ? '' : "red"
     let hideDropdown = (props.skill.open) ? "" : "hidden"
     let shownCategory = 
-        (props.skill.category === "Intersection") ? props.intersection :
+        (props.skill.category === "Intersection") ? props.intersection.title :
         (props.skill.category === "Role") ? props.role :
         (props.skill.category === "Source") ? props.source : 
         (props.skill.category === "Background") ? "Background" :
