@@ -326,3 +326,7 @@ body #filters > button:active {
         width: 110px !important;
     }
 }
+
+@media all and (min-width: 800px){
+    
+}

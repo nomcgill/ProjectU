@@ -15,8 +15,8 @@ import {
   
   // only one of the below sampleProjectU should ever be commented.
   // -----------------------
-  import sampleProjectU from './sampleProjectU.json'
-//   let sampleProjectU = false
+//   import sampleProjectU from './sampleProjectU.json'
+  let sampleProjectU = false
 
 
 export const ACTION = 'action';
