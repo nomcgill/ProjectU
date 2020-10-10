@@ -38,6 +38,7 @@ export default function FinalItem(props) {
         (props.skill.category === "Background") ? "Background" :
         ''
 
+    // Get all the text from the skills for filtering purposes
     const allWords = () => {
         // debugger;
         let name = (props.skill.name) ? String(props.skill.name + ' ') : ''
@@ -67,15 +68,14 @@ export default function FinalItem(props) {
     // impact: "Add 1X damage on Successes and Complete Successes for Muscle actions.",
     // favorite: false
 
-    let flavor = typeof props.skill.flavor === 'string' ? props.skill.flavor : ''
+    let flavor = typeof props.skill.flavor === 'string' && props.skill.flavor !== ' ' ? <p className={'skill-condition'}>{props.skill.flavor}</p> : ''
     let flavor2 = props.skill.flavor2 ? <p className={'skill-condition'}>{props.skill.flavor2}</p> : ''
     let flavor3 = props.skill.flavor3 ? <p className={'skill-condition'}>{props.skill.flavor3}</p> : ''
     let flavor4 = props.skill.flavor4 ? <p className={'skill-condition'}>{props.skill.flavor4}</p> : ''
-    let impact = typeof props.skill.impact === 'string' ? props.skill.impact : ''
-    let impact2 = props.skill.impact2 ? props.skill.impact2 : ''
-    let demonicOriginNote = props.skill.demonicOriginNote && props.level <= 5 ? props.skill.demonicOriginNote : ''
+    let impact = typeof props.skill.impact === 'string' ? <p className={'skill-result heavy'}>{props.skill.impact}</p> : ''
+    let impact2 = props.skill.impact2 ? <p className={'skill-result heavy'}>{props.skill.impact2}</p> : ''
+    let demonicOriginNote = props.skill.demonicOriginNote && props.level <= 5 ? <p className={'skill-result heavy red'}>{props.skill.demonicOriginNote}</p> : ''
     // console.log(props.skill)
-
     function pleaFormat(plea){
         return (
             <PleaFormat plea={plea} />
@@ -109,14 +109,14 @@ export default function FinalItem(props) {
                 </div>
             </div>
             <div className={'skill-dropdown ' + hideDropdown}>
-                <p className={'skill-result heavy red'}>{demonicOriginNote}</p>
+                {demonicOriginNote}
                 {elementList}
-                <p className={'skill-condition'}>{flavor}</p>
+                {flavor}
                 {flavor2}
                 {flavor3}
                 {flavor4}
-                <p className={'skill-result heavy'}>{impact}</p>
-                <p className={'skill-result heavy'}>{impact2}</p>
+                {impact}
+                {impact2}
                 {plea}
             </div>         
         </div>

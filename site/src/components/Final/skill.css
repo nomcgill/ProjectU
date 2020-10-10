@@ -37,8 +37,12 @@
 
 .skill-header-open {
     color: white;
-    color: black;
-    background-color: rgb(163, 142, 113);
+    background-color: rgba(0, 0, 0, 0.39);
+    /* background-color: rgb(163, 151, 113); */
+}
+
+#final-body .one-skill:nth-child(odd) .skill-header-open {
+    /* background-color: rgb(146, 125, 95); */
 }
 
 .skill-head-pane {
@@ -52,11 +56,12 @@
 
 .skill-head-pane:hover {
     /* border: solid 1px black; */
-    background-color: rgb(179, 158, 129);
+    background-color: rgba(0, 0, 0, 0.212);
+    border: solid 1px rgba(255, 255, 255, 0.788);
 }
 
 .skill-head-pane:active {
-    background-color: rgb(185, 175, 145);
+    background-color: rgba(0, 0, 0, 0.432);
 }
 
 .skill-pane-info {
@@ -89,4 +94,8 @@
 
 .skill-dropdown p {
     padding: 3px;
+}
+
+.one-skill .red {
+    color: rgb(226, 166, 55);
 }

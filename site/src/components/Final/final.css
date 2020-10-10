@@ -1,6 +1,6 @@
 #final-page {
-    background: linear-gradient(to right bottom, rgb(71,71,71) 50%, rgb(54, 54, 54) 50%);
-    background: linear-gradient(to right bottom, rgb(54,54,54) 50%, rgb(71, 71, 71) 50%);
+    /* background: linear-gradient(to right bottom, rgb(71,71,71) 50%, rgb(54, 54, 54) 50%); */
+    /* background: linear-gradient(to right bottom, rgb(54,54,54) 50%, rgb(71, 71, 71) 50%); */
     color: white;
 }
 
@@ -255,7 +255,7 @@ body #filters > button:active {
 }
 
 .filter-alive {
-    background-color: orange !important;
+    background-color: rgb(209, 100, 28) !important;
 }
 
 #manage-skill-choices {

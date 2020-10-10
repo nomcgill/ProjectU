@@ -1,3 +1,4 @@
+import { wait } from '@testing-library/react';
 import React from 'react';
 import {
     BrowserRouter as Router,
@@ -6,12 +7,17 @@ import {
     Switch
   } from 'react-router-dom';
 
-// import sampleProjectU from './sampleProjectU.json'
+  
+  // import Swal from 'sweetalert2'
+  // import withReactContent from 'sweetalert2-react-content'
+  
+  import fetchingItems from './fetchingItems.json'
+  
+  // only one of the below sampleProjectU should ever be commented.
+  // -----------------------
+  import sampleProjectU from './sampleProjectU.json'
+//   let sampleProjectU = false
 
-import fetchingItems from './fetchingItems.json'
-
-// import Swal from 'sweetalert2'
-// import withReactContent from 'sweetalert2-react-content'
 
 export const ACTION = 'action';
 export const action = () => ({
@@ -26,20 +32,31 @@ export const fetchProjectUSuccess = (projectu) => ({
 
 export const fetchProjectU = () => dispatch => {
 
-    const databaseURL = fetchingItems.databaseURL
+    // console.log(sampleProjectU)
+    // let sampleProjectU = sampleProjectU ? sampleProjectU : false
+    // Sample Database is open for business?
 
-    fetch(databaseURL)
-    .then(res => {
-        return res.json();
-    })
-    .then(database => {
-        dispatch(fetchProjectUSuccess(database[0]))
-    })
-    .catch((error) => {
-        console.log(error)
-    });
-
-    // dispatch(fetchProjectUSuccess(sampleProjectU))
+    if (sampleProjectU){
+        // console.log('heard')
+        dispatch(fetchProjectUSuccess(sampleProjectU))
+        return
+    }
+    // No it isn't.
+    else {
+        console.log('heard')
+        const databaseURL = fetchingItems.databaseURL
+        
+        fetch(databaseURL)
+        .then(res => {
+            return res.json();
+        })
+        .then(database => {
+            dispatch(fetchProjectUSuccess(database[0]))
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+    }
 }
 
 export const getHeroById = (id) => dispatch => {

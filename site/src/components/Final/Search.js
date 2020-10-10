@@ -33,7 +33,7 @@ export class Search extends React.Component {
         // console.log(this.props.typedText)
         return(
             <div id={'search'}>
-                <input id={'search-bar'} onChange={(event) => this.handleTyping(event)} placeholder={'...?'}/>
+                <input id={'search-bar'} onChange={(event) => this.handleTyping(event)} placeholder={'Search Skills'}/>
                 <div onClick={() => this.handleReset()} id={'reset-filters'}>
                     Reset
                 </div>

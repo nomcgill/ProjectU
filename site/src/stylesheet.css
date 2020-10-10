@@ -16,8 +16,8 @@
 }
 
 html {
-  /* height: 100%;  */
-  background-color: rgb(44, 44, 44);
+  height: 100%; 
+  background-color: rgb(54, 54, 54);
 }
 
 body {
@@ -41,10 +41,6 @@ body {
   /* background-color: white; */
 }
 
-main {
-  /* top: 0; */
-}
-
 #page > #back-pane {
   height: 100vh;
   /* width: 100vw; */
@@ -61,17 +57,19 @@ main {
 }
 
 #main-container {
-  background-color: white;
+  /* background-color: white; */
+  /* background: linear-gradient(to right bottom, rgb(54,54,54) 50%, rgb(71, 71, 71) 50%); */
+  /* height: 100%; */
 }
 
 main, #fixed-top {
   /* display: table-row; */
   width: 100%;
 }
-
+/* 
 #background-top-bar + main {
-  height: 100%;
-}
+  height: 100vh;
+} */
 
 *:not(#dropdown *){
   cursor: default;
@@ -103,6 +101,10 @@ main, #fixed-top {
 main {
   position: relative;
   z-index: 0;
+  /* height: -webkit-calc(100% - 117px); */
+  /* height: -moz-calc(100% - 117px); */
+  height: calc(100% - 117px);
+  /* background: linear-gradient(to right bottom, rgb(54,54,54) 50%, rgb(71, 71, 71) 50%); */
   /* height: 100%; */
   /* padding-top: 30%; */
 }
@@ -110,6 +112,7 @@ main {
 #main-container {
   max-width: 800px;
   margin: 0 auto;
+  height: 100%;
 }
 
 #main-container > *{

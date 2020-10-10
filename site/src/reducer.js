@@ -1,11 +1,12 @@
 import * as actions from './actions';
 import sampleChoices from './sampleChoices'
-import sampleChoicesRevised from './sampleChoicesRevised.json'
+// import sampleChoicesRevised from './sampleChamps/sampleChoicesRevised.json'
 import cleanSlate from './cleanSlate.json'
+import newArthur from './sampleChamps/newArthur.json'
 // import sampleProjectU from './sampleProjectU'
 
-// const initialState = sampleChoicesRevised
-const initialState = cleanSlate
+const initialState = newArthur
+// const initialState = cleanSlate
 
 export const reducer = (state = initialState, action) => {
 

@@ -24,3 +24,5 @@ yarn-error.log*
 
 # database
 /src/sampleProjectU.json
+/nolan-notes.txt
+/src/sampleChamps
