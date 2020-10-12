@@ -37,6 +37,13 @@ export default function EditSkillsSection(props) {
         props.checkmarkWhatsSeen()
     }
 
+    // console.log(props)
+    let numberChosen = 
+        typeof props.numberChosen === "number" ? props.numberChosen :
+        parseInt(props.numberChosen.$numberInt)
+    
+    // console.log(numberChosen)
+    // debugger;
     
     // console.log(props)
     return (
@@ -55,7 +62,7 @@ export default function EditSkillsSection(props) {
                     {/* <br /> */}
                     {/* <div className={"skill-top-table"}> */}
                         <p className={'tracking-skill-choices'}><span className={'tracking-skill-numbers'}>
-                            {props.numberChosen} / {props.available}</span> at lvl {props.level}</p>
+                            {numberChosen} / {props.available}</span> at lvl {props.level}</p>
                     </div>
                 </div>
                 <h3 className={"plus-sign"} id={theTitle + "-plus"}>

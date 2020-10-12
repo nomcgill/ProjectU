@@ -126,8 +126,7 @@ export class SkillsPage extends React.Component {
             }
         })
         
-
-        let quantityChosen = this.props.quantityChosen ? this.props.quantityChosen : 
+        let blankObject = 
         {   
             Role: {
                 Basic: 0,
@@ -140,6 +139,13 @@ export class SkillsPage extends React.Component {
                 Master: 0
             }
         }
+
+        let quantityChosen = this.props.quantityChosen ? this.props.quantityChosen : blankObject
+        let levelingNumbers = this.props.levelingNumbers ? this.props.levelingNumbers : blankObject
+
+        // console.log(this.props.levelingNumbers)
+
+        // console.log(quantityChosen)
         
         //First make sure that the User has chosen a Role AND a Source!
         if (!this.props.role || !this.props.source){
@@ -180,7 +186,7 @@ export class SkillsPage extends React.Component {
                             render={() => 
                                 <SkillsChoiceSection 
                                     info={currentRole[0]}
-                                    levelingNumbers={this.props.levelingNumbers.Role}
+                                    levelingNumbers={levelingNumbers.Role}
                                     updateSkills={(chosenSkillTitles, where)=> this.updateSkills(chosenSkillTitles, where, "role")}
                                     checkmarkWhatsSeen={()=> this.checkWhatsSeen()}
                                     currentBasicChosen={quantityChosen.Role.Basic}
@@ -196,7 +202,7 @@ export class SkillsPage extends React.Component {
                             render={() => 
                                 <SkillsChoiceSection 
                                 info={currentSource[0]}
-                                levelingNumbers={this.props.levelingNumbers.Source}
+                                levelingNumbers={levelingNumbers.Source}
                                 updateSkills={(chosenSkillTitles, where)=> this.updateSkills(chosenSkillTitles, where, "source")}
                                 checkmarkWhatsSeen={()=> this.checkWhatsSeen()}
                                 currentBasicChosen={quantityChosen.Source.Basic}

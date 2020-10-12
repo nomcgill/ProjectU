@@ -54,7 +54,7 @@ export const fetchProjectU = () => dispatch => {
             dispatch(fetchProjectUSuccess(database[0]))
         })
         .catch((error) => {
-            console.log(error)
+            alert(error)
         });
     }
 }
@@ -311,8 +311,23 @@ export const updateFilterFavorite = (filterFavorite) => ({
 })
 
 export const gatherFilters = (currentSkills, filters) => dispatch => {
+    // each variable passes on the next variable if it doesn't filter any out. The 'else' condition returns previous variable into next line.
     let filteredText = (filters.text) ? currentSkills.filter(skill => skill.fullText.includes(filters.text.toUpperCase())) : currentSkills
-    let filteredType = (filters.type) ? filteredText.filter(skill => skill.action === filters.type) : filteredText
+    let filteredType = 
+        filters.type ? filteredText.filter(skill => {
+            if (typeof skill.action === "string"){
+                return filters.type === skill.action
+            }
+            if (Array.isArray(skill.action)){
+                for (let i = 0; i <= skill.action.length; i++){
+                    if (filters.type === skill.action[i]){
+                        return skill
+                    }
+                }
+            }
+        }) 
+        : filteredText
+
     function createActionType(skill) {    
         return (skill.action === "Passive") ? "Passive" : "Active"
     }
@@ -626,6 +641,7 @@ export const tallyUpChoices = (currentSkills) => dispatch => {
             Master: sourceMaster.length
         }
     }
+    // console.log(totals)
 
     dispatch(changeChoiceTally(totals))
 }

@@ -83,7 +83,9 @@ export default function FinalBody(props) {
                     <p id={'manage-skill-choices'}>Manage</p>
                 </Link>
             </div>
-            {sortedSkills()}
+            <div id={'final-skills-list'}>
+                {sortedSkills()}
+            </div>
             <div id={"bottom-pane"}>
                     ©2020 ProjectU | All Rights Reserved
             </div>  

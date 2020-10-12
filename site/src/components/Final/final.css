@@ -328,5 +328,21 @@ body #filters > button:active {
 }
 
 @media all and (min-width: 800px){
-    
+    #final-skills-list {
+        margin-top: 10px;
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 12px;
+    }
+
+    #final-skills-list .one-skill {
+        margin: 0;
+    }
+
+    .open-skill {
+        grid-area: span 1/span 2
+        /* grid-row: 1; */
+        /* grid-column: 1 ; */
+    }
 }

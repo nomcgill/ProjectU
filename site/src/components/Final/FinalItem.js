@@ -31,6 +31,10 @@ export default function FinalItem(props) {
     let grayClass = (props.skill.favorite) ? 'hidden' : ""
     let actionColor = (props.skill.action === "Passive") ? '' : "red"
     let hideDropdown = (props.skill.open) ? "" : "hidden"
+    let actionType = 
+        typeof props.skill.action === "string" ? props.skill.action : 
+        props.skill.action.length === 2 ? props.skill.action[0] + '/' + props.skill.action[1] :
+        'Other'
     let shownCategory = 
         (props.skill.category === "Intersection") ? props.intersection.title :
         (props.skill.category === "Role") ? props.role :
@@ -92,8 +96,10 @@ export default function FinalItem(props) {
     let elementList = props.skill.elementList ? <p className={'element-list'}>{props.skill.elementList}</p> : ''
     // console.log(props.skill.plea)
     // console.log(props)
+
+    let displayBlockOnWideScreen = props.skill.open ? " open-skill" : "" 
     return (
-        <div className={'one-skill'} id={name}>
+        <div className={'one-skill' + displayBlockOnWideScreen} id={name}>
             <div className={'skill-head-pane skill-header-open'} onClick={e => toggleDetails(e)}>
                 <div className={'skill-head-pane-top'}>
                     <h3>{name} 
@@ -104,7 +110,7 @@ export default function FinalItem(props) {
                     <img src={GrayStar} className={'item-gray-star favorite-star ' + grayClass} onClick={e => toggleFavorite(e, false)} />
                 </div>
                 <div className={'skill-pane-info'}>
-                    <p>{shownCategory} > <span className={actionColor}>{props.skill.action}</span></p>
+                    <p>{shownCategory} > <span className={actionColor}>{actionType}</span></p>
                     <p>{props.skill.skillLevel}</p>
                 </div>
             </div>

@@ -330,6 +330,16 @@ p.background-header {
     margin-bottom: 8px ;
     max-width: 650px;
     width: 100%;
+    /* background-color: rgba(255, 255, 255, 0.13); */
+}
+
+#skills-page .skill-top {
+    background-color: rgba(255, 255, 255, 0.13);
+}
+
+#skills-page .skill-top.gray {
+    background-color: rgb(85, 85, 85);
+    box-shadow: 5px 5px 5px black;
 }
 
 .open-box .skill-top:hover {
@@ -453,9 +463,13 @@ p.background-header {
 }
 
 #editing-main .editing-item-content:hover {
-    background-image: linear-gradient( rgba(70, 70, 70, 0),rgb(70, 70, 70) );
+    /* background-image: linear-gradient( rgba(70, 70, 70, 0),rgba(70, 70, 70, 0.315) ); */
     /* border-left: solid 4px white; */
     /* background-color: rgba(255, 255, 255, 0.103); */
+    border-bottom: solid 2px white;
+    border-right: solid 2px white;
+    /* box-shadow: 5px 5px 5px black; */
+
 }
 
 .edit-skills-checkbox {

@@ -17,6 +17,14 @@ export default function Item(props) {
         // }
     }
 
+    let action = props.info.action
+
+    let actionType =
+        action === "Passive" ? <span className={"action-passive"}> Passive</span> :
+        typeof action === "string" ? <span className={"action-status"}> {action}</span> :
+        action.length === 2 ? <span className={"action-status"}> {action[0]}/{action[1]}</span> :
+        <span className={"action-passive"}> Other</span>
+
     const isActive = () => {
         if (props.info.action !== "Passive"){
             return (
@@ -99,7 +107,7 @@ export default function Item(props) {
                 <p className={"item-name"}>
                     {props.info.name} {specialization}
                     <br />
-                    {isActive()}
+                    {actionType}
                 </p>
                 {flavor(props.info)}
                 {plea}
