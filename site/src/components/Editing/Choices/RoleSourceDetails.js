@@ -56,7 +56,7 @@ export class RoleSourceDetails extends React.Component {
         let joinedName = this.joinWords(beast.name)
         let selected = document.getElementById(joinedName + '-radio')
         // console.log(selected)
-        console.log(selected.checked)
+        // console.log(selected.checked)
         // console.log(joinedName)
         // debugger;
         if (selected.checked){

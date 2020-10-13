@@ -119,8 +119,8 @@ export default function Item(props) {
     }
     let plea = props.info && props.info.plea ? pleaFormat(props.info.plea) : ''
 
-    
     // console.log(props)
+    // console.log(props.info)
     return (
         <label className={"item " + props.class} id={dashedName} htmlFor={checkboxID}>
             <input type={'radio'} name={props.info.skillLevel + '-intersection-radio'} onClick={() => onItemClick(checkboxID, props.alreadyHave)} id={checkboxID} className={'edit-skills-checkbox'} />

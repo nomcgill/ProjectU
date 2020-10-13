@@ -121,9 +121,10 @@ export class IntersectionPage extends React.Component {
             }
         })
 
-
+        
         // console.log(databaseIntersectionArray)
         let intersection = databaseIntersectionArray[0]
+        console.log(intersection)
         this.props.dispatch(updateIntersection(intersection))
         // debugger;
         // console.log(intersection)

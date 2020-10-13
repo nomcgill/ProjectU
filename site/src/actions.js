@@ -15,8 +15,8 @@ import {
   
   // only one of the below sampleProjectU should ever be commented.
   // -----------------------
-//   import sampleProjectU from './sampleProjectU.json'
-  let sampleProjectU = false
+  import sampleProjectU from './sampleProjectU.json'
+//   let sampleProjectU = false
 
 
 export const ACTION = 'action';
@@ -666,6 +666,10 @@ export const skillBankState = skillBank => ({
 
 export const updateCurrentBackground = (backgroundTitle, backgroundOptions, currentSkills) => dispatch => {
 
+    let skillsWithoutBackground = currentSkills.filter(skill => {
+        return skill.category !== "Background"
+    })
+
     backgroundOptions.forEach(background => {
         if (background.title === backgroundTitle){
 
@@ -681,7 +685,7 @@ export const updateCurrentBackground = (backgroundTitle, backgroundOptions, curr
             backGroundObject.flavor = " "
             backGroundObject.impact = background.description
 
-            let revisedSkills = [...currentSkills, backGroundObject]
+            let revisedSkills = [...skillsWithoutBackground, backGroundObject]
             // console.log(revisedSkills)
             dispatch(currentSkillsStateUpdate(revisedSkills))
         }
@@ -852,7 +856,7 @@ export const updateMorph = (beast, currentSkills, animalTextId) => dispatch => {
     let source = {beastName: newAnimalTitle};
 
     const sameBeastNewTitle = Object.assign(target, source);
-    console.log(sameBeastNewTitle)
+    // console.log(sameBeastNewTitle)
 
     // console.log(sameBeastNewTitle)
     let revisedSkills = [...removedPossibleBeast, sameBeastNewTitle]
