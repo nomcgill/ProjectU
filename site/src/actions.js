@@ -273,6 +273,12 @@ export const toggleOpen = (item) => ({
     item
 })
 
+export const TOGGLE_ALL_STATE = 'TOGGLE_ALL_STATE';
+export const toggleAllState = (open) => ({
+    type: TOGGLE_ALL_STATE,
+    open
+})
+
 export const GATHER_ITEM_TEXT = 'GATHER_ITEM_TEXT';
 export const gatherItemText = (name, text) => ({
     type: GATHER_ITEM_TEXT,

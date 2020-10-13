@@ -5,7 +5,13 @@
 }
 
 #final-top-pane {
-    margin-bottom: 55px;
+    margin-bottom: 40px;
+    /* background-color: darkgray; */
+}
+
+#final-body {
+    padding-top: 25px;
+    /* box-shadow: inset 0 7px 9px -10px black; */
 }
 
 #roll {
@@ -82,7 +88,7 @@
 #search input {
     background-color: rgb(177, 177, 177);
     height: 35px;
-    font-size: 1.4em;
+    font-size: 1.25em;
     text-align: right;
     padding: 6px 6px 2px;
     /* width: 239px; */
@@ -113,14 +119,14 @@ input:focus::-webkit-input-placeholder {
     /* border-right: solid 1px black; */
 }
 
-#reset-filters:hover {
-    color: rgba(0, 0, 0, 0.562);
+/* #reset-filters:hover {
+    color: rgba(255, 255, 255, 0.733);
     cursor: pointer;
 }
 
 #reset-filters:active {
-    color: rgba(0, 0, 0, 0.295);
-}
+    color: rgba(199, 199, 199, 0.295);
+} */
 
 #filters {
     z-index: 2;
@@ -157,9 +163,9 @@ input:focus::-webkit-input-placeholder {
     outline: none;
     /* border: solid 1px gray; */
     border: none;
-    border-radius: 3px;
+    border-radius: 1px;
     background-color: rgb(100, 100, 100);
-    color: white;
+    /* color: white; */
 }
 
 body #filters .selected {
@@ -185,29 +191,33 @@ body #filters > button:active {
 #filters #type-filter {
     width: 70px;
     text-align: center;
-    background-color: rgb(100, 100, 100);
+    background-color: rgba(59, 59, 59, 0);
 }
 
 #filters #type-filter:hover {
-    background-color: rgb(136, 136, 136)
+    /* background-color: rgb(136, 136, 136) */
 }
 
 #filters #active-filter {
     width: 63px;
-    background-color: rgb(92, 92, 92);
+    background-color: rgba(92, 92, 92, 0);
 }
 
 #filters #active-filter:hover {
-    background-color: rgb(121, 121, 121);
+    /* background-color: rgb(121, 121, 121); */
 }
 
 #filters #rolesource-filter {
     width: 110px;
-    background-color: rgb(83, 83, 83);
+    background-color: rgba(83, 83, 83, 0);
 }
 
 #filters #rolesource-filter:hover {
-    background-color: rgb(124, 124, 124);
+    /* background-color: rgb(124, 124, 124); */
+}
+
+#filters .filter-button:hover {
+    border: solid 1px rgba(255, 255, 255, 0.349);
 }
 
 #filter-star {
@@ -256,6 +266,7 @@ body #filters > button:active {
 
 .filter-alive {
     background-color: rgb(209, 100, 28) !important;
+    color: white !important;
 }
 
 #manage-skill-choices {
@@ -275,6 +286,27 @@ body #filters > button:active {
     /* font-style: italic; */
 }
 
+#toggle-all-open-closed {
+    float: right;
+    margin-right: 3.25%;
+    margin-top: 8px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#toggle-all-open-closed, #reset-filters, #manage-skill-choices, .filter-button {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.733);
+}
+
+#toggle-all-open-closed:hover, #reset-filters:hover, #manage-skill-choices:hover, .filter-button:hover {
+    color: white;
+}
+
+#toggle-all-open-closed:active, #reset-filters:active, #manage-skill-choices:active {
+    color: rgba(199, 199, 199, 0.726);
+}
+
 @media all and (min-width: 400px) { 
     #final-top-pane {
         margin-bottom: 40px;
@@ -284,7 +316,7 @@ body #filters > button:active {
 @media all and (min-width: 510px) { 
 
     #final-top-pane {
-        margin-bottom: 50px;
+        margin-bottom: 30px;
     }
     
     #search {
@@ -310,30 +342,23 @@ body #filters > button:active {
     }
 }
 
-@media all and (min-width: 600px) { 
-
-    #final-top-pane {
-        margin-bottom: 30px;
+@media all and (min-width: 640px) { 
+    
+    #final-skills-list > .one-skill:nth-child(2n+0) {
+        /* background-color: gray; */
+        /* width: 50%; */
+        /* order: 1; */
     }
 
-    #search input {
-        max-width: 343px;
-    }
 
-    #filters > button {
-        /* width:600px; */
-        margin-left: 7px;
-        width: 110px !important;
-    }
-}
-
-@media all and (min-width: 800px){
     #final-skills-list {
         margin-top: 10px;
         display: grid;
-        width: 100%;
+        width: 94%;
         grid-template-columns: 1fr 1fr;
         grid-gap: 12px;
+        margin-right: 3%;
+        margin-left: 3%;
     }
 
     #final-skills-list .one-skill {
@@ -342,7 +367,9 @@ body #filters > button:active {
 
     .open-skill {
         grid-area: span 1/span 2
-        /* grid-row: 1; */
-        /* grid-column: 1 ; */
+    }
+
+    #empty-skills-body {
+        grid-area: span 1/span 2;
     }
 }

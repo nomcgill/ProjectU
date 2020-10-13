@@ -115,6 +115,16 @@ export const reducer = (state = initialState, action) => {
         })
     }
 
+    if (action.type === actions.TOGGLE_ALL_STATE){
+        let toggledSkills = state.currentSkills.map(skill => {
+            skill.open = action.open
+            return skill 
+        })
+        return Object.assign({}, state, {
+            currentSkills: toggledSkills
+        })
+    }
+
     if (action.type === actions.GATHER_ITEM_TEXT){
         let editedAddedText = state.currentSkills.map(skill => {
             if (skill.name === action.name){

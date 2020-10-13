@@ -7,6 +7,22 @@ import FinalItem from './FinalItem'
 
 export default function FinalBody(props) {
     
+    function toggleOpenClosedClick(){
+        let allDropdowns = Array.from(document.getElementsByClassName('skill-dropdown'))
+        let closedDropdowns = [] 
+        allDropdowns.forEach(skill => {
+            if (!skill.classList.contains('hidden')){
+                closedDropdowns.push(false)
+            }
+        })
+        if (closedDropdowns.length < allDropdowns.length){
+            props.toggleAll(true)
+        }
+        else {
+            props.toggleAll(false)
+        }
+    }
+
     let sortedSkills = () => {
 
         if (props.shownSkills.length > 0){
@@ -82,6 +98,7 @@ export default function FinalBody(props) {
                 <Link to={'/editing/skills/roleskillschoice'}>
                     <p id={'manage-skill-choices'}>Manage</p>
                 </Link>
+                <p id={'toggle-all-open-closed'} onClick={()=> toggleOpenClosedClick()}>Toggle All</p>
             </div>
             <div id={'final-skills-list'}>
                 {sortedSkills()}

@@ -519,6 +519,16 @@ input:focus {
     margin: 0;
 }
 
+.editing-pane-section h2, .editing-pane-section h3 {
+/* #label-input-title h2, #label-input-name h2 { */
+    font-size: 22px;
+}
+
+#label-input-title h2 {
+    margin-top: 28px;
+    /* font-size: 28px; */
+}
+
 #label-input-name {
     width: 340px;
 }

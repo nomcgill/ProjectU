@@ -5,7 +5,7 @@ import './final.css'
 import FinalTopPane from './FinalTopPane'
 import FinalBody from './FinalBody'
 
-import { toggleFavorite, toggleOpen, gatherItemText, gatherFilters, updateInputState, resetFilters, updateLevel, updateForRedirect } from '../../actions'
+import { toggleFavorite, toggleOpen, gatherItemText, gatherFilters, toggleAllState, resetFilters, updateLevel, updateForRedirect } from '../../actions'
 
 export class Final extends React.Component {
     
@@ -61,6 +61,7 @@ export class Final extends React.Component {
                                 shownSkills={shownSkills}
                                 toggleFavorite={(item) => this.props.dispatch(toggleFavorite(item))}
                                 toggleOpen={(item) => this.props.dispatch(toggleOpen(item))}
+                                toggleAll={(open) => this.props.dispatch(toggleAllState(open))}
                                 gatherItemText={(name, text) => this.props.dispatch(gatherItemText(name,text))}
                                 role={this.props.role}
                                 // currentBackground={this.props.currentBackground}

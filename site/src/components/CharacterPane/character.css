@@ -143,19 +143,20 @@
 #overstep-box {
     line-height: 24px;
     /* border: solid 2px black; */
-    border-radius: 6px;
-    background-color: rgba(255, 255, 255, 0.349);
-    margin: 4px;
+    /* border-radius: 6px; */
+    /* background-color: rgba(255, 255, 255, 0.349); */
+    margin: 4px 9px 7px 4px;
     padding: 3px 0px;
+    cursor: pointer;
     /* max-width: 130px; */
 }
 
 #overstep-box:hover {
-    background-color: rgba(255, 255, 255, 0.623);
+    background-color: rgba(255, 255, 255, 0.164);
 }
 
 #overstep-box:active {
-    background-color: rgba(160, 160, 160, 0.253);
+    background-color: rgba(75, 75, 75, 0.151);
 }
 
 #overstep-check {
@@ -185,20 +186,19 @@
 }
 
 .character-pane-box:hover {
-    background-color: rgba(255, 255, 255, 0.116);
-    cursor: pointer;
+    /* background-color: rgba(255, 255, 255, 0.116); */
+    /* cursor: pointer; */
 }
 
 .character-pane-box:active {
-    background-color: rgba(255, 255, 255, 0.171);   
+    /* background-color: rgba(255, 255, 255, 0.171);    */
 }
 
 #hp-box, #damage-box {
-    line-height: 28px;
     /* padding-top: 4px; */
-    border-radius: 6px;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    /* border-radius: 6px; */
+    /* margin-top: 4px; */
+    /* margin-bottom: 4px; */
 }
 
 #hp-line > * {
@@ -225,31 +225,57 @@ box-shadow: 0px 0px 0px 1px rgba(255,0,0,1);
 
 #character-tracking-pane {
     display: grid;
-    grid-template-columns: auto auto auto auto 65px;
+    grid-template-columns: auto auto 65px;
     height: 72px;    
 }
 
+#tracking-notes-button {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    margin: 3px 10px 5px -4px;
+    /* border-radius: 7px; */
+    padding: 5px 5px 3px;
+    /* background-color: rgba(0, 0, 0, 0.13); */
+    /* line-height: 28px; */
+    box-shadow: 0px 0px 2px rgb(41, 41, 41);
+
+    border: solid 1px black;
+    cursor: pointer;
+}
+
+#tracking-notes-button:hover {
+    background-color: rgba(255, 255, 255, 0.212);
+}
+
+#tracking-notes-button > * {
+    line-height: 24px;
+}
+
 #tracking-notes {
-    /* line-height: 72px; */
+    line-height: 0px;
     /* vertical-align: middle; */
 }
 
+#hp-box, #damage-box {
+    margin-top: 2px;
+}
+
 #notepad {
-    width: 42.37px;
-    height: 58px;
-    margin: 6px 0px 3px;
-    margin-left: -3px;
-    border-radius: 8px;
+    width: 36px;
+    /* height: 48px; */
+    margin: 2px 8px 3px 0;
+    /* margin-left: 3px; */
+    /* border-radius: 8px; */
     /* padding: 4.5px; */
 }
 
 #notepad:hover {
-    background-color: rgba(216, 216, 216, 0.548);
-    cursor: pointer;
+    /* background-color: rgba(216, 216, 216, 0.548); */
+    /* cursor: pointer; */
 }
 
 #notepad:active {
-    background-color: rgba(216, 216, 216, 0.267);
+    /* background-color: rgba(216, 216, 216, 0.267); */
 }
 
 #flip-arrow {
