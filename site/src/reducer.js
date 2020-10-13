@@ -5,10 +5,10 @@ import cleanSlate from './cleanSlate.json'
 // import sampleProjectU from './sampleProjectU'
 
 
-import newArthur from './sampleChamps/newArthur.json'
-const initialState = newArthur
+// import newArthur from './sampleChamps/newArthur.json'
+// const initialState = newArthur
 
-// const initialState = cleanSlate
+const initialState = cleanSlate
 
 export const reducer = (state = initialState, action) => {
 
