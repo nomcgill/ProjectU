@@ -42,6 +42,13 @@ export class Final extends React.Component {
         }
     }
 
+    clickStar(item){
+        const promise1 = new Promise ((resolve, reject) => {
+            resolve(this.props.dispatch(toggleFavorite(item)))
+        })
+        promise1.then(() => this.updateFilter())
+    }
+
     render() {
         const shownSkills = (this.props.currentlyShown === undefined) ? this.props.currentSkills : this.props.currentlyShown
         // console.log(this.props.currentSkills)
@@ -59,7 +66,7 @@ export class Final extends React.Component {
                             />
                             <FinalBody 
                                 shownSkills={shownSkills}
-                                toggleFavorite={(item) => this.props.dispatch(toggleFavorite(item))}
+                                toggleFavorite={(item) => this.clickStar(item)}
                                 toggleOpen={(item) => this.props.dispatch(toggleOpen(item))}
                                 toggleAll={(open) => this.props.dispatch(toggleAllState(open))}
                                 gatherItemText={(name, text) => this.props.dispatch(gatherItemText(name,text))}

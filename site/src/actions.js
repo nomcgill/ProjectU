@@ -1,12 +1,3 @@
-import { wait } from '@testing-library/react';
-import React from 'react';
-import {
-    BrowserRouter as Router,
-    Route,
-    Redirect,
-    Switch
-  } from 'react-router-dom';
-
   
   // import Swal from 'sweetalert2'
   // import withReactContent from 'sweetalert2-react-content'
@@ -34,8 +25,8 @@ export const fetchProjectU = () => dispatch => {
 
     // console.log(sampleProjectU)
     // let sampleProjectU = sampleProjectU ? sampleProjectU : false
-    // Sample Database is open for business?
 
+    // Sample Database is open for business?
     if (sampleProjectU){
         // console.log('heard')
         dispatch(fetchProjectUSuccess(sampleProjectU))
@@ -62,7 +53,6 @@ export const fetchProjectU = () => dispatch => {
 export const getHeroById = (id) => dispatch => {
     console.log(id)
     const heroURL = fetchingItems.heroURL + id
-
 
     fetch(heroURL)
     .then(res => {
@@ -210,7 +200,6 @@ export const updateLevelVisual = (input) => dispatch => {
     // dispatch(updateLevelMaximums(maximums))
 }
 
-
 export const updateLevel = (currentLevel, newLevel, levelingNumbers, currentSkills) => dispatch => {
 
     if (newLevel && newLevel < currentLevel){
@@ -219,10 +208,17 @@ export const updateLevel = (currentLevel, newLevel, levelingNumbers, currentSkil
 
     let level = newLevel ? newLevel : currentLevel
 
-    let newMaximums = levelingNumbers[level]
     // console.log(currentSkills)
-    dispatch(updateGlobalLevel(level, newMaximums))
+    dispatch(tallyUpChoices(currentSkills, levelingNumbers, level))
     dispatch(filterOutIntersectionSkills(currentSkills, level))
+
+}
+
+export const updateLevelingNumbers = (level, levelingNumbers, totals) => dispatch => {
+    // console.log(level)
+    let maximums = levelingNumbers[level]
+    dispatch(updateGlobalLevel(level, maximums))
+    dispatch(checkHomebrewSkillTotals(totals, maximums))
 }
 
 export const UPDATE_GLOBAL_LEVEL = 'UPDATE_GLOBAL_LEVEL';
@@ -319,6 +315,7 @@ export const updateFilterFavorite = (filterFavorite) => ({
 export const gatherFilters = (currentSkills, filters) => dispatch => {
     // each variable passes on the next variable if it doesn't filter any out. The 'else' condition returns previous variable into next line.
     let filteredText = (filters.text) ? currentSkills.filter(skill => skill.fullText.includes(filters.text.toUpperCase())) : currentSkills
+
     let filteredType = 
         filters.type ? filteredText.filter(skill => {
             if (typeof skill.action === "string"){
@@ -475,7 +472,7 @@ export const updateRoleSource = (currentSkills, database, roleSource, title, pri
     // console.log(roleSource, title)
 }
 
-export const updateSkillsFromSkillsList = (selected, currentSkills, roleOrSource) => dispatch => {
+export const updateSkillsFromSkillsList = (selected, currentSkills, roleOrSource, levelingNumbers, level) => dispatch => {
     // console.log(roleOrSource)
     //filter out previous role or source skills from currentSkills, creating a new array without them
     function capitalizeFirstLetter(string){
@@ -492,14 +489,13 @@ export const updateSkillsFromSkillsList = (selected, currentSkills, roleOrSource
     
     // merge 'selected' with that array
 
-
     // console.log(selected)
     // console.log(currentSkills)
     // console.log(cleansedFromRoleOrSource)
     // console.log(revisedSkills)
 
     dispatch(currentSkillsStateUpdate(revisedSkills))
-    dispatch(tallyUpChoices(revisedSkills))
+    dispatch(tallyUpChoices(revisedSkills, levelingNumbers, level))
 }
 
 export const updateSkillsFromIntersection = (selectedNames, currentSkills, database) => dispatch => {
@@ -604,7 +600,7 @@ export const updateSkillBank = (database, role, source, intersection) => dispatc
     // console.log(skillBank)
 }
 
-export const tallyUpChoices = (currentSkills) => dispatch => {
+export const tallyUpChoices = (currentSkills, levelingNumbers, level) => dispatch => {
     // console.log(currentSkills)
     let roleBasic = []
     let roleAdvanced = []
@@ -647,10 +643,49 @@ export const tallyUpChoices = (currentSkills) => dispatch => {
             Master: sourceMaster.length
         }
     }
-    // console.log(totals)
+    // console.log(levelingNumbers)
+    // console.log(level)
 
+    let maximums = levelingNumbers[level]
     dispatch(changeChoiceTally(totals))
+    // console.log(totals)
+    // console.log(maximums)
+    dispatch(checkHomebrewSkillTotals(totals, maximums))
 }
+
+export const checkHomebrewSkillTotals = (totals, maximums) => dispatch => {
+    // console.log("checking for homebrew skills totals")
+    if (totals && maximums){
+        let basicRoleDiff = maximums.Role.Basic - totals.Role.Basic
+        let basicSourceDiff = maximums.Source.Basic - totals.Source.Basic
+        let advancedRoleDiff = maximums.Role.Advanced - totals.Role.Advanced
+        let advancedSourceDiff = maximums.Source.Advanced - totals.Source.Advanced
+        let masterRoleDiff = maximums.Role.Master - totals.Role.Master
+        let masterSourceDiff = maximums.Source.Master - totals.Source.Master
+        // console.log([basicRoleDiff,basicSourceDiff,advancedRoleDiff,advancedSourceDiff,masterRoleDiff,masterSourceDiff])
+        if (
+            basicRoleDiff < 0 || 
+            basicSourceDiff < 0 || 
+            advancedRoleDiff < 0 || 
+            advancedSourceDiff < 0 || 
+            masterRoleDiff < 0 || 
+            masterSourceDiff < 0 
+        ){
+            dispatch(homebrewedSkillNumbers(true))
+        }
+        else {dispatch(homebrewedSkillNumbers(false))}
+    }
+    // console.log('reaching false')
+    // console.log(totals)
+    // console.log(maximums)
+    // debugger;
+}
+
+export const HOMEBREWED_SKILL_NUMBERS = 'HOMEBREWED_SKILL_NUMBERS';
+export const homebrewedSkillNumbers = (status) => ({
+    type: HOMEBREWED_SKILL_NUMBERS,
+    status
+})
 
 export const CHANGE_CHOICE_TALLY = 'CHANGE_CHOICE_TALLY';
 export const changeChoiceTally = totals => ({

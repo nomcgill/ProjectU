@@ -30,6 +30,7 @@ export default function SkillsChoiceSection(props) {
                 updateSkills={(chosenSkillTitles) => props.updateSkills(chosenSkillTitles, props.info.title)}
                 checkmarkWhatsSeen={()=> props.checkmarkWhatsSeen()}
                 level={props.level}
+                // homebrewed={(reason)=> props.homebrewed(reason, "Basic")}
             />
             <EditSkillsSection
                 title={"Advanced"}
@@ -40,6 +41,7 @@ export default function SkillsChoiceSection(props) {
                 updateSkills={(chosenSkillTitles) => props.updateSkills(chosenSkillTitles, props.info.title)}
                 checkmarkWhatsSeen={()=> props.checkmarkWhatsSeen()}
                 level={props.level}
+                // homebrewed={(reason)=> props.homebrewed(reason, "Advanced")}
             />
             <EditSkillsSection
                 title={"Master"} 
@@ -50,6 +52,7 @@ export default function SkillsChoiceSection(props) {
                 updateSkills={(chosenSkillTitles) => props.updateSkills(chosenSkillTitles, props.info.title)}
                 checkmarkWhatsSeen={()=> props.checkmarkWhatsSeen()}
                 level={props.level}
+                // homebrewed={(reason)=> props.homebrewed(reason, "Master")}
             />
         </div>  
     );

@@ -59,6 +59,18 @@
     /* margin-bottom: 15px; */
 }
 
+#final-homebrew-note {
+    position: absolute;
+    left: 0px;
+    /* left: 3%; */
+    top: -20px;
+    /* left: -px; */
+    /* padding: 4px; */
+    /* background-color: rgba(0, 0, 0, 0.39); */
+    color: rgb(104, 197, 150);
+    font-size: smaller
+}
+
 #line-1 {
     height: 50px;
     width: 100%;
@@ -246,6 +258,7 @@ body #filters > button:active {
 #skills-header {
     margin-left: 3%;
     margin-bottom: -5px;
+    position: relative;
 }
 
 #skills-header > * {

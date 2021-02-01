@@ -14,7 +14,7 @@ import SkillsChoiceSection from './SkillsChoiceSection'
 import NextButton from '../NextButton.js'
 
 // import updateSkillSet from '../../../actions'
-import {updateRoleSource, updateSkillsFromSkillsList, tallyUpChoices} from '../../../actions'
+import {updateRoleSource, updateSkillsFromSkillsList, homebrewed, updateLevelingNumbers} from '../../../actions'
 
 
 export class SkillsPage extends React.Component {
@@ -63,17 +63,17 @@ export class SkillsPage extends React.Component {
 
         const promise1 = new Promise((resolve, reject) => {
             resolve(
-                this.props.dispatch(updateSkillsFromSkillsList(matchingSkills,this.props.currentSkills, how))
+                this.props.dispatch(updateSkillsFromSkillsList(matchingSkills,this.props.currentSkills, how, this.props.database.levelingNumbers, this.props.level))
             );
           });
           
           promise1.then(() => {
-            this.tallyCurrentSkills(this.props.currentSkills)
+            this.tallyCurrentSkills()
         });
     }
 
-    tallyCurrentSkills(currentSkills){
-        this.props.dispatch(tallyUpChoices(currentSkills))
+    tallyCurrentSkills(){
+
     }
 
     checkWhatsSeen(){
@@ -96,10 +96,22 @@ export class SkillsPage extends React.Component {
         })
 
     }
+    
+    //checking skills tallies for homebrewed
+    // homebrewed(reason, reason2){
+    //     this.props.dispatch(homebrewed(reason, reason2))
+    // }
 
     componentDidMount(){
-        this.checkWhatsSeen()
-        this.tallyCurrentSkills(this.props.currentSkills)
+        // const promise1 = new Promise((resolve, reject) => {
+        //     resolve(
+        //         this.props.dispatch(updateLevelingNumbers(this.props.level, this.props.database.levelingNumbers))
+        //     );
+        //   });
+        //   promise1.then(() => {
+        //       this.checkWhatsSeen()
+        //       this.tallyCurrentSkills()
+        // });
     }
     
     componentDidUpdate(){
@@ -108,8 +120,6 @@ export class SkillsPage extends React.Component {
     }
 
     render() {
-
-        // console.log(this.props.levelingNumbers)
 
         let currentRoleName = this.props.role
         let currentSourceName = this.props.source
@@ -140,10 +150,11 @@ export class SkillsPage extends React.Component {
             }
         }
 
-        let quantityChosen = this.props.quantityChosen ? this.props.quantityChosen : blankObject
-        let levelingNumbers = this.props.levelingNumbers ? this.props.levelingNumbers : blankObject
-
         // console.log(this.props.levelingNumbers)
+        let maximums = this.props.database.levelingNumbers[this.props.level]
+
+        let quantityChosen = this.props.quantityChosen ? this.props.quantityChosen : blankObject
+        let levelingNumbers = maximums ? maximums : blankObject
 
         // console.log(quantityChosen)
         
@@ -157,6 +168,7 @@ export class SkillsPage extends React.Component {
             )
         }
 
+        // console.log(levelingNumbers)
         //Role and Source has been chosen!
         return (
             <div id={"skills-page"} className={"choice-page choice-header-box"}>
@@ -189,6 +201,7 @@ export class SkillsPage extends React.Component {
                                     levelingNumbers={levelingNumbers.Role}
                                     updateSkills={(chosenSkillTitles, where)=> this.updateSkills(chosenSkillTitles, where, "role")}
                                     checkmarkWhatsSeen={()=> this.checkWhatsSeen()}
+                                    // homebrewed={(reason, reason2)=> this.homebrewed(reason, reason2)}
                                     currentBasicChosen={quantityChosen.Role.Basic}
                                     currentAdvancedChosen={quantityChosen.Role.Advanced}
                                     currentMasterChosen={quantityChosen.Role.Master}
@@ -205,6 +218,7 @@ export class SkillsPage extends React.Component {
                                 levelingNumbers={levelingNumbers.Source}
                                 updateSkills={(chosenSkillTitles, where)=> this.updateSkills(chosenSkillTitles, where, "source")}
                                 checkmarkWhatsSeen={()=> this.checkWhatsSeen()}
+                                // homebrewed={(reason, reason2)=> this.homebrewed(reason, reason2)}
                                 currentBasicChosen={quantityChosen.Source.Basic}
                                 currentAdvancedChosen={quantityChosen.Source.Advanced}
                                 currentMasterChosen={quantityChosen.Source.Master}
@@ -229,7 +243,8 @@ export class SkillsPage extends React.Component {
     level: state.level,
     database: state.database,
     levelingNumbers: state.levelingNumbers,
-    quantityChosen: state.quantityChosen
+    quantityChosen: state.quantityChosen,
+    homebrewed: state.homebrewed
     // sourcename: props.sourcename,
     // rolename: props.rolename
   });

@@ -18,7 +18,8 @@ import {
     updateCore, 
     updateMorph, 
     updateBounty,
-    updateAllChoicesVisually 
+    updateAllChoicesVisually, 
+    tallyUpChoices
 } from '../../../actions'
 
 export class RoleSourceDetails extends React.Component {
@@ -105,6 +106,7 @@ export class RoleSourceDetails extends React.Component {
         })      
         promise1.then(() => {
             this.props.dispatch(updateAllChoicesVisually(this.props.currentSkills))
+            this.props.dispatch(tallyUpChoices(this.props.currentSkills, this.props.database.levelingNumbers, this.props.level))
         });     
     }
 
@@ -330,7 +332,9 @@ const mapStateToProps = state => ({
   role: state.role,
   source: state.source,
   currentSkills: state.currentSkills,
-  roleSourceReady: state.roleSourceReady
+  roleSourceReady: state.roleSourceReady,
+  levelingNumbers: state.levelingNumbers,
+  level: state.level
 });
 
 export default connect(mapStateToProps)(RoleSourceDetails);

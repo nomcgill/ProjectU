@@ -5,8 +5,11 @@ import cleanSlate from './cleanSlate.json'
 // import sampleProjectU from './sampleProjectU'
 
 
-// import newArthur from './sampleChamps/newArthur.json'
+import newArthur from './sampleChamps/newArthur.json'
+import newArthurBig from './sampleChamps/newArthurBig.json'
+
 // const initialState = newArthur
+// const initialState = newArthurBig
 
 const initialState = cleanSlate
 
@@ -46,7 +49,15 @@ export const reducer = (state = initialState, action) => {
             overstepped: action.fetchedHero.overstepped,
             currentHP: action.fetchedHero.currentHP,
             intersection: action.fetchedHero.intersection,
+            homebrewedSkillQuantities: action.fetchedHero.homebrewedSkillQuantities,
             heroID: action.fetchedHero._id
+        })
+    }
+
+    if (action.type === actions.HOMEBREWED_SKILL_NUMBERS){
+        // console.log(action.status)
+        return Object.assign({}, state, {
+            homebrewedSkillQuantities: action.status
         })
     }
 
@@ -65,7 +76,7 @@ export const reducer = (state = initialState, action) => {
     if (action.type === actions.UPDATE_GLOBAL_LEVEL){
         return Object.assign({}, state, {
             level: action.newLevel,
-            levelingNumbers: action.newMaximums
+            levelMaximums: action.newMaximums
         })
     }
 

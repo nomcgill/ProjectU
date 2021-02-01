@@ -33,6 +33,7 @@ export class SaveHero extends React.Component {
     hero.overstepped = this.props.overstepped
     hero.currentHP = this.props.currentHP
     hero.intersection = this.props.intersection
+    hero.homebrewedSkillQuantities = this.props.homebrewedSkillQuantities
     return hero
   }
 
@@ -108,7 +109,8 @@ const mapStateToProps = state => ({
   hitpoints: state.hitpoints,
   overstepped: state.overstepped,
   currentHP: state.currentHP,
-  intersection: state.intersection
+  intersection: state.intersection,
+  homebrewedSkillQuantities: state.homebrewedSkillQuantities
 });
 
 export default connect(mapStateToProps)(SaveHero);

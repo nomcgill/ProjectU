@@ -400,13 +400,37 @@ p.background-header {
     /* display: flex; */
 }
 
+#generate-pdf-component {
+    position: relative;
+}
+
+#generate-pdf-component #final-homebrew-note {
+    /* text-align: center; */
+    left: 50%;
+    transform: translateX(-50%);
+    top: 78%;
+    text-decoration: underline;
+}
+
+#generate-pdf-component button {
+    height: 50px;
+    width: 150px;
+    margin: 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
 #editing-main .tracking-skill-numbers {
     font-weight: bold;
 }
 
 #editing-main .tracking-skill-choices {
     /* text-align: left; */
-} 
+}
+
+#editing-main .too-many-skills {
+    color: rgb(228, 53, 53);
+}
 
 #editing-main .skill-list {
     text-align: left;

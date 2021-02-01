@@ -11,7 +11,7 @@ import {
 
 import './editing.css'
 
-import {formatEditingPage, updateSkillBank, updateLevel, checkRoleSource} from '../../actions.js' 
+import {formatEditingPage, updateSkillBank, updateLevel, checkRoleSource, updateLevelingNumbers, tallyUpChoices} from '../../actions.js' 
 
 import ChoicePage from './Choices/ChoicePage'
 import IntersectionPage from './Choices/IntersectionPage'
@@ -97,6 +97,7 @@ export class EditingMain extends React.Component {
         this.updateSkillBank()
         this.choiceBoxHighlight()
         let stateLevel = this.props.level
+        // this.keepLevelingNumbersUpdated()
         // this.props.dispatch(updateLevel(stateLevel, false, this.props.database.levelingNumbers, this.props.currentSkills))
     }
     
@@ -105,10 +106,23 @@ export class EditingMain extends React.Component {
         this.choiceBoxHighlight()
         let stateLevel = this.props.level
         this.props.dispatch(updateLevel(stateLevel, false, this.props.database.levelingNumbers, this.props.currentSkills))
+        this.keepLevelingNumbersUpdated()
+    }
+
+    keepLevelingNumbersUpdated(){
+        const promise1 = new Promise((resolve, reject) => {
+            resolve(
+                this.props.dispatch(updateLevelingNumbers(this.props.level, this.props.database.levelingNumbers))
+            );
+          });
+          promise1.then(() => {
+            //   console.log(this.props.levelingNumbers)
+              this.props.dispatch(tallyUpChoices(this.props.currentSkills, this.props.database.levelingNumbers, this.props.level))
+        });
     }
     
     render() {
-
+        // console.log(this.props.currentSkills)
         function capitalize(insert){
             return insert.charAt(0).toUpperCase() + insert.slice(1)
         }
@@ -240,6 +254,7 @@ const mapStateToProps = state => ({
     source: state.source,
     database: state.database,
     level: state.level,
+    levelingNumbers: state.levelingNumbers,
     currentSkills: state.currentSkills,
     roleSourceReady: state.roleSourceReady
 });

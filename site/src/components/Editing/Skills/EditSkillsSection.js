@@ -37,15 +37,11 @@ export default function EditSkillsSection(props) {
         props.checkmarkWhatsSeen()
     }
 
-    // console.log(props)
     let numberChosen = 
         typeof props.numberChosen === "number" ? props.numberChosen :
         parseInt(props.numberChosen.$numberInt)
+    let exceedLimit = numberChosen > props.available ? 'too-many-skills' : false
     
-    // console.log(numberChosen)
-    // debugger;
-    
-    // console.log(props)
     return (
         <div className={theTitle + '-box skillbox'} id={theTitle + "-box"}>
             <div 
@@ -61,7 +57,7 @@ export default function EditSkillsSection(props) {
                     {/* </div> */}
                     {/* <br /> */}
                     {/* <div className={"skill-top-table"}> */}
-                        <p className={'tracking-skill-choices'}><span className={'tracking-skill-numbers'}>
+                        <p className={'tracking-skill-choices'}><span className={'tracking-skill-numbers ' + exceedLimit}>
                             {numberChosen} / {props.available}</span> at lvl {props.level}</p>
                     </div>
                 </div>

@@ -107,12 +107,9 @@ class CharacterPage extends React.Component {
     }
 
     updateLevel(){
-        // console.log(this.props.currentSkills)
         let slider = document.getElementById("myRange");
         let input = slider.value
         this.props.dispatch(updateLevel(this.props.level, input, this.props.database.levelingNumbers, this.props.currentSkills))
-        // console.log(this.props.level)
-        // console.log(this.props)
     }
 
     handleBackgroundFeature(){

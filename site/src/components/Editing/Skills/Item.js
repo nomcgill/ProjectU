@@ -50,6 +50,9 @@ export default function Item(props) {
         let flavor3 = skill.flavor3 ? <p className={descriptionClassName}>{skill.flavor3}</p> : ''
         let flavor4 = skill.flavor4 ? <p className={descriptionClassName}>{skill.flavor4}</p> : ''
         let impact = skill.impact ? <p className={descriptionClassName}>{skill.impact}</p> : ''
+        let impact2 = skill.impact2 ? <p className={descriptionClassName}>{skill.impact2}</p> : ''
+        let impact3 = skill.impact3 ? <p className={descriptionClassName}>{skill.impact3}</p> : ''
+        let impact4 = skill.impact4 ? <p className={descriptionClassName}>{skill.impact4}</p> : ''
             return (
                 <div className={'skill-description'}>
                     {elementList}
@@ -58,6 +61,9 @@ export default function Item(props) {
                     {flavor3}
                     {flavor4}
                     {impact}
+                    {impact2}
+                    {impact3}
+                    {impact4}
                 </div>
             )
         

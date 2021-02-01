@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import FinalItem from './FinalItem'
+import Homebrewed from './homebrewed';
 
 export default function FinalBody(props) {
     
@@ -94,6 +95,7 @@ export default function FinalBody(props) {
     return (
         <div id={'final-body'}>
             <div id={'skills-header'}>
+                <Homebrewed />
                 <h2>SKILLS</h2>
                 <Link to={'/editing/skills/roleskillschoice'}>
                     <p id={'manage-skill-choices'}>Manage</p>
