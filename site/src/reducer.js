@@ -5,8 +5,8 @@ import cleanSlate from './cleanSlate.json'
 // import sampleProjectU from './sampleProjectU'
 
 
-import newArthur from './sampleChamps/newArthur.json'
-import newArthurBig from './sampleChamps/newArthurBig.json'
+// import newArthur from './sampleChamps/newArthur.json'
+// import newArthurBig from './sampleChamps/newArthurBig.json'
 
 // const initialState = newArthur
 // const initialState = newArthurBig
